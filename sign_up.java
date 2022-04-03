@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class sign_up extends AppCompatActivity {
-    EditText st,us,p1,p2,fname,sname;
+    EditText email,us,p1,p2,fname,sname;
     Button si;
     ContentValues cv;
     @Override
@@ -18,7 +18,7 @@ public class sign_up extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        st = (EditText) findViewById(R.id.studentnumber);
+        email = (EditText) findViewById(R.id.email_address);
         us = (EditText) findViewById(R.id.username);
         p1 = (EditText) findViewById(R.id.pass1);
         p2 = (EditText) findViewById(R.id.pass2);
