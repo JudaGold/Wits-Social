@@ -25,35 +25,7 @@
             </TextView>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/email_address"
-                android:layout_width="274dp"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/email_address"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal"
-                android:textColorHint="@color/black">
-
-            </EditText>
-
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,6 +57,65 @@
             </TextView>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="match_parent">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/email_address"
+                android:layout_width="274dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="@string/Email_Address"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColorHint="@color/black">
+
+            </EditText>
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="match_parent">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="match_parent">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/Phone_number"
+                android:layout_width="274dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="@string/phone_number"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/black">
+
+            </EditText>
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="match_parent">
+
+            </TextView>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -217,7 +248,7 @@
 
             <Button
                 android:id="@+id/sibt"
-                android:layout_width="166dp"
+                android:layout_width="208dp"
                 android:layout_height="63dp"
                 android:background="@drawable/buttonshape"
                 android:backgroundTint="#237E25"
