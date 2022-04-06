@@ -37,11 +37,11 @@
             </TextView>
 
             <EditText
-                android:id="@+id/studentnumber"
+                android:id="@+id/email_address"
                 android:layout_width="274dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/StudentNumber"
+                android:hint="@string/email_address"
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal"
                 android:textColorHint="@color/black">
