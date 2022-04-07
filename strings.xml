@@ -11,4 +11,7 @@
     <string name="last_name">Last Name</string>
     <string name="UserNameToLogIn">Please enter your Username</string>
     <string name="PasswordToLogIn">Please enter your Password</string>
+    <string name="Email_Address">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="button">Button</string>
 </resources>
