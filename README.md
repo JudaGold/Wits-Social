@@ -1,2 +1,0 @@
-# Wits-Social
-Group Project
