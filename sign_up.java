@@ -8,12 +8,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class sign_up extends AppCompatActivity {
     EditText em,pn,us,p1,p2,fn,sn;
     Button si;
     ContentValues cv;
+    TextView tv,pa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,8 @@ public class sign_up extends AppCompatActivity {
         si = (Button) findViewById(R.id.sibt);
         fn=(EditText) findViewById(R.id.first_name);
         sn=(EditText) findViewById(R.id.last_name);
+        tv = (TextView) findViewById(R.id.tv);
+        pa = (TextView) findViewById(R.id.pad);
 
         String email = " "+em;
         String pnumber  = ""+pn;
@@ -41,21 +45,30 @@ public class sign_up extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean valid = false;
-                if(completed()){}
-                if(passwords_match(pass1,pass2)){}
-                else {
+
+
+                valid = completed();
+                valid = valid_password(pass1);
+                valid = passwords_match(pass1,pass2);
+
+
+                 if(valid){
                     Toast.makeText(sign_up.this, "success", Toast.LENGTH_LONG).show();
                 }
+                 else{
+                     Toast.makeText(sign_up.this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
+                 }
 
 
             }
         });
     }
-
+    public void check_username(String username){}
+    public void check_email(String email){}
     public boolean completed(){
         boolean key = true;
         if(TextUtils.isEmpty(us.getText().toString())){
-            us.setHint("Please complete the username field");
+            us.setHint("Please enter in a username");
             key =  false;
         }
          if(TextUtils.isEmpty(em.getText().toString())){
@@ -82,13 +95,24 @@ public class sign_up extends AppCompatActivity {
             p2.setHint("Please enter in a password ");
             key =  false;
         }
+         if(key == false){
+             tv.setText("Please ensure you have\ncompleted all the fields");
+         }
       return key;
     }
     public  boolean passwords_match(String pw1,String pw2){
         if(pw1 != pw2){
-            p2.setHint("passwords do not match");
+            p2.setHint("Passwords do not match");
             return false;
         }
         return true;
+    }
+    public boolean valid_password(String a){
+        boolean valid  = true;
+        if(a.length()<=7){
+            pa.setText("Password needs to be of length 8 or more");
+            valid = false;
+        }
+        return valid;
     }
 }
