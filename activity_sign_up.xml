@@ -15,12 +15,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="Please fill \nin all the fields"
                 android:textColor="@color/black"
-                android:textSize="36sp"
-                android:gravity="center_vertical|center_horizontal">
+                android:textSize="36sp">
 
             </TextView>
         </LinearLayout>
@@ -201,6 +202,7 @@
             </EditText>
 
             <TextView
+                android:id="@+id/pad"
                 android:layout_width="66dp"
                 android:layout_height="match_parent">
 
