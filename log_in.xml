@@ -43,12 +43,13 @@
             <EditText
                 android:id="@+id/UserNameToLogIn"
                 android:layout_width="274dp"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:hint="@string/UserNameToLogIn"
                 android:importantForAutofill="no"
                 android:inputType="text"
-                android:textColorHint="@color/black">
+                android:textColorHint="@color/black"
+                tools:ignore="TouchTargetSizeCheck">
 
             </EditText>
 
@@ -73,12 +74,14 @@
             </TextView>
 
             <EditText
+                android:id="@+id/password"
                 android:layout_width="274dp"
                 android:layout_height="40dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:hint="@string/PasswordToLogIn"
                 android:inputType="textPassword"
-                android:textColorHint="#000000">
+                android:textColorHint="#000000"
+                tools:ignore="TouchTargetSizeCheck">
 
             </EditText>
 
@@ -93,12 +96,12 @@
             android:layout_width="match_parent"
             android:layout_height="136dp"
             android:orientation="horizontal"
-            android:paddingTop="50dp"
             android:paddingLeft="100dp"
+            android:paddingTop="50dp"
             android:paddingRight="100dp">
 
             <Button
-                android:id="@+id/LogIn"
+                android:id="@+id/btnLogin"
                 android:layout_width="166dp"
                 android:layout_height="63dp"
                 android:background="@drawable/buttonshape"
@@ -129,8 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:text="@string/SignUpButton"
                 android:onClick="onClick"
+                android:text="@string/SignUpButton"
                 android:textColor="#0000FF" />
         </LinearLayout>
 
