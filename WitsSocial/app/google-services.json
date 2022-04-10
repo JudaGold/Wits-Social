@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "769495145465",
+    "project_id": "wits-social-af900",
+    "storage_bucket": "wits-social-af900.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769495145465:android:e7796041799609e175bb28",
+        "android_client_info": {
+          "package_name": "com.example.witssocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769495145465-a0n7qjjs5hmivcd8hh46ifg0lrejgrmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyc4FiPlsOazLM4qICZ6FC2x7sP92kMro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769495145465-a0n7qjjs5hmivcd8hh46ifg0lrejgrmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
