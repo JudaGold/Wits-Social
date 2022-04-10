@@ -1,7 +1,7 @@
 package com.example.witssocial;
 
 public class CreateUserClass {
-    String Username,email,phoneNumber,password,name;
+    String Username,email, cellPhoneNumber,password,name;
 
     public CreateUserClass() {
     }
@@ -10,10 +10,10 @@ public class CreateUserClass {
         Username = username;
     }
 
-    public CreateUserClass(String username, String email, String phoneNumber, String password, String name) {
+    public CreateUserClass(String username, String email, String cellPhoneNumber, String password, String name) {
         Username = username;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.cellPhoneNumber = cellPhoneNumber;
         this.password = password;
         this.name = name;
     }
@@ -34,12 +34,12 @@ public class CreateUserClass {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getCellPhoneNumber() {
+        return cellPhoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setCellPhoneNumber(String cellPhoneNumber) {
+        this.cellPhoneNumber = cellPhoneNumber;
     }
 
     public String getPassword() {
