@@ -65,7 +65,7 @@ public class sign_up extends AppCompatActivity
                 boolean validEmail = check_email(email);
                 boolean validNUmber = Valid_number(number);
 
-                if (completed && matchingPassword && validPassword && validEmail)
+                if (completed && matchingPassword && validPassword && validEmail && validNUmber)
                 {
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                     Query checkUsername = ref.orderByChild("username").equalTo(username);
