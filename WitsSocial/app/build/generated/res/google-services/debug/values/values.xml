@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">769495145465-a0n7qjjs5hmivcd8hh46ifg0lrejgrmi.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">769495145465</string>
+    <string name="google_api_key" translatable="false">AIzaSyAyc4FiPlsOazLM4qICZ6FC2x7sP92kMro</string>
+    <string name="google_app_id" translatable="false">1:769495145465:android:e7796041799609e175bb28</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAyc4FiPlsOazLM4qICZ6FC2x7sP92kMro</string>
+    <string name="google_storage_bucket" translatable="false">wits-social-af900.appspot.com</string>
+    <string name="project_id" translatable="false">wits-social-af900</string>
+</resources>
