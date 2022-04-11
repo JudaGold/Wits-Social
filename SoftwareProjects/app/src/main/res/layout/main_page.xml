@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_foreground"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="302dp"
+        android:layout_height="81dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="603dp"
+        android:text="Wits Social"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#AF1717"
+        android:textColorHint="#9B17B1"
+        android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="146dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="157dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="529dp"
+        android:text="Welcome"
+        android:textColor="#070000"
+        android:textSize="34sp" />
+
+    <TextView
+        android:id="@+id/wouldYouLikeToTextView"
+        android:layout_width="221dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="254dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="430dp"
+        android:text="Would you like to : "
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="348dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="335dp"
+        android:text="LOGIN"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="552dp"
+        android:layout_marginBottom="131dp"
+        android:text="SIGN UP"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/orTextView"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="453dp"
+        android:layout_marginBottom="228dp"
+        android:text="TextView"
+        android:textSize="34sp"
+        tools:text="OR" />
+</RelativeLayout>
