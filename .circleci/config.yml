@@ -24,3 +24,6 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+
+- name: Coveralls GitHub Action
+  uses: coverallsapp/github-action@1.1.3
