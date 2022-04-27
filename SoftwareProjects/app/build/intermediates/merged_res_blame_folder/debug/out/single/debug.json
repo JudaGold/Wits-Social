@@ -36,10 +36,6 @@
         "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_main_page.xml.flat",
-        "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\main_page.xml"
-    },
-    {
         "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
@@ -56,6 +52,10 @@
         "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
         "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
@@ -64,8 +64,8 @@
         "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_log_in.xml.flat",
-        "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_log_in.xml"
+        "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_forgot_password.xml.flat",
+        "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_forgot_password.xml"
     },
     {
         "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\drawable_buttonshape.xml.flat",
