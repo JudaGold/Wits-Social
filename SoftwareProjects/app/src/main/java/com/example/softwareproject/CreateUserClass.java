@@ -2,7 +2,7 @@ package com.example.softwareproject;
 
 public class CreateUserClass {
     String Username,email,phoneNumber,password,name;
-    // comment
+    // Class used to represent a user
     public CreateUserClass() {
     }
 
