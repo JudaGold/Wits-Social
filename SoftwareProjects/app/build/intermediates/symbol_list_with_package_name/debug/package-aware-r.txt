@@ -2747,6 +2747,7 @@ id fixed
 id flip
 id floating
 id forever
+id fp
 id fragment_container_view_tag
 id frost
 id ghost_view
@@ -2796,7 +2797,7 @@ id line3
 id linear
 id listMode
 id list_item
-id loginBtn
+id mainlayout
 id masked
 id match_constraint
 id match_parent
@@ -2874,7 +2875,6 @@ id notification_main_column_container
 id off
 id on
 id onInterceptTouchReturnSwipe
-id orTextView
 id outline
 id outward
 id overshoot
@@ -2939,7 +2939,6 @@ id showCustom
 id showHome
 id showTitle
 id sibt
-id signUpBtn
 id sin
 id skipCollapsed
 id skipped
@@ -2997,7 +2996,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView2
 id textView5
 id textView6
 id textView7
@@ -3043,12 +3041,10 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
-id welcomeTextView
 id west
 id wide
 id withText
 id withinBounds
-id wouldYouLikeToTextView
 id wrap
 id wrap_content
 id wrap_content_constrained
@@ -3141,7 +3137,8 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_log_in
+layout activity_forgot_password
+layout activity_main
 layout activity_sign_up
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3162,7 +3159,6 @@ layout design_text_input_start_icon
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
-layout main_page
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
