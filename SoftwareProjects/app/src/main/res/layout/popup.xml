@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_horizontal"
+        android:text="Please add in a bio about yourself\n(max 50 characters)"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/user_bio_popup"
+        android:layout_width="match_parent"
+        android:layout_height="169dp"
+        android:inputType="textPersonName"
+        android:text=""
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/popip_savebio"
+        android:layout_width="107dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="150dp"
+        android:color="@color/teal_200"
+        android:text="add bio"></Button>
+
+
+</LinearLayout>
