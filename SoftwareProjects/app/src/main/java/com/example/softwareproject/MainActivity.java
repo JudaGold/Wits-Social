@@ -100,8 +100,9 @@ public class MainActivity extends AppCompatActivity
                     String DBPassword = snapshot.child(username).child("password").getValue(String.class); //extracts password from database
                     if (DBPassword.equals(UserPassword))
                     {
-                        Intent intent = new Intent(MainActivity.this,profile_page.class);
+                        Intent intent = new Intent(MainActivity.this,main_profile.class);
                         textInputEditTextPassword.setText("");
+                        intent.putExtra("username",username);
                         startActivity(intent);
                     }
                     else

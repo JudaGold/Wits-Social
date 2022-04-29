@@ -1,8 +1,8 @@
 package com.example.softwareproject;
 
 public class CreateUserClass {
-    String Username,email,phoneNumber,password,name;
-    // comment
+    String Username,email,phoneNumber,password,name,bio;
+
     public CreateUserClass() {
     }
 
@@ -10,12 +10,13 @@ public class CreateUserClass {
         Username = username;
     }
 
-    public CreateUserClass(String username, String email, String phoneNumber, String password, String name) {
+    public CreateUserClass(String username, String email, String phoneNumber, String password, String name,String bio) {
         Username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.name = name;
+        this.bio = bio;
     }
 
     public String getUsername() {
@@ -56,5 +57,13 @@ public class CreateUserClass {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }

@@ -13,5 +13,11 @@
     <string name="PasswordToLogIn">Please enter your Password</string>
     <string name="Email_Address">Email</string>
     <string name="phone_number">Phone Number</string>
+    <string name="todo">TODO</string>
+    <string name="textview">TextView</string>
+    <string name="add_a_post_nshare_what_you_re_feeling">Add a post\nshare what you\'re feeling</string>
+    <string name="body_of_the_message">body of the message</string>
     <string name="button">Button</string>
+    <string name="add_an_url_for_an_image">add an url for an image</string>
+    <string name="post">post</string>
 </resources>
