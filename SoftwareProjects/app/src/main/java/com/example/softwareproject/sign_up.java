@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,7 +56,7 @@ public class sign_up extends AppCompatActivity
                 String password = edtPassword.getText().toString();
                 String ConfirmPassword = edtConfirmPassword.getText().toString();
                 String name = edtFirstName.getText().toString()+" "+edtLastName.getText().toString();
-
+                String bio ="";
                 fb= FirebaseDatabase.getInstance();
                 Gdb = fb.getReference("Users");
 
@@ -76,10 +77,11 @@ public class sign_up extends AppCompatActivity
                                 edtUsername.setError("Username already taken");
                             }
                             else{
-                                CreateUserClass createUserClass = new CreateUserClass(username,email,number,password,name);
+                                CreateUserClass createUserClass = new CreateUserClass(username,email,number,password,name,bio);
                                 Gdb.child(username).setValue(createUserClass);
 
-                                Intent intent= new Intent(sign_up.this, MainActivity.class);
+
+                                Intent intent= new Intent(sign_up.this,MainActivity.class);
                                 intent.putExtra("Username",username);
                                 startActivity(intent);
                             }

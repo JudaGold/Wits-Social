@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="154dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="@string/add_a_post_nshare_what_you_re_feeling"
+        android:textColor="#0097A7" />
+
+
+    <EditText
+        android:id="@+id/post_body"
+        android:layout_width="match_parent"
+        android:layout_height="154dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/custom_inputbox"
+        android:ems="10"
+        android:gravity="top|start"
+        android:lines="8"
+        android:minLines="6"
+        android:scrollbars="vertical"
+        android:hint="@string/body_of_the_message"
+        android:inputType="textMultiLine"
+        />
+
+    <EditText
+        android:id="@+id/post_image"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_inputbox"
+        android:ems="10"
+        android:hint="@string/add_an_url_for_an_image"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btn_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post"
+        android:color="@android:color/holo_blue_bright"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"/>
+</LinearLayout>
