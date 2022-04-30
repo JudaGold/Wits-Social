@@ -1,4 +1,3 @@
-
 package com.example.softwareproject;
 
 public class CreateUserClass {
