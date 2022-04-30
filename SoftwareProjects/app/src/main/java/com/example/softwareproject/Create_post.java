@@ -1,13 +1,22 @@
 package com.example.softwareproject;
 
 import android.media.Image;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Create_post {
-    String username,body,post_image_url;
-    Image image_url;
+    private String username,body,post_image_url,time;
+    private Image image_url;
 
-
-    public Create_post(String body, String post_image_url) {
+    public Create_post(String body, String post_image_url,String time) {
+        this.time= time;
         this.body = body;
         this.post_image_url = post_image_url;
     }
@@ -34,5 +43,14 @@ public class Create_post {
 
     public void setPost_image_url(String post_image_url) {
         this.post_image_url = post_image_url;
+    }
+
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
