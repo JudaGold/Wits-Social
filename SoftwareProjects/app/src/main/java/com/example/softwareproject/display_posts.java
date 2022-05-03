@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 
-
+//commit
 public class display_posts extends LinearLayout {
     LinearLayout l;
     ScrollView sv;
