@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public boolean validateInput(String password, String username)
+    public boolean validateInput(String username, String password)
     {
         boolean validInput = true;
         if (password.equals("")){
