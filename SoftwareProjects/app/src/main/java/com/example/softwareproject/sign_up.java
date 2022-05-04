@@ -50,12 +50,12 @@ public class sign_up extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                String email = edtEmail.getText().toString();
-                String number  = edtPhoneNo.getText().toString();
-                String username = edtUsername.getText().toString();
-                String password = edtPassword.getText().toString();
-                String ConfirmPassword = edtConfirmPassword.getText().toString();
-                String name = edtFirstName.getText().toString()+" "+edtLastName.getText().toString();
+                String email = edtEmail.getText().toString().trim();
+                String number  = edtPhoneNo.getText().toString().trim();
+                String username = edtUsername.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
+                String ConfirmPassword = edtConfirmPassword.getText().toString().trim();
+                String name = edtFirstName.getText().toString().trim()+" "+edtLastName.getText().toString().trim();
                 String bio ="";
                 fb= FirebaseDatabase.getInstance();
                 Gdb = fb.getReference("Users");

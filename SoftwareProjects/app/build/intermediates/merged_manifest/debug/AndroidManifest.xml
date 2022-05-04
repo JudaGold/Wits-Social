@@ -22,10 +22,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/Theme.SoftwareProject" >
+        <activity
+            android:name="com.example.softwareproject.main_profile"
+            android:exported="false" />
+        <activity
+            android:name="com.example.softwareproject.Forgot_password"
+            android:exported="false" />
         <activity
             android:name="com.example.softwareproject.sign_up"
             android:exported="false" />
+        <activity
+            android:name="com.example.softwareproject.MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"
