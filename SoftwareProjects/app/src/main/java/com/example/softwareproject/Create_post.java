@@ -14,7 +14,7 @@ import java.util.Date;
 public class Create_post {
     private String username,body,post_image_url,time;
     private Image image_url;
-
+//comment
     public Create_post(String body, String post_image_url,String time) {
         this.time= time;
         this.body = body;
