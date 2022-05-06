@@ -38,7 +38,7 @@ public class main_profile extends AppCompatActivity {
     TextView t;
     EditText popup_bio_text,popup_post_body,popup_post_image;
     Button popup_Save_bio,popup_add_post;
-    ImageButton btnadd_post;
+    ImageButton btnadd_post,btn_profile;
     DatabaseReference reference;
     ImageView user_image;
     long maxId  = 1 ;
@@ -66,6 +66,16 @@ public class main_profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 display_posts();
+            }
+        });
+
+        btn_profile = (ImageButton) findViewById(R.id.btn_profile);
+        btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(main_profile.this,Show_Profile_Details.class);
+                intent2.putExtra("Username",username);
+                startActivity(intent2);
             }
         });
 

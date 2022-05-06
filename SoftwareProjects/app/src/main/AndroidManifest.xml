@@ -16,6 +16,9 @@
             android:name=".Forgot_password"
             android:exported="false" />
         <activity
+            android:name=".Show_Profile_Details"
+            android:exported="false" />
+        <activity
             android:name=".sign_up"
             android:exported="false" />
         <activity
