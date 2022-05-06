@@ -31,6 +31,9 @@
             android:name="com.example.softwareproject.Forgot_password"
             android:exported="false" />
         <activity
+            android:name="com.example.softwareproject.Show_Profile_Details"
+            android:exported="false" />
+        <activity
             android:name="com.example.softwareproject.sign_up"
             android:exported="false" />
         <activity
@@ -49,6 +52,9 @@
             android:exported="false" >
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
         </service>
 

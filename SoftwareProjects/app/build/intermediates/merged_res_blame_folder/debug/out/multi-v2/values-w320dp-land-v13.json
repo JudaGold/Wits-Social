@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
+            "outputFile": "C:\\Users\\goldb\\AndroidStudioProjects\\WitsProject\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\674abb4d82ba1aa2c7f4d6d7ae3e1609\\transformed\\material-1.5.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
+                    "source": "C:\\Users\\goldb\\.gradle\\caches\\transforms-3\\674abb4d82ba1aa2c7f4d6d7ae3e1609\\transformed\\material-1.5.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
