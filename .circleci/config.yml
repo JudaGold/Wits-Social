@@ -24,7 +24,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-
-after_success:
-  - mvn clean test jacoco:report coveralls:report
   
