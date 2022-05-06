@@ -36,9 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="522dp"
         android:orientation="vertical">
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck">
+
             <LinearLayout
                 android:id="@+id/scroll_posts"
                 android:layout_width="match_parent"
@@ -55,18 +58,21 @@
 
         <ImageButton
             android:id="@+id/btn_profile"
-            android:layout_width="82dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/buttonshape"
-            app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="10dp"
+            android:background="#00008B"
+            app:srcCompat="@drawable/ic_baseline_person_24"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/btn_add_post"
-            android:layout_width="82dp"
-            android:layout_height="88dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:layout_marginStart="250dp"
-            android:background="@drawable/buttonshape"
-            app:srcCompat="@drawable/baseline_add_circle_outline_white_48" />
+            android:background="#00008B"
+            app:srcCompat="@drawable/baseline_add_circle_outline_white_48"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 

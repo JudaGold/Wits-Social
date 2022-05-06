@@ -13,7 +13,7 @@
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="@string/add_a_post_nshare_what_you_re_feeling"
-        android:textColor="#0097A7" />
+        android:textColor="#00008B" />
 
 
     <EditText
@@ -26,12 +26,11 @@
         android:background="@drawable/custom_inputbox"
         android:ems="10"
         android:gravity="top|start"
-        android:lines="8"
-        android:minLines="6"
-        android:scrollbars="vertical"
         android:hint="@string/body_of_the_message"
         android:inputType="textMultiLine"
-        />
+        android:lines="8"
+        android:minLines="6"
+        android:scrollbars="vertical" />
 
     <EditText
         android:id="@+id/post_image"
