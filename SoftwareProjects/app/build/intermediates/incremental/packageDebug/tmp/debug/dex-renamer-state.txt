@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+#Sat May 07 10:45:28 CAT 2022
+base.2=C\:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+path.2=11/classes.dex
+base.1=C\:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+path.1=0/classes.dex
+base.0=C\:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+=======
 #Fri May 06 23:11:16 CAT 2022
 path.4=15/classes.dex
 path.3=13/classes.dex
@@ -11,6 +19,7 @@ base.2=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug
 base.1=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.0=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 renamed.3=classes4.dex
+>>>>>>> main
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex

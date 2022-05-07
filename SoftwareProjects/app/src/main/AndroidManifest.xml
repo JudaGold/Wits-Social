@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SoftwareProject">
+
         <activity
             android:name=".add_profile_pic"
             android:exported="false" />

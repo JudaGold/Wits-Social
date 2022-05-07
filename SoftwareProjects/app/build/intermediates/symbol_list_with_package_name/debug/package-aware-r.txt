@@ -2460,7 +2460,6 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
-drawable baseline_add_circle_outline_24
 drawable baseline_add_circle_outline_white_18
 drawable baseline_add_circle_outline_white_20
 drawable baseline_add_circle_outline_white_24
@@ -2564,7 +2563,12 @@ drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+<<<<<<< HEAD
+drawable user
+drawable user__1_
+=======
 font adamina
+>>>>>>> main
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3037,8 +3041,14 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
+id textView10
 id textView2
 id textView3
+<<<<<<< HEAD
+id textView4
+=======
+>>>>>>> main
 id textView5
 id textView6
 id textView7

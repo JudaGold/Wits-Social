@@ -68,16 +68,15 @@
 
             </TextView>
 
-                <EditText
-                    android:id="@+id/email_address"
-                    android:layout_width="274dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:hint="@string/Email_Address"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColorHint="@color/black">
-                </EditText>
+            <EditText
+                android:id="@+id/email_address"
+                android:layout_width="274dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="Email Address"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColorHint="@color/black"></EditText>
 
 
 
@@ -220,17 +219,17 @@
 
             </TextView>
 
-                <EditText
-                    android:id="@+id/pass2"
-                    android:layout_width="277dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:hint="@string/retype_password"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/black">
+            <EditText
+                android:id="@+id/pass2"
+                android:layout_width="277dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="Retype Password"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:textColorHint="@color/black">
 
-                </EditText>
+            </EditText>
 
 
 

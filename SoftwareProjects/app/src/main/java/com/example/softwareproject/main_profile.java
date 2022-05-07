@@ -65,7 +65,7 @@ public class main_profile extends AppCompatActivity {
         user_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display_posts();
+                //display_posts();
             }
         });
 
