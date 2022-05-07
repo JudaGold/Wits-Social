@@ -63,6 +63,10 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array com_google_android_gms_fonts_certs
+array com_google_android_gms_fonts_certs_dev
+array com_google_android_gms_fonts_certs_prod
+array preloaded_fonts
 attr SharedValue
 attr SharedValueId
 attr actionBarDivider
@@ -1872,6 +1876,8 @@ dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen action_bar_size
+dimen activity_horizontal_margin
+dimen activity_vertical_margin
 dimen appcompat_dialog_background_inset
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
@@ -2494,6 +2500,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable exp
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_baseline_account_circle_24
@@ -2557,6 +2564,7 @@ drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+font adamina
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -2671,6 +2679,7 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btnLogin
+id btnSave
 id btn_add_post
 id btn_post
 id btn_profile
@@ -2795,6 +2804,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imgAddPic
 id immediateStop
 id included
 id info
@@ -3028,6 +3038,7 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView2
+id textView3
 id textView5
 id textView6
 id textView7
@@ -3059,6 +3070,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tv
+id txtNext
 id unchecked
 id uniform
 id unlabeled
@@ -3174,6 +3186,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_add_profile_pic
 layout activity_forgot_password
 layout activity_log_in
 layout activity_main
@@ -3307,6 +3320,8 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string action_sign_in
+string action_sign_in_short
 string add_a_post_nshare_what_you_re_feeling
 string add_an_url_for_an_image
 string androidx_startup
@@ -3353,9 +3368,12 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
+string invalid_password
+string invalid_username
 string item_view_role_description
 string last_name
 string logIn
+string login_failed
 string m3_ref_typeface_brand_display_regular
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
@@ -3446,13 +3464,17 @@ string path_password_strike_through
 string phone_number
 string post
 string project_id
+string prompt_email
+string prompt_password
 string retype_password
 string search_menu_title
 string sign_up
 string status_bar_notification_info_overflow
 string textview
+string title_activity_login
 string todo
 string username
+string welcome
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style AndroidThemeColorAccentYellow
