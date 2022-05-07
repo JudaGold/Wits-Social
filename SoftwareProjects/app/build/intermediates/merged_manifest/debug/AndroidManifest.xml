@@ -25,6 +25,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.SoftwareProject" >
         <activity
+            android:name="com.example.softwareproject.add_profile_pic"
+            android:exported="false" />
+        <activity
             android:name="com.example.softwareproject.main_profile"
             android:exported="false" />
         <activity
@@ -45,6 +48,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

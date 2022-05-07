@@ -80,7 +80,7 @@ public class sign_up extends AppCompatActivity
                                 CreateUserClass createUserClass = new CreateUserClass(username,email,number,password,name,bio);
                                 Gdb.child(username).setValue(createUserClass);
 
-                                Intent intent= new Intent(sign_up.this,MainActivity.class);
+                                Intent intent= new Intent(sign_up.this,add_profile_pic.class);
                                 intent.putExtra("Username",username);
                                 startActivity(intent);
                             }
