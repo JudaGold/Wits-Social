@@ -73,24 +73,23 @@
             android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-<<<<<<< HEAD
+
             android:textColorHint="@android:color/darker_gray"
-=======
->>>>>>> main
+
             android:textSize="25dp"
             android:fontFamily="@font/lato_regular"
             tools:ignore="TouchTargetSizeCheck"></EditText>
 
         <TextView
             android:id="@+id/fp"
-<<<<<<< HEAD
+
             android:layout_width="match_parent"
             android:layout_height="47dp"
             android:layout_marginStart="150dp"
             android:layout_marginEnd="150dp"
 <<<<<<< Updated upstream
             android:text="forgot password?">
-=======
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -98,11 +97,15 @@
             android:gravity="center"
             android:text="forgot password?"
             android:textColor="#121111">
+<<<<<<< HEAD
 >>>>>>> main
 =======
             android:fontFamily="@font/lato_regular"
             >
 >>>>>>> Stashed changes
+=======
+
+>>>>>>> main
 
         </TextView>
 
