@@ -13,7 +13,12 @@
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="@string/add_a_post_nshare_what_you_re_feeling"
+<<<<<<< Updated upstream
         android:textColor="#00008B" />
+=======
+        android:fontFamily="@font/lato_bold"
+        android:textColor="#0097A7" />
+>>>>>>> Stashed changes
 
 
     <EditText
@@ -27,6 +32,7 @@
         android:ems="10"
         android:gravity="top|start"
         android:hint="@string/body_of_the_message"
+        android:fontFamily="@font/lato_regular"
         android:inputType="textMultiLine"
         android:lines="8"
         android:minLines="6"
@@ -43,6 +49,7 @@
         android:background="@drawable/custom_inputbox"
         android:ems="10"
         android:hint="@string/add_an_url_for_an_image"
+        android:fontFamily="@font/lato_regular"
         android:inputType="text" />
 
     <Button
@@ -52,5 +59,6 @@
         android:text="@string/post"
         android:color="@android:color/holo_blue_bright"
         android:layout_marginStart="80dp"
+        android:fontFamily="@font/lato_regular"
         android:layout_marginEnd="80dp"/>
 </LinearLayout>

@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="114dp"
         android:autoSizeTextType="uniform"
+<<<<<<< Updated upstream
         android:gravity="center"
         android:text="Please add a bio"
         android:textColor="#00008B" />
@@ -22,6 +23,12 @@
         android:textAlignment="textEnd"
         android:textColor="#00008B"
         android:textSize="18sp" />
+=======
+        android:gravity="center_horizontal"
+        android:text="Please add in a bio about yourself\n(max 50 characters)"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/black" />
+>>>>>>> Stashed changes
 
     <EditText
         android:id="@+id/user_bio_popup"
@@ -29,7 +36,13 @@
         android:layout_height="169dp"
         android:layout_marginTop="10dp"
         android:inputType="textPersonName"
+<<<<<<< Updated upstream
         android:text="" />
+=======
+        android:text=""
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/lato_regular"/>
+>>>>>>> Stashed changes
 
     <Button
         android:id="@+id/popip_savebio"
@@ -39,6 +52,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="150dp"
         android:color="@color/teal_200"
+        android:fontFamily="@font/lato_regular"
         android:text="add bio"></Button>
 
 

@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:autoSizeTextType="uniform"
             android:gravity="center"
+            android:fontFamily="@font/lato_regular"
             android:textColor="@color/black" />
 
         <ImageView
