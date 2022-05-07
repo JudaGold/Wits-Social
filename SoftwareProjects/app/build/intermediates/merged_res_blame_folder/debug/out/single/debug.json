@@ -8,12 +8,12 @@
         "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_show_profile_details.xml.flat",
-        "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\show_profile_details.xml"
-    },
-    {
         "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\drawable_custom_inputbox.xml.flat",
         "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\drawable\\custom_inputbox.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_show_profile_details.xml.flat",
+        "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\show_profile_details.xml"
     },
     {
         "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
@@ -28,12 +28,12 @@
         "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\drawable\\ic_baseline_account_circle_24.xml"
     },
     {
-        "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main_profile.xml.flat",
-        "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_main_profile.xml"
-    },
-    {
         "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxxhdpi_baseline_add_circle_outline_white_20.png.flat",
         "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\drawable-xxxhdpi\\baseline_add_circle_outline_white_20.png"
+    },
+    {
+        "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main_profile.xml.flat",
+        "source": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_main_profile.xml"
     },
     {
         "merged": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
