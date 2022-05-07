@@ -1,10 +1,17 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v25\\values-v25.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Ndiwanga\\.gradle\\caches\\transforms-3\\67c0381ea558987e872d7ddaceb3e747\\transformed\\appcompat-1.4.1\\res\\values-v25\\values-v25.xml",
+=======
+            "outputFile": "D:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v25\\values-v25.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Jecoliah\\.gradle\\caches\\transforms-3\\67c0381ea558987e872d7ddaceb3e747\\transformed\\appcompat-1.4.1\\res\\values-v25\\values-v25.xml",
+>>>>>>> main
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",
