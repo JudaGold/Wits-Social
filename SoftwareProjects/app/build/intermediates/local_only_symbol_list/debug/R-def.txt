@@ -11,12 +11,8 @@ color purple_700
 color teal_200
 color teal_700
 color white
-<<<<<<< HEAD
-=======
 dimen activity_horizontal_margin
 dimen activity_vertical_margin
-drawable baseline_add_circle_outline_24
->>>>>>> main
 drawable baseline_add_circle_outline_white_18
 drawable baseline_add_circle_outline_white_20
 drawable baseline_add_circle_outline_white_24
@@ -32,12 +28,9 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable input_box
 drawable post_layout
-<<<<<<< HEAD
 drawable user
 drawable user__1_
-=======
 font adamina
->>>>>>> main
 id Bio_Label
 id Bio_txt
 id EmailAddress_Label
@@ -80,10 +73,7 @@ id textView
 id textView10
 id textView2
 id textView3
-<<<<<<< HEAD
 id textView4
-=======
->>>>>>> main
 id textView5
 id textView6
 id textView7
