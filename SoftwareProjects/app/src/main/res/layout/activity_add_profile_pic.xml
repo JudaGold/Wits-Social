@@ -35,7 +35,7 @@
         <ImageView
             android:id="@+id/imgAddPic"
             android:layout_width="210dp"
-            android:layout_height="189dp"
+            android:layout_height="202dp"
             android:layout_gravity="center_horizontal"
             android:background="#BA4444DD"
             android:backgroundTint="#D01460BD"
@@ -66,6 +66,10 @@
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/lato_regular"
             android:inputType="textMultiLine" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/btnSave"

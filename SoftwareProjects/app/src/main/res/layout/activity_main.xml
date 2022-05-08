@@ -79,14 +79,12 @@
         <TextView
             android:id="@+id/fp"
 
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="47dp"
-            android:layout_marginStart="150dp"
-            android:layout_marginEnd="150dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
             android:text="forgot password?"
-            android:textColor="#121111"
-            android:fontFamily="@font/lato_regular">
-        </TextView>
+            android:textColor="#121111"></TextView>
 
 
         <Button
