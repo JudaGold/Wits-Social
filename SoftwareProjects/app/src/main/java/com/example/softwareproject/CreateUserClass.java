@@ -1,7 +1,9 @@
 package com.example.softwareproject;
 
+import java.io.Serializable;
+
 public class CreateUserClass {
-    String Username,email,phoneNumber,password,name,bio;
+    private String Username,email,phoneNumber,password,name,bio, mImageUrl;
 
     public CreateUserClass() {
     }
@@ -10,13 +12,22 @@ public class CreateUserClass {
         Username = username;
     }
 
-    public CreateUserClass(String username, String email, String phoneNumber, String password, String name,String bio) {
+    public CreateUserClass(String username, String email, String phoneNumber, String password, String name, String bio, String mImageUrl) {
         Username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.name = name;
         this.bio = bio;
+        this.mImageUrl = mImageUrl;
+    }
+
+    public String getmImageUrl() {
+        return mImageUrl;
+    }
+
+    public void setmImageUrl(String mImageUrl) {
+        this.mImageUrl = mImageUrl;
     }
 
     public String getUsername() {

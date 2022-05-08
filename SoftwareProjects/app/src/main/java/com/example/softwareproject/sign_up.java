@@ -50,13 +50,14 @@ public class sign_up extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                String email = edtEmail.getText().toString().trim();
-                String number  = edtPhoneNo.getText().toString().trim();
-                String username = edtUsername.getText().toString().trim();
-                String password = edtPassword.getText().toString().trim();
-                String ConfirmPassword = edtConfirmPassword.getText().toString().trim();
-                String name = edtFirstName.getText().toString().trim()+" "+edtLastName.getText().toString().trim();
+                String email = edtEmail.getText().toString();
+                String number  = edtPhoneNo.getText().toString();
+                String username = edtUsername.getText().toString();
+                String password = edtPassword.getText().toString();
+                String ConfirmPassword = edtConfirmPassword.getText().toString();
+                String name = edtFirstName.getText().toString()+" "+edtLastName.getText().toString();
                 String bio ="";
+                String imageUrl ="";
                 fb= FirebaseDatabase.getInstance();
                 Gdb = fb.getReference("Users");
 
@@ -77,7 +78,7 @@ public class sign_up extends AppCompatActivity
                                 edtUsername.setError("Username already taken");
                             }
                             else{
-                                CreateUserClass createUserClass = new CreateUserClass(username,email,number,password,name,bio);
+                                CreateUserClass createUserClass = new CreateUserClass(username,email,number,password,name,bio, imageUrl);
                                 Gdb.child(username).setValue(createUserClass);
 
                                 Intent intent= new Intent(sign_up.this,add_profile_pic.class);

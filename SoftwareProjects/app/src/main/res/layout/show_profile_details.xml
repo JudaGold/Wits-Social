@@ -23,18 +23,14 @@
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:text="UserName:"
-<<<<<<< Updated upstream
             android:textSize="10sp"
-=======
             android:fontFamily="@font/lato_regular"
->>>>>>> Stashed changes
             android:textStyle="bold" />
 
         <TextView
@@ -43,40 +39,31 @@
             android:layout_height="30dp"
             android:layout_marginStart="25dp"
             android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:textAlignment="viewStart"
-<<<<<<< Updated upstream
             android:textColor="@color/black"
             android:textSize="10sp"
-            android:textStyle="normal" />
-=======
-            android:textColor="@color/purple_500"
+            android:textStyle="normal"
             android:fontFamily="@font/lato_regular"
-            android:textStyle="bold" />
->>>>>>> Stashed changes
+            />
 
         <TextView
             android:id="@+id/PhoneNumber_Label"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:text="Phone Number:"
-<<<<<<< Updated upstream
             android:textSize="10sp"
-=======
             android:fontFamily="@font/lato_regular"
->>>>>>> Stashed changes
             android:textStyle="bold" />
 
         <TextView
@@ -85,40 +72,30 @@
             android:layout_height="30dp"
             android:layout_marginStart="25dp"
             android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:textAlignment="viewStart"
-<<<<<<< Updated upstream
             android:textColor="@color/black"
             android:textSize="10sp"
-            android:textStyle="normal" />
-=======
-            android:textColor="@color/purple_500"
             android:fontFamily="@font/lato_regular"
             android:textStyle="bold" />
->>>>>>> Stashed changes
 
         <TextView
             android:id="@+id/EmailAddress_Label"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:text="Email Address:"
-<<<<<<< Updated upstream
             android:textSize="10sp"
-=======
             android:fontFamily="@font/lato_regular"
->>>>>>> Stashed changes
             android:textStyle="bold" />
 
         <TextView
@@ -127,40 +104,30 @@
             android:layout_height="30dp"
             android:layout_marginStart="25dp"
             android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:textAlignment="viewStart"
-<<<<<<< Updated upstream
             android:textColor="@color/black"
             android:textSize="10sp"
-            android:textStyle="normal" />
-=======
-            android:textColor="@color/purple_500"
             android:fontFamily="@font/lato_regular"
             android:textStyle="bold" />
->>>>>>> Stashed changes
 
         <TextView
             android:id="@+id/Bio_Label"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:text="Bio:"
-<<<<<<< Updated upstream
             android:textSize="10sp"
-=======
             android:fontFamily="@font/lato_regular"
->>>>>>> Stashed changes
             android:textStyle="bold" />
 
         <TextView
@@ -169,23 +136,15 @@
             android:layout_height="137dp"
             android:layout_marginStart="25dp"
             android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
             android:paddingStart="50dp"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:scaleX="2"
             android:scaleY="2"
             android:textAlignment="viewStart"
-<<<<<<< Updated upstream
             android:textColor="@color/black"
             android:textSize="10sp"
-            android:textStyle="normal" />
-=======
-            android:textColor="@color/purple_500"
             android:fontFamily="@font/lato_regular"
             android:textStyle="bold" />
->>>>>>> Stashed changes
-
-
     </LinearLayout>
 </ScrollView>

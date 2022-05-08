@@ -7,10 +7,8 @@ import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,16 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.SortedMap;
 import java.util.Vector;
 
 public class main_profile extends AppCompatActivity {
-    TextView t;
+    TextView usernameText, bioText;
     EditText popup_bio_text,popup_post_body,popup_post_image;
     Button popup_Save_bio,popup_add_post;
     ImageButton btnadd_post,btn_profile;
@@ -49,10 +44,11 @@ public class main_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_profile);
         Intent intent = getIntent();
-        t = (TextView) findViewById(R.id.user_bio);
+        usernameText = (TextView) findViewById(R.id.username2);
+        bioText = (TextView) findViewById(R.id.user_bio);
         username = intent.getStringExtra("username");
         user_image = (ImageView) findViewById(R.id.user_image);
-        set_username();
+        set_user_profile();
         display_posts();
         btnadd_post = (ImageButton) findViewById(R.id.btn_add_post);
         btnadd_post.setOnClickListener(new View.OnClickListener() {
@@ -65,24 +61,15 @@ public class main_profile extends AppCompatActivity {
         user_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //display_posts();
-            }
-        });
-
-        btn_profile = (ImageButton) findViewById(R.id.btn_profile);
-        btn_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 Intent intent2 = new Intent(main_profile.this,Show_Profile_Details.class);
                 intent2.putExtra("Username",username);
                 startActivity(intent2);
             }
         });
 
-
     }
 
-    public void set_username( ) {
+    public void set_user_profile( ) {
         reference = FirebaseDatabase.getInstance().getReference("Users");
         Query checkUser = reference.orderByChild("username").equalTo(username);
 
@@ -90,20 +77,16 @@ public class main_profile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+                    usernameText.setText(username);
                     String bio = snapshot.child(username).child("bio").getValue(String.class);
+                    String imageUrl = snapshot.child(username).child("mImageUrl").getValue(String.class);
+                    Picasso.with(main_profile.this).load(imageUrl).into(user_image);
 
                     if(bio.length()>=1){
-                        t.setText(username+"\n"+bio);
+                        bioText.setText(bio);
                     }
                     else{
-                        t.setText(username+"\nClick here to add something about yourself.");
-                        t.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                add_bio();
-
-                            }
-                        });
+                        bioText.setHint("Bio will be displayed here");
                     }
                 }
             }
@@ -134,7 +117,7 @@ public class main_profile extends AppCompatActivity {
                     popup_bio_text.setError("Bio too long");
                 }else{
                     reference.child(username).child("bio").setValue(user_biography);
-                    t.setText(username+"\n"+user_biography);
+                    usernameText.setText(username+"\n"+user_biography);
                     dialog.dismiss();
                 }
             }

@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
@@ -30,14 +31,14 @@ public class add_profile_pic extends AppCompatActivity {
 
     ImageView UploadImg;
     Button btnSave;
-    TextView txtNext;
-    String user;
+    String username;
+    EditText bio;
 
     private Uri mImageUri;
 
     private StorageReference storageRef = FirebaseStorage.getInstance().getReference("profile_pictures");
-    private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Profile_pic");
-
+    private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Users");
+    private StorageTask mUploadTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,10 @@ public class add_profile_pic extends AppCompatActivity {
 
         btnSave= (Button) findViewById(R.id.btnSave);
         UploadImg=(ImageView) findViewById(R.id.imgAddPic);
-        txtNext = (TextView) findViewById(R.id.txtNext);
+        bio = (EditText) findViewById(R.id.user_bio2);
 
         Intent intent = getIntent();
-            user = intent.getStringExtra("Username");
+            username = intent.getStringExtra("Username");
 
 
         UploadImg.setOnClickListener(new View.OnClickListener() {
@@ -62,19 +63,31 @@ public class add_profile_pic extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadFile();
+                String userBio = bio.getText().toString();
+                boolean bioValid = bioValidation(userBio);
+
+                if (bioValid) {
+                    databaseRef.child(username).child("bio").setValue(userBio);
+
+                    if (mUploadTask != null && mUploadTask.isInProgress()) {
+                        Toast.makeText(add_profile_pic.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                    } else {
+                        uploadFile();
+                    }
+                }
             }
         });
+    }
 
-        txtNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(add_profile_pic.this,MainActivity.class);
-                intent.putExtra("Username",user);
-                startActivity(intent);
-            }
-        });
-
+    public boolean bioValidation(String userBio)
+    {
+        boolean bioValid = true;
+        if (userBio.length() > 50)
+        {
+            bio.setError("Bio too long (it needs to be less than 50)");
+            bioValid = false;
+        }
+        return bioValid;
     }
 
     private void openFileUser(){
@@ -104,14 +117,22 @@ public class add_profile_pic extends AppCompatActivity {
     private void uploadFile(){
         if (mImageUri != null){
             StorageReference fileReference = storageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
-            fileReference.putFile(mImageUri)
+            mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Upload_pic upload = new Upload_pic(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                            String uploadID = user;
-                            databaseRef.child(uploadID).setValue(upload);
-                            Toast.makeText(add_profile_pic.this, "upload successful", Toast.LENGTH_LONG).show();
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
+
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    databaseRef.child(username).child("mImageUrl").setValue(uri.toString());
+                                    Toast.makeText(add_profile_pic.this, "Saved successful", Toast.LENGTH_LONG).show();
+
+                                    Intent intent= new Intent(add_profile_pic.this,MainActivity.class);
+                                    intent.putExtra("Username", username);
+                                    startActivity(intent);
+                                }
+                            });
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

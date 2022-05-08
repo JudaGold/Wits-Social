@@ -2499,6 +2499,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable edit_text_border
 drawable exp
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
@@ -2566,6 +2567,10 @@ drawable tooltip_frame_light
 drawable user
 drawable user__1_
 font adamina
+font font
+font lato_black
+font lato_bold
+font lato_regular
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -2592,7 +2597,6 @@ id TSI
 id UserNameToLogIn
 id UserName_Label
 id UserName_txt
-id UsernameTextView
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -2832,7 +2836,6 @@ id linear
 id linearLayout
 id listMode
 id list_item
-id loginBtn
 id mainlayout
 id masked
 id match_constraint
@@ -2911,7 +2914,6 @@ id notification_main_column_container
 id off
 id on
 id onInterceptTouchReturnSwipe
-id orTextView
 id outline
 id outward
 id overshoot
@@ -2925,7 +2927,6 @@ id parent_matrix
 id pass1
 id pass2
 id password
-id passwordTextView
 id password_toggle
 id path
 id pathRelative
@@ -2980,7 +2981,6 @@ id showCustom
 id showHome
 id showTitle
 id sibt
-id signUpBtn
 id sin
 id skipCollapsed
 id skipped
@@ -3044,9 +3044,6 @@ id textView2
 id textView3
 id textView4
 id textView5
-id textView6
-id textView7
-id textView8
 id textView9
 id text_input_end_icon
 id text_input_error_icon
@@ -3074,16 +3071,17 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tv
-id txtNext
 id unchecked
 id uniform
 id unlabeled
 id up
 id useLogo
 id user_bio
+id user_bio2
 id user_bio_popup
 id user_image
 id username
+id username2
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -3092,12 +3090,10 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
-id welcomeTextView
 id west
 id wide
 id withText
 id withinBounds
-id wouldYouLikeToTextView
 id wrap
 id wrap_content
 id wrap_content_constrained
@@ -3192,7 +3188,6 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_profile_pic
 layout activity_forgot_password
-layout activity_log_in
 layout activity_main
 layout activity_main_profile
 layout activity_sign_up
@@ -3215,7 +3210,6 @@ layout design_text_input_start_icon
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
-layout main_page
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider

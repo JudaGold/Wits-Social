@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Ndiwanga\\OneDrive\\Desktop\\SD Group Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+            "outputFile": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Ndiwanga\\.gradle\\caches\\transforms-3\\674abb4d82ba1aa2c7f4d6d7ae3e1609\\transformed\\material-1.5.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\060c80be5bb2ca40bccb1e50f5cda36e\\transformed\\material-1.5.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,10",
                         "startColumns": "4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Ndiwanga\\.gradle\\caches\\transforms-3\\67c0381ea558987e872d7ddaceb3e747\\transformed\\appcompat-1.4.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\4d84f8c3c22dfb6d30fa8d4a461362c3\\transformed\\appcompat-1.4.1\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
