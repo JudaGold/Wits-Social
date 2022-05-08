@@ -13,14 +13,8 @@
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="@string/add_a_post_nshare_what_you_re_feeling"
-<<<<<<< Updated upstream
-        android:textColor="#00008B" />
-=======
         android:fontFamily="@font/lato_bold"
         android:textColor="#0097A7" />
->>>>>>> Stashed changes
-
-
     <EditText
         android:id="@+id/post_body"
         android:layout_width="match_parent"

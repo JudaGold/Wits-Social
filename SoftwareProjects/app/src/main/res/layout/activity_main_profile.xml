@@ -10,32 +10,48 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="124dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/user_bio"
-            android:layout_width="286dp"
+        <LinearLayout
+            android:layout_width="254dp"
             android:layout_height="match_parent"
-            android:autoSizeTextType="uniform"
-            android:gravity="center"
-            android:fontFamily="@font/lato_regular"
-            android:textColor="@color/black" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/username2"
+                android:layout_width="286dp"
+                android:layout_height="52dp"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/user_bio"
+                android:layout_width="286dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lato_regular"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="20sp" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/user_image"
-            android:layout_width="88dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:background="@color/teal_200"
-            />
+            android:scaleType="fitXY" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="522dp"
+        android:layout_height="410dp"
         android:orientation="vertical">
 
         <ScrollView
@@ -46,36 +62,22 @@
             <LinearLayout
                 android:id="@+id/scroll_posts"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"></LinearLayout>
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            </LinearLayout>
         </ScrollView>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/btn_profile"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="10dp"
-            android:background="#00008B"
-            app:srcCompat="@drawable/ic_baseline_person_24"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/btn_add_post"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="250dp"
-            android:background="#00008B"
-            app:srcCompat="@drawable/baseline_add_circle_outline_white_48"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_add_post"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginStart="250dp"
+        android:background="#00008B"
+        app:srcCompat="@drawable/baseline_add_circle_outline_white_48"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </LinearLayout>
