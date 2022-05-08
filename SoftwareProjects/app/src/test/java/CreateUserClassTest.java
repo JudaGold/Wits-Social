@@ -14,5 +14,9 @@ class CreateUserClassTest {
         assertEquals(fakeUser.getName(), "Verushan Naidoo");
         assertEquals(fakeUser.getUsername(), "Elementrix08");
         assertEquals(fakeUser.getBio(), "Talk is cheap, show me the code");
+        assertEquals(fakeUser.getEmail(), "verushannaidoo@gmail.com");
+        assertEquals(fakeUser.getPhoneNumber(), "0615805094");
+        assertEquals(fakeUser.getPassword(), "Elementrix");
+        assertEquals(fakeUser.getmImageUrl(),"-");
     }
 }
