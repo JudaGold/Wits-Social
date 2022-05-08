@@ -123,7 +123,7 @@
             android:layout_marginStart="25dp"
             android:ems="10"
             android:fontFamily="@font/lato_regular"
-            android:inputType="numberDecimal"
+            android:inputType="text"
             android:paddingStart="25dp"
             android:textSize="24sp" />
 
@@ -175,7 +175,7 @@
             android:layout_marginStart="25dp"
             android:ems="10"
             android:fontFamily="@font/lato_regular"
-            android:inputType="numberDecimal"
+            android:inputType="text"
             android:paddingStart="25dp"
             android:textSize="24sp" />
 

@@ -217,8 +217,8 @@ public class Show_Profile_Details extends AppCompatActivity
                                     bd.child(username).child("mImageUrl").setValue(uri.toString());
                                     Toast.makeText(Show_Profile_Details.this, "Saved successful", Toast.LENGTH_LONG).show();
 
-                                    Intent intent= new Intent(Show_Profile_Details.this,MainActivity.class);
-                                    intent.putExtra("Username", username);
+                                    Intent intent= new Intent(Show_Profile_Details.this,main_profile.class);
+                                    intent.putExtra("username", username);
                                     startActivity(intent);
                                 }
                             });

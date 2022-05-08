@@ -33,7 +33,7 @@ public class main_profile extends AppCompatActivity {
     TextView usernameText, bioText;
     EditText popup_bio_text,popup_post_body,popup_post_image;
     Button popup_Save_bio,popup_add_post;
-    ImageButton btnadd_post,btn_profile;
+    ImageButton btnadd_post;
     DatabaseReference reference;
     ImageView user_image;
     long maxId  = 1 ;
