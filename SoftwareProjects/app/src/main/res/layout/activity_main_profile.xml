@@ -35,7 +35,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/holo_blue_dark"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <ImageView

@@ -1,6 +1,6 @@
 package com.example.softwareproject;
 
-import java.io.Serializable;
+
 
 public class CreateUserClass {
     private String Username,email,phoneNumber,password,name,bio, mImageUrl;

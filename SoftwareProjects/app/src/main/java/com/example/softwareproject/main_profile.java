@@ -86,7 +86,7 @@ public class main_profile extends AppCompatActivity {
                         bioText.setText(bio);
                     }
                     else{
-                        bioText.setHint("Bio will be displayed here");
+                        bioText.setHint("(Bio will be displayed here)");
                     }
                 }
             }
