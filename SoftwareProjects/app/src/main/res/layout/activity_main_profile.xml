@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="124dp"
+        android:layout_height="147dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/username2"
-                android:layout_width="286dp"
+                android:layout_width="274dp"
                 android:layout_height="52dp"
                 android:fontFamily="@font/lato_regular"
                 android:gravity="center"
@@ -29,7 +29,7 @@
 
             <TextView
                 android:id="@+id/user_bio"
-                android:layout_width="286dp"
+                android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/lato_regular"

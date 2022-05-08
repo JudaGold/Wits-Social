@@ -233,7 +233,9 @@ public class Show_Profile_Details extends AppCompatActivity
                     });
 
         } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+            Intent intent= new Intent(Show_Profile_Details.this,main_profile.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
         }
 
     }
