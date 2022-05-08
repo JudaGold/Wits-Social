@@ -136,12 +136,12 @@
         "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main_profile.xml.flat",
-        "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_main_profile.xml"
-    },
-    {
         "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\drawable_edit_text_border.xml.flat",
         "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\drawable\\edit_text_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main_profile.xml.flat",
+        "source": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\src\\main\\res\\layout\\activity_main_profile.xml"
     },
     {
         "merged": "C:\\Users\\melon\\Documents\\School Stuff\\COMS3009A\\Software Devs\\Wits Social Project\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\merged_res\\debug\\drawable_exp.jpg.flat",
