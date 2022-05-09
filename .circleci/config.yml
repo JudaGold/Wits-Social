@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Setup custom environment variables 
+          name: "Setup custom environment variables" 
           command: echo 'export CODECOV_TOKEN="{49f8e9c8-2561-4adc-860e-2144ffc52942}"' >> $BASH_ENV
           name: "Say hello"
           command: "echo Hello, World!"
