@@ -28,7 +28,6 @@ workflows:
  checkout-build-test:
     jobs:
       - gradle/test
-  upload-to-codecov:
   say-hello-workflow:
     jobs:
       - say-hello
