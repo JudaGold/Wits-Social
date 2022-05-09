@@ -11,6 +11,7 @@ orbs:
 
 jobs:
   build:
+    test-api:
     docker:
       - image: cimg/android:2022.04
     steps:
@@ -35,5 +36,5 @@ jobs:
 workflows:
  checkout-build-test:
     jobs:
-      - gradle/test
+      - test-api
   
