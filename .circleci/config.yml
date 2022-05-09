@@ -8,19 +8,26 @@ orbs:
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  build:
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+      - image: cimg/android:2022.04
     steps:
       - checkout
+      - run: ./gradlew androidDependencies
+      - run: ./gradlew lint test
       - run:
           name: Setup custom environment variables 
           command: echo 'export CODECOV_TOKEN="{49f8e9c8-2561-4adc-860e-2144ffc52942}"' >> $BASH_ENV
+
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+   
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    
+      
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -28,8 +35,5 @@ workflows:
  checkout-build-test:
     jobs:
       - gradle/test
-  say-hello-workflow:
-    jobs:
-      - say-hello
       - codecov/upload
   
