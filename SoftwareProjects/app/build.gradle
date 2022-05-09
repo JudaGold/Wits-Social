@@ -78,3 +78,5 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
 }
+
+apply plugin: 'com.google.gms.google-services'

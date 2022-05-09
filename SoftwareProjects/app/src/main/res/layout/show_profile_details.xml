@@ -14,7 +14,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="@font/lato_bold"
             android:text="My Profile"
             android:textColor="#00008B"
             android:textSize="34sp" />
@@ -186,6 +186,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/buttonshape"
             android:backgroundTint="#237E25"
+            android:fontFamily="@font/lato_regular"
             android:gravity="center"
             android:text="Save"
             android:textSize="20sp" />

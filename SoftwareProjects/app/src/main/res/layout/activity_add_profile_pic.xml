@@ -27,7 +27,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="122dp"
-            android:fontFamily="serif"
+            android:fontFamily="@font/lato_regular"
             android:text="Add a profile picture"
             android:textColor="#338CD3"
             android:textSize="32sp" />
@@ -65,7 +65,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_border"
             android:fontFamily="@font/lato_regular"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:paddingBottom="150dp"
+            android:textSize="22sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -78,6 +80,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/buttonshape"
             android:backgroundTint="#237E25"
+            android:fontFamily="@font/lato_regular"
             android:gravity="center"
             android:text="Save"
             android:textSize="20sp" />
