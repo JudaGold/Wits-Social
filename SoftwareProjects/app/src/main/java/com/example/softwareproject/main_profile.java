@@ -80,7 +80,7 @@ public class main_profile extends AppCompatActivity {
                     usernameText.setText(username);
                     String bio = snapshot.child(username).child("bio").getValue(String.class);
                     String imageUrl = snapshot.child(username).child("mImageUrl").getValue(String.class);
-                    Picasso.with(main_profile.this).load(imageUrl).into(user_image);
+                    Picasso.get().load(imageUrl).into(user_image);
 
                     if(bio.length()>=1){
                         bioText.setText(bio);

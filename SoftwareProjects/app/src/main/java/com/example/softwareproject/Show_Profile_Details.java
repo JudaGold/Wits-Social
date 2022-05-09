@@ -73,7 +73,7 @@ public class Show_Profile_Details extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String imageUrl = snapshot.child(username).child("mImageUrl").getValue(String.class);
-                    Picasso.with(Show_Profile_Details.this).load(imageUrl).into(profile_pic);
+                    Picasso.get().load(imageUrl).into(profile_pic);
 
                     UserName.setText(username);
 
@@ -145,7 +145,7 @@ public class Show_Profile_Details extends AppCompatActivity
         if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)
                 && (data != null) && (data.getData() != null)) {
             mImageUri = data.getData();
-            Picasso.with(this).load(mImageUri).into(profile_pic);
+            Picasso.get().load(mImageUri).into(profile_pic);
         }
     }
 
