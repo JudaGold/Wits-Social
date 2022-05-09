@@ -104,7 +104,7 @@ public class add_profile_pic extends AppCompatActivity {
         if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)
                 && (data != null) && (data.getData() != null)) {
             mImageUri = data.getData();
-            Picasso.with(this).load(mImageUri).into(UploadImg);
+            Picasso.get().load(mImageUri).into(UploadImg);
         }
     }
 

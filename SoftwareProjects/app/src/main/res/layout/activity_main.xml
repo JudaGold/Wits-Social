@@ -30,6 +30,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:fontFamily="@font/lato_regular"
             android:gravity="center"
             android:text="Enter your username and password to continue"
             android:textAlignment="center"

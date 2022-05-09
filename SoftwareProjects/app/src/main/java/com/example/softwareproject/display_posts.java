@@ -2,11 +2,14 @@ package com.example.softwareproject;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import com.google.firebase.database.DataSnapshot;
 
@@ -16,9 +19,11 @@ public class display_posts extends LinearLayout {
     ScrollView sv;
     TextView body,time;
     ImageView image;
+    Typeface typeface;
 
     public display_posts(Context context) {
         super(context);
+        typeface = ResourcesCompat.getFont(context,R.font.lato_regular);
         setOrientation(LinearLayout.VERTICAL);
         l = new LinearLayout(context);
         l.setOrientation(LinearLayout.VERTICAL);
@@ -39,6 +44,9 @@ public class display_posts extends LinearLayout {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,150,1.5f);
         ll.setLayoutParams(lp);
         int with = ll.getWidth();
+
+        body.setTypeface(typeface);
+        time.setTypeface(typeface);
 
         ll.addView(body);
         ll.addView(time);

@@ -67,14 +67,11 @@ id pass1
 id pass2
 id password
 id phone_number
-id popip_savebio
 id post_body
 id post_image
 id profile_pic
 id scroll_posts
 id sibt
-id textView
-id textView10
 id textView2
 id textView3
 id textView4
@@ -83,7 +80,6 @@ id textView9
 id tv
 id user_bio
 id user_bio2
-id user_bio_popup
 id user_image
 id username
 id username2
@@ -92,7 +88,6 @@ layout activity_forgot_password
 layout activity_main
 layout activity_main_profile
 layout activity_sign_up
-layout popup
 layout popup_post
 layout show_profile_details
 mipmap ic_launcher
@@ -109,7 +104,14 @@ string add_an_url_for_an_image
 string app_name
 string body_of_the_message
 string button
+string default_web_client_id
+string firebase_database_url
 string first_name
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string invalid_password
 string invalid_username
 string last_name
@@ -118,6 +120,7 @@ string login_failed
 string password
 string phone_number
 string post
+string project_id
 string prompt_email
 string prompt_password
 string retype_password
@@ -127,4 +130,5 @@ string title_activity_login
 string todo
 string username
 string welcome
+style AppTheme
 style Theme.SoftwareProject

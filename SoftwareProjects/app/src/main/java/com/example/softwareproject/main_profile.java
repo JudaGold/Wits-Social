@@ -80,7 +80,7 @@ public class main_profile extends AppCompatActivity {
                     usernameText.setText(username);
                     String bio = snapshot.child(username).child("bio").getValue(String.class);
                     String imageUrl = snapshot.child(username).child("mImageUrl").getValue(String.class);
-                    Picasso.with(main_profile.this).load(imageUrl).into(user_image);
+                    Picasso.get().load(imageUrl).into(user_image);
 
                     if(bio.length()>=1){
                         bioText.setText(bio);
@@ -97,33 +97,7 @@ public class main_profile extends AppCompatActivity {
             }
         });
     }
-    public void add_bio( ){
-        AlertDialog.Builder dialogBuilder= new AlertDialog.Builder(this);
-        AlertDialog dialog;
-        final View contented = getLayoutInflater().inflate(R.layout.popup,null);
-        popup_bio_text = (EditText) contented.findViewById(R.id.user_bio_popup);
-        popup_Save_bio =(Button) contented.findViewById(R.id.popip_savebio);
 
-        dialogBuilder.setView(contented);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-
-        popup_Save_bio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user_biography = popup_bio_text.getText().toString();
-                if(user_biography.length() > 50) {
-                    popup_bio_text.setError("Bio too long");
-                }else{
-                    reference.child(username).child("bio").setValue(user_biography);
-                    usernameText.setText(username+"\n"+user_biography);
-                    dialog.dismiss();
-                }
-            }
-        });
-
-    }
     public void add_post( ){
         AlertDialog.Builder dialogB = new AlertDialog.Builder(this);
         AlertDialog dialog;
