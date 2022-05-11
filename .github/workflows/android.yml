@@ -31,4 +31,4 @@ jobs:
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@1.1.3
       with:
-          github-token: ${{ OGGPB9FV9EzNeY4wUx2gyC9f6MQHKAn7r }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
