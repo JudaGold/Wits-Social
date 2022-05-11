@@ -10,17 +10,18 @@ orbs:
 
 jobs:
   build:
+    working_directory: ~/src
     test-api:
     docker:
       - image: cimg/android:2022.04
     steps:
       - checkout
       - run:
-          command: chmod +x SoftwareProjects/gradlew
+          command: chmod +x ./gradlew
       - run:
-          command: SoftwareProjects/gradlew androidDependencies
+          command: ./gradlew androidDependencies
       - run:
-          command: SoftwareProjects/gradlew test
+          command: ./gradlew test
 
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
