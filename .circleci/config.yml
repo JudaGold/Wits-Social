@@ -12,7 +12,7 @@ jobs:
   build:
     test-api:
     docker:
-      - image: cimg/openjdk:17.0.1
+      - image: cimg/android:2022.04
     steps:
       - checkout
       - run:
