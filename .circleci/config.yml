@@ -10,11 +10,11 @@ jobs:
   build:
     test-api:
     docker:
-      - image: cimg/android:2022.04
+      - image: cimg/openjdk:17.0.1
     steps:
       - checkout
-      - run: ./gradlew androidDependencies
-      - run: ./gradlew lint test
+      - run:
+          command: ./gradlew test
 
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -27,7 +27,8 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
- checkout-build-test:
+  workflow:
     jobs:
-      - test-api
+      - build
+      
   
