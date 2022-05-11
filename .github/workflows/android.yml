@@ -1,36 +1,39 @@
 name: Android CI
+# The name of the continuous integration that the repo is using.
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+# This alerts the CI to run when there is a push and pull requests to the main branch. 
 
 defaults:
   run:
     working-directory: ./SoftwareProjects
+# The directory in the repo that the CI will run    
 
 jobs:
   build:
-
+# The name of the job 
     runs-on: ubuntu-latest
-
+# The terminal the Ci in which it will run the commands
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
+    - uses: actions/checkout@v3 # This checks out the repo to the terminal 
+    - name: set up JDK 11 # Installs jdk 
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
-        cache: gradle
+        cache: gradle # Caches gradle so it will run faster
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
+    - name: Build with Gradle # this will perform tests in the repo
       run: ./gradlew build
     - name: Make test coverage
       run: ./gradlew jacocoTestReport 
     - name: Codecov
       uses: codecov/codecov-action@v3.1.0
       with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }} # This is required so codecov knows the repo
