@@ -26,22 +26,22 @@
         android:testOnly="true"
         android:theme="@style/Theme.SoftwareProject" >
         <activity
-            android:name="com.example.softwareproject.add_profile_pic"
+            android:name="com.example.softwareproject.Add_Profile_Pic"
             android:exported="false" />
         <activity
-            android:name="com.example.softwareproject.main_profile"
+            android:name="com.example.softwareproject.Main_Profile"
             android:exported="false" />
         <activity
-            android:name="com.example.softwareproject.Forgot_password"
+            android:name="com.example.softwareproject.Forgot_Password"
             android:exported="false" />
         <activity
             android:name="com.example.softwareproject.Show_Profile_Details"
             android:exported="false" />
         <activity
-            android:name="com.example.softwareproject.sign_up"
+            android:name="com.example.softwareproject.Sign_Up"
             android:exported="false" />
         <activity
-            android:name="com.example.softwareproject.MainActivity"
+            android:name="com.example.softwareproject.Main_Activity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
