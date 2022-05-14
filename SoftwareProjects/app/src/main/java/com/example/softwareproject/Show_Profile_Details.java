@@ -40,6 +40,7 @@ public class Show_Profile_Details extends AppCompatActivity
     String username;
     ImageView profile_pic;
     Button btnAddNewPic, btnSave2;
+    Field_validations fv;
 
     private Uri mImageUri;
 
@@ -53,7 +54,7 @@ public class Show_Profile_Details extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_profile_details);
-
+        fv = new Field_validations();
         Intent intent = getIntent();
         username = intent.getStringExtra("Username");
 
@@ -102,11 +103,11 @@ public class Show_Profile_Details extends AppCompatActivity
                 String userBio = bio.getText().toString();
 
                 boolean completed = completed();
-                boolean validEmail = check_email(email);
-                boolean validNUmber = Valid_number(number);
-                boolean validBio = bioValidation(userBio);
+                boolean validEmail = fv.check_email(email,EmailAddress);
+                boolean validNumber = fv.Valid_number(number,PhoneNumber);
+                boolean validBio = fv.bioValidation(userBio,bio);
 
-                if (completed  && validEmail && validNUmber && validBio)
+                if (completed  && validEmail && validNumber && validBio)
                 {
                     bd.child(username).child("bio").setValue(userBio);
                     bd.child(username).child("email").setValue(email);
@@ -170,37 +171,6 @@ public class Show_Profile_Details extends AppCompatActivity
             key =  false;
         }
         return key;
-    }
-
-    public boolean check_email(String email){
-        if(email.contains("@")){
-            return true;
-        }
-        else {
-            EmailAddress.setError("Invalid email address");
-            return false;
-        }
-    }
-
-    public boolean Valid_number(String num){
-        if(num.length()!=10){
-            PhoneNumber.setError("invalid phone number");
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
-    public boolean bioValidation(String userBio)
-    {
-        boolean bioValid = true;
-        if (userBio.length() > 50)
-        {
-            bio.setError("Bio too long (it needs to be less than 50)");
-            bioValid = false;
-        }
-        return bioValid;
     }
 
     private void uploadFile(){
