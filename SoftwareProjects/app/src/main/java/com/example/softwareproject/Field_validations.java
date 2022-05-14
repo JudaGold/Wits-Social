@@ -47,6 +47,20 @@ public class Field_validations {
         return bioValid;
     }
 
+    public boolean validateInput(String username, String password,EditText Text_filed1,EditText Text_filed2)
+    {
+        boolean validInput = true;
+        if (password.equals("")){
+            validInput= false;
+            Text_filed1.setError("Password cannot be empty");
+        }
+
+        if (username.equals("")){
+            validInput= false;
+            Text_filed2.setError("Username cannot be empty");
+        }
+        return validInput;
+    }
 
 
 }

@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     EditText textInputEditTextUsername, textInputEditTextPassword;
     Button buttonLogIn;
     TextView signup,forgotpassword;
+    Field_validations fv;
 
 
     @Override
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         buttonLogIn = (Button) findViewById(R.id.btnLogin);
         signup = (TextView) findViewById(R.id.TSI);
         forgotpassword = (TextView) findViewById(R.id.fp);
-
+        fv = new Field_validations();
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity
                 username = textInputEditTextUsername.getText().toString();
                 password = textInputEditTextPassword.getText().toString();
 
-                boolean validInput = validateInput(username,password);
+                boolean validInput = fv.validateInput(username,password,textInputEditTextPassword,textInputEditTextUsername);
                 if (validInput){
                     isUser(username,password);
 
@@ -123,25 +124,4 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
-
-
-    public boolean validateInput(String username, String password)
-    {
-        boolean validInput = true;
-        if (password.equals("")){
-            validInput= false;
-            textInputEditTextPassword.setError("Password cannot be empty");
-        }
-
-        if (username.equals("")){
-            validInput= false;
-            textInputEditTextUsername.setError("Username cannot be empty");
-        }
-        return validInput;
-    }
-
-
-
-
-
 }
