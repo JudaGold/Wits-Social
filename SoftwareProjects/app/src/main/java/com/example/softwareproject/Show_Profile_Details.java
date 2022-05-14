@@ -217,7 +217,7 @@ public class Show_Profile_Details extends AppCompatActivity
                                     bd.child(username).child("mImageUrl").setValue(uri.toString());
                                     Toast.makeText(Show_Profile_Details.this, "Saved successful", Toast.LENGTH_LONG).show();
 
-                                    Intent intent= new Intent(Show_Profile_Details.this,main_profile.class);
+                                    Intent intent= new Intent(Show_Profile_Details.this, Main_Profile.class);
                                     intent.putExtra("username", username);
                                     startActivity(intent);
                                 }
@@ -233,7 +233,7 @@ public class Show_Profile_Details extends AppCompatActivity
                     });
 
         } else {
-            Intent intent= new Intent(Show_Profile_Details.this,main_profile.class);
+            Intent intent= new Intent(Show_Profile_Details.this, Main_Profile.class);
             intent.putExtra("username", username);
             startActivity(intent);
         }
