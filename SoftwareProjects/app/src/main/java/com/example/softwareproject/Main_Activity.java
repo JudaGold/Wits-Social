@@ -26,7 +26,6 @@ public class Main_Activity extends AppCompatActivity
     Button buttonLogIn;
     TextView signup,forgotpassword;
     Field_Validations fv;
-    Data_Collection dc;
     User user;
 
     @Override
@@ -41,7 +40,6 @@ public class Main_Activity extends AppCompatActivity
         signup = (TextView) findViewById(R.id.TSI);
         forgotpassword = (TextView) findViewById(R.id.fp);
         fv = new Field_Validations();
-        dc = new Data_Collection();
         user = new User();
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -63,17 +61,7 @@ public class Main_Activity extends AppCompatActivity
 
                 boolean validInput = fv.validateInput(username,password,textInputEditTextPassword,textInputEditTextUsername);
                 if (validInput){
-//                    isUser(username,password);
-                    user = dc.User_Collection(username);
-                    Log.i("User Existence", user.getUsername());
-//                    if (dc.userExists(user.getUsername()))
-//                    {
-//                        Log.i("User Existence", "USER EXISTS!!!");
-//                    }
-//                    else
-//                    {
-//                        Log.i("User Existence", "USER DOES NOT EXIST!!!");
-//                    }
+                    isUser(username,password);
                 }
 
             }

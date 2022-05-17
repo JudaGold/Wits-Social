@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,18 +27,20 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
 public class Main_Profile extends AppCompatActivity {
     TextView usernameText, bioText;
-    EditText popup_bio_text,popup_post_body,popup_post_image;
-    Button popup_Save_bio,popup_add_post;
+    EditText popup_post_body,popup_post_image;
+    Button popup_add_post;
     ImageButton btnadd_post;
     DatabaseReference reference;
     ImageView user_image;
     long maxId  = 1 ;
     String username;
+    ArrayList<String> following = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,8 @@ public class Main_Profile extends AppCompatActivity {
         username = intent.getStringExtra("username");
         user_image = (ImageView) findViewById(R.id.user_image);
         set_user_profile();
-        display_posts();
+        getFollowing();
+        //display_posts();
         btnadd_post = (ImageButton) findViewById(R.id.btn_add_post);
         btnadd_post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,18 +127,17 @@ public class Main_Profile extends AppCompatActivity {
                      String t = (format.format(date)).toString();
 
                      post = new Post(body,"",t);
-                    FirebaseDatabase fb = FirebaseDatabase.getInstance();
-                    DatabaseReference ref = fb.getReference("Posts").child(username);
+                     reference = FirebaseDatabase.getInstance().getReference("Posts").child(username);
 
-                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.exists()) {
                                     maxId = (snapshot.getChildrenCount()) + 1;
                                 }
-                            ref.child(String.valueOf(maxId)).setValue(post);
+                            reference.child(String.valueOf(maxId)).setValue(post);
                             dialog.dismiss();
-                            display_posts();
+                            display_posts(following);
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
@@ -147,12 +150,12 @@ public class Main_Profile extends AppCompatActivity {
         });
     }
 
-    public void display_posts(){
+    public void display_posts(ArrayList<String> following){
         LinearLayout lp = (LinearLayout) findViewById(R.id.scroll_posts);
         lp.setOrientation(LinearLayout.VERTICAL);
         lp.removeAllViews();
-        DatabaseReference bd = FirebaseDatabase.getInstance().getReference().child("Posts").child(username);
-        Query posts =bd.orderByChild(String.valueOf(maxId));
+        reference = FirebaseDatabase.getInstance().getReference().child("Posts").child(username);
+        Query posts = reference.orderByChild(String.valueOf(maxId));
         posts.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -185,6 +188,66 @@ public class Main_Profile extends AppCompatActivity {
             }
         });
 
+
+        for (String usernames : following) {
+            reference = FirebaseDatabase.getInstance().getReference().child("Posts").child(usernames);
+            Query following_posts = reference.orderByChild(String.valueOf(maxId));
+            following_posts.addListenerForSingleValueEvent(new ValueEventListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Vector<Post>post_data;
+                    post_data = new Vector<Post>();
+                    for(DataSnapshot data:snapshot.getChildren()){
+                        String b = data.child("body").getValue(String.class);
+                        String t = data.child("time").getValue(String.class);
+                        post_data.add(new Post(b,"",t));
+                    }
+                    for(int i = post_data.size()-1;i>=0;i--){
+                        String post_body = post_data.elementAt(i).getBody();
+                        String post_time = post_data.elementAt(i).getTime();
+
+                        TextView post = new TextView(getApplicationContext());
+                        post.setTextSize(20);
+                        post.setPadding(30,30,30,30);
+                        post.setText(post_body+"\n"+post_time);
+                        post.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.post_layout));
+                        lp.addView(post);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
+
+    public void getFollowing()
+    {
+        reference = FirebaseDatabase.getInstance().getReference("Following").child(username);
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data:snapshot.getChildren())
+                {
+                    String following_username = data.getValue(String.class);
+                    following.add(following_username);
+                }
+
+                display_posts(following);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }
