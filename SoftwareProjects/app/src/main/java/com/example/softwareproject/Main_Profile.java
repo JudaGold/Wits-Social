@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,8 @@ import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
+import java.util.Random;
 import java.util.Vector;
 
 public class Main_Profile extends AppCompatActivity {
@@ -41,6 +44,7 @@ public class Main_Profile extends AppCompatActivity {
     long maxId  = 1 ;
     String username;
     ArrayList<String> following = new ArrayList<String>();
+    Hashtable<String, Integer> username_colours = new Hashtable<String, Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +141,7 @@ public class Main_Profile extends AppCompatActivity {
                                 }
                             reference.child(String.valueOf(maxId)).setValue(post);
                             dialog.dismiss();
-                            display_posts(following);
+                            display_posts(following, username_colours);
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
@@ -150,9 +154,10 @@ public class Main_Profile extends AppCompatActivity {
         });
     }
 
-    public void display_posts(ArrayList<String> following){
+    public void display_posts(ArrayList<String> following, Hashtable<String, Integer> username_colours){
         LinearLayout lp = (LinearLayout) findViewById(R.id.scroll_posts);
         lp.setOrientation(LinearLayout.VERTICAL);
+        lp.setBackgroundColor(Color.LTGRAY);
         lp.removeAllViews();
         reference = FirebaseDatabase.getInstance().getReference().child("Posts").child(username);
         Query posts = reference.orderByChild(String.valueOf(maxId));
@@ -170,6 +175,12 @@ public class Main_Profile extends AppCompatActivity {
                 for(int i = post_data.size()-1;i>=0;i--){
                     String post_body = post_data.elementAt(i).getBody();
                     String post_time = post_data.elementAt(i).getTime();
+
+                    TextView username = new TextView(getApplicationContext());
+                    username.setText("Me:");
+                    username.setTextSize(20);
+                    username.setTextColor(Color.parseColor("#ff0099cc"));
+                    lp.addView(username);
 
                     TextView post = new TextView(getApplicationContext());
                     post.setTextSize(20);
@@ -207,6 +218,12 @@ public class Main_Profile extends AppCompatActivity {
                         String post_body = post_data.elementAt(i).getBody();
                         String post_time = post_data.elementAt(i).getTime();
 
+                        TextView username = new TextView(getApplicationContext());
+                        username.setText(usernames + ":");
+                        username.setTextSize(20);
+                        username.setTextColor(username_colours.get(usernames));
+                        lp.addView(username);
+
                         TextView post = new TextView(getApplicationContext());
                         post.setTextSize(20);
                         post.setPadding(30,30,30,30);
@@ -238,9 +255,12 @@ public class Main_Profile extends AppCompatActivity {
                 {
                     String following_username = data.getValue(String.class);
                     following.add(following_username);
+                    Random rnd = new Random();
+                    int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+                    username_colours.put(following_username, color);
                 }
 
-                display_posts(following);
+                display_posts(following, username_colours);
             }
 
             @Override
