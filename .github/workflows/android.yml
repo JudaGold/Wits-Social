@@ -1,23 +1,23 @@
-name: Android CI
 # The name of the continuous integration that the repo is using.
+name: Android CI
 
+# This alerts the CI to run when there is a push and pull requests to the main branch. 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-# This alerts the CI to run when there is a push and pull requests to the main branch. 
 
+# The directory in the repo that the CI will run  
 defaults:
   run:
-    working-directory: ./SoftwareProjects
-# The directory in the repo that the CI will run    
+    working-directory: ./SoftwareProjects  
 
 jobs:
-  build:
 # The name of the job 
+  build:
+  # The terminal the Ci in which it will run the commands
     runs-on: ubuntu-latest
-# The terminal the Ci in which it will run the commands
     steps:
     - uses: actions/checkout@v3 # This checks out the repo to the terminal 
     - name: set up JDK 11 # Installs jdk 
