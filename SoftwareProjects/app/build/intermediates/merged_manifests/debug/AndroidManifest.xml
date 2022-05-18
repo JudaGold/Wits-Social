@@ -26,6 +26,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.SoftwareProject" >
         <activity
+            android:name="com.example.softwareproject.Display_searched_user"
+            android:exported="false" />
+        <activity
             android:name="com.example.softwareproject.Add_Profile_Pic"
             android:exported="false" />
         <activity

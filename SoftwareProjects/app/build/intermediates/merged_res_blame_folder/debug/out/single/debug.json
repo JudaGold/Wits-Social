@@ -1,174 +1,186 @@
 [
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_edit_text_border.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\edit_text_border.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_sign_up.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_sign_up.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_font.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\font.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "com.example.softwareproject.app-merged_res-34:/layout_activity_display_searched_user.xml.flat",
+        "source": "com.example.softwareproject.app-main-36:/layout/activity_display_searched_user.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_popup_post.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\popup_post.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_20.png.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_20.png"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_input_box.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\input_box.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_baseline_account_circle_24.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_baseline_account_circle_24.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_popup_post.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\popup_post.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_lato_regular.ttf.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\lato_regular.ttf"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_buttonshape.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\buttonshape.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_48.png.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_48.png"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_lato_black.ttf.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\lato_black.ttf"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_custom_inputbox.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\custom_inputbox.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_36.png.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_36.png"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_show_profile_details.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\show_profile_details.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_post_layout.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\post_layout.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_baseline_lock_24.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_baseline_lock_24.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_baseline_lock_24.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_baseline_lock_24.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_user__1_.png.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\user__1_.png"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_input_box.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\input_box.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_lato_regular.ttf.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\lato_regular.ttf"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_baseline_account_circle_24.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_baseline_account_circle_24.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_user.png.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\user.png"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_adamina.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\adamina.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_forgot_password.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_forgot_password.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_20.png.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_20.png"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_lato_bold.ttf.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\lato_bold.ttf"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_48.png.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_48.png"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_adamina.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\adamina.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_show_profile_details.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\show_profile_details.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_user.png.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\user.png"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_24.png.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_24.png"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_18.png.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_18.png"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_add_profile_pic.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_add_profile_pic.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_lato_black.ttf.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\lato_black.ttf"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_custom_inputbox.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\custom_inputbox.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_user__1_.png.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\user__1_.png"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_exp.jpg.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\exp.jpg"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_font.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\font.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_buttonshape.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\buttonshape.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_24.png.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_24.png"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_main_profile.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_main_profile.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\font_lato_bold.ttf.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\lato_bold.ttf"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_display_searched_user.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_display_searched_user.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_18.png.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_18.png"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_edit_text_border.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\edit_text_border.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_add_profile_pic.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_add_profile_pic.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_baseline_person_24.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_baseline_person_24.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_search_icon.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\search_icon.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_main_profile.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_main_profile.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_exp.jpg.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\exp.jpg"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_baseline_person_24.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_baseline_person_24.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable-xxxhdpi_baseline_add_circle_outline_white_36.png.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_36.png"
+    },
+    {
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_forgot_password.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_forgot_password.xml"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-34:/layout_activity_main_profile.xml.flat",
         "source": "com.example.softwareproject.app-main-36:/layout/activity_main_profile.xml"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_sign_up.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_sign_up.xml"
+    },
+    {
+        "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_post_layout.xml.flat",
+        "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\post_layout.xml"
     }
 ]

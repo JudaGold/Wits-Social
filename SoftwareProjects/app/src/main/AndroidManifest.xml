@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SoftwareProject">
-
+        <activity
+            android:name=".Display_searched_user"
+            android:exported="false" />
         <activity
             android:name=".Add_Profile_Pic"
             android:exported="false" />
