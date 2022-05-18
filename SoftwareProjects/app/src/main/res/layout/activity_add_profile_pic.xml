@@ -7,7 +7,7 @@
     android:layout_gravity="right"
     android:background="#E42672AF"
     android:backgroundTint="#4A63F3"
-    tools:context=".add_profile_pic">
+    tools:context=".Add_Profile_Pic">
 
     <LinearLayout
         android:layout_width="0dp"

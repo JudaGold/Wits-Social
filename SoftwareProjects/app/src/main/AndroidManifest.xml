@@ -13,22 +13,22 @@
         android:theme="@style/Theme.SoftwareProject">
 
         <activity
-            android:name=".add_profile_pic"
+            android:name=".Add_Profile_Pic"
             android:exported="false" />
         <activity
-            android:name=".main_profile"
+            android:name=".Main_Profile"
             android:exported="false" />
         <activity
-            android:name=".Forgot_password"
+            android:name=".Forgot_Password"
             android:exported="false" />
         <activity
             android:name=".Show_Profile_Details"
             android:exported="false" />
         <activity
-            android:name=".sign_up"
+            android:name=".Sign_Up"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Main_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
