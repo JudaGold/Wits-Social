@@ -29,6 +29,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable input_box
 drawable post_layout
+drawable search_icon
 drawable user
 drawable user__1_
 font adamina
@@ -41,11 +42,13 @@ id Bio_Label
 id EmailAddress_Label
 id PhoneNumber_Label
 id Phone_number
+id Search_user_button
 id SignUpText
 id TSI
 id UserNameToLogIn
 id UserName_Label
 id UserName_txt
+id bio_text
 id btnAddNewPic
 id btnLogin
 id btnSave
@@ -71,6 +74,8 @@ id post_body
 id post_image
 id profile_pic
 id scroll_posts
+id search_bar_input
+id searched_user_image
 id sibt
 id textView2
 id textView3
@@ -78,12 +83,11 @@ id textView4
 id textView5
 id textView9
 id tv
-id user_bio
 id user_bio2
-id user_image
 id username
-id username2
+id username_text
 layout activity_add_profile_pic
+layout activity_display_searched_user
 layout activity_forgot_password
 layout activity_main
 layout activity_main_profile

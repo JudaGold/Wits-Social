@@ -2567,6 +2567,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable post_layout
+drawable search_icon
 drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -2595,6 +2596,7 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
+id Search_user_button
 id SignUpText
 id TOP_END
 id TOP_START
@@ -2682,6 +2684,7 @@ id baseline
 id beginOnFirstDraw
 id beginning
 id bestChoice
+id bio_text
 id blocking
 id bottom
 id bounce
@@ -2985,6 +2988,7 @@ id scroll_posts
 id scrollable
 id search_badge
 id search_bar
+id search_bar_input
 id search_button
 id search_close_btn
 id search_edit_frame
@@ -2993,6 +2997,7 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id searched_user_image
 id select_dialog_listview
 id selected
 id selection_type
@@ -3096,11 +3101,9 @@ id uniform
 id unlabeled
 id up
 id useLogo
-id user_bio
 id user_bio2
-id user_image
 id username
-id username2
+id username_text
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -3213,6 +3216,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_profile_pic
+layout activity_display_searched_user
 layout activity_forgot_password
 layout activity_main
 layout activity_main_profile
