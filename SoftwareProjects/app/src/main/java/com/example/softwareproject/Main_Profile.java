@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,8 +37,9 @@ import java.util.Random;
 public class Main_Profile extends AppCompatActivity {
     TextView usernameText, bioText;// bioText will have the user's bio
     EditText popup_post_body, popup_post_image;
+    AutoCompleteTextView search_bar;
     Button popup_add_post;
-    ImageButton btnadd_post;
+    ImageButton btnadd_post,btn_search_user;
     DatabaseReference reference;// this the reference of the Firebase database
     ImageView user_image;// this will have be image on the main feed page
     long maxId = 1;
@@ -47,16 +49,18 @@ public class Main_Profile extends AppCompatActivity {
                                                            user is following*/
     Hashtable<String, Integer> username_colours = new Hashtable<>();/* this will have the unique
                                                                        colour of each user*/
+    Search_User_class su;//creating a instance of the search user class to search for a user
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_profile);
         Intent intent = getIntent();
-        usernameText = (TextView) findViewById(R.id.username2);
-        bioText = (TextView) findViewById(R.id.user_bio);
+        usernameText = (TextView) findViewById(R.id.username_text);
+        bioText = (TextView) findViewById(R.id.bio_text);
         username = intent.getStringExtra("username");
-        user_image = (ImageView) findViewById(R.id.user_image);
+        user_image = (ImageView) findViewById(R.id.searched_user_image);
         all_usernames.add(username);
         set_user_profile();
         getFollowing();
@@ -76,7 +80,10 @@ public class Main_Profile extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
+       search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
+       btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
+       su = new Search_User_class();
+       su.search(username,search_bar,btn_search_user,Main_Profile.this);
     }
 
     public void set_user_profile() {

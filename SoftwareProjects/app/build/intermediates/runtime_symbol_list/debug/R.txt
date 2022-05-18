@@ -2566,6 +2566,7 @@ int drawable notification_template_icon_low_bg 0x7f0800b8
 int drawable notification_tile_bg 0x7f0800b9
 int drawable notify_panel_notification_icon_bg 0x7f0800ba
 int drawable post_layout 0x7f0800bb
+int drawable search_icon 0x7f0800c2
 int drawable test_custom_background 0x7f0800bc
 int drawable test_level_drawable 0x7f0800bd
 int drawable tooltip_frame_dark 0x7f0800be
@@ -2594,6 +2595,7 @@ int id SHOW_ALL 0x7f0a000d
 int id SHOW_PATH 0x7f0a000e
 int id SHOW_PROGRESS 0x7f0a000f
 int id SYM 0x7f0a0010
+int id Search_user_button 0x7f0a021d
 int id SignUpText 0x7f0a0011
 int id TOP_END 0x7f0a0012
 int id TOP_START 0x7f0a0013
@@ -2681,6 +2683,7 @@ int id baseline 0x7f0a0064
 int id beginOnFirstDraw 0x7f0a0065
 int id beginning 0x7f0a0066
 int id bestChoice 0x7f0a0067
+int id bio_text 0x7f0a021f
 int id blocking 0x7f0a0068
 int id bottom 0x7f0a0069
 int id bounce 0x7f0a006a
@@ -2984,6 +2987,7 @@ int id scroll_posts 0x7f0a0193
 int id scrollable 0x7f0a0194
 int id search_badge 0x7f0a0195
 int id search_bar 0x7f0a0196
+int id search_bar_input 0x7f0a021e
 int id search_button 0x7f0a0197
 int id search_close_btn 0x7f0a0198
 int id search_edit_frame 0x7f0a0199
@@ -2992,6 +2996,7 @@ int id search_mag_icon 0x7f0a019b
 int id search_plate 0x7f0a019c
 int id search_src_text 0x7f0a019d
 int id search_voice_btn 0x7f0a019e
+int id searched_user_image 0x7f0a0220
 int id select_dialog_listview 0x7f0a019f
 int id selected 0x7f0a01a0
 int id selection_type 0x7f0a01a1
@@ -3095,11 +3100,9 @@ int id uniform 0x7f0a0202
 int id unlabeled 0x7f0a0203
 int id up 0x7f0a0204
 int id useLogo 0x7f0a0205
-int id user_bio 0x7f0a0206
 int id user_bio2 0x7f0a0207
-int id user_image 0x7f0a0208
 int id username 0x7f0a0209
-int id username2 0x7f0a020a
+int id username_text 0x7f0a0221
 int id vertical_only 0x7f0a020b
 int id view_offset_helper 0x7f0a020c
 int id view_transition 0x7f0a020d
@@ -3212,6 +3215,7 @@ int layout abc_search_view 0x7f0d0019
 int layout abc_select_dialog_material 0x7f0d001a
 int layout abc_tooltip 0x7f0d001b
 int layout activity_add_profile_pic 0x7f0d001c
+int layout activity_display_searched_user 0x7f0d007d
 int layout activity_forgot_password 0x7f0d001d
 int layout activity_main 0x7f0d001e
 int layout activity_main_profile 0x7f0d001f
