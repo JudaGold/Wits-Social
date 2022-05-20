@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class User_Test {
+class User_Tests {
     @Test
-    public void UserTest() {
+    public void checkUserAssignment_Test() {
         User fakeUser = new User("Elementrix08",
                 "verushannaidoo@gmail.com", "0615805094", "Elementrix",
                 "Verushan Naidoo", "Talk is cheap, show me the code", "-");
