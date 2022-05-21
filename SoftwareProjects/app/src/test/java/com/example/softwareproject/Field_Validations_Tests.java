@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class Field_Validations_Tests {
     Field_Validations field_validations = new Field_Validations();
-    EditText et = new ;
+    EditText et;
 
     @Test
     public void checkPasswordsMatch_validMatch() {
