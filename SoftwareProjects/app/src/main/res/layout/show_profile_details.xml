@@ -191,5 +191,12 @@
             android:text="Save"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/logOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Log Out" />
+
     </LinearLayout>
 </ScrollView>

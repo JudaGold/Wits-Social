@@ -2,6 +2,7 @@ package com.example.softwareproject;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,7 +40,7 @@ public class Show_Profile_Details extends AppCompatActivity
     EditText bio, fullName, PhoneNumber,EmailAddress;
     String username;
     ImageView profile_pic;
-    Button btnAddNewPic, btnSave2;
+    Button btnAddNewPic, btnSave2, logOut;
     Field_Validations fv;
 
     private Uri mImageUri;
@@ -66,6 +67,7 @@ public class Show_Profile_Details extends AppCompatActivity
         bio = (EditText) findViewById(R.id.BioText);
         btnAddNewPic = (Button) findViewById(R.id.btnAddNewPic);
         btnSave2 = (Button) findViewById(R.id.btnSave2);
+        logOut = findViewById(R.id.logOut);
 
 
         Query getUserInfo = bd.orderByChild("username").equalTo(username);
@@ -127,6 +129,19 @@ public class Show_Profile_Details extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 openFileUser();
+            }
+        });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences preferences = getSharedPreferences("checkBox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember","false");
+                editor.apply();
+
+                Intent intent = new Intent(Show_Profile_Details.this, Main_Activity.class);
+                startActivity(intent);
             }
         });
 

@@ -77,16 +77,13 @@
             android:fontFamily="@font/lato_regular"
             tools:ignore="TouchTargetSizeCheck"></EditText>
 
-        <TextView
-            android:id="@+id/fp"
 
+        <CheckBox
+            android:id="@+id/rememberMe"
             android:layout_width="wrap_content"
-            android:layout_height="47dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/lato_regular"
-            android:text="forgot password?"
-            android:textColor="#121111"></TextView>
-
+            android:text="Remember me?" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -102,6 +99,16 @@
             android:fontFamily="@font/lato_regular"
             app:iconTint="#FFFFFF"></Button>
 
+
+        <TextView
+            android:id="@+id/fp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
+            android:text="forgot password?"
+            android:textColor="#121111"></TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
