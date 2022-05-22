@@ -83,7 +83,7 @@ public class Main_Profile extends AppCompatActivity {
        search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
        btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
        su = new Search_User_class();
-       su.search(username,search_bar,btn_search_user,Main_Profile.this);
+       su.search(username,username,search_bar,btn_search_user,Main_Profile.this);
     }
 
     public void set_user_profile() {
@@ -140,7 +140,6 @@ public class Main_Profile extends AppCompatActivity {
 
                     post = new Post(body, "", t);
                     reference = FirebaseDatabase.getInstance().getReference("Posts").child(username);
-
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {

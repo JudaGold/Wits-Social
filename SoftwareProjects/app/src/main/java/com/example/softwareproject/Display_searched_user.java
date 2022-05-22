@@ -7,7 +7,9 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,8 +37,10 @@ public class Display_searched_user extends AppCompatActivity {
     ImageButton btn_search;
     Intent intent;
     Search_User_class su;
-    String user_username;
+    String user_username,loggedIn_user;
     long maxId  = 1 ;
+    Button followbtn;
+    boolean following;
 
 
     @Override
@@ -45,6 +49,7 @@ public class Display_searched_user extends AppCompatActivity {
         setContentView(R.layout.activity_display_searched_user);
         intent = getIntent();
         user_username = intent.getStringExtra("username");
+        loggedIn_user = intent.getStringExtra("Loggedin_user");
         username_view = (TextView) findViewById(R.id.username_text);
         bio_view = (TextView) findViewById(R.id.bio_text);
         Search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
@@ -53,9 +58,27 @@ public class Display_searched_user extends AppCompatActivity {
         set_user_profile();
         display_posts();
         su = new Search_User_class();
-        su.search(user_username,Search_bar,btn_search,Display_searched_user.this);
+        su.search(loggedIn_user,user_username,Search_bar,btn_search,Display_searched_user.this);
+        followbtn = (Button) findViewById(R.id.btnFollow);
+        su.getFollowing(loggedIn_user,user_username,followbtn);
+        following = su.get_following();
+        followbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(following){
+
+                }else{
+                    su.follow(loggedIn_user,user_username);
+                    followbtn.setText("following");
+
+                }
+
+            }
+        });
+
 
     }
+
     public void set_user_profile() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         Query checkUser = reference.orderByChild("username").equalTo(user_username);
@@ -104,11 +127,20 @@ public class Display_searched_user extends AppCompatActivity {
                     String post_body = post_data.elementAt(i).getBody();
                     String post_time = post_data.elementAt(i).getTime();
 
-                    TextView post = new TextView(getApplicationContext());
-                    post.setTextSize(20);
-                    post.setPadding(30,30,30,30);
-                    post.setText(post_body+"\n"+post_time);
+                    TextView body = new TextView(getApplicationContext());
+                    TextView time = new TextView(getApplicationContext());
+                    LinearLayout post = new LinearLayout(getApplicationContext());
+
+                    post.setOrientation(LinearLayout.VERTICAL);
+                    time.setText("\t"+post_time);
+                    time.setTextSize(15);
+                    body.setText("\t"+post_body);
+                    body.setTextSize(20);
+                    body.setPadding(30,30,30,30);
+                    post.addView(time);
+                    post.addView(body);
                     post.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.post_layout));
+                    post.setPadding(20,30,20,30);
                     lp.addView(post);
 
                 }
