@@ -11,7 +11,7 @@ import java.util.*;
 public class Post
 {
     private String username,body,post_image_url,time;
-    private Date date;// this will store the actual date of the post
+    private Date date;// this will store the actual date of the post.
 
     public Post(String body, String post_image_url, String time) {
         this.time= time;

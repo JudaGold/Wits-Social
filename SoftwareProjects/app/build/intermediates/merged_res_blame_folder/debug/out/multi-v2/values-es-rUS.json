@@ -4,7 +4,7 @@
             "outputFile": "com.example.softwareproject.app-mergeDebugResources-33:/values-es-rUS/values-es-rUS.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\aharo\\.gradle\\caches\\transforms-3\\8a4da37b186a7fe4a59d8a10f1aba8fc\\transformed\\appcompat-1.4.1\\res\\values-es-rUS\\values-es-rUS.xml",
+                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\8a4da37b186a7fe4a59d8a10f1aba8fc\\transformed\\appcompat-1.4.1\\res\\values-es-rUS\\values-es-rUS.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\aharo\\.gradle\\caches\\transforms-3\\2e615fe73eec79a70c57ad75b9f7db51\\transformed\\play-services-base-18.0.1\\res\\values-es-rUS\\values.xml",
+                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\aed202ee516ea9164420ff141dd6232e\\transformed\\core-1.7.0\\res\\values-es-rUS\\values-es-rUS.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "106",
+                        "startColumns": "4",
+                        "startOffsets": "9837",
+                        "endColumns": "100",
+                        "endOffsets": "9933"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\2e615fe73eec79a70c57ad75b9f7db51\\transformed\\play-services-base-18.0.1\\res\\values-es-rUS\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\aharo\\.gradle\\caches\\transforms-3\\5dc52e2d189df8af38436383b5cfb34e\\transformed\\play-services-basement-18.0.0\\res\\values-es-rUS\\values.xml",
+                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\5dc52e2d189df8af38436383b5cfb34e\\transformed\\play-services-basement-18.0.0\\res\\values-es-rUS\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -55,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\aharo\\.gradle\\caches\\transforms-3\\8933b1c9f89036a907b0dbde203fec0b\\transformed\\material-1.6.0\\res\\values-es-rUS\\values-es-rUS.xml",
+                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\8933b1c9f89036a907b0dbde203fec0b\\transformed\\material-1.6.0\\res\\values-es-rUS\\values-es-rUS.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -71,23 +88,6 @@
                         "endLines": "5,33,34,35,36,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104",
                         "endColumns": "12,85,101,127,80,64,94,69,62,92,71,62,73,63,55,117,57,61,55,79,133,88,80,110,80,79,89,66,65,75,81,87,72,76,69,76,88,73,93,101,71,80,103,52,66,92,88,61,63,62,110,96,101,97,82",
                         "endOffsets": "278,3080,3182,3310,3391,5785,5880,5950,6013,6106,6178,6241,6315,6379,6435,6553,6611,6673,6729,6809,6943,7032,7113,7224,7305,7385,7475,7542,7608,7684,7766,7854,7927,8004,8074,8151,8240,8314,8408,8510,8582,8663,8767,8820,8887,8980,9069,9131,9195,9258,9369,9466,9568,9666,9749"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\aharo\\.gradle\\caches\\transforms-3\\aed202ee516ea9164420ff141dd6232e\\transformed\\core-1.7.0\\res\\values-es-rUS\\values-es-rUS.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "106",
-                        "startColumns": "4",
-                        "startOffsets": "9837",
-                        "endColumns": "100",
-                        "endOffsets": "9933"
                     }
                 }
             ]
