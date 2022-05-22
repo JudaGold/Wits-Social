@@ -8,10 +8,6 @@
         "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\font\\font.xml"
     },
     {
-        "merged": "com.example.softwareproject.app-merged_res-34:/layout_activity_display_searched_user.xml.flat",
-        "source": "com.example.softwareproject.app-main-36:/layout/activity_display_searched_user.xml"
-    },
-    {
         "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\mipmap-hdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
     },
@@ -46,6 +42,10 @@
     {
         "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\drawable_custom_inputbox.xml.flat",
         "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\drawable\\custom_inputbox.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-34:/drawable_post_layout.xml.flat",
+        "source": "com.example.softwareproject.app-main-36:/drawable/post_layout.xml"
     },
     {
         "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_show_profile_details.xml.flat",
@@ -170,10 +170,6 @@
     {
         "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_forgot_password.xml.flat",
         "source": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-36:\\layout\\activity_forgot_password.xml"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-34:/layout_activity_main_profile.xml.flat",
-        "source": "com.example.softwareproject.app-main-36:/layout/activity_main_profile.xml"
     },
     {
         "merged": "C:\\Users\\aharo\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-34:\\layout_activity_sign_up.xml.flat",
