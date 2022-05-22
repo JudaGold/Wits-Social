@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.softwareproject.app-mergeDebugResources-32:/values-my/values-my.xml",
+            "outputFile": "com.example.softwareproject.app-mergeDebugResources-33:/values-my/values-my.xml",
             "map": [
                 {
                     "source": "C:\\Users\\aharo\\.gradle\\caches\\transforms-3\\aed202ee516ea9164420ff141dd6232e\\transformed\\core-1.7.0\\res\\values-my\\values-my.xml",

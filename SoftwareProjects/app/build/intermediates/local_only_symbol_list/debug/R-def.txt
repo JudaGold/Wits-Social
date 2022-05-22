@@ -50,6 +50,7 @@ id UserName_Label
 id UserName_txt
 id bio_text
 id btnAddNewPic
+id btnFollow
 id btnLogin
 id btnSave
 id btnSave2
@@ -64,6 +65,7 @@ id full_name_Label
 id imgAddPic
 id last_name
 id linearLayout
+id logOut
 id mainlayout
 id pad
 id pass1
@@ -73,10 +75,12 @@ id phone_number
 id post_body
 id post_image
 id profile_pic
+id rememberMe
 id scroll_posts
 id search_bar_input
 id searched_user_image
 id sibt
+id swiper
 id textView2
 id textView3
 id textView4
