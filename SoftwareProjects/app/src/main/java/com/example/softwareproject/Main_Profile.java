@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -27,12 +29,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Random;
+import java.util.logging.Handler;
 
 public class Main_Profile extends AppCompatActivity {
     TextView usernameText, bioText;// bioText will have the user's bio
@@ -44,6 +49,8 @@ public class Main_Profile extends AppCompatActivity {
     ImageView user_image;// this will have be image on the main feed page
     long maxId = 1;
     String username;
+    SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout lp;
     ArrayList<String> all_usernames = new ArrayList<>();/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
@@ -84,6 +91,19 @@ public class Main_Profile extends AppCompatActivity {
        btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
        su = new Search_User_class();
        su.search(username,username,search_bar,btn_search_user,Main_Profile.this);
+
+       swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiper);
+       swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+           @Override
+           public void onRefresh() {
+            lp.removeAllViews();
+            getFollowing();
+            swipeRefreshLayout.setRefreshing(false);
+           }
+       });
+
+
+
     }
 
     public void set_user_profile() {
@@ -164,7 +184,7 @@ public class Main_Profile extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void display_posts(ArrayList<Post> Posts, Hashtable<String, Integer> username_colours) {
-        LinearLayout lp = (LinearLayout) findViewById(R.id.scroll_posts);
+         lp = (LinearLayout) findViewById(R.id.scroll_posts);
         lp.setOrientation(LinearLayout.VERTICAL);
         lp.setBackgroundColor(Color.LTGRAY);
         lp.removeAllViews();
@@ -186,14 +206,26 @@ public class Main_Profile extends AppCompatActivity {
                 usernameView.setText(username_post + ":");
                 usernameView.setTextColor(username_colours.get(username_post));
             }
+
             lp.addView(usernameView);
 
-            TextView postView = new TextView(getApplicationContext());
-            postView.setTextSize(20);
-            postView.setPadding(30, 30, 30, 30);
-            postView.setText(post_body + "\n" + post_time);
-            postView.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.post_layout));
-            lp.addView(postView);
+            TextView body = new TextView(getApplicationContext());
+            TextView time = new TextView(getApplicationContext());
+
+            LinearLayout postview = new LinearLayout(getApplicationContext());
+            postview.setOrientation(LinearLayout.VERTICAL);
+            time.setText(post_time);
+            time.setGravity(Gravity.RIGHT);
+            time.setTextSize(15);
+            body.setText(" "+post_body);
+            body.setTextSize(20);
+            body.setPadding(30,30,30,30);
+            postview.addView(time);
+            postview.addView(body);
+            postview.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.post_layout));
+            postview.setPadding(20,30,20,30);
+            lp.addView(postview);
+
 
         }
     }
@@ -256,5 +288,6 @@ public class Main_Profile extends AppCompatActivity {
             });
         }
     }
+
 
 }

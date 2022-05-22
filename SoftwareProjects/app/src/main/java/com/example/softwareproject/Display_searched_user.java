@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -132,7 +133,8 @@ public class Display_searched_user extends AppCompatActivity {
                     LinearLayout post = new LinearLayout(getApplicationContext());
 
                     post.setOrientation(LinearLayout.VERTICAL);
-                    time.setText("\t"+post_time);
+                    time.setText(post_time);
+                    time.setGravity(Gravity.RIGHT);
                     time.setTextSize(15);
                     body.setText("\t"+post_body);
                     body.setTextSize(20);

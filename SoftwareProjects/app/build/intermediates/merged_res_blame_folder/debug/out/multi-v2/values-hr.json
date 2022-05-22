@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.softwareproject.app-mergeDebugResources-32:/values-hr/values-hr.xml",
+            "outputFile": "com.example.softwareproject.app-mergeDebugResources-33:/values-hr/values-hr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\aharo\\.gradle\\caches\\transforms-3\\8a4da37b186a7fe4a59d8a10f1aba8fc\\transformed\\appcompat-1.4.1\\res\\values-hr\\values-hr.xml",
