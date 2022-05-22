@@ -28,10 +28,6 @@ class PostTest {
         assertEquals(fakePost.getPost_image_url(),"---");
         assertEquals(fakePost.getTime(),"00:00");
         assertEquals(fakePost.getUsername(),"David The Boy");
-        assertEquals(fakePost.getBody(),"Hello its David");
-        assertEquals(fakePost.getTime(),"00:00");
-        assertEquals(fakePost.getPost_image_url(),"---");
-
 
     }
 
