@@ -6,20 +6,32 @@ import org.junit.jupiter.api.Test;
 
 class PostTest {
     @Test
-    public void PostTest(){
+    public void Post_initialState_validOutput(){
         Post fakePost= new Post("Hello , Its Naazni","-","14:26");
-        fakePost.setUsername("Naazni Jagdew");
-        fakePost.setBody("Hello , Its Naazni");
-        fakePost.setTime("14:26");
-        fakePost.setPost_image_url("-");
 
         assertEquals(fakePost.getBody(),"Hello , Its Naazni");
         assertEquals(fakePost.getPost_image_url(),"-");
         assertEquals(fakePost.getTime(),"14:26");
-        assertEquals(fakePost.getUsername(),"Naazni Jagdew");
-        assertEquals(fakePost.getBody(),"Hello , Its Naazni");
-        assertEquals(fakePost.getTime(),"14:26");
-        assertEquals(fakePost.getPost_image_url(),"-");
+
+    }
+
+    @Test
+    public void Post_postCreation_validOutput(){
+        Post fakePost= new Post("Hello , Its Naazni","-","14:26");
+
+        fakePost.setUsername("David The Boy");
+        fakePost.setBody("Hello its David");
+        fakePost.setTime("00:00");
+        fakePost.setPost_image_url("---");
+
+        assertEquals(fakePost.getBody(),"Hello its David");
+        assertEquals(fakePost.getPost_image_url(),"---");
+        assertEquals(fakePost.getTime(),"00:00");
+        assertEquals(fakePost.getUsername(),"David The Boy");
+        assertEquals(fakePost.getBody(),"Hello its David");
+        assertEquals(fakePost.getTime(),"00:00");
+        assertEquals(fakePost.getPost_image_url(),"---");
+
 
     }
 
