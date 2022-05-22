@@ -20,7 +20,7 @@ class PostTest {
         assertEquals(fakePost.getBody(),"Hello , Its Naazni");
         assertEquals(fakePost.getTime(),"14:26");
         assertEquals(fakePost.getPost_image_url(),"-");
-        
+
     }
 
 
