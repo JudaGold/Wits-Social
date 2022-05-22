@@ -6,179 +6,179 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
-8-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
+8-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="31" />
-9-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
+9-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:5:5-67
-11-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:5:22-64
+11-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:5:22-64
 12
 13    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
 14    <!-- <uses-sdk android:minSdkVersion="14"/> -->
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:25:5-79
-15-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:25:22-76
+15-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:25:5-79
+15-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:25:22-76
 16
 17    <application
-17-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:7:5-45:19
+17-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:7:5-45:19
 18        android:allowBackup="true"
-18-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:8:9-35
+18-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:8:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.7.0] C:\Users\naazn\.gradle\caches\transforms-3\aed202ee516ea9164420ff141dd6232e\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+19-->[androidx.core:core:1.7.0] C:\Users\melon\.gradle\caches\transforms-3\aed202ee516ea9164420ff141dd6232e\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
 20        android:debuggable="true"
 21        android:extractNativeLibs="false"
 22        android:icon="@mipmap/ic_launcher"
-22-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:9:9-43
+22-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:9:9-43
 23        android:label="@string/app_name"
-23-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:10:9-41
+23-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:10:9-41
 24        android:roundIcon="@mipmap/ic_launcher_round"
-24-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:11:9-54
+24-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:11:9-54
 25        android:supportsRtl="true"
-25-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:12:9-35
+25-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:12:9-35
 26        android:theme="@style/Theme.SoftwareProject" >
-26-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:13:9-53
+26-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:13:9-53
 27        <activity
-27-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:14:9-16:40
+27-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:14:9-16:40
 28            android:name="com.example.softwareproject.Display_searched_user"
-28-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:15:13-50
+28-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:15:13-50
 29            android:exported="false" />
-29-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:16:13-37
+29-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:16:13-37
 30        <activity
-30-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:17:9-19:40
+30-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:17:9-19:40
 31            android:name="com.example.softwareproject.Add_Profile_Pic"
-31-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:18:13-44
+31-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:18:13-44
 32            android:exported="false" />
-32-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:19:13-37
+32-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:19:13-37
 33        <activity
-33-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:20:9-22:40
+33-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:20:9-22:40
 34            android:name="com.example.softwareproject.Main_Profile"
-34-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:21:13-41
+34-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:21:13-41
 35            android:exported="false" />
-35-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:22:13-37
+35-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:22:13-37
 36        <activity
-36-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:23:9-25:40
+36-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:23:9-25:40
 37            android:name="com.example.softwareproject.Forgot_Password"
-37-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:24:13-44
+37-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:24:13-44
 38            android:exported="false" />
-38-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:25:13-37
+38-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:25:13-37
 39        <activity
-39-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:26:9-28:40
+39-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:26:9-28:40
 40            android:name="com.example.softwareproject.Show_Profile_Details"
-40-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:27:13-49
+40-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:27:13-49
 41            android:exported="false" />
-41-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:28:13-37
+41-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:28:13-37
 42        <activity
-42-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:29:9-31:40
+42-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:29:9-31:40
 43            android:name="com.example.softwareproject.Sign_Up"
-43-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:30:13-36
+43-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:30:13-36
 44            android:exported="false" />
-44-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:31:13-37
+44-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:31:13-37
 45        <activity
-45-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:32:9-40:20
+45-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:32:9-40:20
 46            android:name="com.example.softwareproject.Main_Activity"
-46-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:33:13-42
+46-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:33:13-42
 47            android:exported="true" >
-47-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:34:13-36
+47-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:34:13-36
 48            <intent-filter>
-48-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:35:13-39:29
+48-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:35:13-39:29
 49                <action android:name="android.intent.action.MAIN" />
-49-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:36:17-69
-49-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:36:25-66
+49-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:36:17-69
+49-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:36:25-66
 50
 51                <category android:name="android.intent.category.LAUNCHER" />
-51-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:38:17-77
-51-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:38:27-74
+51-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:38:17-77
+51-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:38:27-74
 52            </intent-filter>
 53        </activity>
 54
 55        <meta-data
-55-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:42:9-44:57
+55-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:42:9-44:57
 56            android:name="preloaded_fonts"
-56-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:43:13-43
+56-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:43:13-43
 57            android:resource="@array/preloaded_fonts" />
-57-->C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:44:13-54
+57-->C:\Users\melon\Documents\School Stuff\COMS3009A\Software Devs\Wits Social Project\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:44:13-54
 58
 59        <service
-59-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:29:9-35:19
+59-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:29:9-35:19
 60            android:name="com.google.firebase.components.ComponentDiscoveryService"
-60-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:30:13-84
+60-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:30:13-84
 61            android:directBootAware="true"
-61-->[com.google.firebase:firebase-common:20.1.1] C:\Users\naazn\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:35:13-43
+61-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:35:13-43
 62            android:exported="false" >
-62-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:31:13-37
+62-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:31:13-37
 63            <meta-data
-63-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:32:13-34:85
+63-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:32:13-34:85
 64                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-64-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:33:17-109
+64-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:33:17-109
 65                android:value="com.google.firebase.components.ComponentRegistrar" />
-65-->[com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:34:17-82
+65-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:34:17-82
 66            <meta-data
-66-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\naazn\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:33:13-35:85
+66-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\melon\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:33:13-35:85
 67                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-67-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\naazn\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:34:17-107
+67-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\melon\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:34:17-107
 68                android:value="com.google.firebase.components.ComponentRegistrar" />
-68-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\naazn\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:35:17-82
+68-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\melon\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:35:17-82
 69        </service>
 70
 71        <provider
-71-->[com.squareup.picasso:picasso:2.71828] C:\Users\naazn\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
+71-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
 72            android:name="com.squareup.picasso.PicassoProvider"
-72-->[com.squareup.picasso:picasso:2.71828] C:\Users\naazn\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
+72-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
 73            android:authorities="com.example.softwareproject.com.squareup.picasso"
-73-->[com.squareup.picasso:picasso:2.71828] C:\Users\naazn\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
+73-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
 74            android:exported="false" />
-74-->[com.squareup.picasso:picasso:2.71828] C:\Users\naazn\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
+74-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
 75
 76        <activity
-76-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\naazn\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+76-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
 77            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-77-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\naazn\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+77-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
 78            android:exported="false"
-78-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\naazn\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+78-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
 79            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-79-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\naazn\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+79-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
 80
 81        <provider
-81-->[com.google.firebase:firebase-common:20.1.1] C:\Users\naazn\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:26:9-31:39
+81-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:26:9-31:39
 82            android:name="com.google.firebase.provider.FirebaseInitProvider"
-82-->[com.google.firebase:firebase-common:20.1.1] C:\Users\naazn\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:27:13-77
+82-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:27:13-77
 83            android:authorities="com.example.softwareproject.firebaseinitprovider"
-83-->[com.google.firebase:firebase-common:20.1.1] C:\Users\naazn\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:28:13-72
+83-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:28:13-72
 84            android:directBootAware="true"
-84-->[com.google.firebase:firebase-common:20.1.1] C:\Users\naazn\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:29:13-43
+84-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:29:13-43
 85            android:exported="false"
-85-->[com.google.firebase:firebase-common:20.1.1] C:\Users\naazn\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:30:13-37
+85-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:30:13-37
 86            android:initOrder="100" />
-86-->[com.google.firebase:firebase-common:20.1.1] C:\Users\naazn\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:31:13-36
+86-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:31:13-36
 87
 88        <meta-data
-88-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\naazn\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+88-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\melon\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
 89            android:name="com.google.android.gms.version"
-89-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\naazn\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+89-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\melon\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
 90            android:value="@integer/google_play_services_version" />
-90-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\naazn\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+90-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\melon\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
 91
 92        <provider
-92-->[androidx.emoji2:emoji2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+92-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
 93            android:name="androidx.startup.InitializationProvider"
-93-->[androidx.emoji2:emoji2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+93-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
 94            android:authorities="com.example.softwareproject.androidx-startup"
-94-->[androidx.emoji2:emoji2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+94-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
 95            android:exported="false" >
-95-->[androidx.emoji2:emoji2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+95-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
 96            <meta-data
-96-->[androidx.emoji2:emoji2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+96-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
 97                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-97-->[androidx.emoji2:emoji2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+97-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
 98                android:value="androidx.startup" />
-98-->[androidx.emoji2:emoji2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+98-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
 99            <meta-data
-99-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\naazn\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+99-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\melon\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
 100                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-100-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\naazn\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+100-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\melon\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
 101                android:value="androidx.startup" />
-101-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\naazn\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+101-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\melon\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
 102        </provider>
 103    </application>
 104
