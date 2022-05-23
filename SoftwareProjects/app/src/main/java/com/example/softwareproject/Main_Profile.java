@@ -95,10 +95,11 @@ public class Main_Profile extends AppCompatActivity {
 
        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiper);
        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+           @RequiresApi(api = Build.VERSION_CODES.O)
            @Override
            public void onRefresh() {
             lp.removeAllViews();
-            getFollowing();
+            fetchPosts(all_usernames, username_colours);
             swipeRefreshLayout.setRefreshing(false);
            }
        });
