@@ -1,70 +1,5 @@
 -- Merging decision tree log ---
 manifest
-<<<<<<< HEAD
-ADDED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
-MERGED from [androidx.databinding:viewbinding:7.2.0] C:\Users\aharo\.gradle\caches\transforms-3\7ff353440decbe6e91ac78e4feeee686\transformed\viewbinding-7.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.material:material:1.6.0] C:\Users\aharo\.gradle\caches\transforms-3\8933b1c9f89036a907b0dbde203fec0b\transformed\material-1.6.0\AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\aharo\.gradle\caches\transforms-3\5155e4b319deda5d7549450c59ff2331\transformed\constraintlayout-2.1.3\AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\aharo\.gradle\caches\transforms-3\8a4da37b186a7fe4a59d8a10f1aba8fc\transformed\appcompat-1.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.firebase:firebase-database:20.0.5] C:\Users\aharo\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:15:1-38:12
-MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\aharo\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:15:1-39:12
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\aharo\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:2:1-14:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\802074d26c9c994dae710cbd59ff959f\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ce399be1f25dc4e17a5112303d176d43\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0] C:\Users\aharo\.gradle\caches\transforms-3\448b3a34828155cea1fa890db049000b\transformed\firebase-appcheck-interop-16.0.0\AndroidManifest.xml:15:1-26:12
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\cdbd0be388013742bb633da2a7bd4661\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:16:1-24:12
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] C:\Users\aharo\.gradle\caches\transforms-3\cb48736461ec2aed9ced2dcd537b58e8\transformed\firebase-auth-interop-19.0.2\AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.firebase:firebase-common:20.1.1] C:\Users\aharo\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:15:1-40:12
-MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\edb91f9bf93a4a52cd84c5a454156f90\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:2:1-6:12
-MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\aharo\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:16:1-26:12
-MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\aharo\.gradle\caches\transforms-3\2e8d5b12fe55a53755ed8c48281639d0\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.activity:activity:1.2.4] C:\Users\aharo\.gradle\caches\transforms-3\d437cc27ccd9ed0adadd4556343d6d65\transformed\activity-1.2.4\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\aharo\.gradle\caches\transforms-3\bb6f83990f43dbe21b88a3bc55e4605a\transformed\appcompat-resources-1.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c882e87e91b7b5cdfe4fdc0f4a432c02\transformed\emoji2-views-helper-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:17:1-37:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\aharo\.gradle\caches\transforms-3\11fe05070456aaafe4290dac9ec07f7f\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\634e3255fb6243391d72d1a766911e6d\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\53b7b21884641a9e81c029f7e7c58de2\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.transition:transition:1.2.0] C:\Users\aharo\.gradle\caches\transforms-3\26f6428826e14650b2fca2d00a678fa0\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\dae3c23579442f49744ac7498af26cd5\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\2ebd8e90acd09632b9c0cdce8d8103ec\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\fabf7a5e93137efc2e22ca2c132a114f\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\cfe890bb46501642bcf13ca9b92377fc\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\32476bd297c99d9fa94ddbcb34ce8118\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\f0dcd306bbe8870fdb53f073e1eb3404\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.customview:customview:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\3820c1dbc7c3f697639accff8ccc4098\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core:1.7.0] C:\Users\aharo\.gradle\caches\transforms-3\aed202ee516ea9164420ff141dd6232e\transformed\core-1.7.0\AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\298b1111e97655eabbb624a73368b394\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\aharo\.gradle\caches\transforms-3\d6c382b4bf161bb015dd1da94a5ac5d0\transformed\lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\4d13df8cd5833397b5fa008c91637174\transformed\savedstate-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\897b08cb4a7f46aa364295805b1a4e0c\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\aharo\.gradle\caches\transforms-3\0b1c26588d16362b3b36220eff11e2f9\transformed\firebase-components-17.0.0\AndroidManifest.xml:15:1-23:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\74e49a6ae36adc152a24ebf0850793a7\transformed\lifecycle-viewmodel-ktx-2.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\46a99e32ee4b8bc19d3fa300725eaf9e\transformed\lifecycle-viewmodel-2.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\aharo\.gradle\caches\transforms-3\0f4b9f5f500aa80779013bb9a8f9154e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\aharo\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:17:1-37:12
-MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\962e52daac9c1fc08607ec49d0eabaa5\transformed\startup-runtime-1.0.0\AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ddccd20fccaf41ea60a8b167d4d30966\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\b7584854c68ea2da49daac44eb8723ef\transformed\lifecycle-livedata-ktx-2.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\b58e8682fd7e17d32fe6baf0784671f2\transformed\lifecycle-livedata-2.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\3e67bcd2809961463b5b85243f9695ef\transformed\lifecycle-livedata-core-ktx-2.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\23578ff634d4db837613f2c6a93c7679\transformed\lifecycle-livedata-core-2.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\aharo\.gradle\caches\transforms-3\06c43c8639551497b01444fe666a6079\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\aharo\.gradle\caches\transforms-3\696b9a226553b43c29a789ed1154bfd0\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ac8627bbf4ec24cf8852fa2d3f0b7761\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c81a911c373bc551375a8015bb459762\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\d11499e4ccd164fc4c85bc4f77aa9e61\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\9a26478a5821997d1344cfcec141ab3a\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\aharo\.gradle\caches\transforms-3\fde5f6a091f4de179e4e8075019f1dd9\transformed\exifinterface-27.1.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
-=======
 ADDED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
@@ -76,6 +11,7 @@ MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\naazn\.gradle\caches\t
 MERGED from [com.google.firebase:firebase-database:20.0.5] C:\Users\naazn\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:15:1-38:12
 MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\naazn\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:15:1-39:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\naazn\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\naazn\.gradle\caches\transforms-3\802074d26c9c994dae710cbd59ff959f\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\ce399be1f25dc4e17a5112303d176d43\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0] C:\Users\naazn\.gradle\caches\transforms-3\448b3a34828155cea1fa890db049000b\transformed\firebase-appcheck-interop-16.0.0\AndroidManifest.xml:15:1-26:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\naazn\.gradle\caches\transforms-3\cdbd0be388013742bb633da2a7bd4661\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
@@ -108,6 +44,7 @@ MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\naazn\.gradle\caches\tra
 MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\naazn\.gradle\caches\transforms-3\0b1c26588d16362b3b36220eff11e2f9\transformed\firebase-components-17.0.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1] C:\Users\naazn\.gradle\caches\transforms-3\74e49a6ae36adc152a24ebf0850793a7\transformed\lifecycle-viewmodel-ktx-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.4.1] C:\Users\naazn\.gradle\caches\transforms-3\46a99e32ee4b8bc19d3fa300725eaf9e\transformed\lifecycle-viewmodel-2.4.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\naazn\.gradle\caches\transforms-3\0f4b9f5f500aa80779013bb9a8f9154e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\naazn\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:17:1-37:12
 MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\962e52daac9c1fc08607ec49d0eabaa5\transformed\startup-runtime-1.0.0\AndroidManifest.xml:17:1-33:12
@@ -118,7 +55,6 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.1] C:\Users\naaz
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.4.1] C:\Users\naazn\.gradle\caches\transforms-3\23578ff634d4db837613f2c6a93c7679\transformed\lifecycle-livedata-core-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\naazn\.gradle\caches\transforms-3\06c43c8639551497b01444fe666a6079\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\naazn\.gradle\caches\transforms-3\696b9a226553b43c29a789ed1154bfd0\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\ac8627bbf4ec24cf8852fa2d3f0b7761\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c81a911c373bc551375a8015bb459762\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\d11499e4ccd164fc4c85bc4f77aa9e61\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -127,7 +63,6 @@ MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\naazn\.gradle\ca
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-47:12
->>>>>>> NaazniJagdew
 	package
 		ADDED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:3:5-42
 		INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
@@ -257,125 +192,6 @@ ADDED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\So
 	android:name
 		ADDED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:43:13-43
 uses-sdk
-<<<<<<< HEAD
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
-MERGED from [androidx.databinding:viewbinding:7.2.0] C:\Users\aharo\.gradle\caches\transforms-3\7ff353440decbe6e91ac78e4feeee686\transformed\viewbinding-7.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.databinding:viewbinding:7.2.0] C:\Users\aharo\.gradle\caches\transforms-3\7ff353440decbe6e91ac78e4feeee686\transformed\viewbinding-7.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.material:material:1.6.0] C:\Users\aharo\.gradle\caches\transforms-3\8933b1c9f89036a907b0dbde203fec0b\transformed\material-1.6.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.material:material:1.6.0] C:\Users\aharo\.gradle\caches\transforms-3\8933b1c9f89036a907b0dbde203fec0b\transformed\material-1.6.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\aharo\.gradle\caches\transforms-3\5155e4b319deda5d7549450c59ff2331\transformed\constraintlayout-2.1.3\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\aharo\.gradle\caches\transforms-3\5155e4b319deda5d7549450c59ff2331\transformed\constraintlayout-2.1.3\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\aharo\.gradle\caches\transforms-3\8a4da37b186a7fe4a59d8a10f1aba8fc\transformed\appcompat-1.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\aharo\.gradle\caches\transforms-3\8a4da37b186a7fe4a59d8a10f1aba8fc\transformed\appcompat-1.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-database:20.0.5] C:\Users\aharo\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-database:20.0.5] C:\Users\aharo\.gradle\caches\transforms-3\5883f6f63a0ada95a50daef5835495d8\transformed\firebase-database-20.0.5\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\aharo\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\aharo\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\aharo\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:5:5-44
-MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\aharo\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:5:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\802074d26c9c994dae710cbd59ff959f\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\802074d26c9c994dae710cbd59ff959f\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ce399be1f25dc4e17a5112303d176d43\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ce399be1f25dc4e17a5112303d176d43\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0] C:\Users\aharo\.gradle\caches\transforms-3\448b3a34828155cea1fa890db049000b\transformed\firebase-appcheck-interop-16.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0] C:\Users\aharo\.gradle\caches\transforms-3\448b3a34828155cea1fa890db049000b\transformed\firebase-appcheck-interop-16.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\cdbd0be388013742bb633da2a7bd4661\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\cdbd0be388013742bb633da2a7bd4661\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\2e615fe73eec79a70c57ad75b9f7db51\transformed\play-services-base-18.0.1\AndroidManifest.xml:18:5-43
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] C:\Users\aharo\.gradle\caches\transforms-3\cb48736461ec2aed9ced2dcd537b58e8\transformed\firebase-auth-interop-19.0.2\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] C:\Users\aharo\.gradle\caches\transforms-3\cb48736461ec2aed9ced2dcd537b58e8\transformed\firebase-auth-interop-19.0.2\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common:20.1.1] C:\Users\aharo\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-common:20.1.1] C:\Users\aharo\.gradle\caches\transforms-3\e7809cbe5bc203bc51263df2e1b722fc\transformed\firebase-common-20.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\edb91f9bf93a4a52cd84c5a454156f90\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\aharo\.gradle\caches\transforms-3\edb91f9bf93a4a52cd84c5a454156f90\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\aharo\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\aharo\.gradle\caches\transforms-3\5dc52e2d189df8af38436383b5cfb34e\transformed\play-services-basement-18.0.0\AndroidManifest.xml:18:5-43
-MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\aharo\.gradle\caches\transforms-3\2e8d5b12fe55a53755ed8c48281639d0\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\aharo\.gradle\caches\transforms-3\2e8d5b12fe55a53755ed8c48281639d0\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.2.4] C:\Users\aharo\.gradle\caches\transforms-3\d437cc27ccd9ed0adadd4556343d6d65\transformed\activity-1.2.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.2.4] C:\Users\aharo\.gradle\caches\transforms-3\d437cc27ccd9ed0adadd4556343d6d65\transformed\activity-1.2.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\aharo\.gradle\caches\transforms-3\bb6f83990f43dbe21b88a3bc55e4605a\transformed\appcompat-resources-1.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\aharo\.gradle\caches\transforms-3\bb6f83990f43dbe21b88a3bc55e4605a\transformed\appcompat-resources-1.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c882e87e91b7b5cdfe4fdc0f4a432c02\transformed\emoji2-views-helper-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c882e87e91b7b5cdfe4fdc0f4a432c02\transformed\emoji2-views-helper-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\675ad11c65129a77304d6e83111cace4\transformed\emoji2-1.0.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\aharo\.gradle\caches\transforms-3\11fe05070456aaafe4290dac9ec07f7f\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\aharo\.gradle\caches\transforms-3\11fe05070456aaafe4290dac9ec07f7f\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\634e3255fb6243391d72d1a766911e6d\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\634e3255fb6243391d72d1a766911e6d\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\53b7b21884641a9e81c029f7e7c58de2\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\53b7b21884641a9e81c029f7e7c58de2\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.2.0] C:\Users\aharo\.gradle\caches\transforms-3\26f6428826e14650b2fca2d00a678fa0\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.2.0] C:\Users\aharo\.gradle\caches\transforms-3\26f6428826e14650b2fca2d00a678fa0\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\dae3c23579442f49744ac7498af26cd5\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\dae3c23579442f49744ac7498af26cd5\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\2ebd8e90acd09632b9c0cdce8d8103ec\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\2ebd8e90acd09632b9c0cdce8d8103ec\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\fabf7a5e93137efc2e22ca2c132a114f\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\fabf7a5e93137efc2e22ca2c132a114f\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\cfe890bb46501642bcf13ca9b92377fc\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\cfe890bb46501642bcf13ca9b92377fc\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\32476bd297c99d9fa94ddbcb34ce8118\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\32476bd297c99d9fa94ddbcb34ce8118\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\f0dcd306bbe8870fdb53f073e1eb3404\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\f0dcd306bbe8870fdb53f073e1eb3404\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.customview:customview:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\3820c1dbc7c3f697639accff8ccc4098\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.customview:customview:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\3820c1dbc7c3f697639accff8ccc4098\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.7.0] C:\Users\aharo\.gradle\caches\transforms-3\aed202ee516ea9164420ff141dd6232e\transformed\core-1.7.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.7.0] C:\Users\aharo\.gradle\caches\transforms-3\aed202ee516ea9164420ff141dd6232e\transformed\core-1.7.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\298b1111e97655eabbb624a73368b394\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\298b1111e97655eabbb624a73368b394\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\aharo\.gradle\caches\transforms-3\d6c382b4bf161bb015dd1da94a5ac5d0\transformed\lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\aharo\.gradle\caches\transforms-3\d6c382b4bf161bb015dd1da94a5ac5d0\transformed\lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\4d13df8cd5833397b5fa008c91637174\transformed\savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\4d13df8cd5833397b5fa008c91637174\transformed\savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\897b08cb4a7f46aa364295805b1a4e0c\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\897b08cb4a7f46aa364295805b1a4e0c\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\aharo\.gradle\caches\transforms-3\0b1c26588d16362b3b36220eff11e2f9\transformed\firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\aharo\.gradle\caches\transforms-3\0b1c26588d16362b3b36220eff11e2f9\transformed\firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\74e49a6ae36adc152a24ebf0850793a7\transformed\lifecycle-viewmodel-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\74e49a6ae36adc152a24ebf0850793a7\transformed\lifecycle-viewmodel-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\46a99e32ee4b8bc19d3fa300725eaf9e\transformed\lifecycle-viewmodel-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\46a99e32ee4b8bc19d3fa300725eaf9e\transformed\lifecycle-viewmodel-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\aharo\.gradle\caches\transforms-3\0f4b9f5f500aa80779013bb9a8f9154e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\aharo\.gradle\caches\transforms-3\0f4b9f5f500aa80779013bb9a8f9154e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\aharo\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\aharo\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\962e52daac9c1fc08607ec49d0eabaa5\transformed\startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\962e52daac9c1fc08607ec49d0eabaa5\transformed\startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ddccd20fccaf41ea60a8b167d4d30966\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ddccd20fccaf41ea60a8b167d4d30966\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\b7584854c68ea2da49daac44eb8723ef\transformed\lifecycle-livedata-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\b7584854c68ea2da49daac44eb8723ef\transformed\lifecycle-livedata-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\b58e8682fd7e17d32fe6baf0784671f2\transformed\lifecycle-livedata-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\b58e8682fd7e17d32fe6baf0784671f2\transformed\lifecycle-livedata-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\3e67bcd2809961463b5b85243f9695ef\transformed\lifecycle-livedata-core-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\3e67bcd2809961463b5b85243f9695ef\transformed\lifecycle-livedata-core-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\23578ff634d4db837613f2c6a93c7679\transformed\lifecycle-livedata-core-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.4.1] C:\Users\aharo\.gradle\caches\transforms-3\23578ff634d4db837613f2c6a93c7679\transformed\lifecycle-livedata-core-2.4.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\aharo\.gradle\caches\transforms-3\06c43c8639551497b01444fe666a6079\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\aharo\.gradle\caches\transforms-3\06c43c8639551497b01444fe666a6079\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\aharo\.gradle\caches\transforms-3\696b9a226553b43c29a789ed1154bfd0\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\aharo\.gradle\caches\transforms-3\696b9a226553b43c29a789ed1154bfd0\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ac8627bbf4ec24cf8852fa2d3f0b7761\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\ac8627bbf4ec24cf8852fa2d3f0b7761\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c81a911c373bc551375a8015bb459762\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\c81a911c373bc551375a8015bb459762\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\d11499e4ccd164fc4c85bc4f77aa9e61\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] C:\Users\aharo\.gradle\caches\transforms-3\d11499e4ccd164fc4c85bc4f77aa9e61\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\9a26478a5821997d1344cfcec141ab3a\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\aharo\.gradle\caches\transforms-3\9a26478a5821997d1344cfcec141ab3a\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\aharo\.gradle\caches\transforms-3\fde5f6a091f4de179e4e8075019f1dd9\transformed\exifinterface-27.1.0\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\aharo\.gradle\caches\transforms-3\fde5f6a091f4de179e4e8075019f1dd9\transformed\exifinterface-27.1.0\AndroidManifest.xml:20:5-44
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\aharo\AndroidStudioProjects\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
-=======
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
@@ -393,6 +209,8 @@ MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\naazn\.gradle
 MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\naazn\.gradle\caches\transforms-3\235277182e3ec56f43fbcf2e41f86677\transformed\firebase-storage-20.0.1\AndroidManifest.xml:20:5-22:41
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\naazn\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:5:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\naazn\.gradle\caches\transforms-3\8f544a110bbdc52a828769392785cb37\transformed\picasso-2.71828\AndroidManifest.xml:5:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\naazn\.gradle\caches\transforms-3\802074d26c9c994dae710cbd59ff959f\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\naazn\.gradle\caches\transforms-3\802074d26c9c994dae710cbd59ff959f\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\ce399be1f25dc4e17a5112303d176d43\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\ce399be1f25dc4e17a5112303d176d43\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0] C:\Users\naazn\.gradle\caches\transforms-3\448b3a34828155cea1fa890db049000b\transformed\firebase-appcheck-interop-16.0.0\AndroidManifest.xml:19:5-21:41
@@ -457,6 +275,8 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1] C:\Users\naazn\.g
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1] C:\Users\naazn\.gradle\caches\transforms-3\74e49a6ae36adc152a24ebf0850793a7\transformed\lifecycle-viewmodel-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.4.1] C:\Users\naazn\.gradle\caches\transforms-3\46a99e32ee4b8bc19d3fa300725eaf9e\transformed\lifecycle-viewmodel-2.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.4.1] C:\Users\naazn\.gradle\caches\transforms-3\46a99e32ee4b8bc19d3fa300725eaf9e\transformed\lifecycle-viewmodel-2.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\naazn\.gradle\caches\transforms-3\0f4b9f5f500aa80779013bb9a8f9154e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\naazn\.gradle\caches\transforms-3\0f4b9f5f500aa80779013bb9a8f9154e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\naazn\.gradle\caches\transforms-3\9618769872252438798128bc903e7704\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:21:5-23:41
@@ -477,8 +297,6 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\naazn\.gradle\
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\naazn\.gradle\caches\transforms-3\06c43c8639551497b01444fe666a6079\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\naazn\.gradle\caches\transforms-3\696b9a226553b43c29a789ed1154bfd0\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\naazn\.gradle\caches\transforms-3\696b9a226553b43c29a789ed1154bfd0\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c8a8f068436b4435cd6787e8e8f7a534\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\ac8627bbf4ec24cf8852fa2d3f0b7761\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\ac8627bbf4ec24cf8852fa2d3f0b7761\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\naazn\.gradle\caches\transforms-3\c81a911c373bc551375a8015bb459762\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
@@ -491,7 +309,6 @@ MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\naazn\.gradle\ca
 MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\naazn\.gradle\caches\transforms-3\fde5f6a091f4de179e4e8075019f1dd9\transformed\exifinterface-27.1.0\AndroidManifest.xml:20:5-44
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
->>>>>>> NaazniJagdew
 	android:targetSdkVersion
 		INJECTED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 		ADDED from C:\Users\naazn\OneDrive\Documents\Github Project Files\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
