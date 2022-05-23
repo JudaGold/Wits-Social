@@ -81,9 +81,7 @@ jacocoAndroidUnitTestReport {
                 'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
                          'Show_Profile_Details.java',
                 'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Sign_Up.java',
-                'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         '']
+                         'Sign_Up.java']
 
 }
 
