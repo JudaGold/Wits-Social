@@ -25,6 +25,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+@Generated
 public class Add_Profile_Pic extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -33,6 +34,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
     Button btnSave;
     String username;
     EditText bio;
+    Field_Validations fv;
 
     private Uri mImageUri;
 
@@ -48,6 +50,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
         btnSave= (Button) findViewById(R.id.btnSave);
         UploadImg=(ImageView) findViewById(R.id.imgAddPic);
         bio = (EditText) findViewById(R.id.user_bio2);
+        fv = new Field_Validations();
 
         Intent intent = getIntent();
             username = intent.getStringExtra("Username");
@@ -64,7 +67,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String userBio = bio.getText().toString();
-                boolean bioValid = bioValidation(userBio);
+                boolean bioValid = fv.bioValidation(userBio, bio);
 
                 if (bioValid) {
                     databaseRef.child(username).child("bio").setValue(userBio);
@@ -77,17 +80,6 @@ public class Add_Profile_Pic extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public boolean bioValidation(String userBio)
-    {
-        boolean bioValid = true;
-        if (userBio.length() > 50)
-        {
-            bio.setError("Bio too long (it needs to be less than 50)");
-            bioValid = false;
-        }
-        return bioValid;
     }
 
     private void openFileUser(){

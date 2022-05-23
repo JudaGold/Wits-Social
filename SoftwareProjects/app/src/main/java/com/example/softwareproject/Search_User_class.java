@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Locale;
 
+@Generated
 public class Search_User_class {
     private static ArrayList<String> users;
     private static ArrayList<String>followers;

@@ -51,6 +51,8 @@ android {
         unitTests.all {
             useJUnitPlatform()
         }
+
+        unitTests.returnDefaultValues = true
     }
 
     lintOptions {
@@ -63,6 +65,25 @@ jacocoAndroidUnitTestReport {
     csv.enabled false
     html.enabled false
     xml.enabled true
+
+//    afterEvaluate {
+//        classDirectories.setFrom(files(classDirectories.files.collect {
+//            fileTree(dir: it, exclude: [
+//                    "com/baeldung/**/ExcludedPOJO.class",
+//                    "com/baeldung/**/*DTO.*",
+//                    "**/config/*"
+//            ])
+//        }))
+//    }
+
+//    excludes += ['com/example/softwareproject/Add_Profile_Pic.java',
+//                 'com/example/softwareproject/Display_searched_user.java',
+//                'com/example/softwareproject/Forgot_Password.java',
+//                'com/example/softwareproject/Main_Activity.java',
+//                'com/example/softwareproject/Main_Profile.java',
+//                'com/example/softwareproject/Search_User_class.java',
+//                'com/example/softwareproject/Show_Profile_Details.java',
+//                'com/example/softwareproject/Sign_Up.java']
 }
 
 dependencies {
@@ -79,8 +100,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.mockito:mockito-core:4.5.1"
     testImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

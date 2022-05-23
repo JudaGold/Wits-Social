@@ -4,24 +4,7 @@
             "outputFile": "com.example.softwareproject.app-mergeDebugResources-33:/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\5dc52e2d189df8af38436383b5cfb34e\\transformed\\play-services-basement-18.0.0\\res\\values-ar\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "125",
-                        "endOffsets": "320"
-                    },
-                    "to": {
-                        "startLines": "49",
-                        "startColumns": "4",
-                        "startOffsets": "4459",
-                        "endColumns": "129",
-                        "endOffsets": "4584"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\8a4da37b186a7fe4a59d8a10f1aba8fc\\transformed\\appcompat-1.4.1\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\8a4da37b186a7fe4a59d8a10f1aba8fc\\transformed\\appcompat-1.4.1\\res\\values-ar\\values-ar.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\2e615fe73eec79a70c57ad75b9f7db51\\transformed\\play-services-base-18.0.1\\res\\values-ar\\values.xml",
+                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\2e615fe73eec79a70c57ad75b9f7db51\\transformed\\play-services-base-18.0.1\\res\\values-ar\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\aed202ee516ea9164420ff141dd6232e\\transformed\\core-1.7.0\\res\\values-ar\\values-ar.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "110",
-                        "startColumns": "4",
-                        "startOffsets": "9615",
-                        "endColumns": "100",
-                        "endOffsets": "9711"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\naazn\\.gradle\\caches\\transforms-3\\8933b1c9f89036a907b0dbde203fec0b\\transformed\\material-1.6.0\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\8933b1c9f89036a907b0dbde203fec0b\\transformed\\material-1.6.0\\res\\values-ar\\values-ar.xml",
                     "from": {
                         "startLines": "2,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -88,6 +54,40 @@
                         "endLines": "9,37,38,39,40,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108",
                         "endColumns": "12,83,100,118,76,62,90,68,66,99,64,60,67,61,57,113,59,60,56,72,122,80,79,117,80,80,88,66,65,77,79,83,71,73,72,69,90,70,89,94,73,82,92,48,68,85,84,61,63,62,108,91,96,92,79",
                         "endOffsets": "465,3203,3304,3423,3500,5659,5750,5819,5886,5986,6051,6112,6180,6242,6300,6414,6474,6535,6592,6665,6788,6869,6949,7067,7148,7229,7318,7385,7451,7529,7609,7693,7765,7839,7912,7982,8073,8144,8234,8329,8403,8486,8579,8628,8697,8783,8868,8930,8994,9057,9166,9258,9355,9448,9528"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\5dc52e2d189df8af38436383b5cfb34e\\transformed\\play-services-basement-18.0.0\\res\\values-ar\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "125",
+                        "endOffsets": "320"
+                    },
+                    "to": {
+                        "startLines": "49",
+                        "startColumns": "4",
+                        "startOffsets": "4459",
+                        "endColumns": "129",
+                        "endOffsets": "4584"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\melon\\.gradle\\caches\\transforms-3\\aed202ee516ea9164420ff141dd6232e\\transformed\\core-1.7.0\\res\\values-ar\\values-ar.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "110",
+                        "startColumns": "4",
+                        "startOffsets": "9615",
+                        "endColumns": "100",
+                        "endOffsets": "9711"
                     }
                 }
             ]

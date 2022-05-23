@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+@Generated
 public class Sign_Up extends AppCompatActivity {
     EditText edtEmail, edtPhoneNo, edtUsername, edtPassword, edtConfirmPassword, edtFirstName, edtLastName;
     Button btnSignUp;

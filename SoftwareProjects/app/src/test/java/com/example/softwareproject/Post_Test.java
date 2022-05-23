@@ -4,11 +4,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD:SoftwareProjects/app/src/test/java/com/example/softwareproject/PostTest.java
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 
 class PostTest {
+=======
+class Post_Test {
+>>>>>>> main:SoftwareProjects/app/src/test/java/com/example/softwareproject/Post_Test.java
     @Test
     public void Post_initialState_validOutput(){
         Post fakePost= new Post("Hello , Its Naazni","-","14:26");
