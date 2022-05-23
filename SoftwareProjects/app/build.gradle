@@ -66,23 +66,24 @@ jacocoAndroidUnitTestReport {
     html.enabled false
     xml.enabled true
 
-    excludes += ['oftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Add_Profile_Pic.java',
-                 'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Display_searched_user.java',
-                'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Forgot_Password.java',
-                'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Main_Activity.java',
-                'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Main_Profile.java',
-                'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Search_User_class.java',
-                'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Show_Profile_Details.java',
-                'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
-                         'Sign_Up.java']
+//    afterEvaluate {
+//        classDirectories.setFrom(files(classDirectories.files.collect {
+//            fileTree(dir: it, exclude: [
+//                    "com/baeldung/**/ExcludedPOJO.class",
+//                    "com/baeldung/**/*DTO.*",
+//                    "**/config/*"
+//            ])
+//        }))
+//    }
 
+    excludes += ['com/example/softwareproject/Add_Profile_Pic.java',
+                 'com/example/softwareproject/Display_searched_user.java',
+                'com/example/softwareproject/Forgot_Password.java',
+                'com/example/softwareproject/Main_Activity.java',
+                'com/example/softwareproject/Main_Profile.java',
+                'com/example/softwareproject/Search_User_class.java',
+                'com/example/softwareproject/Show_Profile_Details.java',
+                'com/example/softwareproject/Sign_Up.java']
 }
 
 dependencies {
