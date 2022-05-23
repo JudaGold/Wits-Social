@@ -25,6 +25,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+@Generated
 public class Add_Profile_Pic extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;

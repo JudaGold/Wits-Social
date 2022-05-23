@@ -76,14 +76,14 @@ jacocoAndroidUnitTestReport {
 //        }))
 //    }
 
-    excludes += ['com/example/softwareproject/Add_Profile_Pic.java',
-                 'com/example/softwareproject/Display_searched_user.java',
-                'com/example/softwareproject/Forgot_Password.java',
-                'com/example/softwareproject/Main_Activity.java',
-                'com/example/softwareproject/Main_Profile.java',
-                'com/example/softwareproject/Search_User_class.java',
-                'com/example/softwareproject/Show_Profile_Details.java',
-                'com/example/softwareproject/Sign_Up.java']
+//    excludes += ['com/example/softwareproject/Add_Profile_Pic.java',
+//                 'com/example/softwareproject/Display_searched_user.java',
+//                'com/example/softwareproject/Forgot_Password.java',
+//                'com/example/softwareproject/Main_Activity.java',
+//                'com/example/softwareproject/Main_Profile.java',
+//                'com/example/softwareproject/Search_User_class.java',
+//                'com/example/softwareproject/Show_Profile_Details.java',
+//                'com/example/softwareproject/Sign_Up.java']
 }
 
 dependencies {
