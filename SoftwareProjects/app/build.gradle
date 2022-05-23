@@ -66,7 +66,7 @@ jacocoAndroidUnitTestReport {
     html.enabled false
     xml.enabled true
 
-    excludes += ['SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
+    excludes += ['oftwareProjects/app/src/main/java/com/example/softwareproject/' +
                          'Add_Profile_Pic.java',
                  'SoftwareProjects/app/src/main/java/com/example/softwareproject/' +
                          'Display_searched_user.java',
