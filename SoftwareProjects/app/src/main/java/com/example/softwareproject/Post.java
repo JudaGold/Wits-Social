@@ -65,7 +65,6 @@ public class Post
         this.date = date;
     }
 }
-
 // this class will compare the dates and times of the posts
 class DateComparator implements Comparator<Post> {
     // override the compare() method
@@ -73,8 +72,7 @@ class DateComparator implements Comparator<Post> {
     public int compare(Post p1, Post p2)
     {
         // if the first post's date and time is later than the second post's date and time
-        if (p1.getDate().compareTo(p2.getDate()) > 0)
-        {
+        if (p1.getDate().compareTo(p2.getDate()) > 0) {
             return -1;
         }
         else
