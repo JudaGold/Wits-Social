@@ -39,6 +39,7 @@ import java.util.Hashtable;
 import java.util.Random;
 import java.util.logging.Handler;
 
+@Generated
 public class Main_Profile extends AppCompatActivity {
     TextView usernameText, bioText;// bioText will have the user's bio
     EditText popup_post_body, popup_post_image;

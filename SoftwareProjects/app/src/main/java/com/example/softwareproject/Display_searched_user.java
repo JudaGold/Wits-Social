@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
 
+@Generated
 public class Display_searched_user extends AppCompatActivity {
     TextView username_view,bio_view;
     AutoCompleteTextView Search_bar;

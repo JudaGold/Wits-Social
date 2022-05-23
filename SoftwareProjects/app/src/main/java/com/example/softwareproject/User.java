@@ -8,10 +8,6 @@ public class User {
     public User() {
     }
 
-    public User(String username) {
-        Username = username;
-    }
-
     public User(String username, String email, String phoneNumber, String password, String name, String bio, String mImageUrl) {
         Username = username;
         this.email = email;
