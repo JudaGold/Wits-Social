@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class PostTest {
+class Post_Test {
     @Test
     public void Post_initialState_validOutput(){
         Post fakePost= new Post("Hello , Its Naazni","-","14:26");
