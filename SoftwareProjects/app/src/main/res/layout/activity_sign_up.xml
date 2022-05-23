@@ -264,10 +264,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="63dp"
                 android:layout_gravity="top"
-                android:background="@drawable/buttonshape"
-                android:backgroundTint="#237E25"
-                android:text="@string/sign_up"
                 android:fontFamily="@font/lato_regular"
+                android:text="@string/sign_up"
                 android:textSize="18sp">
 
             </Button>
