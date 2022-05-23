@@ -99,7 +99,8 @@ public class Main_Profile extends AppCompatActivity {
            @Override
            public void onRefresh() {
             lp.removeAllViews();
-            fetchPosts(all_usernames, username_colours);
+            getFollowing();
+            //fetchPosts(all_usernames, username_colours);
             swipeRefreshLayout.setRefreshing(false);
            }
        });
