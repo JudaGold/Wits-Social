@@ -2,15 +2,14 @@
     <item android:state_pressed="false">
         <shape android:shape="oval">
             <corners android:radius="100dp"/>
-            <solid android:color="#28C816"/>
-            <stroke android:width="2dip" android:color="#34B825"/>
+            <solid android:color="#16E8E8"/>
+            <stroke android:width="2dip" android:color="#16E8E8"/>
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape android:shape="oval">
             <corners android:radius="100dp"/>
-            <solid android:color="#25811B"/>
-            <stroke android:width="2dip" android:color="#0B130E"/>
-        </shape>
+            <solid android:color="#0B8F8F"/>
+            </shape>
     </item>
 </selector>
