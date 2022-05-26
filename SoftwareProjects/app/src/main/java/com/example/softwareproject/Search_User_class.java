@@ -34,10 +34,8 @@ public class Search_User_class {
     public void search(String loggedin_user, String My_username, AutoCompleteTextView ACT, ImageButton btn, Activity activity) {
         getUsers(My_username, loggedin_user);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, users);
-        int limit = ACT.getText().toString().length();
         ACT.setThreshold(1);
         ACT.setAdapter(adapter);
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +43,11 @@ public class Search_User_class {
 
                 String user = ACT.getText().toString();
                 if (search_user(user)) {
-                    intent = new Intent(activity, Display_searched_user.class);
+                    intent = new Intent(activity, user_display.class);
                     intent.putExtra("username", user);
-                    intent.putExtra("Loggedin_user", loggedin_user);
+                    intent.putExtra("loggedinuser",loggedin_user);
                     activity.startActivity(intent);
+                    activity.finish();
                 } else {
                     ACT.setText("");
                     ACT.setHint("no user " + user + " found");
@@ -96,7 +95,7 @@ public class Search_User_class {
         followers = new ArrayList<>();
 
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("Following").child(LoggedIn_user);
+                .getReference("Following").child(SearchUser);
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
 

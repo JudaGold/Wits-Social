@@ -56,7 +56,7 @@ public class Main_Activity extends AppCompatActivity
             String password = preferences.getString("password", "");
             isUser(username,password);
         }else if(checkbox.equals("false")){
-            Toast.makeText(this,"Please eneter your details",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please enter your details",Toast.LENGTH_SHORT).show();
         }
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -144,9 +144,10 @@ public class Main_Activity extends AppCompatActivity
                     String DBPassword = snapshot.child(username).child("password").getValue(String.class); //extracts password from database
                     if (DBPassword.equals(UserPassword))
                     {
-                        Intent intent = new Intent(Main_Activity.this, Main_Profile.class);
+                        Intent intent = new Intent(Main_Activity.this, user_display.class);
                         textInputEditTextPassword.setText("");
                         intent.putExtra("username",username);
+                        intent.putExtra("loggedinuser",username);
                         startActivity(intent);
                     }
                     else

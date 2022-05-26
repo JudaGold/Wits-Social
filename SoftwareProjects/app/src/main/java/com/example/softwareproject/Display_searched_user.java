@@ -18,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,8 +37,10 @@ import java.util.Vector;
 @Generated
 public class Display_searched_user extends AppCompatActivity {
     TextView username_view,bio_view;
+    ViewPager viewPager;
+    TabLayout tabLayout;
     AutoCompleteTextView Search_bar;
-    ImageView user_image_view;
+    de.hdodenhof.circleimageview.CircleImageView user_image_view;
     ImageButton btn_search;
     Intent intent;
     Search_User_class su;
@@ -49,16 +54,25 @@ public class Display_searched_user extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_searched_user);
+
+
+         tabLayout = findViewById(R.id.TabLayout);
+        viewPager = findViewById(R.id.viewpager);
+        tabLayout.setupWithViewPager(viewPager);
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");
+        pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");
+        pagerAdapter.addFragmentTitle(new fragment_following(),"Following");
+        viewPager.setAdapter(pagerAdapter);
         intent = getIntent();
         user_username = intent.getStringExtra("username");
         loggedIn_user = intent.getStringExtra("Loggedin_user");
         username_view = (TextView) findViewById(R.id.username_text);
         bio_view = (TextView) findViewById(R.id.bio_text);
         Search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
-        user_image_view = (ImageView) findViewById(R.id.searched_user_image);
+        user_image_view =  findViewById(R.id.searched_user_image);
         btn_search = (ImageButton) findViewById(R.id.Search_user_button);
         set_user_profile();
-        display_posts();
         su = new Search_User_class();
         su.search(loggedIn_user,user_username,Search_bar,btn_search,Display_searched_user.this);
         followbtn = (Button) findViewById(R.id.btnFollow);
@@ -77,6 +91,8 @@ public class Display_searched_user extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }
