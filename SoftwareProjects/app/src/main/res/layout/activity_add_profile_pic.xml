@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="122dp"
+            android:layout_height="104dp"
             android:fontFamily="@font/lato_regular"
             android:text="Add a profile picture"
             android:textColor="#338CD3"
@@ -37,10 +37,10 @@
             android:layout_width="210dp"
             android:layout_height="202dp"
             android:layout_gravity="center_horizontal"
-            android:background="#BA4444DD"
-            android:backgroundTint="#D01460BD"
+            android:background="#00DBDBDF"
+            android:backgroundTint="#E8EAED"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/baseline_add_circle_outline_white_48" />
+            app:srcCompat="@drawable/add_pic" />
 
         <Space
             android:layout_width="match_parent"
