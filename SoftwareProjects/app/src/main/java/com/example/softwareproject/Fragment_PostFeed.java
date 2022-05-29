@@ -3,6 +3,7 @@ package com.example.softwareproject;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -25,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -115,12 +117,12 @@ public class Fragment_PostFeed extends Fragment {
                 try {
                     Post post;
                     String body = popup_post_body.getText().toString();
-                    //String image_url = popup_post_image.getText().toString()
+                    String image_url = popup_post_image.getText().toString();
                     Date date = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String t = (format.format(date));
 
-                    post = new Post(body.trim(), "", t);
+                    post = new Post(body.trim(), image_url, t);
                     reference = FirebaseDatabase.getInstance().getReference("Posts").child(username);
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -158,7 +160,8 @@ public class Fragment_PostFeed extends Fragment {
                     for (DataSnapshot data : snapshot.getChildren()) {
                         String b = data.child("body").getValue(String.class);
                         String t = data.child("time").getValue(String.class);
-                        Post post = new Post(b, "", t);
+                        String URL = data.child("post_image_url").getValue(String.class);
+                        Post post = new Post(b, URL, t);
                         post.setUsername(usernames);
                         try {
                             post.convertDate();
@@ -187,6 +190,7 @@ public class Fragment_PostFeed extends Fragment {
         for (Post post : Posts) {
             String post_body = post.getBody();
             String post_time = post.getTime();
+            String URL = post.getPost_image_url();
             String username_post = post.getUsername();
 
             TextView usernameView = new TextView(v.getContext());
@@ -217,6 +221,16 @@ public class Fragment_PostFeed extends Fragment {
             body.setPadding(30,30,30,30);
             postview.addView(time);
             postview.addView(body);
+
+            if (URL.length() >= 1) {
+                ImageView image = new ImageView(v.getContext());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(600, 600);
+                params.gravity = Gravity.CENTER;
+                image.setLayoutParams(params);
+                Glide.with(Fragment_PostFeed.this).load(URL).into(image); //gets image from the internet
+                postview.addView(image);
+            }
+
             postview.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.post_layout));
             postview.setPadding(20,30,20,30);
             lp.addView(postview);
@@ -270,11 +284,13 @@ public class Fragment_PostFeed extends Fragment {
                 for(DataSnapshot data:snapshot.getChildren()){
                     String b = data.child("body").getValue(String.class);
                     String t = data.child("time").getValue(String.class);
-                    post_data.add(new Post(b,"",t));
+                    String URL = data.child("post_image_url").getValue(String.class);
+                    post_data.add(new Post(b,URL,t));
                 }
                 for(int i = post_data.size()-1;i>=0;i--){
                     String post_body = post_data.elementAt(i).getBody();
                     String post_time = post_data.elementAt(i).getTime();
+                    String URL = post_data.elementAt(i).getPost_image_url();
 
                     TextView body = new TextView(getContext());
                     TextView time = new TextView(getContext());
@@ -289,6 +305,17 @@ public class Fragment_PostFeed extends Fragment {
                     body.setPadding(30,30,30,30);
                     post.addView(time);
                     post.addView(body);
+
+                    if (URL.length() >= 1) {
+                        ImageView im = new ImageView(getContext());
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(1000, 1000);
+                        params.gravity = Gravity.CENTER;
+                        im.setLayoutParams(params);
+                        Glide.with(Fragment_PostFeed.this).load(URL).into(im); /*gets image from the internet and adds
+                                                                                         it to imageView*/
+                        post.addView(im);
+
+                    }
                     post.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.post_layout));
                     post.setPadding(20,30,20,30);
                     lp.addView(post);

@@ -35,6 +35,7 @@ public class user_display extends AppCompatActivity {
     AutoCompleteTextView search_bar;
     String username,looged_in_user;
     Search_User_class su;//creating a instance of the search user class to search for a user
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

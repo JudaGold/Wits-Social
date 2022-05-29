@@ -16,11 +16,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -139,14 +142,26 @@ public class Display_searched_user extends AppCompatActivity {
                 for(DataSnapshot data:snapshot.getChildren()){
                     String b = data.child("body").getValue(String.class);
                     String t = data.child("time").getValue(String.class);
-                    post_data.add(new Post(b,"",t));
+                    String image = data.child("post_image_url").getValue(String.class);
+                    post_data.add(new Post(b,image,t));
                 }
                 for(int i = post_data.size()-1;i>=0;i--){
                     String post_body = post_data.elementAt(i).getBody();
                     String post_time = post_data.elementAt(i).getTime();
+                    String URL = post_data.elementAt(i).getPost_image_url();
 
                     TextView body = new TextView(getApplicationContext());
                     TextView time = new TextView(getApplicationContext());
+                    ImageView image = new ImageView(getApplicationContext());
+
+                   // TextView exp = new TextView(getApplicationContext());
+
+                    if (URL != ""){
+                        Glide.with(Display_searched_user.this).load(URL).into(image);
+                    }
+
+
+
                     LinearLayout post = new LinearLayout(getApplicationContext());
 
                     post.setOrientation(LinearLayout.VERTICAL);
@@ -156,11 +171,18 @@ public class Display_searched_user extends AppCompatActivity {
                     body.setText("\t"+post_body);
                     body.setTextSize(20);
                     body.setPadding(30,30,30,30);
+                 //   exp.setText("hey there");
+                    //exp.setTextSize(20);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300,300);
+                    image.setLayoutParams(params);
                     post.addView(time);
                     post.addView(body);
+                    //post.addView(exp);
+                    post.addView(image);
                     post.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.post_layout));
                     post.setPadding(20,30,20,30);
                     lp.addView(post);
+                    Toast toast = Toast.makeText(getApplicationContext(),URL,Toast.LENGTH_LONG);
 
                 }
 
