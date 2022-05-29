@@ -32,6 +32,8 @@
             android:textColor="#338CD3"
             android:textSize="32sp" />
 
+
+
         <ImageView
             android:id="@+id/imgAddPic"
             android:layout_width="210dp"
@@ -40,7 +42,7 @@
             android:background="#00DBDBDF"
             android:backgroundTint="#E8EAED"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/add_pic" />
+            app:srcCompat="@drawable/ic_baseline_person_24" />
 
         <Space
             android:layout_width="match_parent"

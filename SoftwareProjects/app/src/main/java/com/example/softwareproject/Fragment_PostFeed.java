@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ import java.util.Vector;
 
 
 public class Fragment_PostFeed extends Fragment {
+
+    ImageView image_popup, imgClose_popup;
     View v;
     EditText popup_post_body, popup_post_image;
     Button popup_add_post;
@@ -185,7 +188,7 @@ public class Fragment_PostFeed extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void display_posts(ArrayList<Post> Posts, Hashtable<String, Integer> username_colours) {
         lp.setOrientation(LinearLayout.VERTICAL);
-        lp.setBackgroundColor(Color.parseColor("#FF6DC3DF"));
+        lp.setBackgroundColor(Color.parseColor("white"));
         lp.removeAllViews();
         for (Post post : Posts) {
             String post_body = post.getBody();
@@ -208,31 +211,26 @@ public class Fragment_PostFeed extends Fragment {
             usernameView.setGravity(Gravity.CENTER);
             lp.addView(usernameView);
 
-            TextView body = new TextView(v.getContext());
-            TextView time = new TextView(v.getContext());
+            TextView body = createBodyTextView(" "+post_body);
+            TextView time = createTimeTextView(post_time);
 
-            LinearLayout postview = new LinearLayout(v.getContext());
-            postview.setOrientation(LinearLayout.VERTICAL);
-            time.setText(post_time);
-            time.setGravity(Gravity.RIGHT);
-            time.setTextSize(15);
-            body.setText(" "+post_body);
-            body.setTextSize(20);
-            body.setPadding(30,30,30,30);
+            LinearLayout postview = createPostLayout();
             postview.addView(time);
             postview.addView(body);
 
             if (URL.length() >= 1) {
-                ImageView image = new ImageView(v.getContext());
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(600, 600);
-                params.gravity = Gravity.CENTER;
-                image.setLayoutParams(params);
-                Glide.with(Fragment_PostFeed.this).load(URL).into(image); //gets image from the internet
+                ImageView image = createImageView();
+                getImage(URL, image);
                 postview.addView(image);
+
+                image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        create_img_popup(URL);
+                    }
+                });
             }
 
-            postview.setBackground(ContextCompat.getDrawable(v.getContext(), R.drawable.post_layout));
-            postview.setPadding(20,30,20,30);
             lp.addView(postview);
         }
     }
@@ -292,38 +290,30 @@ public class Fragment_PostFeed extends Fragment {
                     String post_time = post_data.elementAt(i).getTime();
                     String URL = post_data.elementAt(i).getPost_image_url();
 
-                    TextView body = new TextView(getContext());
-                    TextView time = new TextView(getContext());
-                    LinearLayout post = new LinearLayout(getContext());
+                    TextView body = createBodyTextView("\t"+post_body);
+                    TextView time = createTimeTextView(post_time);
+                    LinearLayout post = createPostLayout();
 
-                    post.setOrientation(LinearLayout.VERTICAL);
-                    time.setText(post_time);
-                    time.setGravity(Gravity.RIGHT);
-                    time.setTextSize(15);
-                    body.setText("\t"+post_body);
-                    body.setTextSize(20);
-                    body.setPadding(30,30,30,30);
                     post.addView(time);
                     post.addView(body);
 
                     if (URL.length() >= 1) {
-                        ImageView im = new ImageView(getContext());
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(1000, 1000);
-                        params.gravity = Gravity.CENTER;
-                        im.setLayoutParams(params);
-                        Glide.with(Fragment_PostFeed.this).load(URL).into(im); /*gets image from the internet and adds
-                                                                                         it to imageView*/
+                        ImageView im = createImageView();
+                        getImage(URL, im);
                         post.addView(im);
+                        im.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                create_img_popup(URL);
+                            }
+                        });
 
                     }
-                    post.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.post_layout));
-                    post.setPadding(20,30,20,30);
+                    Space space = addSpace();
                     lp.addView(post);
-
+                    lp.addView(space); //adds space so that the posts look better
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -331,4 +321,72 @@ public class Fragment_PostFeed extends Fragment {
         });
 
     }
+
+    public void create_img_popup(String URL){
+        AlertDialog.Builder dialogBuilder= new AlertDialog.Builder(v.getContext()); //used to show the popup screen
+        AlertDialog dialog;
+        final View imagePopupView = getLayoutInflater().inflate(R.layout.popup_image, null); //make the layout a popup
+        image_popup = (ImageView) imagePopupView.findViewById(R.id.popup_image);
+        imgClose_popup = (ImageView) imagePopupView.findViewById(R.id.imgClose);
+
+        getImage(URL, image_popup); //gets the image from the internet and displays it in the imageView
+                                    //view the class below
+        dialogBuilder.setView(imagePopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        imgClose_popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    public ImageView createImageView(){
+        ImageView imageView = new ImageView(getContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(600, 600);
+        params.gravity = Gravity.CENTER; //sets the image at the centre
+        imageView.setLayoutParams(params);
+        imageView.setClickable(true);
+        return imageView;
+    }
+
+    public void getImage(String URL, ImageView image){
+        Glide.with(Fragment_PostFeed.this).load(URL).into(image); /*gets image from the internet and adds
+                                                                                            it to imageView*/
+    }
+
+    public TextView createBodyTextView(String str){
+        TextView body = new TextView(getContext());
+        body.setText(str);
+        body.setTextSize(20);
+        body.setPadding(30,30,30,30);
+        return body;
+    }
+
+    public TextView createTimeTextView(String str){
+        TextView time = new TextView(getContext());
+        time.setText(str);
+        time.setGravity(Gravity.RIGHT);
+        time.setTextSize(15);
+        return time;
+    }
+
+    public LinearLayout createPostLayout(){
+        LinearLayout post = new LinearLayout(getContext());
+        post.setOrientation(LinearLayout.VERTICAL);
+        post.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.post_layout));
+        post.setPadding(20,30,20,30);
+        return post;
+    }
+
+    public Space addSpace(){
+        Space space = new Space(v.getContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,50);
+        space.setLayoutParams(params);
+        return space;
+    }
+
 }
