@@ -12,7 +12,7 @@ class Post_Test {
 
     @Test
     public void Post_initialState_validOutput(){
-        Post fakePost= new Post("Hello , Its Naazni","-","14:26");
+        Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
 
         assertEquals(fakePost.getBody(),"Hello , Its Naazni");
         assertEquals(fakePost.getPost_image_url(),"-");
@@ -22,7 +22,7 @@ class Post_Test {
 
     @Test
     public void Post_postCreation_validOutput(){
-        Post fakePost= new Post("Hello , Its Naazni","-","14:26");
+        Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
 
         fakePost.setUsername("David The Boy");
         fakePost.setBody("Hello its David");
@@ -37,8 +37,8 @@ class Post_Test {
     }
     @Test
     public void DateComparator_initialState_dateComparatorOutput() throws ParseException {
-        Post fakePost= new Post("Hello Everyone","__","25-03-2000 13:55:55");
-        Post fakePost2=new Post("Hello Everyone","__","25-03-2000 13:55:55");
+        Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
+        Post fakePost2=new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
         fakePost.convertDate();
         fakePost2.convertDate();
 

@@ -10,6 +10,7 @@ import java.util.*;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class Post
 {
+
     private String ID,username,body,post_image_url,time;
     private Date date;// this will store the actual date of the post.
 
@@ -19,7 +20,6 @@ public class Post
         this.body = body;
         this.post_image_url = post_image_url;
     }
-
 
     public String getUsername() {
         return username;

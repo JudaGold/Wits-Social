@@ -95,6 +95,8 @@ public class Fragment_PostFeed extends Fragment {
 
         }
 
+
+
         return v;
     }
 
@@ -122,6 +124,7 @@ public class Fragment_PostFeed extends Fragment {
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String t = (format.format(date));
 
+
                     reference = FirebaseDatabase.getInstance().getReference("Posts").child(username);
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -129,7 +132,7 @@ public class Fragment_PostFeed extends Fragment {
                             if (snapshot.exists()) {
                                 maxId = (snapshot.getChildrenCount()) + 1;
                             }
-                            Post post = new Post((""+maxId),body.trim(), image_url, t);
+                            Post  post = new Post(""+maxId,body.trim(), image_url, t);
                             reference.child(String.valueOf(maxId)).setValue(post);
                             dialog.dismiss();
                             fetchPosts(all_usernames, username_colours);
@@ -241,7 +244,10 @@ public class Fragment_PostFeed extends Fragment {
                                                                        colour of each user*/
         all_usernames.add(username);
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
-        reference = FirebaseDatabase.getInstance().getReference("social").child(username).child("following");
+        reference = FirebaseDatabase.getInstance()
+                .getReference("social")
+                .child(username)
+                .child("following");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -254,7 +260,7 @@ public class Fragment_PostFeed extends Fragment {
                     int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
                     username_colours.put(following_username, color);
                 }
-
+                lp.removeAllViews();
                 fetchPosts(all_usernames, username_colours);
             }
 
