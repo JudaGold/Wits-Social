@@ -95,8 +95,6 @@ public class Fragment_PostFeed extends Fragment {
 
         }
 
-
-
         return v;
     }
 
@@ -118,14 +116,12 @@ public class Fragment_PostFeed extends Fragment {
             public void onClick(View v) {
 
                 try {
-                    Post post;
                     String body = popup_post_body.getText().toString();
                     String image_url = popup_post_image.getText().toString();
                     Date date = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String t = (format.format(date));
 
-                    post = new Post(body.trim(), image_url, t);
                     reference = FirebaseDatabase.getInstance().getReference("Posts").child(username);
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -133,6 +129,7 @@ public class Fragment_PostFeed extends Fragment {
                             if (snapshot.exists()) {
                                 maxId = (snapshot.getChildrenCount()) + 1;
                             }
+                            Post post = new Post((""+maxId),body.trim(), image_url, t);
                             reference.child(String.valueOf(maxId)).setValue(post);
                             dialog.dismiss();
                             fetchPosts(all_usernames, username_colours);
@@ -161,10 +158,11 @@ public class Fragment_PostFeed extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot data : snapshot.getChildren()) {
+                        String id = data.getKey();
                         String b = data.child("body").getValue(String.class);
                         String t = data.child("time").getValue(String.class);
                         String URL = data.child("post_image_url").getValue(String.class);
-                        Post post = new Post(b, URL, t);
+                        Post post = new Post(id,b, URL, t);
                         post.setUsername(usernames);
                         try {
                             post.convertDate();
@@ -243,7 +241,7 @@ public class Fragment_PostFeed extends Fragment {
                                                                        colour of each user*/
         all_usernames.add(username);
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
-        reference = FirebaseDatabase.getInstance().getReference("Following").child(username);
+        reference = FirebaseDatabase.getInstance().getReference("social").child(username).child("following");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -256,7 +254,7 @@ public class Fragment_PostFeed extends Fragment {
                     int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
                     username_colours.put(following_username, color);
                 }
-                lp.removeAllViews();
+
                 fetchPosts(all_usernames, username_colours);
             }
 
@@ -280,10 +278,11 @@ public class Fragment_PostFeed extends Fragment {
                 Vector<Post> post_data;
                 post_data = new Vector<>();
                 for(DataSnapshot data:snapshot.getChildren()){
+                    String id = data.getKey();
                     String b = data.child("body").getValue(String.class);
                     String t = data.child("time").getValue(String.class);
                     String URL = data.child("post_image_url").getValue(String.class);
-                    post_data.add(new Post(b,URL,t));
+                    post_data.add(new Post(id,b,URL,t));
                 }
                 for(int i = post_data.size()-1;i>=0;i--){
                     String post_body = post_data.elementAt(i).getBody();
