@@ -136,52 +136,6 @@
         "source": "com.example.softwareproject.app-main-39:/drawable-xxxhdpi/baseline_add_circle_outline_white_24.png"
     },
     {
-<<<<<<< HEAD
-        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.softwareproject.app-main-39:/mipmap-xhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/layout_fragment__post_feed.xml.flat",
-        "source": "com.example.softwareproject.app-main-39:/layout/fragment__post_feed.xml"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/font_font.xml.flat",
-        "source": "com.example.softwareproject.app-main-39:/font/font.xml"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/drawable-xxxhdpi_baseline_add_circle_outline_white_36.png.flat",
-        "source": "com.example.softwareproject.app-main-39:/drawable-xxxhdpi/baseline_add_circle_outline_white_36.png"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_round_ac_unit_24.xml.flat",
-        "source": "com.example.softwareproject.app-main-39:/drawable/ic_round_ac_unit_24.xml"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.softwareproject.app-main-39:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_user.png.flat",
-        "source": "com.example.softwareproject.app-main-39:/drawable/user.png"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_post_layout.xml.flat",
-        "source": "com.example.softwareproject.app-main-39:/drawable/post_layout.xml"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.softwareproject.app-main-39:/mipmap-mdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/font_lato_black.ttf.flat",
-        "source": "com.example.softwareproject.app-main-39:/font/lato_black.ttf"
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_input_box.xml.flat",
-        "source": "com.example.softwareproject.app-main-39:/drawable/input_box.xml"
-    },
-    {
-=======
         "merged": "com.example.softwareproject.app-merged_res-37:/menu_popup_edit.xml.flat",
         "source": "com.example.softwareproject.app-main-39:/menu/popup_edit.xml"
     },
@@ -230,7 +184,6 @@
         "source": "com.example.softwareproject.app-main-39:/drawable/input_box.xml"
     },
     {
->>>>>>> main
         "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.softwareproject.app-main-39:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
@@ -257,12 +210,5 @@
     {
         "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_baseline_lock_24.xml.flat",
         "source": "com.example.softwareproject.app-main-39:/drawable/ic_baseline_lock_24.xml"
-<<<<<<< HEAD
-    },
-    {
-        "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_display_searched_user.xml.flat",
-        "source": "com.example.softwareproject.app-main-39:/layout/activity_display_searched_user.xml"
-=======
->>>>>>> main
     }
 ]

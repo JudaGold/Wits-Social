@@ -62,7 +62,7 @@ android {
 
 }
 
-task jacocoTestReport(type: JacocoReport) {
+task jacocoAndroidUnitTestReport(type: JacocoReport) {
     reports {
         xml {
             enabled true // coveralls plugin depends on xml format report
