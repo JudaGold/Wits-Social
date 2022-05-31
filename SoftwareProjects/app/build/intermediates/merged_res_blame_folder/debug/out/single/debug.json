@@ -1,226 +1,214 @@
 [
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_activity_forgot_password.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\activity_forgot_password.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_activity_user_display.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\activity_user_display.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_fragment_followers.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/fragment_followers.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable-xxxhdpi_baseline_add_circle_outline_white_48.png.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_48.png"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_edit_text_border.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/edit_text_border.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_add_pic.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\add_pic.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable-xxxhdpi_baseline_add_circle_outline_white_48.png.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable-xxxhdpi/baseline_add_circle_outline_white_48.png"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_baseline_lock_24.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_baseline_lock_24.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/font_lato_bold.ttf.flat",
+        "source": "com.example.softwareproject.app-main-39:/font/lato_bold.ttf"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\font_adamina.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\font\\adamina.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_baseline_account_circle_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/ic_baseline_account_circle_24.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_baseline_account_circle_24.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_baseline_account_circle_24.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable-xxxhdpi_baseline_add_circle_outline_white_18.png.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable-xxxhdpi/baseline_add_circle_outline_white_18.png"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_custom_inputbox.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/custom_inputbox.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_exp.jpg.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/exp.jpg"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable-xxxhdpi_baseline_add_circle_outline_white_18.png.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_18.png"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_user_display.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/activity_user_display.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_buttonshape.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\buttonshape.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_popup_dialog_box.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/popup_dialog_box.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_round_ac_unit_24.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_round_ac_unit_24.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_sign_up.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/activity_sign_up.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_post_layout.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\post_layout.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_forgot_password.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/activity_forgot_password.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_baseline_home_24.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_baseline_home_24.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_edit_text_border.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\edit_text_border.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/font_adamina.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/font/adamina.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_user.png.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\user.png"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_show_profile_details.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/show_profile_details.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_activity_add_profile_pic.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\activity_add_profile_pic.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_popup_dialog_box.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\popup_dialog_box.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-mdpi/ic_launcher.webp"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-37:/layout_popup_post.xml.flat",
         "source": "com.example.softwareproject.app-main-39:/layout/popup_post.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_popup_post.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\popup_post.xml"
-    },
-    {
         "merged": "com.example.softwareproject.app-merged_res-37:/layout_popup_image.xml.flat",
         "source": "com.example.softwareproject.app-main-39:/layout/popup_image.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable-v24/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_activity_display_searched_user.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\activity_display_searched_user.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_search_icon.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/search_icon.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_circle.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\circle.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/font_lato_regular.ttf.flat",
+        "source": "com.example.softwareproject.app-main-39:/font/lato_regular.ttf"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_activity_sign_up.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\activity_sign_up.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_add_pic.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/add_pic.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_show_profile_details.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\show_profile_details.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_baseline_person_24.xml.flat",
         "source": "com.example.softwareproject.app-main-39:/drawable/ic_baseline_person_24.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_fragment_following.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/fragment_following.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable-xxxhdpi_baseline_add_circle_outline_white_20.png.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable-xxxhdpi/baseline_add_circle_outline_white_20.png"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_launcher_background.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_main.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\font_lato_regular.ttf.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\font\\lato_regular.ttf"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_user__1_.png.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/user__1_.png"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable-xxxhdpi_baseline_add_circle_outline_white_24.png.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable-xxxhdpi/baseline_add_circle_outline_white_24.png"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\font_font.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\font\\font.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\font_lato_black.ttf.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\font\\lato_black.ttf"
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_fragment__post_feed.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/fragment__post_feed.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_exp.jpg.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\exp.jpg"
+        "merged": "com.example.softwareproject.app-merged_res-37:/font_font.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/font/font.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\activity_main.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable-xxxhdpi_baseline_add_circle_outline_white_36.png.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable-xxxhdpi/baseline_add_circle_outline_white_36.png"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_user__1_.png.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\user__1_.png"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_round_ac_unit_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/ic_round_ac_unit_24.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_fragment__post_feed.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\fragment__post_feed.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_user.png.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/user.png"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_custom_inputbox.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\custom_inputbox.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_post_layout.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/post_layout.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable-xxxhdpi_baseline_add_circle_outline_white_24.png.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_24.png"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\font_lato_bold.ttf.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\font\\lato_bold.ttf"
+        "merged": "com.example.softwareproject.app-merged_res-37:/font_lato_black.ttf.flat",
+        "source": "com.example.softwareproject.app-main-39:/font/lato_black.ttf"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_input_box.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/input_box.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable-xxxhdpi_baseline_add_circle_outline_white_36.png.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_36.png"
-    },
-    {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_fragment_followers.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\fragment_followers.xml"
-    },
-    {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_search_icon.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\search_icon.xml"
-    },
-    {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-xhdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\layout_fragment_following.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\layout\\fragment_following.xml"
-    },
-    {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_baseline_person_24.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_baseline_person_24.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_add_profile_pic.xml.flat",
         "source": "com.example.softwareproject.app-main-39:/layout/activity_add_profile_pic.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable-xxxhdpi_baseline_add_circle_outline_white_20.png.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable-xxxhdpi\\baseline_add_circle_outline_white_20.png"
+        "merged": "com.example.softwareproject.app-merged_res-37:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.softwareproject.app-main-39:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_buttonshape.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/buttonshape.xml"
     },
     {
-        "merged": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_input_box.xml.flat",
-        "source": "C:\\Users\\Jecoliah\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\input_box.xml"
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_circle.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/circle.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_baseline_home_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/ic_baseline_home_24.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-37:/drawable_ic_baseline_lock_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/drawable/ic_baseline_lock_24.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_display_searched_user.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/activity_display_searched_user.xml"
     }
 ]

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.dicedmelon.gradle.jacoco-android'
+    id 'com.google.gms.google-services'
 }
 
 jacoco {
@@ -61,29 +62,29 @@ android {
 
 }
 
-jacocoAndroidUnitTestReport {
-    csv.enabled false
-    html.enabled false
-    xml.enabled true
+task jacocoTestReport(type: JacocoReport) {
+    reports {
+        xml {
+            enabled true // coveralls plugin depends on xml format report
+        }
 
-//    afterEvaluate {
-//        classDirectories.setFrom(files(classDirectories.files.collect {
-//            fileTree(dir: it, exclude: [
-//                    "com/baeldung/**/ExcludedPOJO.class",
-//                    "com/baeldung/**/*DTO.*",
-//                    "**/config/*"
-//            ])
-//        }))
-//    }
+        html {
+            enabled true
+        }
+    }
 
-//    excludes += ['com/example/softwareproject/Add_Profile_Pic.java',
-//                 'com/example/softwareproject/Display_searched_user.java',
-//                'com/example/softwareproject/Forgot_Password.java',
-//                'com/example/softwareproject/Main_Activity.java',
-//                'com/example/softwareproject/Main_Profile.java',
-//                'com/example/softwareproject/Search_User_class.java',
-//                'com/example/softwareproject/Show_Profile_Details.java',
-//                'com/example/softwareproject/Sign_Up.java']
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [ '**/*Add_Profile_Pic**',
+                               '**/*Display_searched_user**',
+                               '**/*Main_Activity**',
+                               '**/*Main_Profile**',
+                               '**/*Search_User_class**',
+                               '**/*Show_Profile_Details**',
+                               '**/*Sign_Up**'])
+        }))
+    }
 }
 
 dependencies {
@@ -113,5 +114,3 @@ dependencies {
 
 
 }
-
-apply plugin: 'com.google.gms.google-services'
