@@ -253,16 +253,19 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
             postview.addView(body);
 
-            postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
-                @Override
-                public boolean onLongClick(View view) {
-                    setBody(post_body);
-                    setURL(URL);
-                    setID(ID);
-                    showPopupMenu(postview); //shows popup edit option
-                    return true;
-                }
-            });
+            if (username_post.equalsIgnoreCase(username))
+            {
+                postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
+                    @Override
+                    public boolean onLongClick(View view) {
+                        setBody(post_body);
+                        setURL(URL);
+                        setID(ID);
+                        showPopupMenu(postview); //shows popup edit option
+                        return true;
+                    }
+                });
+            }
 
             lp.addView(postview);
         }
