@@ -14,9 +14,9 @@ class Post_Test {
     public void Post_initialState_validOutput(){
         Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
 
-        assertEquals(fakePost.getBody(),"Hello , Its Naazni");
-        assertEquals(fakePost.getPost_image_url(),"-");
-        assertEquals(fakePost.getTime(),"14:26");
+        assertEquals(fakePost.getBody(),"Hello Everyone");
+        assertEquals(fakePost.getPost_image_url(),"__");
+        assertEquals(fakePost.getTime(),"25-03-2000 13:55:55");
 
     }
 
