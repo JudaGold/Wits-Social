@@ -276,7 +276,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                                                                        colour of each user*/
         all_usernames.add(username);
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
-        reference = FirebaseDatabase.getInstance().getReference("Following").child(username);
+        reference = FirebaseDatabase.getInstance().getReference("social")
+                .child(username).child("following");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.O)
