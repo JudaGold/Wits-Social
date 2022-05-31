@@ -11,6 +11,7 @@ import java.util.*;
 public class Post
 {
 
+
     private String ID,username,body,post_image_url,time;
     private Date date;// this will store the actual date of the post.
 

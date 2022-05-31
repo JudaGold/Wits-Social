@@ -16,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +46,9 @@ import java.util.Random;
 import java.util.Vector;
 
 
-public class Fragment_PostFeed extends Fragment {
+public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemClickListener {
+
+    String ExistingBody, ExistingURL, time, ExistingID;
 
     ImageView image_popup, imgClose_popup;
     View v;
@@ -74,7 +78,7 @@ public class Fragment_PostFeed extends Fragment {
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    add_post();
+                    add_post(false,null,null,null);
                 }
             });
             getFollowing();
@@ -100,13 +104,20 @@ public class Fragment_PostFeed extends Fragment {
         return v;
     }
 
-    public void add_post() {
+    public void add_post(Boolean edit, String body, String URL, String Id) {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
         AlertDialog dialog;
         final View popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);
         popup_post_body = (EditText) popup_content.findViewById(R.id.post_body);
         popup_post_image = (EditText) popup_content.findViewById(R.id.post_image);
         popup_add_post = (Button) popup_content.findViewById(R.id.btn_post);
+
+        if (edit){
+            popup_post_body.setText(body);
+            popup_post_image.setText(URL);
+            popup_add_post.setText("Edit Post");
+        }
+
         dialogB.setView(popup_content);
         dialog = dialogB.create();
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);
@@ -123,17 +134,24 @@ public class Fragment_PostFeed extends Fragment {
                     Date date = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String t = (format.format(date));
-
-
                     reference = FirebaseDatabase.getInstance().getReference("Posts").child(username);
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()) {
-                                maxId = (snapshot.getChildrenCount()) + 1;
+                            Post post = null;
+                            if (edit) {
+                                post = new Post(""+Id,body.trim(), image_url, t);
+                                reference.child(Id).setValue(post);
                             }
-                            Post  post = new Post(""+maxId,body.trim(), image_url, t);
-                            reference.child(String.valueOf(maxId)).setValue(post);
+                            else {
+                                if (snapshot.exists()) {
+                                    maxId = (snapshot.getChildrenCount()) + 1;
+                                }
+                                post = new Post(""+maxId,body.trim(), image_url, t);
+                                reference.child(String.valueOf(maxId)).setValue(post);
+                            }
+
+
                             dialog.dismiss();
                             fetchPosts(all_usernames, username_colours);
                         }
@@ -195,6 +213,7 @@ public class Fragment_PostFeed extends Fragment {
             String post_body = post.getBody();
             String post_time = post.getTime();
             String URL = post.getPost_image_url();
+            String ID = post.getID();
             String username_post = post.getUsername();
 
             TextView usernameView = new TextView(v.getContext());
@@ -217,7 +236,7 @@ public class Fragment_PostFeed extends Fragment {
 
             LinearLayout postview = createPostLayout();
             postview.addView(time);
-            postview.addView(body);
+
 
             if (URL.length() >= 1) {
                 ImageView image = createImageView();
@@ -232,6 +251,19 @@ public class Fragment_PostFeed extends Fragment {
                 });
             }
 
+            postview.addView(body);
+
+            postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
+                @Override
+                public boolean onLongClick(View view) {
+                    setBody(post_body);
+                    setURL(URL);
+                    setID(ID);
+                    showPopupMenu(postview); //shows popup edit option
+                    return true;
+                }
+            });
+
             lp.addView(postview);
         }
     }
@@ -244,10 +276,7 @@ public class Fragment_PostFeed extends Fragment {
                                                                        colour of each user*/
         all_usernames.add(username);
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
-        reference = FirebaseDatabase.getInstance()
-                .getReference("social")
-                .child(username)
-                .child("following");
+        reference = FirebaseDatabase.getInstance().getReference("Following").child(username);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -300,7 +329,7 @@ public class Fragment_PostFeed extends Fragment {
                     LinearLayout post = createPostLayout();
 
                     post.addView(time);
-                    post.addView(body);
+
 
                     if (URL.length() >= 1) {
                         ImageView im = createImageView();
@@ -314,6 +343,7 @@ public class Fragment_PostFeed extends Fragment {
                         });
 
                     }
+                    post.addView(body);
                     Space space = addSpace();
                     lp.addView(post);
                     lp.addView(space); //adds space so that the posts look better
@@ -351,10 +381,12 @@ public class Fragment_PostFeed extends Fragment {
 
     public ImageView createImageView(){
         ImageView imageView = new ImageView(getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(600, 600);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
         params.gravity = Gravity.CENTER; //sets the image at the centre
+        params.setMargins(0,40,0,50);
         imageView.setLayoutParams(params);
         imageView.setClickable(true);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         return imageView;
     }
 
@@ -393,5 +425,48 @@ public class Fragment_PostFeed extends Fragment {
         space.setLayoutParams(params);
         return space;
     }
+
+    public void showPopupMenu(LinearLayout ll){
+        PopupMenu popup_menu = new PopupMenu(v.getContext(), ll); //shows popup edit menu only on the post
+        popup_menu.setOnMenuItemClickListener(this);
+        popup_menu.inflate(R.menu.popup_edit);
+        popup_menu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.edit_post:
+                add_post(true,ExistingBody,ExistingURL, ExistingID);
+                return true;
+            case R.id.view_edited_posts:
+                Toast.makeText(v.getContext(),"testing",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /*adds the details of the post that must be edited to global variables so that it
+    can be used by other classes
+     */
+    public void setBody(String b){
+        ExistingBody = b;
+    }
+    public void setURL(String url){
+        ExistingURL = url;
+    }
+    public void setID(String ID){
+        ExistingID = ID;
+    }
+
+  /*  public boolean isPostChanged(String body, String imgURL){
+        if (!body.equals(ExistingBody)||!imgURL.equals(ExistingURL)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }*/
 
 }
