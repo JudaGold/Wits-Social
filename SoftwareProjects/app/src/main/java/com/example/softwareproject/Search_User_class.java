@@ -27,7 +27,6 @@ import java.util.Locale;
 @Generated
 public class Search_User_class {
     private static ArrayList<String> users;
-    private static ArrayList<String>followers;
     boolean following = false;
     Intent intent;
 
@@ -91,56 +90,46 @@ public class Search_User_class {
         return false;
     }
 
-    public void getFollowing(String LoggedIn_user, String SearchUser, Button btn_follow) {
-        followers = new ArrayList<>();
+    public void follow(String main,String user){
+        follow_user(main,user);
+        setFollowing(main,user);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("Following").child(SearchUser);
-
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean following = false;
-                for(DataSnapshot data:snapshot.getChildren()){
-                    String following_username = data.getValue(String.class);
-                    followers.add(following_username);
-                    if(following_username.equalsIgnoreCase(SearchUser)){
-                        following = true;
-                    }
-                }
-
-                if(following){
-                    btn_follow.setText("following");
-                }
-                else{
-                    btn_follow.setText("follow");
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
-
-    public void follow(String LoggedIn_user,String SearchUser){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Following").child(LoggedIn_user);
-
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
+    private void follow_user(String user,String searched_user){
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("social").child(user).child("following");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long maxId = snapshot.getChildrenCount()+1;
-                if(snapshot.exists()){
-                    reference.child(String.valueOf(maxId)).setValue(SearchUser);
+                if(snapshot.child(searched_user).exists()){
+                    ref.child(String.valueOf(maxId)).setValue(searched_user);
                 }
                 else{
-                    reference.child(String.valueOf(maxId)).setValue(SearchUser);
+                    ref.child(String.valueOf(maxId)).setValue(searched_user);
                 }
 
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void setFollowing(String main_user,String user){
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("social").child(user).child("followers");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long maxId = snapshot.getChildrenCount()+1;
+                if(snapshot.child(main_user).exists()){
+
+                }
+                else{
+                    ref.child(String.valueOf(maxId)).setValue(main_user);
+                }
             }
 
             @Override
@@ -150,7 +139,51 @@ public class Search_User_class {
         });
     }
 
-    public boolean get_following(){
-        return this.following;
+    public void unfollow(String main,String user){
+        set_unfollow(main,user);
+        set_unfollower(main,user);
     }
+
+    private void set_unfollow(String main,String user){
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("social").child(main).child("following");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+              for(DataSnapshot data: snapshot.getChildren()){
+                  if(data.getValue(String.class).equalsIgnoreCase(user)){
+                      data.getRef().removeValue();
+                      break;
+
+                  }
+              }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void set_unfollower(String main,String user){
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("social").child(user).child("followers");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data: snapshot.getChildren()){
+                    if(data.getValue(String.class).equalsIgnoreCase(main)){
+                        data.getRef().removeValue();
+                        break;
+
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 }

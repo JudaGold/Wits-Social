@@ -10,10 +10,13 @@ import java.util.*;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class Post
 {
-    private String username,body,post_image_url,time;
+
+
+    private String ID,username,body,post_image_url,time;
     private Date date;// this will store the actual date of the post.
 
-    public Post(String body, String post_image_url, String time) {
+    public Post(String ID,String body, String post_image_url, String time) {
+        this.ID = ID;
         this.time= time;
         this.body = body;
         this.post_image_url = post_image_url;
@@ -43,6 +46,13 @@ public class Post
         this.post_image_url = post_image_url;
     }
 
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getTime() {
         return time;
