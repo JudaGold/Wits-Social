@@ -44,18 +44,19 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Random;
 import java.util.Vector;
+import java.util.*;
 
 
 public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
-    String ExistingBody, ExistingURL, time, ExistingID;
+    String ExistingBody, ExistingURL, ExistingTime, ExistingID;
 
     ImageView image_popup, imgClose_popup;
     View v;
     EditText popup_post_body, popup_post_image;
     Button popup_add_post;
     ImageButton btnadd_post;
-    DatabaseReference reference;// this the reference of the Firebase database
+    DatabaseReference reference,reference2;// this the reference of the Firebase database
     long maxId = 1;
     String username,Luser;
     LinearLayout lp;
@@ -76,9 +77,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         if(username.equalsIgnoreCase(Luser)){
 
             btnadd_post.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
-                    add_post(false,null,null,null);
+                    add_post(false,null,null,null, null);
                 }
             });
             getFollowing();
@@ -104,7 +106,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         return v;
     }
 
-    public void add_post(Boolean edit, String body, String URL, String Id) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void add_post(Boolean edit, String body, String URL, String Id, String time) {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
         AlertDialog dialog;
         final View popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);
@@ -116,6 +119,26 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             popup_post_body.setText(body);
             popup_post_image.setText(URL);
             popup_add_post.setText("Edit Post");
+
+            try {
+                reference2 = FirebaseDatabase.getInstance().getReference("Posts").child(username).child(Id).child("Edits");
+                reference2.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Post editing = null;
+                        maxId = (snapshot.getChildrenCount()) + 1;
+                        editing = new Post("" + maxId, body.trim(), URL, time);
+                        reference2.child(String.valueOf(maxId)).setValue(editing);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }catch (Exception e) {
+            }
         }
 
         dialogB.setView(popup_content);
@@ -124,7 +147,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         dialog.show();
 
         popup_add_post.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
@@ -140,13 +162,18 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             Post post = null;
                             if (edit) {
-                                post = new Post(""+Id,body.trim(), image_url, t);
-                                reference.child(Id).setValue(post);
+                                Map<String, Object> dictionary = new HashMap<String, Object>();
+                                dictionary.put("body", body.trim());
+                                dictionary.put("time", t);
+                                dictionary.put("post_image_url", image_url);
+                                //post = new Post(""+Id,body.trim(), image_url, t);
+                                reference.child(Id).updateChildren(dictionary);
                             }
                             else {
                                 if (snapshot.exists()) {
                                     maxId = (snapshot.getChildrenCount()) + 1;
                                 }
+
                                 post = new Post(""+maxId,body.trim(), image_url, t);
                                 reference.child(String.valueOf(maxId)).setValue(post);
                             }
@@ -261,6 +288,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         setBody(post_body);
                         setURL(URL);
                         setID(ID);
+                        setTime(post_time);
                         showPopupMenu(postview); //shows popup edit option
                         return true;
                     }
@@ -270,6 +298,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             lp.addView(postview);
         }
     }
+
+
 
     public void getFollowing() {
         all_usernames = new ArrayList<>();/* this will have the user's username
@@ -437,11 +467,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         popup_menu.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.edit_post:
-                add_post(true,ExistingBody,ExistingURL, ExistingID);
+                add_post(true,ExistingBody,ExistingURL, ExistingID, ExistingTime);
                 return true;
             case R.id.view_edited_posts:
                 Toast.makeText(v.getContext(),"testing",Toast.LENGTH_LONG).show();
@@ -463,6 +494,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     public void setID(String ID){
         ExistingID = ID;
     }
+    public void setTime(String time){
+        ExistingTime = time;
+    }
+
+
 
   /*  public boolean isPostChanged(String body, String imgURL){
         if (!body.equals(ExistingBody)||!imgURL.equals(ExistingURL)){
