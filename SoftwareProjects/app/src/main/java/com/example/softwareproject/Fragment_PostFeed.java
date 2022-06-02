@@ -475,7 +475,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 add_post(true,ExistingBody,ExistingURL, ExistingID, ExistingTime);
                 return true;
             case R.id.view_edited_posts:
-                Toast.makeText(v.getContext(),"testing",Toast.LENGTH_LONG).show();
+                ArrayList<Post> Posts = new ArrayList<>();
+                getPreviousEdits(ExistingID);
+                //Toast.makeText(v.getContext(),"testing",Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return false;
@@ -498,6 +500,40 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         ExistingTime = time;
     }
 
+    public void getPreviousEdits(String Id) {
+
+        ArrayList<Post> Posts = new ArrayList<>();
+        lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
+        reference = FirebaseDatabase.getInstance().getReference("Posts").child(username).child(Id).child("Edits");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String id = data.getKey();
+                    String b = data.child("body").getValue(String.class);
+                    String t = data.child("time").getValue(String.class);
+                    String URL = data.child("post_image_url").getValue(String.class);
+                    Post post = new Post(id,b, URL, t);
+                    post.setUsername(username);
+                    try {
+                        post.convertDate();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Posts.add(post);
+                }
+                Posts.sort(new DateComparator());
+                display_posts(Posts, username_colours);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
   /*  public boolean isPostChanged(String body, String imgURL){
