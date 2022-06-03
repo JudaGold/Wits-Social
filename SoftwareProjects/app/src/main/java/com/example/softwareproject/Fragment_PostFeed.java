@@ -220,7 +220,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         Posts.add(post);
                     }
                     Posts.sort(new DateComparator());
-                    display_posts(Posts, username_colours);
+                    display_posts(Posts, username_colours, false);
                 }
 
                 @Override
@@ -232,7 +232,22 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void display_posts(ArrayList<Post> Posts, Hashtable<String, Integer> username_colours) {
+    public void display_posts(ArrayList<Post> Posts, Hashtable<String, Integer> username_colours, Boolean Edits) {
+        btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
+        if(Edits) {
+            btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
+            btnadd_post.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), user_display.class);
+                    intent.putExtra("username", Luser);
+                    intent.putExtra("loggedinuser", Luser);
+                    getActivity().startActivity(intent);
+                    getActivity().finish();
+                }
+            });
+        }
+
         lp.setOrientation(LinearLayout.VERTICAL);
         lp.setBackgroundColor(Color.parseColor("white"));
         lp.removeAllViews();
@@ -476,7 +491,15 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 return true;
             case R.id.view_edited_posts:
                 ArrayList<Post> Posts = new ArrayList<>();
-                getPreviousEdits(ExistingID);
+                Post post = new Post(ExistingID,ExistingBody, ExistingURL, ExistingTime);
+                post.setUsername(username);
+                try {
+                    post.convertDate();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Posts.add(post);
+                getPreviousEdits(ExistingID,Posts);
                 //Toast.makeText(v.getContext(),"testing",Toast.LENGTH_LONG).show();
                 return true;
             default:
@@ -500,9 +523,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         ExistingTime = time;
     }
 
-    public void getPreviousEdits(String Id) {
+    public void getPreviousEdits(String Id,ArrayList<Post> Posts) {
 
-        ArrayList<Post> Posts = new ArrayList<>();
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
         reference = FirebaseDatabase.getInstance().getReference("Posts").child(username).child(Id).child("Edits");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -525,7 +547,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     Posts.add(post);
                 }
                 Posts.sort(new DateComparator());
-                display_posts(Posts, username_colours);
+                display_posts(Posts, username_colours, true);
             }
 
             @Override
