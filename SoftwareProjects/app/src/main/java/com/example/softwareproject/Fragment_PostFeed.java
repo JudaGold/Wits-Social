@@ -295,7 +295,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
             postview.addView(body);
 
-            if (username_post.equalsIgnoreCase(username))
+            if (username_post.equalsIgnoreCase(username) && !Edits)
             {
                 postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
                     @Override
