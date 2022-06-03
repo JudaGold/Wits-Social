@@ -72,19 +72,6 @@ task jacocoAndroidUnitTestReport(type: JacocoReport) {
             enabled true
         }
     }
-
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it,
-                    exclude: [ '**/*Add_Profile_Pic**',
-                               '**/*Display_searched_user**',
-                               '**/*Main_Activity**',
-                               '**/*Main_Profile**',
-                               '**/*Search_User_class**',
-                               '**/*Show_Profile_Details**',
-                               '**/*Sign_Up**'])
-        }))
-    }
 }
 
 dependencies {
