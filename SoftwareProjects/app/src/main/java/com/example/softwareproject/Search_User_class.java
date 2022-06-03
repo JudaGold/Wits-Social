@@ -1,15 +1,11 @@
 package com.example.softwareproject;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -22,9 +18,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
-@Generated
 public class Search_User_class {
     private static ArrayList<String> users;
     boolean following = false;
