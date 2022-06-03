@@ -3,7 +3,7 @@ ignore:
     - "**/Display_Posts.java"
     - "**/Forgot_Password.java"
     - "**/fragment_followers.java"
-    - "**/fragment_followering.java"
+    - "**/fragment_following.java"
     - "**/Fragment_PostFeed.java"
     - "**/Generated.java"
     - "**/Main_Activity.java"
