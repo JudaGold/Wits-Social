@@ -9,7 +9,7 @@ class User_Test {
     public void User_initialState_validOutput() {
         User fakeUser = new User("Elementrix08",
                 "verushannaidoo@gmail.com", "0615805094", "Elementrix",
-                "Verushan Naidoo", "Talk is cheap, show me the code", "-");
+                "Verushan Naidoo", "Talk is cheap, show me the code", "-", "fcm_token");
 
         assertEquals(fakeUser.getName(), "Verushan Naidoo");
         assertEquals(fakeUser.getUsername(), "Elementrix08");
@@ -18,14 +18,13 @@ class User_Test {
         assertEquals(fakeUser.getPhoneNumber(), "0615805094");
         assertEquals(fakeUser.getPassword(), "Elementrix");
         assertEquals(fakeUser.getmImageUrl(),"-");
-
-
+        assertEquals(fakeUser.getFcm_token(),"fcm_token");
     }
     @Test
     public void User_settingUser_validOutput(){
         User fakeUser = new User("Naazni",
                 "naaznijagdew@gmail.com", "0729119119", "NaazniPassword",
-                "Naazni Jagdew", "Hello Sky", "__");
+                "Naazni Jagdew", "Hello Sky", "__", "fcm_token");
 
         fakeUser.setBio("Hello Rover");
         fakeUser.setUsername("Dave");
@@ -34,6 +33,7 @@ class User_Test {
         fakeUser.setName("Dave The Boy");
         fakeUser.setPassword("DavidPassword");
         fakeUser.setPhoneNumber("0729191919");
+        fakeUser.setFcm_token("token");
 
         assertEquals(fakeUser.getName(), "Dave The Boy");
         assertEquals(fakeUser.getUsername(), "Dave");
@@ -42,6 +42,7 @@ class User_Test {
         assertEquals(fakeUser.getPhoneNumber(), "0729191919");
         assertEquals(fakeUser.getPassword(), "DavidPassword");
         assertEquals(fakeUser.getmImageUrl(), "___---");
+        assertEquals(fakeUser.getFcm_token(),"token");
     }
 
 

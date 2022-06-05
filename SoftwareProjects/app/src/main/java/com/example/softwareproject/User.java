@@ -3,12 +3,28 @@ package com.example.softwareproject;
 
 
 public class User {
-    private String Username,email,phoneNumber,password,name,bio, mImageUrl;
+    private String Username;
+    private String email;
+    private String phoneNumber;
+    private String password;
+    private String name;
+    private String bio;
+    private String mImageUrl;
+
+    public String getFcm_token() {
+        return fcm_token;
+    }
+
+    public void setFcm_token(String fcm_token) {
+        this.fcm_token = fcm_token;
+    }
+
+    private String fcm_token;
 
     public User() {
     }
 
-    public User(String username, String email, String phoneNumber, String password, String name, String bio, String mImageUrl) {
+    public User(String username, String email, String phoneNumber, String password, String name, String bio, String mImageUrl, String fcm_token) {
         Username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -16,6 +32,7 @@ public class User {
         this.name = name;
         this.bio = bio;
         this.mImageUrl = mImageUrl;
+        this.fcm_token = fcm_token;
     }
 
     public String getmImageUrl() {
