@@ -62,7 +62,7 @@ public class Post
         this.time = time;
     }
 
-    // this method will convert the string "time" to a date object
+    // this method will convert the string "time" to a date object.
     public void convertDate() throws ParseException {
         this.date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(this.time);
     }
