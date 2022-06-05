@@ -4,17 +4,20 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog.Builder;
 import android.os.StrictMode;
 
-import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class FCMSend {
     private static String BASE_URL = "https://fcm.googleapis.com/fcm/send";
@@ -102,10 +105,14 @@ public class FCMSend {
                     conn.setDoInput(true);
                     conn.setRequestMethod("POST");
                     OutputStream os = conn.getOutputStream();
-                    os.write(json.toString().getBytes("UTF-8"));
+                    os.write(json.toString().getBytes(StandardCharsets.UTF_8));
                     os.close();
                     InputStream in = new BufferedInputStream(conn.getInputStream());
-                    String result = IOUtils.toString(in, "UTF-8");
+//                    String result = IOUtils.toString(in, "UTF-8");
+                    String result = new BufferedReader(
+                            new InputStreamReader(in, StandardCharsets.UTF_8))
+                            .lines()
+                            .collect(Collectors.joining("\n"));
                     in.close();
                     conn.disconnect();
                     mFcm.result = result;

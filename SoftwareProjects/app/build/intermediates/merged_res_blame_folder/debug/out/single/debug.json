@@ -16,12 +16,20 @@
         "source": "com.example.softwareproject.app-main-40:/font/lato_black.ttf"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable-xxhdpi_ic_notification.png.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable-xxhdpi/ic_notification.png"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable-xxxhdpi_baseline_add_circle_outline_white_48.png.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable-xxxhdpi/baseline_add_circle_outline_white_48.png"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_activity_forgot_password.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/layout/activity_forgot_password.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable-xhdpi_ic_notification.png.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable-xhdpi/ic_notification.png"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_fragment__post_feed.xml.flat",
@@ -64,6 +72,10 @@
         "source": "com.example.softwareproject.app-main-40:/drawable/post_layout.xml"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable-mdpi_ic_notification.png.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable-mdpi/ic_notification.png"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable-xxxhdpi_baseline_add_circle_outline_white_20.png.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable-xxxhdpi/baseline_add_circle_outline_white_20.png"
     },
@@ -82,6 +94,10 @@
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable_exp.jpg.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable/exp.jpg"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable-hdpi_ic_notification.png.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable-hdpi/ic_notification.png"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/menu_popup_edit.xml.flat",
@@ -210,5 +226,9 @@
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_activity_sign_up.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/layout/activity_sign_up.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable-anydpi_ic_notification.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable-anydpi/ic_notification.xml"
     }
 ]

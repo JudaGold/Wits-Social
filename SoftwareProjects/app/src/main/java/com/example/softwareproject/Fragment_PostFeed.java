@@ -63,9 +63,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     ArrayList<String> all_usernames;/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
-    Hashtable<String, Integer> username_colours;/* this will have the unique
-                                                                           colour of each user*/
     Search_User_class su = new Search_User_class();
+    ArrayList<String> all_fcm_tokens;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -180,7 +180,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
 
                             dialog.dismiss();
-                            fetchPosts(all_usernames, username_colours);
+                            fetchPosts(all_usernames);
                         }
 
                         @Override
@@ -196,7 +196,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void fetchPosts(ArrayList<String> following, Hashtable<String, Integer> username_colours) {
+    public void fetchPosts(ArrayList<String> following) {
         ArrayList<Post> Posts = new ArrayList<>();
 
         for (String usernames : following) {
@@ -220,7 +220,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         Posts.add(post);
                     }
                     Posts.sort(new DateComparator());
-                    display_posts(Posts, username_colours, false);
+                    display_posts(Posts, false);
                 }
 
                 @Override
@@ -232,7 +232,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void display_posts(ArrayList<Post> Posts, Hashtable<String, Integer> username_colours, Boolean Edits) {
+    public void display_posts(ArrayList<Post> Posts, Boolean Edits) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
         if(Edits) {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
@@ -320,8 +320,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         all_usernames = new ArrayList<>();/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
-         username_colours = new Hashtable<>();/* this will have the unique
-                                                                       colour of each user*/
         all_usernames.add(username);
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
         reference = FirebaseDatabase.getInstance().getReference("social")
@@ -334,12 +332,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String following_username = data.getValue(String.class);
                     all_usernames.add(following_username);
-                    Random rnd = new Random();
-                    int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-                    username_colours.put(following_username, color);
                 }
                 lp.removeAllViews();
-                fetchPosts(all_usernames, username_colours);
+                fetchPosts(all_usernames);
             }
 
             @Override
@@ -547,7 +542,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     Posts.add(post);
                 }
                 Posts.sort(new DateComparator());
-                display_posts(Posts, username_colours, true);
+                display_posts(Posts, true);
             }
 
             @Override

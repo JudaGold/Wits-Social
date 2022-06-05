@@ -84,9 +84,9 @@ public class Search_User_class {
         return false;
     }
 
-    public void follow(String main,String user){
+    public void follow(String main,String user, String fcm_token){
         follow_user(main,user);
-        setFollowing(main,user);
+        setFollowing(main,user, fcm_token);
 
     }
     private void follow_user(String user,String searched_user){
@@ -111,7 +111,7 @@ public class Search_User_class {
         });
     }
 
-    private void setFollowing(String main_user,String user){
+    private void setFollowing(String main_user,String user, String fcm_token){
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("social").child(user).child("followers");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,6 +123,26 @@ public class Search_User_class {
                 }
                 else{
                     ref.child(String.valueOf(maxId)).setValue(main_user);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference ref2 = FirebaseDatabase.getInstance()
+                .getReference("Notifications").child(user);
+        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long maxId = snapshot.getChildrenCount()+1;
+                if(snapshot.child(fcm_token).exists()){
+
+                }
+                else{
+                    ref2.child(String.valueOf(maxId)).setValue(fcm_token);
                 }
             }
 
