@@ -62,22 +62,24 @@
                     android:id="@+id/username_text"
                     android:layout_width="wrap_content"
                     android:layout_height="52dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:autoSizeTextType="uniform"
                     android:fontFamily="@font/lato_regular"
                     android:gravity="start"
                     android:textColor="@color/black"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/bio_text"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="@font/lato_regular"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
