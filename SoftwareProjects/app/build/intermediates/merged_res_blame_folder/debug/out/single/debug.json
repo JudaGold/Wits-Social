@@ -72,6 +72,7 @@
         "source": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\search_icon.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_baseline_account_circle_24.xml.flat",
         "source": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_baseline_account_circle_24.xml"
 >>>>>>> main
@@ -79,6 +80,14 @@
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "com.example.softwareproject.app-main-40:/mipmap-hdpi/ic_launcher_round.webp"
+=======
+        "merged": "com.example.softwareproject.app-merged_res-37:/layout_activity_user_display.xml.flat",
+        "source": "com.example.softwareproject.app-main-39:/layout/activity_user_display.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_ic_baseline_account_circle_24.xml.flat",
+        "source": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\ic_baseline_account_circle_24.xml"
+>>>>>>> main
     },
     {
 <<<<<<< HEAD
@@ -234,6 +243,7 @@
 >>>>>>> main
     },
     {
+<<<<<<< HEAD
         "merged": "com.example.softwareproject.app-merged_res-38:/font_font.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/font/font.xml"
     },
@@ -298,6 +308,8 @@
         "merged": "com.example.softwareproject.app-merged_res-38:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/mipmap-anydpi-v26/ic_launcher.xml"
 =======
+=======
+>>>>>>> main
         "merged": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
@@ -399,6 +411,7 @@
 >>>>>>> main
     },
     {
+<<<<<<< HEAD
         "merged": "com.example.softwareproject.app-merged_res-38:/mipmap-hdpi_ic_launcher.webp.flat",
         "source": "com.example.softwareproject.app-main-40:/mipmap-hdpi/ic_launcher.webp"
     },
@@ -443,6 +456,8 @@
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable-anydpi_ic_notification.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable-anydpi/ic_notification.xml"
 =======
+=======
+>>>>>>> main
         "merged": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-37:\\drawable_add_pic.xml.flat",
         "source": "C:\\Users\\Ndiwanga\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-39:\\drawable\\add_pic.xml"
 >>>>>>> main
