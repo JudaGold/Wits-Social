@@ -80,9 +80,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:backgroundTint="#123F4C"
             android:fontFamily="@font/lato_regular"
             android:gravity="center"
             android:text="Save"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
     </LinearLayout>
