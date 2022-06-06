@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+//importshit
 public class Forgot_Password extends AppCompatActivity {
     EditText emailfield,p1,p2;
     Button btn,cbtn;
