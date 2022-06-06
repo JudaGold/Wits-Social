@@ -28,7 +28,7 @@ import com.squareup.picasso.Picasso;
 public class Add_Profile_Pic extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
-
+ // Decarations
     ImageView UploadImg;
     Button btnSave;
     String username;
