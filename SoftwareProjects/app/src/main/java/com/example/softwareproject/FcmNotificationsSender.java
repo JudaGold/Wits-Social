@@ -19,16 +19,25 @@ import java.util.Map;
 
 public class FcmNotificationsSender  {
 
+    // Declarations of variables
     String userFcmToken;
+            // The user's device token
     String title;
+            // The title of the notification
     String body;
+            // The body of the notification
     Context mContext;
-
-
+            // The activity's context
     private RequestQueue requestQueue;
-    private final String postUrl = "https://fcm.googleapis.com/fcm/send";
-    private final String fcmServerKey ="AAAAsyl8G_k:APA91bEgX74jSiZ9ItbwZid0JXW9k5gkJRi1WBnw8mZQMTvtQTc1jSkk9GZvPFKm7onjpEPtvVU04GFDCTdnggOxPmeYWDUEVDXgdma18bDUYgmSenV8mlGc0GgIqVjQLvC3TMhcG5vs";
+            // Request queue to make a html request
 
+    private final String postUrl = "https://fcm.googleapis.com/fcm/send";
+            // The URL for sending a message
+    private final String fcmServerKey
+            ="AAAAsyl8G_k:APA91bEgX74jSiZ9ItbwZid0JXW9k5gkJRi1WBnw8mZQMTvtQTc1jSkk9GZvPFKm7onjpEPtvVU04GFDCTdnggOxPmeYWDUEVDXgdma18bDUYgmSenV8mlGc0GgIqVjQLvC3TMhcG5vs";
+            // The server key for the firebase cloud messaging
+
+    // Constructor of the class
     public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext) {
         this.userFcmToken = userFcmToken;
         this.title = title;
@@ -36,6 +45,7 @@ public class FcmNotificationsSender  {
         this.mContext = mContext;
     }
 
+    // Method to send notifications using json objects
     public void SendNotifications() {
 
         requestQueue = Volley.newRequestQueue(mContext);
@@ -45,14 +55,12 @@ public class FcmNotificationsSender  {
             JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
-            notiObject.put("icon", R.drawable.ic_notification); // enter icon that exists in drawable only
-
-
-
+            notiObject.put("icon", R.drawable.ic_notification);
+                // Icon message
             mainObj.put("notification", notiObject);
 
-
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, mainObj, new Response.Listener<JSONObject>() {
+                // Requesting to the URl
                 @Override
                 public void onResponse(JSONObject response) {
 
@@ -66,16 +74,13 @@ public class FcmNotificationsSender  {
 
                 }
             }) {
+                // Inputting the headers in the json object
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-
-
                     Map<String, String> header = new HashMap<>();
                     header.put("content-type", "application/json");
                     header.put("authorization", "key=" + fcmServerKey);
                     return header;
-
-
                 }
             };
             requestQueue.add(request);
@@ -84,9 +89,5 @@ public class FcmNotificationsSender  {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
 }
