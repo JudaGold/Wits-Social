@@ -28,25 +28,31 @@ import com.squareup.picasso.Picasso;
 public class Add_Profile_Pic extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
- // Decarations of variables
-    ImageView UploadImg;
-    Button btnSave;
-    String username;
-    EditText bio;
-    Field_Validations fv;
-
-    private Uri mImageUri;
-
-    private StorageReference storageRef = FirebaseStorage.getInstance().getReference("profile_pictures");
+    // Declarations of variables
+    ImageView UploadImg;    // Image view for profile picture
+    Button btnSave;         // Button to save bio and profile pic
+    String username;        // User's username
+    EditText bio;           // User's bio
+    Field_Validations fv;   // Object for field validations class
+    private Uri mImageUri;  // Profile picture's uri
+    private StorageReference storageRef =
+            FirebaseStorage.getInstance().getReference("profile_pictures");
+                            // Reference to the firebase storage with profile pictures
     private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("Users");
+                            // Reference to the User's table in the firebase database
     private StorageTask mUploadTask;
+                            // Task for uploading the profile picture in the database and storage
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_profile_pic);
 
+<<<<<<< HEAD
         //
+=======
+        // Initialising of variables
+        setContentView(R.layout.activity_add_profile_pic);
+>>>>>>> main
         btnSave= (Button) findViewById(R.id.btnSave);
         UploadImg=(ImageView) findViewById(R.id.imgAddPic);
         bio = (EditText) findViewById(R.id.user_bio2);
@@ -54,7 +60,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
 
         Intent intent = getIntent();
             username = intent.getStringExtra("Username");
-
+                            // Get the username from sign up activity
 
         UploadImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,13 +73,17 @@ public class Add_Profile_Pic extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String userBio = bio.getText().toString();
+                            // Get the user's bio
                 boolean bioValid = fv.bioValidation(userBio, bio);
+                            // Validating the user's bio
 
                 if (bioValid) {
                     databaseRef.child(username).child("bio").setValue(userBio);
+                            // Setting the user's bio in the database
 
                     if (mUploadTask != null && mUploadTask.isInProgress()) {
                         Toast.makeText(Add_Profile_Pic.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                            // Displaying message when the upload is progress
                     } else {
                         uploadFile();
                     }
@@ -82,6 +92,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
         });
     }
 
+    // This method will open a file in the phone
     private void openFileUser(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -89,6 +100,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
+    // This method will load the chosen image onto the image view
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -100,16 +112,20 @@ public class Add_Profile_Pic extends AppCompatActivity {
         }
     }
 
+    // This method get the photo's extension
     private String getFileExtension(Uri uri){
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
+    // This method will upload the photo to the file storage and the photo's uri to the database
     private void uploadFile(){
         if (mImageUri != null){
             StorageReference fileReference = storageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
+                            // Creating a reference for the photo
             mUploadTask = fileReference.putFile(mImageUri)
+                            // Uploading the photo to the file storage
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -118,11 +134,14 @@ public class Add_Profile_Pic extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     databaseRef.child(username).child("mImageUrl").setValue(uri.toString());
+                                    // Set the image's uri in the database
                                     Toast.makeText(Add_Profile_Pic.this, "Saved successful", Toast.LENGTH_LONG).show();
+                                    // Showing a message when the photo is done uploading
 
                                     Intent intent= new Intent(Add_Profile_Pic.this, Main_Activity.class);
                                     intent.putExtra("Username", username);
                                     startActivity(intent);
+                                    // This will redirect the user to the Login screen
                                 }
                             });
                         }
@@ -131,12 +150,13 @@ public class Add_Profile_Pic extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(Add_Profile_Pic.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
+                            // Shows an error when uploading the photo fails
                         }
                     });
 
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+            // Shows a message when no file photo is selected
         }
 
     }
