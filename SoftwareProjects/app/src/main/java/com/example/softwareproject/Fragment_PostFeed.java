@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -36,6 +37,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+//import com.google.firebase.messaging.Message;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,7 +59,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     EditText popup_post_body, popup_post_image;
     Button popup_add_post;
     ImageButton btnadd_post;
-    DatabaseReference reference,reference2;// this the reference of the Firebase database
+    DatabaseReference reference,reference2, reference3;// this the reference of the Firebase database
     long maxId = 1;
     String username,Luser;
     LinearLayout lp;
@@ -76,6 +79,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
         if(username.equalsIgnoreCase(Luser)){
 
+            fetch_fcm_tokens();
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
@@ -188,6 +192,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
                         }
                     });
+
+                    for (String fcm_token : all_fcm_tokens)
+                    {
+                        FcmNotificationsSender notificationsSender = new FcmNotificationsSender(fcm_token, username, body, getContext());
+                        notificationsSender.SendNotifications();
+                    }
                 } catch (Exception e) {
                 }
             }
@@ -543,6 +553,31 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
                 Posts.sort(new DateComparator());
                 display_posts(Posts, true);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void fetch_fcm_tokens()
+    {
+        all_fcm_tokens = new ArrayList<>();/* this will have the user's username
+                                                           and the usernames of the users, the
+                                                           user is following*/
+        reference3 = FirebaseDatabase.getInstance().getReference("Notifications")
+                .child(username);
+        reference3.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String fcm_token = data.getValue(String.class);
+                    all_fcm_tokens.add(fcm_token);
+                }
             }
 
             @Override
