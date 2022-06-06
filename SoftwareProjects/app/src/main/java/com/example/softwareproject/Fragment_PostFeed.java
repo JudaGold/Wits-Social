@@ -207,7 +207,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fetchPosts(ArrayList<String> following) {
-        ArrayList<Post> Posts = new ArrayList<>();
+        ArrayList<Post> Posts = new ArrayList<Post>();
 
         for (String usernames : following) {
             reference = FirebaseDatabase.getInstance().getReference().child("Posts").child(usernames);
