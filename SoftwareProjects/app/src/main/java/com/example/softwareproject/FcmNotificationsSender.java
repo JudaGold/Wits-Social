@@ -19,17 +19,20 @@ import java.util.Map;
 
 public class FcmNotificationsSender  {
 
+    //Declarations of varibles
     String userFcmToken;
     String title;
     String body;
     Context mContext;
 
-
+    //Assignmment of the url and server
     private RequestQueue requestQueue;
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     private final String fcmServerKey ="AAAAsyl8G_k:APA91bEgX74jSiZ9ItbwZid0JXW9k5gkJRi1WBnw8mZQMTvtQTc1jSkk9GZvPFKm7onjpEPtvVU04GFDCTdnggOxPmeYWDUEVDXgdma18bDUYgmSenV8mlGc0GgIqVjQLvC3TMhcG5vs";
 
+    //Notifications function
     public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext) {
+        //Details on the notification
         this.userFcmToken = userFcmToken;
         this.title = title;
         this.body = body;

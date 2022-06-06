@@ -3,6 +3,7 @@ package com.example.softwareproject;
 
 
 public class User {
+    //Declarations of variables
     private String Username;
     private String email;
     private String phoneNumber;
@@ -11,6 +12,7 @@ public class User {
     private String bio;
     private String mImageUrl;
 
+    //Line 16-27: Create methods
     public String getFcm_token() {
         return fcm_token;
     }

@@ -46,6 +46,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_profile_pic);
 
+        //
         btnSave= (Button) findViewById(R.id.btnSave);
         UploadImg=(ImageView) findViewById(R.id.imgAddPic);
         bio = (EditText) findViewById(R.id.user_bio2);

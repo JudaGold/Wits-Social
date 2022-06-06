@@ -22,6 +22,7 @@ import java.io.InputStream;
 
 
 public class Display_Posts extends LinearLayout {
+    //Declaration of variables
     LinearLayout l;
     ScrollView sv;
     TextView body,time;
@@ -30,6 +31,7 @@ public class Display_Posts extends LinearLayout {
 
 
     public Display_Posts(Context context) {
+        //Assignment to the variables
         super(context);
         typeface = ResourcesCompat.getFont(context,R.font.lato_regular);
         setOrientation(LinearLayout.VERTICAL);
@@ -39,15 +41,18 @@ public class Display_Posts extends LinearLayout {
         sv = new ScrollView(context);
         l.addView(sv);
 
+        //Assignment to the variables
         body = new TextView(context);
         time = new TextView(context);
         image = new ImageView(context);
 
+        //Set parameter values
         body.setTextSize(20);
         time.setTextSize(15);
         body.setPadding(30,30,30,30);
         time.setPadding(30,30,30,30);
 
+        //Assignment to the variables
         LinearLayout ll = new LinearLayout(context);
         ll.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,5000);
@@ -57,6 +62,7 @@ public class Display_Posts extends LinearLayout {
         body.setTypeface(typeface);
         time.setTypeface(typeface);
 
+        //Add views to the app
         ll.addView(body);
         ll.addView(time);
         ll.addView(image);

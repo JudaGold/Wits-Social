@@ -16,12 +16,14 @@ public class Post
     private Date date;// this will store the actual date of the post.
 
     public Post(String ID,String body, String post_image_url, String time) {
+        //Details on the page
         this.ID = ID;
         this.time= time;
         this.body = body;
         this.post_image_url = post_image_url;
     }
 
+    //Line 27-76: get and set functions for each detail on the post
     public String getUsername() {
         return username;
     }
