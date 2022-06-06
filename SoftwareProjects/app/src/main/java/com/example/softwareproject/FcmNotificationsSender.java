@@ -19,11 +19,7 @@ import java.util.Map;
 
 public class FcmNotificationsSender  {
 
-<<<<<<< HEAD
-    //Declarations of varibles
-=======
     // Declarations of variables
->>>>>>> main
     String userFcmToken;
             // The user's device token
     String title;
@@ -31,18 +27,13 @@ public class FcmNotificationsSender  {
     String body;
             // The body of the notification
     Context mContext;
-<<<<<<< HEAD
 
     //Assignmment of the url and server
-=======
             // The activity's context
->>>>>>> main
     private RequestQueue requestQueue;
             // Request queue to make a html request
 
-<<<<<<< HEAD
     //Notifications function
-=======
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
             // The URL for sending a message
     private final String fcmServerKey
@@ -50,7 +41,6 @@ public class FcmNotificationsSender  {
             // The server key for the firebase cloud messaging
 
     // Constructor of the class
->>>>>>> main
     public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext) {
         //Details on the notification
         this.userFcmToken = userFcmToken;
