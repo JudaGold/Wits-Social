@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 public class user_display extends AppCompatActivity {
@@ -31,11 +34,11 @@ public class user_display extends AppCompatActivity {
     private ViewPager viewPager;
     TextView usernameText, bioText;// bioText will have the user's bio
     ImageButton btn_search_user;
-    Button  btnfollow;
+    Button btnfollow;
     DatabaseReference reference;// this the reference of the Firebase database
     de.hdodenhof.circleimageview.CircleImageView user_image;
     AutoCompleteTextView search_bar;
-    String username,logged_in_user;
+    String username,logged_in_user, fcm_token;
     Search_User_class su;//creating a instance of the search user class to search for a user
     boolean main_user  = true;
     boolean following = false;
@@ -48,16 +51,20 @@ public class user_display extends AppCompatActivity {
         tabLayout = findViewById(R.id.TabLayout);
         viewPager = findViewById(R.id.viewpager);
         tabLayout.setupWithViewPager(viewPager);
+
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");//establishing fragment for viewing posts
         pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");//establishing fragment for viewing user followers
         pagerAdapter.addFragmentTitle(new fragment_following(),"Following");//establishing fragment for viewing user following list
         viewPager.setAdapter(pagerAdapter);//setting up a viewpager to make swiping across fragments
-        Intent intent = getIntent();
 
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        Intent intent = getIntent();
         username = intent.getStringExtra("username");
         logged_in_user =  intent.getStringExtra("loggedinuser");
         intent.putExtra("loggedinuser",logged_in_user);
+        update_FCM_token();
 
         usernameText = (TextView) findViewById(R.id.username_text);
         bioText = (TextView) findViewById(R.id.bio_text);
@@ -92,7 +99,6 @@ public class user_display extends AppCompatActivity {
     }
 
     public void display_user_information() {
-        reference = FirebaseDatabase.getInstance().getReference("Users");
         Query checkUser = reference.orderByChild("username").equalTo(username);
 
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -157,7 +163,7 @@ public class user_display extends AppCompatActivity {
                     btnfollow.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            su.follow(logged_in_user,username);
+                            su.follow(logged_in_user,username, fcm_token);
                             btnfollow.setText("Following");
                         }
                     });
@@ -168,5 +174,21 @@ public class user_display extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void update_FCM_token()
+    {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        fcm_token = task.getResult();
+
+                        reference.child(username).child("fcm_token").setValue(fcm_token);
+                    }
+                });
     }
 }

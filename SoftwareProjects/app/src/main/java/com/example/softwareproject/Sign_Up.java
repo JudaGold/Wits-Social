@@ -12,21 +12,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class Sign_Up extends AppCompatActivity {
     EditText edtEmail, edtPhoneNo, edtUsername, edtPassword, edtConfirmPassword, edtFirstName, edtLastName;
     Button btnSignUp;
     TextView tv, pa;
-
     FirebaseDatabase fb;
     DatabaseReference Gdb;
     Field_Validations fv = new Field_Validations();
+    String fcm_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,6 @@ public class Sign_Up extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.tv);
         pa = (TextView) findViewById(R.id.pad);
 
-
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +58,8 @@ public class Sign_Up extends AppCompatActivity {
                 String name = edtFirstName.getText().toString() + " " + edtLastName.getText().toString();
                 String bio = "";
                 String imageUrl = "";
+                getDeviceToken();
+
                 fb = FirebaseDatabase.getInstance();
                 Gdb = fb.getReference("Users");
 
@@ -74,7 +78,7 @@ public class Sign_Up extends AppCompatActivity {
                             if (snapshot.exists()) {
                                 edtUsername.setError("Username already taken");
                             } else {
-                                User createUserClass = new User(username, email, number, password, name, bio, imageUrl);
+                                User createUserClass = new User(username, email, number, password, name, bio, imageUrl, fcm_token);
                                 Gdb.child(username).setValue(createUserClass);
 
                                 Intent intent = new Intent(Sign_Up.this, Add_Profile_Pic.class);
@@ -92,6 +96,20 @@ public class Sign_Up extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Get Device Token
+    public void getDeviceToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        fcm_token = task.getResult();
+                    }
+                });
     }
 
     public boolean completed() {

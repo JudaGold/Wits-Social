@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -36,6 +37,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+//import com.google.firebase.messaging.Message;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,16 +59,16 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     EditText popup_post_body, popup_post_image;
     Button popup_add_post;
     ImageButton btnadd_post;
-    DatabaseReference reference,reference2;// this the reference of the Firebase database
+    DatabaseReference reference,reference2, reference3;// this the reference of the Firebase database
     long maxId = 1;
     String username,Luser;
     LinearLayout lp;
     ArrayList<String> all_usernames;/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
-    Hashtable<String, Integer> username_colours;/* this will have the unique
-                                                                           colour of each user*/
     Search_User_class su = new Search_User_class();
+    ArrayList<String> all_fcm_tokens;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -76,6 +79,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
         if(username.equalsIgnoreCase(Luser)){
 
+            fetch_fcm_tokens();
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
@@ -180,7 +184,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
 
                             dialog.dismiss();
-                            fetchPosts(all_usernames, username_colours);
+                            fetchPosts(all_usernames);
                         }
 
                         @Override
@@ -188,6 +192,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
                         }
                     });
+
+                    for (String fcm_token : all_fcm_tokens)
+                    {
+                        FcmNotificationsSender notificationsSender = new FcmNotificationsSender(fcm_token, username, body, getContext());
+                        notificationsSender.SendNotifications();
+                    }
                 } catch (Exception e) {
                 }
             }
@@ -196,7 +206,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void fetchPosts(ArrayList<String> following, Hashtable<String, Integer> username_colours) {
+    public void fetchPosts(ArrayList<String> following) {
         ArrayList<Post> Posts = new ArrayList<>();
 
         for (String usernames : following) {
@@ -220,7 +230,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         Posts.add(post);
                     }
                     Posts.sort(new DateComparator());
-                    display_posts(Posts, username_colours, false);
+                    display_posts(Posts, false);
                 }
 
                 @Override
@@ -232,7 +242,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void display_posts(ArrayList<Post> Posts, Hashtable<String, Integer> username_colours, Boolean Edits) {
+    public void display_posts(ArrayList<Post> Posts, Boolean Edits) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
         if(Edits) {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
@@ -320,8 +330,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         all_usernames = new ArrayList<>();/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
-         username_colours = new Hashtable<>();/* this will have the unique
-                                                                       colour of each user*/
         all_usernames.add(username);
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
         reference = FirebaseDatabase.getInstance().getReference("social")
@@ -334,12 +342,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String following_username = data.getValue(String.class);
                     all_usernames.add(following_username);
-                    Random rnd = new Random();
-                    int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-                    username_colours.put(following_username, color);
                 }
                 lp.removeAllViews();
-                fetchPosts(all_usernames, username_colours);
+                fetchPosts(all_usernames);
             }
 
             @Override
@@ -547,7 +552,32 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     Posts.add(post);
                 }
                 Posts.sort(new DateComparator());
-                display_posts(Posts, username_colours, true);
+                display_posts(Posts, true);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void fetch_fcm_tokens()
+    {
+        all_fcm_tokens = new ArrayList<>();/* this will have the user's username
+                                                           and the usernames of the users, the
+                                                           user is following*/
+        reference3 = FirebaseDatabase.getInstance().getReference("Notifications")
+                .child(username);
+        reference3.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String fcm_token = data.getValue(String.class);
+                    all_fcm_tokens.add(fcm_token);
+                }
             }
 
             @Override
