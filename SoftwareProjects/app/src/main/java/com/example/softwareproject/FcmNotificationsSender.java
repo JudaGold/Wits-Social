@@ -27,10 +27,13 @@ public class FcmNotificationsSender  {
     String body;
             // The body of the notification
     Context mContext;
+
+    //Assignmment of the url and server
             // The activity's context
     private RequestQueue requestQueue;
             // Request queue to make a html request
 
+    //Notifications function
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
             // The URL for sending a message
     private final String fcmServerKey
@@ -39,6 +42,7 @@ public class FcmNotificationsSender  {
 
     // Constructor of the class
     public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext) {
+        //Details on the notification
         this.userFcmToken = userFcmToken;
         this.title = title;
         this.body = body;

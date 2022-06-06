@@ -46,7 +46,6 @@ public class Add_Profile_Pic extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Initialising of variables
         setContentView(R.layout.activity_add_profile_pic);
         btnSave= (Button) findViewById(R.id.btnSave);
