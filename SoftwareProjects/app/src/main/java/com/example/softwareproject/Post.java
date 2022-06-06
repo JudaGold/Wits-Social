@@ -85,6 +85,7 @@ class DateComparator implements Comparator<Post> {
         if (p1.getDate().compareTo(p2.getDate()) > 0) {
             return -1;
         }
+        
         else
         {
             return 1;
