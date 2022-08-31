@@ -620,7 +620,7 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
     TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);
     EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
     Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
-    popup_header.setText("Reply to:\n\t"+Reply_to_user);
+    popup_header.setText("Replying to:\n\t"+Reply_to_user);
     popup_original.setText(original_post_msg);
 
 
