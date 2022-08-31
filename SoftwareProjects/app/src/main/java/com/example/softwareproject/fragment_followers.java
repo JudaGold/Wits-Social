@@ -80,6 +80,8 @@ public class fragment_followers extends Fragment {
                         l.addView(df);
                     }
                 }
+
+
             }
 
             @Override

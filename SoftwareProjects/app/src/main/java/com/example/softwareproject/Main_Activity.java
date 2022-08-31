@@ -53,8 +53,6 @@ public class Main_Activity extends AppCompatActivity
             String username = preferences.getString("username", "");
             String password = preferences.getString("password", "");
             isUser(username,password);
-        }else if(checkbox.equals("false")){
-            Toast.makeText(this,"Please enter your details",Toast.LENGTH_SHORT).show();
         }
 
         signup.setOnClickListener(new View.OnClickListener() {

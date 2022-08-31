@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,10 +40,9 @@ public class user_display extends AppCompatActivity {
     de.hdodenhof.circleimageview.CircleImageView user_image;
     AutoCompleteTextView search_bar;
     String username,logged_in_user, fcm_token;
-    Search_User_class su;//creating a instance of the search user class to search for a user
     boolean main_user  = true;
-    boolean following = false;
-
+    boolean isfollowing_user = false;
+    Search_User_class su;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class user_display extends AppCompatActivity {
         usernameText = (TextView) findViewById(R.id.username_text);
         bioText = (TextView) findViewById(R.id.bio_text);
         user_image = findViewById(R.id.searched_user_image);
+        btnfollow = new Button(getApplicationContext());
         display_user_information();
 
         if(username.equalsIgnoreCase(logged_in_user)){
@@ -87,7 +88,6 @@ public class user_display extends AppCompatActivity {
         else{
             main_user = false;
             LinearLayout lp_info= findViewById(R.id.lp_info);
-            btnfollow = new Button(getApplicationContext());
             lp_info.addView(btnfollow);
             lp_info.removeView(bioText);
             is_following();
@@ -96,6 +96,15 @@ public class user_display extends AppCompatActivity {
         btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
         su = new Search_User_class();
         su.search(logged_in_user,username,search_bar,btn_search_user,user_display.this);
+
+        btnfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update_social();
+            }
+        });
+
+
     }
 
     public void display_user_information() {
@@ -131,51 +140,64 @@ public class user_display extends AppCompatActivity {
             }
         });
     }
-    private void is_following(){
+    private void is_following(){//checking is user is being followed by current account
+
         DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference("social").child(logged_in_user)
-                .child("following");
+                .getReference("social").child(logged_in_user).child("following");
+
+       ref.addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               boolean found = false;
+               if(snapshot.exists()){
+                   for(DataSnapshot data:snapshot.getChildren()){
+                       if(data.getValue().equals(username)) {
+                           btnfollow.setText("Following");
+                           found = true;
+                           break;
+                       }
+
+                       if(!found){
+                           btnfollow.setText("Follow");
+                       }
+
+                   }
+               }
+           }
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+    }
+    void update_social(){//checking if user wants to follow or unfollow
+        Search_User_class search_user_class = new Search_User_class();
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("social").child(logged_in_user).child("following");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot data:snapshot.getChildren()){
-                        if (data.getValue(String.class).equalsIgnoreCase(username)){
-                            following = true;
-                            break;
-                        }
+                boolean found = false;
+                for(DataSnapshot data:snapshot.getChildren()){
+                    if(data.getValue().equals(username)){
+                        btnfollow.setText("Follow");
+                        search_user_class.unfollow(logged_in_user,username);
+                        found = true;
+                        break;
                     }
                 }
-
-                if(following){
+                if(!found){
                     btnfollow.setText("Following");
-                    btnfollow.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            su.unfollow(logged_in_user,username);
-                            following = false;
-                            btnfollow.setText("Follow");
-                        }
-                    });
-                }
-                else{
-                    btnfollow.setText("Follow");
-                    btnfollow.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            su.follow(logged_in_user,username, fcm_token);
-                            btnfollow.setText("Following");
-                        }
-                    });
+                    search_user_class.follow(logged_in_user,username, fcm_token);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
-
     public void update_FCM_token()
     {
         FirebaseMessaging.getInstance().getToken()
