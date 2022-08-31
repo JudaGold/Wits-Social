@@ -59,12 +59,15 @@ public class Search_User_class {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String username = data.child("username").getValue(String.class);
-
-                    if (!username.equalsIgnoreCase(My_username)) {
-                        if (!username.equalsIgnoreCase(loggedin_user)) {
-                            users.add(username);
+                    try{
+                        if (!username.equalsIgnoreCase(My_username)) {
+                            if (!username.equalsIgnoreCase(loggedin_user)) {
+                                users.add(username);
+                            }
                         }
                     }
+                    catch(Exception c){}
+
                 }
             }
 

@@ -20,6 +20,16 @@ public class Post
         this.body = body;
         this.post_image_url = post_image_url;
     }
+    public Post(String ID,String username,String body, String post_image_url, String time) {
+        //Details on the page
+        this.ID = ID;
+        this.username = username;
+        this.time= time;
+        this.body = body;
+        this.post_image_url = post_image_url;
+    }
+
+
 
     //Line 27-76: get and set functions for each detail on the post
     public String getUsername() {
@@ -64,7 +74,10 @@ public class Post
 
     // this method will convert the string "time" to a date object.
     public void convertDate() throws ParseException {
-        this.date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(this.time);
+        try{
+            this.date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(this.time);
+        }catch(Exception c){}
+
     }
 
     public Date getDate() {
@@ -79,16 +92,16 @@ public class Post
 class DateComparator implements Comparator<Post> {
     // override the compare() method
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public int compare(Post p1, Post p2)
-    {
+    public int compare(Post p1, Post p2) {
         // if the first post's date and time is later than the second post's date and time
-        if (p1.getDate().compareTo(p2.getDate()) > 0) {
-            return -1;
+        try {
+            if (p1.getDate().compareTo(p2.getDate()) > 0) {
+                return -1;
+            } else {
+                return 1;
+            }
+        } catch (Exception c) {
         }
-        
-        else
-        {
-            return 1;
-        }
-    }
+
+    return 0;}
 }

@@ -164,6 +164,10 @@
         "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_account_circle_24.xml"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/layout_pop_up_reply.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/layout/pop_up_reply.xml"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable-xxxhdpi_baseline_add_circle_outline_white_24.png.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable-xxxhdpi/baseline_add_circle_outline_white_24.png"
     },
