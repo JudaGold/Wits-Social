@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,19 +19,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class Forgot_Password extends AppCompatActivity {
     EditText emailfield,p1,p2;
-    Button btn,cbtn;
+    Button btn,cbtn,btntemp;
     LinearLayout l,ll;
     String email;
-    FirebaseDatabase fb,rootnode;
+    FirebaseDatabase fb,rootnode,temp;
     DatabaseReference Gdb;
     Field_Validations fv = new Field_Validations();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-
 
         l = (LinearLayout) findViewById(R.id.mainlayout);
         ll = new LinearLayout(this);

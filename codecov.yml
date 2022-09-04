@@ -12,3 +12,5 @@ ignore:
     - "**/Show_Profile_Details.java"
     - "**/Sign_Up.java"
     - "**/user_display.java"
+    - "**/FcmNotificationsSender.java"
+    - "**/Push_Notification_Service.java"

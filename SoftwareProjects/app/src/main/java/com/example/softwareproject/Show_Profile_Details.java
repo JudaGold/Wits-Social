@@ -35,7 +35,7 @@ import com.squareup.picasso.Picasso;
 public class Show_Profile_Details extends AppCompatActivity
 {
     private static final int PICK_IMAGE_REQUEST = 1;
-
+    //Declarations of variable
     TextView UserName;
     EditText bio, fullName, PhoneNumber,EmailAddress;
     String username;
@@ -54,11 +54,13 @@ public class Show_Profile_Details extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Assign variables
         setContentView(R.layout.show_profile_details);
         fv = new Field_Validations();
         Intent intent = getIntent();
         username = intent.getStringExtra("Username");
 
+        //Assign varibles
         profile_pic = (ImageView) findViewById(R.id.profile_pic);
         UserName = (TextView) findViewById(R.id.UserName_txt);
         fullName = (EditText) findViewById(R.id.full_name);
@@ -99,11 +101,13 @@ public class Show_Profile_Details extends AppCompatActivity
         btnSave2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Assignment variables
                 String email = EmailAddress.getText().toString();
                 String number  = PhoneNumber.getText().toString();
                 String name = fullName.getText().toString();
                 String userBio = bio.getText().toString();
 
+                //Declare and assign variables
                 boolean completed = completed();
                 boolean validEmail = fv.check_email(email,EmailAddress);
                 boolean validNumber = fv.Valid_number(number,PhoneNumber);
@@ -111,11 +115,13 @@ public class Show_Profile_Details extends AppCompatActivity
 
                 if (completed  && validEmail && validNumber && validBio)
                 {
+                    //If true, update details on the screen
                     bd.child(username).child("bio").setValue(userBio);
                     bd.child(username).child("email").setValue(email);
                     bd.child(username).child("name").setValue(name);
                     bd.child(username).child("phoneNumber").setValue(number);
 
+                    //If user clicks the button again, return the message in line 'Upload in progress'
                     if (mUploadTask != null && mUploadTask.isInProgress()) {
                         Toast.makeText(Show_Profile_Details.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                     } else {
@@ -125,6 +131,7 @@ public class Show_Profile_Details extends AppCompatActivity
             }
         });
 
+        //Switch to file selector after clicking the add new picture
         btnAddNewPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +139,7 @@ public class Show_Profile_Details extends AppCompatActivity
             }
         });
 
+        //Click listener for logout button
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,6 +155,7 @@ public class Show_Profile_Details extends AppCompatActivity
 
     }
 
+    //Function to open the file selector
     private void openFileUser(){
         Intent intent2 = new Intent();
         intent2.setType("image/*");

@@ -60,6 +60,7 @@
     <string name="project_id" translatable="false">wits-social-af900</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="reply_to">Reply to:</string>
     <string name="retype_password">reType Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="tell_eveyone_n_what_s_on_you_re_mind">Tell eveyone\n what\'s on you\'re mind</string>

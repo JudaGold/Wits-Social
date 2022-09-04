@@ -15,7 +15,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 public class user_display extends AppCompatActivity {
@@ -31,15 +35,14 @@ public class user_display extends AppCompatActivity {
     private ViewPager viewPager;
     TextView usernameText, bioText;// bioText will have the user's bio
     ImageButton btn_search_user;
-    Button  btnfollow;
+    Button btnfollow;
     DatabaseReference reference;// this the reference of the Firebase database
     de.hdodenhof.circleimageview.CircleImageView user_image;
     AutoCompleteTextView search_bar;
-    String username,logged_in_user;
-    Search_User_class su;//creating a instance of the search user class to search for a user
+    String username,logged_in_user, fcm_token;
     boolean main_user  = true;
-    boolean following = false;
-
+    boolean isfollowing_user = false;
+    Search_User_class su;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +51,25 @@ public class user_display extends AppCompatActivity {
         tabLayout = findViewById(R.id.TabLayout);
         viewPager = findViewById(R.id.viewpager);
         tabLayout.setupWithViewPager(viewPager);
+
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");//establishing fragment for viewing posts
         pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");//establishing fragment for viewing user followers
         pagerAdapter.addFragmentTitle(new fragment_following(),"Following");//establishing fragment for viewing user following list
         viewPager.setAdapter(pagerAdapter);//setting up a viewpager to make swiping across fragments
-        Intent intent = getIntent();
 
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        Intent intent = getIntent();
         username = intent.getStringExtra("username");
         logged_in_user =  intent.getStringExtra("loggedinuser");
         intent.putExtra("loggedinuser",logged_in_user);
+        update_FCM_token();
 
         usernameText = (TextView) findViewById(R.id.username_text);
         bioText = (TextView) findViewById(R.id.bio_text);
         user_image = findViewById(R.id.searched_user_image);
+        btnfollow = new Button(getApplicationContext());
         display_user_information();
 
         if(username.equalsIgnoreCase(logged_in_user)){
@@ -80,7 +88,6 @@ public class user_display extends AppCompatActivity {
         else{
             main_user = false;
             LinearLayout lp_info= findViewById(R.id.lp_info);
-            btnfollow = new Button(getApplicationContext());
             lp_info.addView(btnfollow);
             lp_info.removeView(bioText);
             is_following();
@@ -89,10 +96,18 @@ public class user_display extends AppCompatActivity {
         btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
         su = new Search_User_class();
         su.search(logged_in_user,username,search_bar,btn_search_user,user_display.this);
+
+        btnfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update_social();
+            }
+        });
+
+
     }
 
     public void display_user_information() {
-        reference = FirebaseDatabase.getInstance().getReference("Users");
         Query checkUser = reference.orderByChild("username").equalTo(username);
 
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -125,48 +140,77 @@ public class user_display extends AppCompatActivity {
             }
         });
     }
-    private void is_following(){
+    private void is_following(){//checking is user is being followed by current account
+
         DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference("social").child(logged_in_user)
-                .child("following");
+                .getReference("social").child(logged_in_user).child("following");
+
+       ref.addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               boolean found = false;
+               if(snapshot.exists()){
+                   for(DataSnapshot data:snapshot.getChildren()){
+                       if(data.getValue().equals(username)) {
+                           btnfollow.setText("Following");
+                           found = true;
+                           break;
+                       }
+
+                       if(!found){
+                           btnfollow.setText("Follow");
+                       }
+
+                   }
+               }
+           }
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+    }
+    void update_social(){//checking if user wants to follow or unfollow
+        Search_User_class search_user_class = new Search_User_class();
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("social").child(logged_in_user).child("following");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot data:snapshot.getChildren()){
-                        if (data.getValue(String.class).equalsIgnoreCase(username)){
-                            following = true;
-                            break;
-                        }
+                boolean found = false;
+                for(DataSnapshot data:snapshot.getChildren()){
+                    if(data.getValue().equals(username)){
+                        btnfollow.setText("Follow");
+                        search_user_class.unfollow(logged_in_user,username);
+                        found = true;
+                        break;
                     }
                 }
-
-                if(following){
+                if(!found){
                     btnfollow.setText("Following");
-                    btnfollow.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            su.unfollow(logged_in_user,username);
-                            following = false;
-                            btnfollow.setText("Follow");
-                        }
-                    });
-                }
-                else{
-                    btnfollow.setText("Follow");
-                    btnfollow.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            su.follow(logged_in_user,username);
-                            btnfollow.setText("Following");
-                        }
-                    });
+                    search_user_class.follow(logged_in_user,username, fcm_token);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+    }
+    public void update_FCM_token()
+    {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        fcm_token = task.getResult();
+
+                        reference.child(username).child("fcm_token").setValue(fcm_token);
+                    }
+                });
     }
 }
