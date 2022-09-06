@@ -320,12 +320,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 getImage(URL, image);
                 postview.addView(image);
 
-                image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        create_img_popup(URL);
-                    }
-                });
+//                image.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        create_img_popup(URL);
+//                    }
+//                });
             }
 
             postview.addView(body);
@@ -450,12 +450,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         ImageView im = createImageView();
                         getImage(URL, im);
                         post.addView(im);
-                        im.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                create_img_popup(URL);
-                            }
-                        });
+//                        im.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                create_img_popup(URL);
+//                            }
+//                        });
 
                     }
                     post.addView(body);
@@ -554,8 +554,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         params.gravity = Gravity.CENTER; //sets the image at the centre
         params.setMargins(0,40,0,50);
         imageView.setLayoutParams(params);
-        imageView.setClickable(true);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         return imageView;
     }
     public void getImage(String URL, ImageView image){
