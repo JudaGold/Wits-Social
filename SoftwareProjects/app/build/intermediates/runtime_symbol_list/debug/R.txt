@@ -2982,7 +2982,6 @@ int id popup_image 0x7f0a0184
 int id position 0x7f0a0185
 int id postLayout 0x7f0a0186
 int id post_body 0x7f0a0187
-int id post_image 0x7f0a0188
 int id post_replying_to 0x7f0a0189
 int id profile_pic 0x7f0a018a
 int id progress_circular 0x7f0a018b

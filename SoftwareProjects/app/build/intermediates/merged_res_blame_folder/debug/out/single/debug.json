@@ -200,10 +200,6 @@
         "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-40:\\drawable-xxhdpi\\ic_notification.png"
     },
     {
-        "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-38:\\layout_replies_page.xml.flat",
-        "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-40:\\layout\\replies_page.xml"
-    },
-    {
         "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-38:\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-40:\\mipmap-mdpi\\ic_launcher.webp"
     },
@@ -230,6 +226,10 @@
     {
         "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-38:\\font_font.xml.flat",
         "source": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-main-40:\\font\\font.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/layout_popup_post.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/layout/popup_post.xml"
     },
     {
         "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.3.3\\com.example.softwareproject.app-merged_res-38:\\drawable_user.png.flat",
