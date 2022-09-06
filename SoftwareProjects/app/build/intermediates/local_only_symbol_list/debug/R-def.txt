@@ -88,7 +88,6 @@ id password
 id phone_number
 id popup_image
 id post_body
-id post_image
 id post_replying_to
 id profile_pic
 id rememberMe

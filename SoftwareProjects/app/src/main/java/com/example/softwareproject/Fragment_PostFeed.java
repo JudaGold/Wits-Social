@@ -57,7 +57,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
     ImageView image_popup, imgClose_popup;
     View v;
-    EditText popup_post_body, popup_post_image,reply_btn;
+    EditText popup_post_body, reply_btn;
     Button popup_add_post;
     ImageButton btnadd_post;
     DatabaseReference reference,reference2, reference3;// this the reference of the Firebase database
@@ -117,12 +117,18 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         AlertDialog dialog;
         final View popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);
         popup_post_body = (EditText) popup_content.findViewById(R.id.post_body);
-        popup_post_image = (EditText) popup_content.findViewById(R.id.post_image);
         popup_add_post = (Button) popup_content.findViewById(R.id.btn_post);
 
         if (edit){
-            popup_post_body.setText(body);
-            popup_post_image.setText(URL);
+            if (URL.equalsIgnoreCase(""))
+            {
+                popup_post_body.setText(body);
+            }
+            else
+            {
+                popup_post_body.setText(URL);
+            }
+
             popup_add_post.setText("Edit Post");
 
             try {
@@ -156,8 +162,17 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             public void onClick(View v) {
 
                 try {
-                    String body = popup_post_body.getText().toString();
-                    String image_url = popup_post_image.getText().toString();
+                    String body, image_url;
+                    String post = popup_post_body.getText().toString();
+                    if (post.substring(0, 4).equalsIgnoreCase("http"))
+                    {
+                        body = "";
+                        image_url = post;
+                    }
+                    else {
+                        body = post;
+                        image_url = "";
+                    }
                     Date date = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String t = (format.format(date));
