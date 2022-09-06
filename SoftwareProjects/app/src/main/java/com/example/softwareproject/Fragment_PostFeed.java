@@ -53,7 +53,7 @@ import java.util.*;
 
 public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
-    String ExistingBody, ExistingURL, ExistingTime, ExistingID;
+    String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
 
     ImageView image_popup, imgClose_popup;
     View v;
@@ -229,7 +229,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                      catch(Exception e){
                     }}
                     Posts.sort(new DateComparator());
-                    display_posts(Posts, false);
+                    display_posts(Posts, false, false, false);
                 }
 
                 @Override
@@ -240,9 +240,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void display_posts(ArrayList<Post> Posts, Boolean Edits) {
+    public void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_replies, Boolean is_searched_user) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
-        if(Edits) {
+        int counter_reply = 0;
+
+        if(Edits || is_replies) {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -271,15 +273,22 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             usernameView.setTextSize(20);
 
             boolean account_main = false;//checking for logged in user
-            if (username_post.equalsIgnoreCase(username))
-            {
-                usernameView.setText("Me");
-                account_main = true;
+            if (!is_searched_user) {
+                if (username_post.equalsIgnoreCase(username)) {
+                    usernameView.setText("Me");
+                    account_main = true;
+                } else {
+                    usernameView.setText(username_post);
+                }
             }
             else
             {
-                usernameView.setText(username_post);
-
+                if (username_post.equalsIgnoreCase(account_user)) {
+                    usernameView.setText("Me");
+                    account_main = true;
+                } else {
+                    usernameView.setText(username_post);
+                }
             }
             usernameView.setTextColor(Color.parseColor("#135A71"));
             usernameView.setGravity(Gravity.CENTER);
@@ -324,7 +333,41 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 });
             }
 
+            if (!Edits)
+            {
+                postview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setBody(post_body);
+                        setURL(URL);
+                        setID(ID);
+                        setTime(post_time);
+                        setUsername(username_post);
+                        ArrayList<Post> Posts = new ArrayList<>();
+                        Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
+                        try {
+                            post.convertDate();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        Posts.add(post);
+                        display_replies(ExistingID, Posts, false);
+                    }
+                });
+            }
+
             lp.addView(postview);
+
+            counter_reply++;
+
+            if (is_replies && counter_reply == 1)
+            {
+                TextView replyTextView = new TextView(v.getContext());
+                replyTextView.setTextSize(20);
+                replyTextView.setText("Replies");
+                replyTextView.setTextColor(Color.parseColor("white"));
+                lp.addView(replyTextView);
+            }
         }
     }
     public void getFollowing() {
@@ -405,6 +448,27 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     post.addView(createReplyOption(username,post_body,uid));
                     lp.addView(post);
                     lp.addView(space); //adds space so that the posts look better
+
+                    String finalPost_time = post_time;
+                    post.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setBody(post_body);
+                            setURL(URL);
+                            setID(uid);
+                            setTime(finalPost_time);
+                            setUsername(username);
+                            ArrayList<Post> Posts = new ArrayList<>();
+                            Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
+                            try {
+                                post.convertDate();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            Posts.add(post);
+                            display_replies(ExistingID, Posts, true);
+                        }
+                    });
                 }
             }
             @Override
@@ -414,8 +478,38 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         });
 
     }
-    public void display_replies(){
+    public void display_replies(String postID, ArrayList<Post> Replies, Boolean is_searched_user){
+        lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
+        reference = FirebaseDatabase.getInstance().getReference("Posts").child(ExistingUsername).child(postID).child("Replies");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String id = data.getKey();
+                    String b = data.child("body").getValue(String.class);
+                    String t = data.child("time").getValue(String.class);
+                    String URL = data.child("post_image_url").getValue(String.class);
+                    String username = data.child("username").getValue(String.class);
+                    Post post = new Post(id, username,b, URL, t);
+                    try {
+                        post.convertDate();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Replies.add(post);
+                }
+                Replies.sort(new DateComparator());
+                display_posts(Replies, false, true, is_searched_user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void create_img_popup(String URL){
@@ -542,6 +636,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         ExistingTime = time;
     }
 
+    public void setUsername(String username)
+    {
+        ExistingUsername = username;
+    }
+
     public void getPreviousEdits(String Id,ArrayList<Post> Posts) {
 
         lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
@@ -567,7 +666,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         Posts.add(post);
                     }
                     Posts.sort(new DateComparator());
-                    display_posts(Posts, true);
+                    display_posts(Posts, true, false, false);
                 }
 
             @Override
