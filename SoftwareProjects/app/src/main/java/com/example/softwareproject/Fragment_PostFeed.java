@@ -226,34 +226,64 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             following_posts.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        for (DataSnapshot data : snapshot.getChildren()) {
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        try{
+                            String id = data.getKey();
+                            String b = data.child("body").getValue(String.class);
+                            String t = data.child("time").getValue(String.class);
+                            String URL = data.child("post_image_url").getValue(String.class);
+                            Post post = new Post(id, b, URL, t);
+                            post.setUsername(usernames);
                             try {
-                                String id = data.getKey();
-                                String b = data.child("body").getValue(String.class);
-                                String t = data.child("time").getValue(String.class);
-                                String URL = data.child("post_image_url").getValue(String.class);
-                                Post post = new Post(id, b, URL, t);
-                                post.setUsername(usernames);
-                                try {
-                                    post.convertDate();
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                Posts.add(post);
-                            } catch (Exception e) {
+                                post.convertDate();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
                             }
+                            Posts.add(post);
                         }
-                        Posts.sort(new DateComparator());
-                        display_posts(Posts, false, false, false);
-                    }
+                     catch(Exception e){
+                    }}
+//                    Posts.sort(new DateComparator());
+//                    display_posts(Posts, false, false, false);
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
         }
+        reference = FirebaseDatabase.getInstance().getReference().child("Replies").child(username);
+        Query replies = reference.orderByChild(String.valueOf(maxId));
+        replies.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    try{
+                        String id = data.getKey();
+                        String b = data.child("body").getValue(String.class);
+                        String t = data.child("time").getValue(String.class);
+                        String URL = data.child("post_image_url").getValue(String.class);
+                        Post post = new Post(id, b, URL, t);
+                        post.setUsername(username);
+                        try {
+                            post.convertDate();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        Posts.add(post);
+                    }
+                    catch(Exception e){
+                    }}
+                Posts.sort(new DateComparator());
+                display_posts(Posts, false, false, false);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_replies, Boolean is_searched_user) {
@@ -786,6 +816,7 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
             });
 
             dialog.dismiss();
+            fetchPosts(all_usernames);
         }
     });
   ;
