@@ -226,27 +226,28 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             following_posts.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot data : snapshot.getChildren()) {
-                        try{
-                            String id = data.getKey();
-                            String b = data.child("body").getValue(String.class);
-                            String t = data.child("time").getValue(String.class);
-                            String URL = data.child("post_image_url").getValue(String.class);
-                            Post post = new Post(id, b, URL, t);
-                            post.setUsername(usernames);
+                    if (snapshot.exists()) {
+                        for (DataSnapshot data : snapshot.getChildren()) {
                             try {
-                                post.convertDate();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
+                                String id = data.getKey();
+                                String b = data.child("body").getValue(String.class);
+                                String t = data.child("time").getValue(String.class);
+                                String URL = data.child("post_image_url").getValue(String.class);
+                                Post post = new Post(id, b, URL, t);
+                                post.setUsername(usernames);
+                                try {
+                                    post.convertDate();
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                Posts.add(post);
+                            } catch (Exception e) {
                             }
-                            Posts.add(post);
                         }
-                     catch(Exception e){
-                    }}
-                    Posts.sort(new DateComparator());
-                    display_posts(Posts, false, false, false);
+                        Posts.sort(new DateComparator());
+                        display_posts(Posts, false, false, false);
+                    }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -785,7 +786,6 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
             });
 
             dialog.dismiss();
-            fetchPosts(all_usernames);
         }
     });
   ;
