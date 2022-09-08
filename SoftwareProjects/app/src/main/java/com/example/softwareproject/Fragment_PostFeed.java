@@ -29,6 +29,7 @@ import android.widget.PopupMenu;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -57,7 +58,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
     ImageView image_popup, imgClose_popup;
     View v;
-    EditText popup_post_body, reply_btn;
+    EditText popup_post_body;
     Button popup_add_post;
     ImageButton btnadd_post;
     DatabaseReference reference,reference2, reference3;// this the reference of the Firebase database
@@ -359,9 +360,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 //                });
             }
 
+            ToggleButton favouritesButton = createFavouriteToggleButton(uid,ID);
+            LinearLayout horizontalLayout = createHorizontalLayout();
             postview.addView(body);
             if(!account_main){
-                postview.addView(createReplyOption(username_post,post_body,uid));
+                horizontalLayout.addView(favouritesButton);
+                horizontalLayout.addView(createReplyOption(username_post,post_body,uid));
             }
 
             if (username_post.equalsIgnoreCase(username) && !Edits)
@@ -402,7 +406,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 });
             }
 
+            postview.addView(horizontalLayout);
             lp.addView(postview);
+
 
             counter_reply++;
 
@@ -603,8 +609,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     public TextView createReplyOption(String Reply_to,String post_msg,String uid){//adding a reply text for user to click on to reply to a post
         TextView textView = new TextView(getContext());
         textView.setText("reply");
-        textView.setTextSize(20);
+        textView.setTextSize(18);
         textView.setGravity(Gravity.RIGHT);
+        textView.setPadding(30,0,20,0);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -635,6 +642,40 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         space.setLayoutParams(params);
         return space;
     }
+    public LinearLayout createHorizontalLayout(){
+        LinearLayout horizontalLayout = new LinearLayout(getContext());
+        horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+        horizontalLayout.setHorizontalGravity(Gravity.RIGHT);
+        horizontalLayout.setPadding(30,10,20,20);
+        return horizontalLayout;
+    }
+    public ToggleButton createFavouriteToggleButton(String user, String ID){
+        ToggleButton toggleButton = new ToggleButton(getContext());
+        toggleButton.setText(""); //removes all text from the toggle button so that only the heart shows
+        toggleButton.setTextOn("");
+        toggleButton.setTextOff("");
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80,80);
+        // params.gravity = Gravity.LEFT; //sets the favourite button to the left
+        toggleButton.setLayoutParams(params);
+        toggleButton.setPadding(30,0,200,0);
+        toggleButton.setBackgroundResource(R.drawable.toggle_selector);
+        toggleButton.setClickable(true);
+
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (toggleButton.isChecked()){
+                    Toast.makeText(getContext(), "added to favourites", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "removed from favourites", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return toggleButton;
+    }
+
     public void showPopupMenu(LinearLayout ll){
         PopupMenu popup_menu = new PopupMenu(v.getContext(), ll); //shows popup edit menu only on the post
         popup_menu.setOnMenuItemClickListener(this);
