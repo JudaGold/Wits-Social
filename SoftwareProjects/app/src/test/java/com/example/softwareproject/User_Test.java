@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class User_Test {
     @Test
     public void User_initialState_validOutput() {
-        // Creating a user
+        // Creating a user.
         // Initializing the user
         User fakeUser = new User("Elementrix08",
                 "verushannaidoo@gmail.com", "0615805094", "Elementrix",
