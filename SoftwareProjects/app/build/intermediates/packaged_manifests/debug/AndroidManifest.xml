@@ -31,6 +31,9 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
+            android:name="com.example.softwareproject.Replies"
+            android:exported="false" />
+        <activity
             android:name="com.example.softwareproject.user_display"
             android:exported="false" />
         <activity

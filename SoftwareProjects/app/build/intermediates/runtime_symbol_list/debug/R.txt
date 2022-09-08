@@ -2711,6 +2711,7 @@ int id btnLogin 0x7f0a0075
 int id btnSave 0x7f0a0076
 int id btnSave2 0x7f0a0077
 int id btn_add_post 0x7f0a0078
+int id btn_home 0x7f0a022e
 int id btn_post 0x7f0a0079
 int id btn_reply 0x7f0a007a
 int id buttonPanel 0x7f0a007b
@@ -3009,6 +3010,7 @@ int id scrollIndicatorDown 0x7f0a019f
 int id scrollIndicatorUp 0x7f0a01a0
 int id scrollView 0x7f0a01a1
 int id scroll_posts 0x7f0a01a2
+int id scroll_replies 0x7f0a022f
 int id scrollable 0x7f0a01a3
 int id search_badge 0x7f0a01a4
 int id search_bar 0x7f0a01a5
@@ -3322,6 +3324,7 @@ int layout notification_template_part_time 0x7f0d0069
 int layout pop_up_reply 0x7f0d006a
 int layout popup_image 0x7f0d006b
 int layout popup_post 0x7f0d006c
+int layout replies_page 0x7f0d0082
 int layout select_dialog_item_material 0x7f0d006d
 int layout select_dialog_multichoice_material 0x7f0d006e
 int layout select_dialog_singlechoice_material 0x7f0d006f
