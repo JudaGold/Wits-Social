@@ -65,6 +65,7 @@ id btnLogin
 id btnSave
 id btnSave2
 id btn_add_post
+id btn_home
 id btn_post
 id btn_reply
 id edit_post
@@ -94,6 +95,7 @@ id rememberMe
 id reply_body
 id reply_header
 id scroll_posts
+id scroll_replies
 id search_bar_input
 id searched_user_image
 id sibt
@@ -119,6 +121,7 @@ layout fragment_following
 layout pop_up_reply
 layout popup_image
 layout popup_post
+layout replies_page
 layout show_profile_details
 menu popup_edit
 mipmap ic_launcher

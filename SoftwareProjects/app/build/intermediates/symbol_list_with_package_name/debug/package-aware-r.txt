@@ -2712,6 +2712,7 @@ id btnLogin
 id btnSave
 id btnSave2
 id btn_add_post
+id btn_home
 id btn_post
 id btn_reply
 id buttonPanel
@@ -3010,6 +3011,7 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scroll_posts
+id scroll_replies
 id scrollable
 id search_badge
 id search_bar
@@ -3323,6 +3325,7 @@ layout notification_template_part_time
 layout pop_up_reply
 layout popup_image
 layout popup_post
+layout replies_page
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material

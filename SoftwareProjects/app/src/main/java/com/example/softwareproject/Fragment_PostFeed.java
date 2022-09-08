@@ -227,25 +227,27 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             following_posts.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot data : snapshot.getChildren()) {
-                        try{
-                            String id = data.getKey();
-                            String b = data.child("body").getValue(String.class);
-                            String t = data.child("time").getValue(String.class);
-                            String URL = data.child("post_image_url").getValue(String.class);
-                            Post post = new Post(id, b, URL, t);
-                            post.setUsername(usernames);
+                    if (snapshot.exists()) {
+                        for (DataSnapshot data : snapshot.getChildren()) {
                             try {
-                                post.convertDate();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
+                                String id = data.getKey();
+                                String b = data.child("body").getValue(String.class);
+                                String t = data.child("time").getValue(String.class);
+                                String URL = data.child("post_image_url").getValue(String.class);
+                                Post post = new Post(id, b, URL, t);
+                                post.setUsername(usernames);
+                                try {
+                                    post.convertDate();
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                Posts.add(post);
+                            } catch (Exception e) {
                             }
-                            Posts.add(post);
                         }
-                     catch(Exception e){
-                    }}
 //                    Posts.sort(new DateComparator());
 //                    display_posts(Posts, false, false, false);
+                    }
                 }
 
                 @Override
@@ -388,20 +390,32 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 postview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        setBody(post_body);
-                        setURL(URL);
-                        setID(ID);
-                        setTime(post_time);
-                        setUsername(username_post);
-                        ArrayList<Post> Posts = new ArrayList<>();
-                        Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
-                        try {
-                            post.convertDate();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        Posts.add(post);
-                        display_replies(ExistingID, Posts, false);
+//                        setBody(post_body);
+//                        setURL(URL);
+//                        setID(ID);
+//                        setTime(post_time);
+//                        setUsername(username_post);
+//                        ArrayList<Post> Posts = new ArrayList<>();
+//                        Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
+//                        try {
+//                            post.convertDate();
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                        Posts.add(post);
+//                        display_replies(ExistingID, Posts, false);
+
+                        Intent intent = new Intent(getActivity(), Replies.class);
+                        intent.putExtra("username", account_user);
+                        intent.putExtra("loggedinuser",account_user);
+                        intent.putExtra("ID",ID);
+                        intent.putExtra("post_body",post_body);
+                        intent.putExtra("URL",URL);
+                        intent.putExtra("post_time",post_time);
+                        intent.putExtra("username_post",username_post);
+                        intent.putExtra("is_searched_user",false);
+                        getActivity().startActivity(intent);
+                        getActivity().finish();
                     }
                 });
             }
@@ -505,20 +519,32 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     post.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            setBody(post_body);
-                            setURL(URL);
-                            setID(uid);
-                            setTime(finalPost_time);
-                            setUsername(username);
-                            ArrayList<Post> Posts = new ArrayList<>();
-                            Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
-                            try {
-                                post.convertDate();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            Posts.add(post);
-                            display_replies(ExistingID, Posts, true);
+//                            setBody(post_body);
+//                            setURL(URL);
+//                            setID(uid);
+//                            setTime(finalPost_time);
+//                            setUsername(username);
+//                            ArrayList<Post> Posts = new ArrayList<>();
+//                            Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
+//                            try {
+//                                post.convertDate();
+//                            } catch (ParseException e) {
+//                                e.printStackTrace();
+//                            }
+//                            Posts.add(post);
+//                            display_replies(ExistingID, Posts, true);
+
+                            Intent intent = new Intent(getActivity(), Replies.class);
+                            intent.putExtra("username", account_user);
+                            intent.putExtra("loggedinuser",account_user);
+                            intent.putExtra("ID",uid);
+                            intent.putExtra("post_body",post_body);
+                            intent.putExtra("URL",URL);
+                            intent.putExtra("post_time",finalPost_time);
+                            intent.putExtra("username_post",username);
+                            intent.putExtra("is_searched_user",false);
+                            getActivity().startActivity(intent);
+                            getActivity().finish();
                         }
                     });
                 }
@@ -857,7 +883,6 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
             });
 
             dialog.dismiss();
-            fetchPosts(all_usernames);
         }
     });
   ;
