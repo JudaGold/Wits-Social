@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 
 class Post_Test {
-
+        // initial state testing
     @Test
     public void Post_initialState_validOutput(){
         // Creating a post
