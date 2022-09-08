@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Replies"
+            android:exported="false" />
+        <activity
             android:name=".user_display"
             android:exported="false" />
         <activity
