@@ -70,6 +70,7 @@ public class user_display extends AppCompatActivity {
         bioText = (TextView) findViewById(R.id.bio_text);
         user_image = findViewById(R.id.searched_user_image);
         btnfollow = new Button(getApplicationContext());
+        btnfollow.setText("follow");
         display_user_information();
 
         if(username.equalsIgnoreCase(logged_in_user)){
