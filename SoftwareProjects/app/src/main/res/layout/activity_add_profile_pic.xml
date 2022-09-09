@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="right"
-    android:background="#E42672AF"
-    android:backgroundTint="#4A63F3"
     tools:context=".Add_Profile_Pic">
 
     <LinearLayout
@@ -16,7 +14,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:background="@drawable/exp"
+        android:background="@color/background"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,12 +24,14 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="104dp"
+            android:layout_height="84dp"
             android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|top"
+            android:paddingTop="20dp"
             android:text="Add a profile picture"
-            android:textColor="#338CD3"
+            android:textAlignment="center"
+            android:textColor="#F3F3F6"
             android:textSize="32sp" />
-
 
 
         <ImageView
@@ -42,7 +42,7 @@
             android:background="#00DBDBDF"
             android:backgroundTint="#E8EAED"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_baseline_person_24" />
+            app:srcCompat="@drawable/add_pic" />
 
         <Space
             android:layout_width="match_parent"
@@ -54,10 +54,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lato_regular"
+            android:paddingStart="20dp"
             android:text="Write a bio below:"
             android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <EditText
@@ -65,10 +66,12 @@
             android:layout_width="match_parent"
             android:layout_height="207dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_border"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:backgroundTint="@color/TextBackgroundTint"
             android:fontFamily="@font/lato_regular"
             android:inputType="textMultiLine"
             android:paddingBottom="150dp"
+            android:textColor="#FDFBFB"
             android:textSize="22sp" />
 
         <Space
@@ -80,12 +83,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#123F4C"
+            android:backgroundTint="@color/button"
             android:fontFamily="@font/lato_regular"
             android:gravity="center"
             android:text="Save"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

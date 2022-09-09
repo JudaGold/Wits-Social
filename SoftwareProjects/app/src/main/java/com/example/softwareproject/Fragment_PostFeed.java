@@ -306,7 +306,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
 
         lp.setOrientation(LinearLayout.VERTICAL);
-        lp.setBackgroundColor(Color.parseColor("white"));
+        //lp.setBackgroundColor(Color.parseColor());
         lp.removeAllViews();
         for (Post post : Posts) {
             String uid = post.getID();
@@ -316,7 +316,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             String ID = post.getID();
             String username_post = post.getUsername();
 
-            TextView usernameView = new TextView(v.getContext());
+            TextView usernameView = createUsernameTextView();
             usernameView.setTextSize(20);
 
             boolean account_main = false;//checking for logged in user
@@ -337,8 +337,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     usernameView.setText(username_post);
                 }
             }
-            usernameView.setTextColor(Color.parseColor("#135A71"));
-            usernameView.setGravity(Gravity.CENTER);
             lp.addView(usernameView);
 
             TextView body = createBodyTextView(" "+post_body);
@@ -360,7 +358,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 //                });
             }
 
-            ToggleButton favouritesButton = createFavouriteToggleButton(uid,ID);
+            ToggleButton favouritesButton = createFavouriteToggleButton(username,username_post,ID);
             LinearLayout horizontalLayout = createHorizontalLayout();
             postview.addView(body);
             if(!account_main){
@@ -408,6 +406,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
             postview.addView(horizontalLayout);
             lp.addView(postview);
+            lp.addView(addSpace());
 
 
             counter_reply++;
@@ -497,7 +496,13 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     }
                     post.addView(body);
                     Space space = addSpace();
-                    post.addView(createReplyOption(username,post_body,uid));
+                    ToggleButton favouritesButton = createFavouriteToggleButton(account_user,username,uid);
+                    LinearLayout horizontalLayout = createHorizontalLayout();
+                    horizontalLayout.addView(favouritesButton);
+                    horizontalLayout.addView(createReplyOption(username,post_body,uid));
+
+                    post.addView(horizontalLayout);
+
                     lp.addView(post);
                     lp.addView(space); //adds space so that the posts look better
 
@@ -585,10 +590,20 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         });
 
     }
+
+    public TextView createUsernameTextView(){
+        TextView user = new TextView(getContext());
+        user.setTextSize(20);
+        user.setPadding(30,30,30,30);
+        user.setTextColor(Color.parseColor("#FF47FAF3"));
+        user.setGravity(Gravity.LEFT);
+        return user;
+
+    }
     public ImageView createImageView(){
         ImageView imageView = new ImageView(getContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
-        params.gravity = Gravity.CENTER; //sets the image at the centre
+        params.gravity = Gravity.LEFT; //sets the image at the centre
         params.setMargins(0,40,0,50);
         imageView.setLayoutParams(params);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -602,6 +617,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         TextView body = new TextView(getContext());
         body.setText(str);
         body.setTextSize(20);
+        body.setTextColor(Color.parseColor("white"));
         body.setPadding(30,30,30,30);
         return body;
     }
@@ -612,6 +628,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         textView.setTextSize(18);
         textView.setGravity(Gravity.RIGHT);
         textView.setPadding(30,0,20,0);
+        textView.setTextColor(Color.parseColor("white"));
 
         textView.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -625,14 +642,17 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     public TextView createTimeTextView(String str){
         TextView time = new TextView(getContext());
         time.setText(str);
-        time.setGravity(Gravity.LEFT);
+        time.setGravity(Gravity.RIGHT);
         time.setTextSize(11);
+        time.setTextColor(Color.parseColor("white"));
+        time.setPadding(0,5,20,0);
         return time;
     }
     public LinearLayout createPostLayout(){
         LinearLayout post = new LinearLayout(getContext());
         post.setOrientation(LinearLayout.VERTICAL);
         post.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.post_layout));
+        //post.setBackgroundColor(Color.parseColor("#403D3D"));
         post.setPadding(30,30,20,30);
         return post;
     }
@@ -649,7 +669,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         horizontalLayout.setPadding(30,10,20,20);
         return horizontalLayout;
     }
-    public ToggleButton createFavouriteToggleButton(String user, String ID){
+    public ToggleButton createFavouriteToggleButton(String user, String userPost, String ID){
         ToggleButton toggleButton = new ToggleButton(getContext());
         toggleButton.setText(""); //removes all text from the toggle button so that only the heart shows
         toggleButton.setTextOn("");
@@ -666,6 +686,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             public void onClick(View view) {
                 if (toggleButton.isChecked()){
                     Toast.makeText(getContext(), "added to favourites", Toast.LENGTH_SHORT).show();
+                    addFavourite(user,userPost,ID);
                 }
                 else{
                     Toast.makeText(getContext(), "removed from favourites", Toast.LENGTH_SHORT).show();
@@ -862,5 +883,25 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
     });
   ;
 }
+
+public void addFavourite(String user, String userPost, String postID){
+    DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
+    favRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            favRef.child("ID").setValue(postID);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+
+    });
+}
+
+    public void initializeFavourites(String user, String userPost, String postID){
+        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
+    }
 
 }
