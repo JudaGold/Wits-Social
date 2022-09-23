@@ -3,18 +3,20 @@ package com.example.softwareproject;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.text.Layout;
-import android.util.Log;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -38,16 +40,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 //import com.google.firebase.messaging.Message;
-import androidx.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
-import java.util.Random;
 import java.util.Vector;
 import java.util.*;
 
@@ -167,7 +165,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     String post = popup_post_body.getText().toString();
                     if (post.substring(0, 4).equalsIgnoreCase("http"))
                     {
-                        body = "";
+                        body = post;
                         image_url = post;
                     }
                     else {
@@ -288,12 +286,14 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_replies, Boolean is_searched_user) {
+    void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_replies, Boolean is_searched_user) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
         int counter_reply = 0;
 
-        if(Edits || is_replies) {
+        if (Posts.size() >0) {
+        if (Edits || is_replies) {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -313,7 +313,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         for (Post post : Posts) {
             String uid = post.getID();
             String post_body = post.getBody();
-            String post_time = post.getTime().substring(0,10);
+            String post_time = post.getTime().substring(0, 10);
             String URL = post.getPost_image_url();
             String ID = post.getID();
             String username_post = post.getUsername();
@@ -329,9 +329,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 } else {
                     usernameView.setText(username_post);
                 }
-            }
-            else
-            {
+            } else {
                 if (username_post.equalsIgnoreCase(account_user)) {
                     usernameView.setText("Me");
                     account_main = true;
@@ -341,7 +339,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             }
             lp.addView(usernameView);
 
-            TextView body = createBodyTextView(" "+post_body);
+            TextView body = createBodyTextView(" " + post_body);
             TextView time = createTimeTextView(post_time);
 
             LinearLayout postview = createPostLayout();
@@ -360,16 +358,15 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 //                });
             }
 
-            ToggleButton favouritesButton = createFavouriteToggleButton(username,username_post,ID);
+            ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
             LinearLayout horizontalLayout = createHorizontalLayout();
             postview.addView(body);
-            if(!account_main){
+            if (!account_main) {
                 horizontalLayout.addView(favouritesButton);
-                horizontalLayout.addView(createReplyOption(username_post,post_body,uid));
+                horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
             }
 
-            if (username_post.equalsIgnoreCase(username) && !Edits)
-            {
+            if (username_post.equalsIgnoreCase(username) && !Edits) {
                 postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
                     @Override
                     public boolean onLongClick(View view) {
@@ -383,8 +380,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 });
             }
 
-            if (!Edits)
-            {
+            if (!Edits) {
                 postview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -405,13 +401,13 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
                         Intent intent = new Intent(getActivity(), Replies.class);
                         intent.putExtra("username", account_user);
-                        intent.putExtra("loggedinuser",account_user);
-                        intent.putExtra("ID",ID);
-                        intent.putExtra("post_body",post_body);
-                        intent.putExtra("URL",URL);
-                        intent.putExtra("post_time",post_time);
-                        intent.putExtra("username_post",username_post);
-                        intent.putExtra("is_searched_user",false);
+                        intent.putExtra("loggedinuser", account_user);
+                        intent.putExtra("ID", ID);
+                        intent.putExtra("post_body", post_body);
+                        intent.putExtra("URL", URL);
+                        intent.putExtra("post_time", post_time);
+                        intent.putExtra("username_post", username_post);
+                        intent.putExtra("is_searched_user", false);
                         getActivity().startActivity(intent);
                         getActivity().finish();
                     }
@@ -425,8 +421,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
             counter_reply++;
 
-            if (is_replies && counter_reply == 1)
-            {
+            if (is_replies && counter_reply == 1) {
                 TextView replyTextView = new TextView(v.getContext());
                 replyTextView.setTextSize(20);
                 replyTextView.setText("Replies");
@@ -434,6 +429,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 lp.addView(replyTextView);
             }
         }
+    }
     }
     public void getFollowing() {
         all_usernames = new ArrayList<>();/* this will have the user's username
@@ -508,6 +504,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 //                        });
 
                     }
+                    body.setTextColor(Color.parseColor("#000000"));
                     post.addView(body);
                     Space space = addSpace();
                     ToggleButton favouritesButton = createFavouriteToggleButton(account_user,username,uid);
@@ -641,10 +638,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
     public TextView createBodyTextView(String str){
         TextView body = new TextView(getContext());
-        body.setText(str);
+        SpannableString sp = Create_Link(str);
+        body.setText(sp);
         body.setTextSize(20);
         body.setTextColor(Color.parseColor("white"));
         body.setPadding(30,30,30,30);
+        body.setMovementMethod(LinkMovementMethod.getInstance());
         return body;
     }
 
@@ -926,7 +925,31 @@ public void addFavourite(String user, String userPost, String postID){
 }
 
     public void initializeFavourites(String user, String userPost, String postID){
-        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
-    }
+        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);}
 
+
+    public SpannableString Create_Link(String body){
+    Text_Analysis textAnalysyis = new Text_Analysis(body);
+    ArrayList<Pair<Integer,Integer>>data = new ArrayList<Pair<Integer,Integer>>();
+    data = textAnalysyis.Find_link();
+    SpannableString spannableString = new SpannableString(body);
+    if(data.size() > 0) {
+        for (Pair it : data) {
+
+            int a = Integer.parseInt("" + it.first);
+            int b = Integer.parseInt("" + it.second);
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    String url = body.substring(a,b).toLowerCase(Locale.ROOT);
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
+            };
+            spannableString.setSpan(clickableSpan,a,b,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+     }
+    return spannableString;
+    }
 }
