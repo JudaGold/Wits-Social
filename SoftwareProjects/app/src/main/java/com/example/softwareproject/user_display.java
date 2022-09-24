@@ -118,7 +118,9 @@ public class user_display extends AppCompatActivity {
                     usernameText.setText(username);
                         String bio = snapshot.child(username).child("bio").getValue(String.class);
                         String imageUrl = snapshot.child(username).child("mImageUrl").getValue(String.class);
-                        Picasso.get().load(imageUrl).into(user_image);
+                        try {
+                            Picasso.get().load(imageUrl).into(user_image);
+                        }catch(Exception c){}
                     if(main_user){
                         if (bio.length() >= 1) {
                             bioText.setText(bio);
