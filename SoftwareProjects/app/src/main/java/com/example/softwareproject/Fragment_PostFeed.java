@@ -929,7 +929,7 @@ public void addFavourite(String user, String userPost, String postID){
 
 
     public SpannableString Create_Link(String body){
-    Text_Analysis textAnalysyis = new Text_Analysis(body);
+    Analysis textAnalysyis = new Analysis(body);
     ArrayList<Pair<Integer,Integer>>data = new ArrayList<Pair<Integer,Integer>>();
     data = textAnalysyis.Find_link();
     SpannableString spannableString = new SpannableString(body);
