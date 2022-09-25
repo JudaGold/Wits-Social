@@ -8,6 +8,7 @@ public class Analysis {
     String post_body;
 
     Analysis(String text){
+
         this.post_body = text;
     }
 

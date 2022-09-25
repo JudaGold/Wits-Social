@@ -88,7 +88,7 @@ public class Post
         this.date = date;
     }
 }
-// this class will compare the dates and times of the posts
+// this class will compare the dates and times of the posts.
 class DateComparator implements Comparator<Post> {
     // override the compare() method
     @RequiresApi(api = Build.VERSION_CODES.O)
