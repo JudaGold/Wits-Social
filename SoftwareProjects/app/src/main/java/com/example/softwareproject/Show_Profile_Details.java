@@ -36,10 +36,11 @@ public class Show_Profile_Details extends AppCompatActivity
 {
     private static final int PICK_IMAGE_REQUEST = 1;
     //Declarations of variable
-    TextView UserName;
+    TextView UserName, PostCount;
     EditText bio, fullName, PhoneNumber,EmailAddress;
     String username;
     ImageView profile_pic;
+    long maxId = 0;
     Button btnAddNewPic, btnSave2, logOut;
     Field_Validations fv;
 
@@ -48,6 +49,7 @@ public class Show_Profile_Details extends AppCompatActivity
     private StorageReference storageRef = FirebaseStorage.getInstance().getReference("profile_pictures");
     private StorageTask mUploadTask;
     DatabaseReference bd = FirebaseDatabase.getInstance().getReference("Users");
+    DatabaseReference bd2 = FirebaseDatabase.getInstance().getReference("Posts");
 
     FirebaseDatabase fb;
     DatabaseReference Gdb;
@@ -63,6 +65,7 @@ public class Show_Profile_Details extends AppCompatActivity
         //Assign varibles
         profile_pic = (ImageView) findViewById(R.id.profile_pic);
         UserName = (TextView) findViewById(R.id.UserName_txt);
+        PostCount = (TextView) findViewById(R.id.PostCount_txt);
         fullName = (EditText) findViewById(R.id.full_name);
         PhoneNumber = (EditText) findViewById(R.id.phone_number);
         EmailAddress = (EditText) findViewById(R.id.email_address_update);
@@ -96,6 +99,28 @@ public class Show_Profile_Details extends AppCompatActivity
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
+
+        });
+
+        Query getPostCount = bd2.child(username).orderByChild(String.valueOf(maxId));
+        getPostCount.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        maxId++;
+                    }
+                    PostCount.setText(Long.toString(maxId));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
         });
 
         btnSave2.setOnClickListener(new View.OnClickListener() {

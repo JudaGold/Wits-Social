@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -12,6 +13,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Replies extends AppCompatActivity {
 
@@ -128,6 +133,7 @@ public class Replies extends AppCompatActivity {
                 postview.addView(createReplyOption(username_post, post_body, ID));
             }
 
+
             postview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -182,22 +188,6 @@ public class Replies extends AppCompatActivity {
         return body;
     }
 
-    public TextView createReplyOption(String Reply_to, String post_msg, String uid) {//adding a reply text for user to click on to reply to a post
-        TextView textView = new TextView(Replies.this);
-        textView.setText("reply");
-        textView.setTextSize(20);
-        textView.setGravity(Gravity.RIGHT);
-
-//        textView.setOnClickListener(new View.OnClickListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.O)
-//            @Override
-//            public void onClick(View v) {
-//                Reply(Reply_to,post_msg,uid);
-//            }
-//        });
-        return textView;
-    }
-
     public TextView createTimeTextView(String str) {
         TextView time = new TextView(Replies.this);
         time.setText(str);
@@ -246,4 +236,90 @@ public class Replies extends AppCompatActivity {
             }
         });
     }
+
+    public TextView createReplyOption(String Reply_to,String post_msg,String uid){//adding a reply text for user to click on to reply to a post
+        TextView textView = new TextView(Replies.this);
+        textView.setText("reply");
+        textView.setTextSize(18);
+        textView.setGravity(Gravity.RIGHT);
+        textView.setPadding(30,0,20,0);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                Reply(Reply_to,post_msg,uid);
+            }
+        });
+        return textView;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void Reply(String Reply_to_user, String original_post_msg, String uid){
+        AlertDialog.Builder dialogB = new AlertDialog.Builder(Replies.this);
+        AlertDialog dialog;
+        final View popup_content = getLayoutInflater().inflate(R.layout.pop_up_reply, null);
+        TextView popup_header = (TextView) popup_content.findViewById(R.id.reply_header);
+        TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);
+        EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
+        Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
+        popup_header.setText("Replying to:\n\t"+Reply_to_user);
+        popup_original.setText(original_post_msg);
+
+
+        dialogB.setView(popup_content);
+        dialog = dialogB.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);
+        dialog.show();
+
+
+        popup_reply_button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                String reply_msg = popup_reply_body.getText().toString();
+
+                Date date = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String t = (format.format(date));
+
+                DatabaseReference reply_ref = FirebaseDatabase.getInstance().getReference("Posts")
+                        .child(Reply_to_user).child(uid).child("Replies");
+                reply_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        long count = snapshot.getChildrenCount()+1;
+                        Post post = new Post(uid,username,reply_msg,"",t);
+                        reply_ref.child(String.valueOf(count)).setValue(post);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                DatabaseReference add_reply_post = FirebaseDatabase.getInstance().getReference("Replies")
+                        .child(account_user);
+                add_reply_post.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        long count = snapshot.getChildrenCount()+1;
+                        Post post = new Post(String.valueOf(count),Reply_to_user,reply_msg,"",t);
+                        add_reply_post.child(String.valueOf(count)).setValue(post);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                dialog.dismiss();
+            }
+        });
+        ;
+    }
+
+
 }

@@ -70,6 +70,7 @@ public class user_display extends AppCompatActivity {
         bioText = (TextView) findViewById(R.id.bio_text);
         user_image = findViewById(R.id.searched_user_image);
         btnfollow = new Button(getApplicationContext());
+        btnfollow.setText("follow");
         display_user_information();
 
         if(username.equalsIgnoreCase(logged_in_user)){
@@ -117,7 +118,9 @@ public class user_display extends AppCompatActivity {
                     usernameText.setText(username);
                         String bio = snapshot.child(username).child("bio").getValue(String.class);
                         String imageUrl = snapshot.child(username).child("mImageUrl").getValue(String.class);
-                        Picasso.get().load(imageUrl).into(user_image);
+                        try {
+                            Picasso.get().load(imageUrl).into(user_image);
+                        }catch(Exception c){}
                     if(main_user){
                         if (bio.length() >= 1) {
                             bioText.setText(bio);
