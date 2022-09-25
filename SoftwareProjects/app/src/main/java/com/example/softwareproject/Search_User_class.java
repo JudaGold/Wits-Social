@@ -24,7 +24,7 @@ public class Search_User_class {
     boolean following = false;
     Intent intent;
 
-    public void search(String loggedin_user, String My_username, AutoCompleteTextView ACT, ImageButton btn, Activity activity) {
+    public void search(String loggedin_user, String My_username, AutoCompleteTextView ACT, ImageButton btn, Activity activity){
         getUsers(My_username, loggedin_user);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, users);
         ACT.setThreshold(1);
@@ -33,7 +33,6 @@ public class Search_User_class {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String user = ACT.getText().toString();
                 if (search_user(user)) {
                     intent = new Intent(activity, user_display.class);
@@ -41,7 +40,8 @@ public class Search_User_class {
                     intent.putExtra("loggedinuser",loggedin_user);
                     activity.startActivity(intent);
                     activity.finish();
-                } else {
+                }
+                else {
                     ACT.setText("");
                     ACT.setHint("no user " + user + " found");
                 }
