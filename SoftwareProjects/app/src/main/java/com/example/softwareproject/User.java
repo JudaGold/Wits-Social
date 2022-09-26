@@ -1,6 +1,7 @@
 package com.example.softwareproject;
 
-public class User {
+public class
+User {
 
     private String Username;
     private String email;
