@@ -16,4 +16,5 @@ AnalysisTest {
         assertEquals(fakebody.post_body ,"this is a fake body text");
     }
 
+
 }
