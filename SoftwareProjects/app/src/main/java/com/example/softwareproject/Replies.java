@@ -185,14 +185,16 @@ public class Replies extends AppCompatActivity {
         body.setText(str);
         body.setTextSize(20);
         body.setPadding(30, 30, 30, 30);
+        body.setTextColor(Color.parseColor("white"));
         return body;
     }
 
     public TextView createTimeTextView(String str) {
         TextView time = new TextView(Replies.this);
         time.setText(str);
-        time.setGravity(Gravity.LEFT);
+        time.setGravity(Gravity.RIGHT);
         time.setTextSize(11);
+        time.setTextColor(Color.parseColor("white"));
         return time;
     }
 
