@@ -1188,6 +1188,7 @@ attr yearTodayStyle
 bool abc_action_bar_embed_tabs
 bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
+color TextBackgroundTint
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
 color abc_btn_colored_borderless_text_material
@@ -1217,6 +1218,7 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -1228,6 +1230,7 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color button
 color button_material_dark
 color button_material_light
 color cardview_dark_background
@@ -2479,6 +2482,7 @@ drawable baseline_add_circle_outline_white_20
 drawable baseline_add_circle_outline_white_24
 drawable baseline_add_circle_outline_white_36
 drawable baseline_add_circle_outline_white_48
+drawable blue_and_grey_background
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2516,12 +2520,15 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable edit_text_border
 drawable exp
+drawable favorite_filled
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_baseline_account_circle_24
+drawable ic_baseline_favorite_border_24
 drawable ic_baseline_home_24
 drawable ic_baseline_lock_24
 drawable ic_baseline_person_24
+drawable ic_baseline_post_add_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2582,6 +2589,7 @@ drawable post_layout
 drawable search_icon
 drawable test_custom_background
 drawable test_level_drawable
+drawable toggle_selector
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable user
@@ -2606,6 +2614,8 @@ id META
 id NO_DEBUG
 id PhoneNumber_Label
 id Phone_number
+id PostCount_Label
+id PostCount_txt
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH

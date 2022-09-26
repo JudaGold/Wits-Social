@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/reply_header"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/lato_bold"
+        android:gravity="center"
+        android:textColor="#09464C" />
+
+    <TextView
+        android:id="@+id/post_replying_to"
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"/>
+
+
+
+    <EditText
+        android:id="@+id/reply_body"
+        android:layout_width="match_parent"
+        android:layout_height="154dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_inputbox"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="reply"
+        android:fontFamily="@font/lato_regular"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="6"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btn_reply"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#123F4C"
+        android:color="@android:color/holo_blue_bright"
+        android:fontFamily="@font/lato_regular"
+        android:text="Reply"
+        android:textColor="@color/white" />
+</LinearLayout>
