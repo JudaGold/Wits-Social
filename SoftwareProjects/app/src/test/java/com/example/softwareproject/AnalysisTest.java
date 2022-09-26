@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class AnalysisTest {
+class
+AnalysisTest {
 
     //test to check if we get the valid output for the text body in analysis class
     @Test
@@ -12,7 +13,7 @@ class AnalysisTest {
 
         Analysis fakebody= new Analysis("this is a fake body text");
 
-        assertEquals(fakebody.getClass(),"this is a fake body text");
+        assertEquals(fakebody.post_body ,"this is a fake body text");
     }
 
 }
