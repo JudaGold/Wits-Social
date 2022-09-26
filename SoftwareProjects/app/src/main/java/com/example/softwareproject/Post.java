@@ -10,7 +10,7 @@ import java.util.*;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class Post
 {
-    private String ID,username,body,post_image_url,time;
+    private String ID,username,body,post_image_url,time,  num_of_replies = "";
     private Date date;// this will store the actual date of the post.
 
     public Post(String ID,String body, String post_image_url, String time) {
@@ -60,10 +60,6 @@ public class Post
         return ID;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
     public String getTime() {
         return time;
     }
@@ -71,6 +67,15 @@ public class Post
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getNum_of_replies() {
+        return num_of_replies;
+    }
+
+    public void setNum_of_replies(String num_of_replies) {
+        this.num_of_replies = num_of_replies;
+    }
+
 
     // this method will convert the string "time" to a date object.
     public void convertDate() throws ParseException {
@@ -84,9 +89,6 @@ public class Post
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }
 // this class will compare the dates and times of the posts.
 class DateComparator implements Comparator<Post> {

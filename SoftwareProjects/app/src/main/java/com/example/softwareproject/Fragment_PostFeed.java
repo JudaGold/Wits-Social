@@ -232,7 +232,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                                 String b = data.child("body").getValue(String.class);
                                 String t = data.child("time").getValue(String.class);
                                 String URL = data.child("post_image_url").getValue(String.class);
+                                String num_of_replies = data.child("Replies").getChildrenCount() + "";
                                 Post post = new Post(id, b, URL, t);
+                                post.setNum_of_replies(num_of_replies);
                                 post.setUsername(usernames);
                                 try {
                                     post.convertDate();
@@ -243,8 +245,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                             } catch (Exception e) {
                             }
                         }
-//                    Posts.sort(new DateComparator());
-//                    display_posts(Posts, false, false, false);
                     }
                 }
 
@@ -265,8 +265,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         String b = data.child("body").getValue(String.class);
                         String t = data.child("time").getValue(String.class);
                         String URL = data.child("post_image_url").getValue(String.class);
+                        String username_post = data.child("username").getValue(String.class);
                         Post post = new Post(id, b, URL, t);
-                        post.setUsername(username);
+                        post.setUsername("Me replied to " + username_post);
                         try {
                             post.convertDate();
                         } catch (ParseException e) {
@@ -277,7 +278,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     catch(Exception e){
                     }}
                 Posts.sort(new DateComparator());
-                display_posts(Posts, false, false, false);
+                display_posts(Posts, false, false);
             }
 
             @Override
@@ -288,12 +289,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_replies, Boolean is_searched_user) {
+    void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_searched_user) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
         int counter_reply = 0;
 
         if (Posts.size() >0) {
-        if (Edits || is_replies) {
+        if (Edits) {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -308,7 +309,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
 
         lp.setOrientation(LinearLayout.VERTICAL);
-        //lp.setBackgroundColor(Color.parseColor());
         lp.removeAllViews();
         for (Post post : Posts) {
            try{
@@ -318,6 +318,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                String URL = post.getPost_image_url();
                String ID = post.getID();
                String username_post = post.getUsername();
+               String num_of_replies = post.getNum_of_replies();
 
                TextView usernameView = createUsernameTextView();
                usernameView.setTextSize(20);
@@ -338,6 +339,15 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                        usernameView.setText(username_post);
                    }
                }
+
+               if (username_post.length() > 2)
+               {
+                   if (username_post.substring(0, 2).equalsIgnoreCase("Me"))
+                   {
+                       account_main = true;
+                   }
+               }
+
                lp.addView(usernameView);
 
                TextView body = createBodyTextView(" " + post_body);
@@ -350,18 +360,13 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                    ImageView image = createImageView();
                    getImage(URL, image);
                    postview.addView(image);
-
-//                image.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        create_img_popup(URL);
-//                    }
-//                });
                }
 
                ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
                LinearLayout horizontalLayout = createHorizontalLayout();
                postview.addView(body);
+               TextView replies = createNumOfReplies(num_of_replies);
+               horizontalLayout.addView(replies);
                if (!account_main) {
                    horizontalLayout.addView(favouritesButton);
                    horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
@@ -385,21 +390,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                    postview.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View view) {
-//                        setBody(post_body);
-//                        setURL(URL);
-//                        setID(ID);
-//                        setTime(post_time);
-//                        setUsername(username_post);
-//                        ArrayList<Post> Posts = new ArrayList<>();
-//                        Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
-//                        try {
-//                            post.convertDate();
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                        Posts.add(post);
-//                        display_replies(ExistingID, Posts, false);
-
                            Intent intent = new Intent(getActivity(), Replies.class);
                            intent.putExtra("username", account_user);
                            intent.putExtra("loggedinuser", account_user);
@@ -418,17 +408,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                postview.addView(horizontalLayout);
                lp.addView(postview);
                lp.addView(addSpace());
-
-
-               counter_reply++;
-
-               if (is_replies && counter_reply == 1) {
-                   TextView replyTextView = new TextView(v.getContext());
-                   replyTextView.setTextSize(20);
-                   replyTextView.setText("Replies");
-                   replyTextView.setTextColor(Color.parseColor("white"));
-                   lp.addView(replyTextView);
-               }
 
            }catch(Exception e){
 
@@ -468,7 +447,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         lp.setOrientation(LinearLayout.VERTICAL);
         lp.removeAllViews();
         DatabaseReference bd = FirebaseDatabase.getInstance().getReference().child("Posts").child(username);
-        Query posts =bd.orderByChild(String.valueOf(maxId));
+        Query posts = bd.orderByChild(String.valueOf(maxId));
         posts.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -501,13 +480,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         ImageView im = createImageView();
                         getImage(URL, im);
                         post.addView(im);
-//                        im.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                create_img_popup(URL);
-//                            }
-//                        });
-
                     }
                     body.setTextColor(Color.parseColor("#000000"));
                     post.addView(body);
@@ -526,21 +498,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     post.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                            setBody(post_body);
-//                            setURL(URL);
-//                            setID(uid);
-//                            setTime(finalPost_time);
-//                            setUsername(username);
-//                            ArrayList<Post> Posts = new ArrayList<>();
-//                            Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
-//                            try {
-//                                post.convertDate();
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-//                            Posts.add(post);
-//                            display_replies(ExistingID, Posts, true);
-
                             Intent intent = new Intent(getActivity(), Replies.class);
                             intent.putExtra("username", account_user);
                             intent.putExtra("loggedinuser",account_user);
@@ -559,61 +516,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-    }
-    public void display_replies(String postID, ArrayList<Post> Replies, Boolean is_searched_user){
-        lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
-        reference = FirebaseDatabase.getInstance().getReference("Posts").child(ExistingUsername).child(postID).child("Replies");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    String id = data.getKey();
-                    String b = data.child("body").getValue(String.class);
-                    String t = data.child("time").getValue(String.class);
-                    String URL = data.child("post_image_url").getValue(String.class);
-                    String username = data.child("username").getValue(String.class);
-                    Post post = new Post(id, username,b, URL, t);
-                    try {
-                        post.convertDate();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    Replies.add(post);
-                }
-                Replies.sort(new DateComparator());
-                display_posts(Replies, false, true, is_searched_user);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public void create_img_popup(String URL){
-        AlertDialog.Builder dialogBuilder= new AlertDialog.Builder(v.getContext()); //used to show the popup screen
-        AlertDialog dialog;
-        final View imagePopupView = getLayoutInflater().inflate(R.layout.popup_image, null); //make the layout a popup
-        image_popup = (ImageView) imagePopupView.findViewById(R.id.popup_image);
-        imgClose_popup = (ImageView) imagePopupView.findViewById(R.id.imgClose);
-
-        getImage(URL, image_popup); //gets the image from the internet and displays it in the imageView
-                                    //view the class below
-        dialogBuilder.setView(imagePopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-        imgClose_popup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
             }
         });
 
@@ -682,10 +584,22 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         LinearLayout post = new LinearLayout(getContext());
         post.setOrientation(LinearLayout.VERTICAL);
         post.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.post_layout));
-        //post.setBackgroundColor(Color.parseColor("#403D3D"));
         post.setPadding(30,30,20,30);
         return post;
     }
+
+    public TextView createNumOfReplies(String num_of_replies)
+    {
+        TextView textView = new TextView(getContext());
+        textView.setText(num_of_replies);
+        textView.setTextSize(18);
+        textView.setGravity(Gravity.RIGHT);
+        textView.setPadding(30,0,20,0);
+        textView.setTextColor(Color.parseColor("white"));
+
+        return textView;
+    }
+
     public Space addSpace(){
         Space space = new Space(v.getContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,50);
@@ -705,7 +619,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         toggleButton.setTextOn("");
         toggleButton.setTextOff("");
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80,80);
-        // params.gravity = Gravity.LEFT; //sets the favourite button to the left
         toggleButton.setLayoutParams(params);
         toggleButton.setPadding(30,0,200,0);
         toggleButton.setBackgroundResource(R.drawable.toggle_selector);
@@ -751,7 +664,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
                 Posts.add(post);
                 getPreviousEdits(ExistingID,Posts);
-                //Toast.makeText(v.getContext(),"testing",Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return false;
@@ -803,7 +715,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         Posts.add(post);
                     }
                     Posts.sort(new DateComparator());
-                    display_posts(Posts, true, false, false);
+                    display_posts(Posts, true, false);
                 }
 
             @Override
@@ -908,6 +820,7 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
             });
 
             dialog.dismiss();
+            getFollowing();
         }
     });
   ;
