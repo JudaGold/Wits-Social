@@ -2542,6 +2542,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notification
 drawable ic_round_ac_unit_24
+drawable ic_round_chat_bubble_outline_24
 drawable input_box
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay

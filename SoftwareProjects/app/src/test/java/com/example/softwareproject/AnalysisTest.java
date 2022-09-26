@@ -12,7 +12,7 @@ class AnalysisTest {
 
         Analysis fakebody= new Analysis("this is a fake body text");
 
-        assertEquals(fakebody.getClass(),"this is a fake body text");
+        assertEquals(fakebody.post_body,"this is a fake body text");
     }
 
 }

@@ -40,6 +40,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_notification
 drawable ic_round_ac_unit_24
+drawable ic_round_chat_bubble_outline_24
 drawable input_box
 drawable popup_dialog_box
 drawable post_layout
