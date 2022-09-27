@@ -58,6 +58,7 @@ android {
     lint {
         abortOnError false
     }
+    namespace 'com.example.softwareproject'
 
 
 }
