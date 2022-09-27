@@ -54,8 +54,6 @@ import java.util.*;
 public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
     String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
-
-    ImageView image_popup, imgClose_popup;
     View v;
     EditText popup_post_body;
     Button popup_add_post;

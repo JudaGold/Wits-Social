@@ -32,16 +32,4 @@ public class Push_Notification_Service extends FirebaseMessagingService {
         NotificationManagerCompat.from(this).notify(1, notification.build());
         super.onMessageReceived(remoteMessage);
     }
-
-//    @Override
-//    public void onNewToken(@NonNull String token) {
-//
-//        // If you want to send messages to this application instance or
-//        // manage this apps subscriptions on the server side, send the
-//        // FCM registration token to your app server.
-//        sendRegistrationToServer(token);
-//    }
-//
-//    public void sendRegistrationToServer(String token) {
-//    }
 }
