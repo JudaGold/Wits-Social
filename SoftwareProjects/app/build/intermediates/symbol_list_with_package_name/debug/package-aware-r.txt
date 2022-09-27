@@ -2478,14 +2478,6 @@ drawable abc_vector_test
 drawable add_pic
 drawable avd_hide_password
 drawable avd_show_password
-<<<<<<< Updated upstream
-drawable baseline_add_circle_outline_white_18
-drawable baseline_add_circle_outline_white_20
-drawable baseline_add_circle_outline_white_24
-drawable baseline_add_circle_outline_white_36
-drawable baseline_add_circle_outline_white_48
-=======
->>>>>>> Stashed changes
 drawable blue_and_grey_background
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -2524,18 +2516,11 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable edit_text_border
-<<<<<<< Updated upstream
-drawable exp
-=======
->>>>>>> Stashed changes
 drawable favorite_filled
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_baseline_account_circle_24
-<<<<<<< Updated upstream
-=======
 drawable ic_baseline_add_circle_outline_24
->>>>>>> Stashed changes
 drawable ic_baseline_favorite_border_24
 drawable ic_baseline_home_24
 drawable ic_baseline_lock_24

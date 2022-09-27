@@ -1,23 +1,19 @@
-<<<<<<< Updated upstream
-#Mon Sep 26 18:22:16 CAT 2022
-=======
-#Tue Sep 27 11:31:49 CAT 2022
->>>>>>> Stashed changes
+#Tue Sep 27 12:51:25 CAT 2022
 path.4=classes2.dex
 path.3=13/classes.dex
 path.2=11/classes.dex
 path.1=0/classes.dex
 path.5=classes3.dex
 path.0=classes.dex
-base.4=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.3=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.2=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.1=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.0=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.4=C\:\\Users\\melon\\Documents\\School Stuff\\Second Semester\\COMS3011A\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.3=C\:\\Users\\melon\\Documents\\School Stuff\\Second Semester\\COMS3011A\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
+base.2=C\:\\Users\\melon\\Documents\\School Stuff\\Second Semester\\COMS3011A\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.1=C\:\\Users\\melon\\Documents\\School Stuff\\Second Semester\\COMS3011A\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.0=C\:\\Users\\melon\\Documents\\School Stuff\\Second Semester\\COMS3011A\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
 renamed.5=classes6.dex
 renamed.4=classes5.dex
-base.5=D\:\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+base.5=C\:\\Users\\melon\\Documents\\School Stuff\\Second Semester\\COMS3011A\\Wits-Social\\SoftwareProjects\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex

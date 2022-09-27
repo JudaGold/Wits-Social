@@ -656,6 +656,7 @@
     <color name="foreground_material_light">@android:color/black</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
+    <color name="iconButton">#41EAFF</color>
     <color name="m3_ref_palette_black">#ff000000</color>
     <color name="m3_ref_palette_error0">#ff000000</color>
     <color name="m3_ref_palette_error10">#ff410e0b</color>
@@ -1777,7 +1778,7 @@
     <string name="search_menu_title">Search</string>
     <string name="sign_up">Sign Up</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="tell_eveyone_n_what_s_on_you_re_mind">Tell eveyone\n what\'s on you\'re mind</string>
+    <string name="tell_eveyone_n_what_s_on_you_re_mind">Tell everyone\n what\'s on you\'re mind</string>
     <string name="textview">TextView</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="todo">TODO</string>
