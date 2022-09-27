@@ -1188,6 +1188,7 @@ attr yearTodayStyle
 bool abc_action_bar_embed_tabs
 bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
+color TextBackgroundTint
 color abc_background_cache_hint_selector_material_dark
 color abc_background_cache_hint_selector_material_light
 color abc_btn_colored_borderless_text_material
@@ -1217,6 +1218,7 @@ color accent_material_dark
 color accent_material_light
 color androidx_core_ripple_material_light
 color androidx_core_secondary_text_default_material_light
+color background
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -1228,6 +1230,7 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color button
 color button_material_dark
 color button_material_light
 color cardview_dark_background
@@ -1294,6 +1297,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color iconButton
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2474,11 +2478,7 @@ drawable abc_vector_test
 drawable add_pic
 drawable avd_hide_password
 drawable avd_show_password
-drawable baseline_add_circle_outline_white_18
-drawable baseline_add_circle_outline_white_20
-drawable baseline_add_circle_outline_white_24
-drawable baseline_add_circle_outline_white_36
-drawable baseline_add_circle_outline_white_48
+drawable blue_and_grey_background
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2487,6 +2487,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable button_shape_square
 drawable buttonshape
 drawable circle
 drawable common_full_open_on_phone
@@ -2515,13 +2516,16 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable edit_text_border
-drawable exp
+drawable favorite_filled
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_baseline_account_circle_24
+drawable ic_baseline_add_circle_outline_24
+drawable ic_baseline_favorite_border_24
 drawable ic_baseline_home_24
 drawable ic_baseline_lock_24
 drawable ic_baseline_person_24
+drawable ic_baseline_post_add_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2535,6 +2539,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notification
 drawable ic_round_ac_unit_24
+drawable ic_round_chat_bubble_outline_24
 drawable input_box
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
@@ -2582,6 +2587,7 @@ drawable post_layout
 drawable search_icon
 drawable test_custom_background
 drawable test_level_drawable
+drawable toggle_selector
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable user
@@ -2606,6 +2612,8 @@ id META
 id NO_DEBUG
 id PhoneNumber_Label
 id Phone_number
+id PostCount_Label
+id PostCount_txt
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -2984,6 +2992,7 @@ id popup_image
 id position
 id postLayout
 id post_body
+id post_layout
 id post_replying_to
 id profile_pic
 id progress_circular
@@ -3010,6 +3019,7 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
+id scrollView2
 id scroll_posts
 id scroll_replies
 id scrollable
@@ -3245,6 +3255,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_profile_pic
+layout activity_display_hashtag_posts
 layout activity_forgot_password
 layout activity_main
 layout activity_sign_up

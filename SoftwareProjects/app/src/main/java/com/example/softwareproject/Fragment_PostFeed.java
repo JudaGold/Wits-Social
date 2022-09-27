@@ -3,6 +3,7 @@ package com.example.softwareproject;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.net.Uri;
@@ -14,8 +15,10 @@ import androidx.fragment.app.Fragment;
 
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -53,8 +56,6 @@ import java.util.*;
 public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
     String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
-
-    ImageView image_popup, imgClose_popup;
     View v;
     EditText popup_post_body;
     Button popup_add_post;
@@ -105,11 +106,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             display_searched_user_posts();
 
         }
-
-
-
         return v;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void add_post(Boolean edit, String body, String URL, String Id, String time) {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
@@ -232,7 +231,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                                 String b = data.child("body").getValue(String.class);
                                 String t = data.child("time").getValue(String.class);
                                 String URL = data.child("post_image_url").getValue(String.class);
+                                String num_of_replies = data.child("Replies").getChildrenCount() + "";
                                 Post post = new Post(id, b, URL, t);
+                                post.setNum_of_replies(num_of_replies);
                                 post.setUsername(usernames);
                                 try {
                                     post.convertDate();
@@ -243,8 +244,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                             } catch (Exception e) {
                             }
                         }
-//                    Posts.sort(new DateComparator());
-//                    display_posts(Posts, false, false, false);
                     }
                 }
 
@@ -265,8 +264,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         String b = data.child("body").getValue(String.class);
                         String t = data.child("time").getValue(String.class);
                         String URL = data.child("post_image_url").getValue(String.class);
+                        String username_post = data.child("username").getValue(String.class);
                         Post post = new Post(id, b, URL, t);
-                        post.setUsername(username);
+                        post.setUsername("Me replied to " + username_post);
                         try {
                             post.convertDate();
                         } catch (ParseException e) {
@@ -277,7 +277,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     catch(Exception e){
                     }}
                 Posts.sort(new DateComparator());
-                display_posts(Posts, false, false, false);
+                display_posts(Posts, false, false);
             }
 
             @Override
@@ -288,12 +288,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_replies, Boolean is_searched_user) {
+    void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_searched_user) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
-        int counter_reply = 0;
 
         if (Posts.size() >0) {
-        if (Edits || is_replies) {
+        if (Edits) {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -308,7 +307,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
 
         lp.setOrientation(LinearLayout.VERTICAL);
-        //lp.setBackgroundColor(Color.parseColor());
         lp.removeAllViews();
         for (Post post : Posts) {
            try{
@@ -318,9 +316,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                String URL = post.getPost_image_url();
                String ID = post.getID();
                String username_post = post.getUsername();
+               String num_of_replies = post.getNum_of_replies();
 
                TextView usernameView = createUsernameTextView();
-               usernameView.setTextSize(20);
+               TextView body = null;
 
                boolean account_main = false;//checking for logged in user
                if (!is_searched_user) {
@@ -338,9 +337,28 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                        usernameView.setText(username_post);
                    }
                }
+
+               if (username_post.length() > 2)
+               {
+                   if (username_post.substring(0, 2).equalsIgnoreCase("Me"))
+                   {
+                       account_main = true;
+                   }
+               }
+
                lp.addView(usernameView);
 
-               TextView body = createBodyTextView(" " + post_body);
+
+               boolean hashtag = checkHashtag(post_body);
+               if(hashtag){
+                   String new_post_body = post_body + " ";
+                   SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
+                   body = createBodyTextViewHashtag(spanString);
+               }
+               else {
+                   body = createBodyTextView(" " + post_body);
+               }
+
                TextView time = createTimeTextView(post_time);
 
                LinearLayout postview = createPostLayout();
@@ -350,18 +368,16 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                    ImageView image = createImageView();
                    getImage(URL, image);
                    postview.addView(image);
-
-//                image.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        create_img_popup(URL);
-//                    }
-//                });
                }
 
                ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
                LinearLayout horizontalLayout = createHorizontalLayout();
                postview.addView(body);
+               if (!num_of_replies.equalsIgnoreCase("")) {
+                   TextView replies = createNumOfReplies(num_of_replies);
+                   horizontalLayout.addView(replies);
+               }
+
                if (!account_main) {
                    horizontalLayout.addView(favouritesButton);
                    horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
@@ -385,21 +401,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                    postview.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View view) {
-//                        setBody(post_body);
-//                        setURL(URL);
-//                        setID(ID);
-//                        setTime(post_time);
-//                        setUsername(username_post);
-//                        ArrayList<Post> Posts = new ArrayList<>();
-//                        Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
-//                        try {
-//                            post.convertDate();
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                        Posts.add(post);
-//                        display_replies(ExistingID, Posts, false);
-
                            Intent intent = new Intent(getActivity(), Replies.class);
                            intent.putExtra("username", account_user);
                            intent.putExtra("loggedinuser", account_user);
@@ -418,17 +419,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                postview.addView(horizontalLayout);
                lp.addView(postview);
                lp.addView(addSpace());
-
-
-               counter_reply++;
-
-               if (is_replies && counter_reply == 1) {
-                   TextView replyTextView = new TextView(v.getContext());
-                   replyTextView.setTextSize(20);
-                   replyTextView.setText("Replies");
-                   replyTextView.setTextColor(Color.parseColor("white"));
-                   lp.addView(replyTextView);
-               }
 
            }catch(Exception e){
 
@@ -468,7 +458,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         lp.setOrientation(LinearLayout.VERTICAL);
         lp.removeAllViews();
         DatabaseReference bd = FirebaseDatabase.getInstance().getReference().child("Posts").child(username);
-        Query posts =bd.orderByChild(String.valueOf(maxId));
+        Query posts = bd.orderByChild(String.valueOf(maxId));
         posts.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -489,27 +479,27 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     post_time = post_time.substring(0,10);
                     String URL = post_data.elementAt(i).getPost_image_url();
 
-
-                    TextView body = createBodyTextView("\t"+post_body);
+                    TextView body =null;
+                    boolean hashtag = checkHashtag(post_body);
+                    if(hashtag){
+                        String new_post_body = post_body + " ";
+                        SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username);
+                        body = createBodyTextViewHashtag(spanString);
+                    }
+                    else {
+                        body = createBodyTextView("\t"+post_body);
+                    }
                     TextView time = createTimeTextView(post_time);
                     LinearLayout post = createPostLayout();
 
                     post.addView(time);
 
-
                     if (URL.length() >= 1) {
                         ImageView im = createImageView();
                         getImage(URL, im);
                         post.addView(im);
-//                        im.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                create_img_popup(URL);
-//                            }
-//                        });
-
                     }
-                    body.setTextColor(Color.parseColor("#000000"));
+
                     post.addView(body);
                     Space space = addSpace();
                     ToggleButton favouritesButton = createFavouriteToggleButton(account_user,username,uid);
@@ -526,21 +516,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     post.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                            setBody(post_body);
-//                            setURL(URL);
-//                            setID(uid);
-//                            setTime(finalPost_time);
-//                            setUsername(username);
-//                            ArrayList<Post> Posts = new ArrayList<>();
-//                            Post post = new Post(ExistingID, ExistingUsername ,ExistingBody, ExistingURL, ExistingTime);
-//                            try {
-//                                post.convertDate();
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-//                            Posts.add(post);
-//                            display_replies(ExistingID, Posts, true);
-
                             Intent intent = new Intent(getActivity(), Replies.class);
                             intent.putExtra("username", account_user);
                             intent.putExtra("loggedinuser",account_user);
@@ -559,61 +534,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-    }
-    public void display_replies(String postID, ArrayList<Post> Replies, Boolean is_searched_user){
-        lp = (LinearLayout) v.findViewById(R.id.scroll_posts);
-        reference = FirebaseDatabase.getInstance().getReference("Posts").child(ExistingUsername).child(postID).child("Replies");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    String id = data.getKey();
-                    String b = data.child("body").getValue(String.class);
-                    String t = data.child("time").getValue(String.class);
-                    String URL = data.child("post_image_url").getValue(String.class);
-                    String username = data.child("username").getValue(String.class);
-                    Post post = new Post(id, username,b, URL, t);
-                    try {
-                        post.convertDate();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    Replies.add(post);
-                }
-                Replies.sort(new DateComparator());
-                display_posts(Replies, false, true, is_searched_user);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public void create_img_popup(String URL){
-        AlertDialog.Builder dialogBuilder= new AlertDialog.Builder(v.getContext()); //used to show the popup screen
-        AlertDialog dialog;
-        final View imagePopupView = getLayoutInflater().inflate(R.layout.popup_image, null); //make the layout a popup
-        image_popup = (ImageView) imagePopupView.findViewById(R.id.popup_image);
-        imgClose_popup = (ImageView) imagePopupView.findViewById(R.id.imgClose);
-
-        getImage(URL, image_popup); //gets the image from the internet and displays it in the imageView
-                                    //view the class below
-        dialogBuilder.setView(imagePopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-        imgClose_popup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
             }
         });
 
@@ -652,6 +572,17 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         return body;
     }
 
+    public TextView createBodyTextViewHashtag(SpannableString str){
+        TextView body = new TextView(getContext());
+        body.setText(str);
+        body.setTextSize(20);
+        body.setMovementMethod(LinkMovementMethod.getInstance());
+        body.setTextColor(Color.parseColor("white"));
+        body.setPadding(30,30,30,30);
+        body.setMovementMethod(LinkMovementMethod.getInstance());
+        return body;
+    }
+
     public TextView createReplyOption(String Reply_to,String post_msg,String uid){//adding a reply text for user to click on to reply to a post
         TextView textView = new TextView(getContext());
         textView.setText("reply");
@@ -682,10 +613,33 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         LinearLayout post = new LinearLayout(getContext());
         post.setOrientation(LinearLayout.VERTICAL);
         post.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.post_layout));
-        //post.setBackgroundColor(Color.parseColor("#403D3D"));
         post.setPadding(30,30,20,30);
         return post;
     }
+
+    public TextView createNumOfReplies(String num_of_replies)
+    {
+        TextView textView = new TextView(getContext());
+        textView.setText(num_of_replies);
+        textView.setTextSize(15);
+        textView.setGravity(Gravity.RIGHT);
+        textView.setPadding(30,0,20,0);
+        textView.setTextColor(Color.parseColor("white"));
+        textView.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_round_chat_bubble_outline_24));
+
+        return textView;
+    }
+
+//    public ImageView createRepliesIcon()
+//    {
+//        ImageView replies_icon = new ImageView(getContext());
+//        replies_icon.setImageResource(R.drawable.ic_round_chat_bubble_outline_24);
+//        replies_icon.setForegroundGravity(Gravity.RIGHT);
+//        replies_icon.setPadding(30,0,5,0);
+//
+//        return replies_icon;
+//    }
+
     public Space addSpace(){
         Space space = new Space(v.getContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,50);
@@ -705,7 +659,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         toggleButton.setTextOn("");
         toggleButton.setTextOff("");
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80,80);
-        // params.gravity = Gravity.LEFT; //sets the favourite button to the left
         toggleButton.setLayoutParams(params);
         toggleButton.setPadding(30,0,200,0);
         toggleButton.setBackgroundResource(R.drawable.toggle_selector);
@@ -751,7 +704,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
                 Posts.add(post);
                 getPreviousEdits(ExistingID,Posts);
-                //Toast.makeText(v.getContext(),"testing",Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return false;
@@ -803,7 +755,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         Posts.add(post);
                     }
                     Posts.sort(new DateComparator());
-                    display_posts(Posts, true, false, false);
+                    display_posts(Posts, true, false);
                 }
 
             @Override
@@ -854,6 +806,7 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
     final View popup_content = getLayoutInflater().inflate(R.layout.pop_up_reply, null);
     TextView popup_header = (TextView) popup_content.findViewById(R.id.reply_header);
     TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);
+    popup_original.setTextSize(11);
     EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
     Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
     popup_header.setText("Replying to:\n\t"+Reply_to_user);
@@ -908,6 +861,7 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
             });
 
             dialog.dismiss();
+            getFollowing();
         }
     });
   ;
@@ -956,5 +910,52 @@ public void addFavourite(String user, String userPost, String postID){
         }
      }
     return spannableString;
+    }
+
+    public boolean checkHashtag(String body){
+        int index = body.indexOf("#"); // looks for the position of # in string
+        if (index != -1) { //index of produces a -1 if it cannot find the substring
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    public SpannableString processHashtag(String body, String ID, String URL, String post_time, String username_post){
+        int index = body.indexOf("#"); // looks for the position of # in string
+        int endIndex = body.indexOf(" ", index);
+        String str = body.substring(index,endIndex);
+            SpannableString spanString = new SpannableString(body);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    Intent intent = new Intent(getActivity(), Display_Hashtag_Posts.class );
+                    intent.putExtra("username", account_user);
+                    intent.putExtra("loggedinuser",account_user);
+                    intent.putExtra("hashtag", str);
+                    intent.putExtra("ID", ID);
+                    intent.putExtra("post_body", body);
+                    intent.putExtra("URL", URL);
+                    intent.putExtra("post_time", post_time);
+                    intent.putExtra("username_post", username_post);
+                    intent.putExtra("is_searched_user", false);
+                    getActivity().startActivity(intent);
+                    getActivity().finish();
+                }
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    super.updateDrawState(ds);
+                    ds.setColor(Color.CYAN);
+                    ds.setUnderlineText(false);
+                }
+            };
+
+        spanString.setSpan(clickableSpan, index, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
+
+        return spanString;
     }
 }

@@ -5,13 +5,14 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Analysis {
-    String post_body;
+    String post_body; // The post text by the user
 
-    Analysis(String text){
+    Analysis(String text){ // Constructor for the class
+
         this.post_body = text;
     }
 
-    static boolean valid_URL(String url){
+    static boolean valid_URL(String url){ // Checks for a valid URL
         try{
             new URL(url).toURI();
             return true;
@@ -21,7 +22,7 @@ public class Analysis {
         }
     }
 
-    public ArrayList Find_link(){
+    public ArrayList Find_link(){ // Find a URL link in a text
         ArrayList<Pair<Integer,Integer>>data = new ArrayList<>();
         String words[] = post_body.split(" ");
         for(String it:words){

@@ -81,7 +81,10 @@ public class Show_Profile_Details extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String imageUrl = snapshot.child(username).child("mImageUrl").getValue(String.class);
-                    Picasso.get().load(imageUrl).into(profile_pic);
+                    if (!imageUrl.equalsIgnoreCase(""))
+                    {
+                        Picasso.get().load(imageUrl).into(profile_pic);
+                    }
 
                     UserName.setText(username);
 

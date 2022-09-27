@@ -31,6 +31,9 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
+            android:name="com.example.softwareproject.Display_Hashtag_Posts"
+            android:exported="false" />
+        <activity
             android:name="com.example.softwareproject.Replies"
             android:exported="false" />
         <activity

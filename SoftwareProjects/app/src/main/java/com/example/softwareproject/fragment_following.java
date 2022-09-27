@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.Barrier;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,12 +60,10 @@ public class fragment_following extends Fragment {
                         df.setText(data.getValue(String.class));
                         df.setTextSize(20);
                         df.setPadding(30,15,0,30);
-                        if(index%2!=0){
-                            df.setBackgroundColor(Color.parseColor("#14B3E1"));
-                        }
-                        else{
-                            df.setBackgroundColor(Color.parseColor("#C1DBE2"));
-                        }
+                        df.setTextColor(Color.parseColor("white"));
+                        df.setHeight(140);
+                        df.setBackgroundColor(Color.parseColor("#F51E1B1B"));
+                        df.setGravity(Gravity.CENTER_VERTICAL);
                         df.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -76,6 +76,7 @@ public class fragment_following extends Fragment {
                         });
                     index++;
                     l.addView(df);
+                    l.addView(Divider());
                     }
                 }
             }
@@ -86,4 +87,13 @@ public class fragment_following extends Fragment {
             }
         });
         }
+
+        public View Divider(){
+            View viewDivider = new View(getContext());
+            int dividerHeight = 5;
+            viewDivider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dividerHeight));
+            viewDivider.setBackgroundColor(Color.parseColor("#A417AFEA"));
+            return  viewDivider;
+        }
+
     }
