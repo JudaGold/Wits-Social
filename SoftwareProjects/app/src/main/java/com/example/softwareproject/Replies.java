@@ -202,10 +202,6 @@ public class Replies extends AppCompatActivity {
     public TextView createTimeTextView(String str) {
         TextView time = new TextView(Replies.this);
         time.setText(str);
-<<<<<<< Updated upstream
-=======
-        time.setTextColor(Color.parseColor("white"));
->>>>>>> Stashed changes
         time.setGravity(Gravity.RIGHT);
         time.setTextSize(11);
         time.setTextColor(Color.parseColor("white"));
