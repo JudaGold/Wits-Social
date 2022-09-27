@@ -11,16 +11,11 @@ AnalysisTest {
     @Test
     public void Analysis_initialState_validOutput(){
 
-        Analysis fakebody= new Analysis("this is a fake body text");
+        Analysis fakebody= new Analysis("this is a fake body text");//creating a fake body text in order to test if the correct output
 
         assertEquals(fakebody.post_body ,"this is a fake body text");
     }
 
-//    public void valid_url_initialState_validOutput(){
-//        String fakeValidUrl = ("http://example.com");
-//        boolean validUrl = Analysis.valid_URL(fakeValidUrl);
-//
-//    }
 
 
 }

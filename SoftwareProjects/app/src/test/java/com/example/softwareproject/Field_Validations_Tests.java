@@ -18,7 +18,7 @@ public class Field_Validations_Tests {
     Field_Validations field_validations = new Field_Validations();
     EditText et = new EditText(mockContext);
     EditText et2 = new EditText(mockContext);
-
+    //creating a fake password to check if he output is correct for a valid password input type.
     @Test
     public void passwords_match_insertingPasswords_validMatch() {
         String fake_password1 = "David2001";
@@ -28,7 +28,7 @@ public class Field_Validations_Tests {
 
         assertTrue(valid_match);
     }
-
+        //creating a fake password to check if the output is correct for an INVALID password input.
     @Test
     public void passwords_match_insertingPasswords_invalidMatch() {
         String fake_password1 = "David2001";
@@ -77,6 +77,7 @@ public class Field_Validations_Tests {
     }
 
     @Test
+    //creating a boolean variable to check the if we get the correct boolean true or false value
     void check_email_insertingEmail_validEmail() {
         String fake_email = "d@g.com";
 
@@ -88,7 +89,7 @@ public class Field_Validations_Tests {
     @Test
     void check_email_insertingEmail_invalidEmail() {
         String fake_email = "dg.com";
-
+        //creating a boolean variable to check the if we get the correct boolean true or false value
         boolean invalid_email = field_validations.check_email(fake_email, et);
 
         assertFalse(invalid_email);
@@ -97,7 +98,7 @@ public class Field_Validations_Tests {
     @Test
     void bioValidation_insertingBio_validBio() {
         String fake_bio = "Life is great!";
-
+        //creating a boolean variable to check the if we get the correct boolean true or false value
         boolean valid_bio = field_validations.bioValidation(fake_bio, et);
 
         assertTrue(valid_bio);
@@ -107,7 +108,7 @@ public class Field_Validations_Tests {
     void bioValidation_insertingBio_invalidBio() {
         String fake_bio = "Life is great! I should write a book about myself. I'll call it David " +
                 "and Goliath";
-
+        //creating a boolean variable to check the if we get the correct boolean true or false value
         boolean invalid_bio = field_validations.bioValidation(fake_bio, et);
 
         assertFalse(invalid_bio);
@@ -128,7 +129,7 @@ public class Field_Validations_Tests {
     void validateInput_insertingUsernameAndPassword_invalidUsernameInput() {
         String fake_username = "";
         String fake_password = "dave2001";
-
+        //creating a boolean variable to check the if we get the correct boolean true or false value
         boolean invalid_input = field_validations.validateInput(fake_username, fake_password, et,
                 et2);
 
@@ -136,10 +137,11 @@ public class Field_Validations_Tests {
     }
 
     @Test
+        //creating a fake password and username to check if he output is correct for a valid password and username input type.
     void validateInput_insertingUsernameAndPassword_invalidPasswordInput() {
         String fake_username = "Dave";
         String fake_password = "";
-
+        //creating a boolean variable to check the if we get the correct boolean true or false value
         boolean invalid_input = field_validations.validateInput(fake_username, fake_password, et,
                 et2);
 
