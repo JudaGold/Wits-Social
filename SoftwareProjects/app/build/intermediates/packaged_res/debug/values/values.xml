@@ -21,6 +21,10 @@
     <color name="background">#F51E1B1B</color>
     <color name="black">#FF000000</color>
     <color name="button">#339CBA</color>
+<<<<<<< Updated upstream
+=======
+    <color name="iconButton">#41EAFF</color>
+>>>>>>> Stashed changes
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -66,7 +70,7 @@
     <string name="reply_to">Reply to:</string>
     <string name="retype_password">reType Password</string>
     <string name="sign_up">Sign Up</string>
-    <string name="tell_eveyone_n_what_s_on_you_re_mind">Tell eveyone\n what\'s on you\'re mind</string>
+    <string name="tell_eveyone_n_what_s_on_you_re_mind">Tell everyone\n what\'s on you\'re mind</string>
     <string name="textview">TextView</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="todo">TODO</string>

@@ -84,7 +84,7 @@ public class Replies extends AppCompatActivity {
         int counter_reply = 0;
 
         lp.setOrientation(LinearLayout.VERTICAL);
-        lp.setBackgroundColor(Color.parseColor("white"));
+        //lp.setBackgroundColor(Color.parseColor("white"));
         lp.removeAllViews();
         for (Post post : Posts) {
             String post_body = post.getBody();
@@ -93,8 +93,8 @@ public class Replies extends AppCompatActivity {
             String ID = post.getID();
             String username_post = post.getUsername();
 
-            TextView usernameView = new TextView(Replies.this);
-            usernameView.setTextSize(20);
+            TextView usernameView = createUsernameTextView();
+            //usernameView.setTextSize(20);
 
             boolean account_main = false;//checking for logged in user
             if (!is_searched_user) {
@@ -112,8 +112,7 @@ public class Replies extends AppCompatActivity {
                     usernameView.setText(username_post);
                 }
             }
-            usernameView.setTextColor(Color.parseColor("#135A71"));
-            usernameView.setGravity(Gravity.CENTER);
+
             lp.addView(usernameView);
 
             TextView body = createBodyTextView(" " + post_body);
@@ -165,6 +164,16 @@ public class Replies extends AppCompatActivity {
         }
     }
 
+    public TextView createUsernameTextView(){
+        TextView user = new TextView(Replies.this);
+        user.setTextSize(20);
+        user.setPadding(30,30,30,30);
+        user.setTextColor(Color.parseColor("#FF47FAF3"));
+        user.setGravity(Gravity.LEFT);
+        return user;
+
+    }
+
     public ImageView createImageView() {
         ImageView imageView = new ImageView(Replies.this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
@@ -184,6 +193,7 @@ public class Replies extends AppCompatActivity {
         TextView body = new TextView(Replies.this);
         body.setText(str);
         body.setTextSize(20);
+        body.setTextColor(Color.parseColor("white"));
         body.setPadding(30, 30, 30, 30);
         body.setTextColor(Color.parseColor("white"));
         return body;
@@ -192,6 +202,10 @@ public class Replies extends AppCompatActivity {
     public TextView createTimeTextView(String str) {
         TextView time = new TextView(Replies.this);
         time.setText(str);
+<<<<<<< Updated upstream
+=======
+        time.setTextColor(Color.parseColor("white"));
+>>>>>>> Stashed changes
         time.setGravity(Gravity.RIGHT);
         time.setTextSize(11);
         time.setTextColor(Color.parseColor("white"));
@@ -264,10 +278,14 @@ public class Replies extends AppCompatActivity {
         final View popup_content = getLayoutInflater().inflate(R.layout.pop_up_reply, null);
         TextView popup_header = (TextView) popup_content.findViewById(R.id.reply_header);
         TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);
+
         EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
         Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
         popup_header.setText("Replying to:\n\t"+Reply_to_user);
         popup_original.setText(original_post_msg);
+        popup_header.setTextSize(11);
+        popup_original.setTextSize(11);
+        popup_original.setHeight(15);
 
 
         dialogB.setView(popup_content);

@@ -29,11 +29,37 @@
         <entry key="..\:/Users/melon/Documents/School Stuff/Second Semester/COMS3011A/Wits-Social/SoftwareProjects/app/src/main/res/layout/replies_page.xml" value="0.17447916666666666" />
         <entry key="..\:/Users/melon/Documents/School Stuff/Second Semester/COMS3011A/Wits-Social/SoftwareProjects/app/src/main/res/layout/show_profile_details.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/melon/Documents/School Stuff/Second Semester/COMS3011A/Wits-Social/SoftwareProjects/app/src/main/res/menu/popup_edit.xml" value="0.17552083333333332" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/button_shape_square.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/buttonshape.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/custom_inputbox.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/edit_text_border.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/favorite_filled.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/ic_baseline_post_add_24.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/popup_dialog_box.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/drawable/post_layout.xml" value="0.1" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/font/font.xml" value="0.10092592592592593" />
         <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_add_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_add_profile_pic.xml" value="0.25" />
-        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_display_hashtag_posts.xml" value="0.26875" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_forgot_password.xml" value="0.358695652173913" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_main_profile.xml" value="0.27898550724637683" />
-        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/activity_user_display.xml" value="0.358695652173913" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/fragment__post_feed.xml" value="0.25" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/fragment_followers.xml" value="0.358695652173913" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/fragment_following.xml" value="0.358695652173913" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/pop_up_reply.xml" value="0.25" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/popup_image.xml" value="0.358695652173913" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/popup_post.xml" value="0.358695652173913" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/replies_page.xml" value="0.25" />
+        <entry key="..\:/Wits-Social/SoftwareProjects/app/src/main/res/layout/show_profile_details.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -28,12 +28,20 @@
 
         <ImageButton
             android:id="@+id/btn_add_post"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="280dp"
             android:layout_marginBottom="20dp"
+<<<<<<< Updated upstream
             android:background="@drawable/baseline_add_circle_outline_white_18"
             android:backgroundTint="#37D5EA"
+=======
+            android:background="@drawable/button_shape_square"
+            android:backgroundTintMode="src_atop"
+            android:foregroundTint="#36200571"
+            android:foregroundTintMode="src_atop"
+            android:src="@drawable/ic_baseline_post_add_24"
+>>>>>>> Stashed changes
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

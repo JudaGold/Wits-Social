@@ -10,6 +10,7 @@
     <color name="button">#339CBA</color>
     <color name="background">#F51E1B1B</color>
     <color name="TextBackgroundTint">#403D3D</color>
+    <color name="iconButton">#41EAFF</color>
 
 
 </resources>
