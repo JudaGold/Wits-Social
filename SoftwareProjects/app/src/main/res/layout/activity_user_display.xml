@@ -104,7 +104,8 @@
 
         android:id="@+id/TabLayout"
         android:layout_width="409dp"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        app:tabTextColor="@color/white">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

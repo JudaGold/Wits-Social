@@ -3,6 +3,7 @@ package com.example.softwareproject;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.net.Uri;
@@ -291,7 +292,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     @RequiresApi(api = Build.VERSION_CODES.O)
     void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_searched_user) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
-        int counter_reply = 0;
 
         if (Posts.size() >0) {
         if (Edits) {
@@ -365,8 +365,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
                LinearLayout horizontalLayout = createHorizontalLayout();
                postview.addView(body);
-               TextView replies = createNumOfReplies(num_of_replies);
-               horizontalLayout.addView(replies);
+               if (!num_of_replies.equalsIgnoreCase("")) {
+                   TextView replies = createNumOfReplies(num_of_replies);
+                   horizontalLayout.addView(replies);
+               }
+
                if (!account_main) {
                    horizontalLayout.addView(favouritesButton);
                    horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
@@ -592,13 +595,24 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     {
         TextView textView = new TextView(getContext());
         textView.setText(num_of_replies);
-        textView.setTextSize(18);
+        textView.setTextSize(15);
         textView.setGravity(Gravity.RIGHT);
         textView.setPadding(30,0,20,0);
         textView.setTextColor(Color.parseColor("white"));
+        textView.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_round_chat_bubble_outline_24));
 
         return textView;
     }
+
+//    public ImageView createRepliesIcon()
+//    {
+//        ImageView replies_icon = new ImageView(getContext());
+//        replies_icon.setImageResource(R.drawable.ic_round_chat_bubble_outline_24);
+//        replies_icon.setForegroundGravity(Gravity.RIGHT);
+//        replies_icon.setPadding(30,0,5,0);
+//
+//        return replies_icon;
+//    }
 
     public Space addSpace(){
         Space space = new Space(v.getContext());
