@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -106,11 +108,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             display_searched_user_posts();
 
         }
-
-
-
         return v;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void add_post(Boolean edit, String body, String URL, String Id, String time) {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
@@ -321,7 +321,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                String num_of_replies = post.getNum_of_replies();
 
                TextView usernameView = createUsernameTextView();
-               usernameView.setTextSize(20);
+               TextView body = null;
 
                boolean account_main = false;//checking for logged in user
                if (!is_searched_user) {
@@ -350,7 +350,17 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
                lp.addView(usernameView);
 
-               TextView body = createBodyTextView(" " + post_body);
+
+               boolean hashtag = checkHashtag(post_body);
+               if(hashtag){
+                   String new_post_body = post_body + " ";
+                   SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
+                   body = createBodyTextViewHashtag(spanString);
+               }
+               else {
+                   body = createBodyTextView(" " + post_body);
+               }
+
                TextView time = createTimeTextView(post_time);
 
                LinearLayout postview = createPostLayout();
@@ -471,20 +481,27 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     post_time = post_time.substring(0,10);
                     String URL = post_data.elementAt(i).getPost_image_url();
 
-
-                    TextView body = createBodyTextView("\t"+post_body);
+                    TextView body =null;
+                    boolean hashtag = checkHashtag(post_body);
+                    if(hashtag){
+                        String new_post_body = post_body + " ";
+                        SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username);
+                        body = createBodyTextViewHashtag(spanString);
+                    }
+                    else {
+                        body = createBodyTextView("\t"+post_body);
+                    }
                     TextView time = createTimeTextView(post_time);
                     LinearLayout post = createPostLayout();
 
                     post.addView(time);
-
 
                     if (URL.length() >= 1) {
                         ImageView im = createImageView();
                         getImage(URL, im);
                         post.addView(im);
                     }
-                    body.setTextColor(Color.parseColor("#000000"));
+
                     post.addView(body);
                     Space space = addSpace();
                     ToggleButton favouritesButton = createFavouriteToggleButton(account_user,username,uid);
@@ -551,6 +568,17 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         SpannableString sp = Create_Link(str);
         body.setText(sp);
         body.setTextSize(20);
+        body.setTextColor(Color.parseColor("white"));
+        body.setPadding(30,30,30,30);
+        body.setMovementMethod(LinkMovementMethod.getInstance());
+        return body;
+    }
+
+    public TextView createBodyTextViewHashtag(SpannableString str){
+        TextView body = new TextView(getContext());
+        body.setText(str);
+        body.setTextSize(20);
+        body.setMovementMethod(LinkMovementMethod.getInstance());
         body.setTextColor(Color.parseColor("white"));
         body.setPadding(30,30,30,30);
         body.setMovementMethod(LinkMovementMethod.getInstance());
@@ -780,6 +808,7 @@ public void Reply(String Reply_to_user, String original_post_msg, String uid){
     final View popup_content = getLayoutInflater().inflate(R.layout.pop_up_reply, null);
     TextView popup_header = (TextView) popup_content.findViewById(R.id.reply_header);
     TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);
+    popup_original.setTextSize(11);
     EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
     Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
     popup_header.setText("Replying to:\n\t"+Reply_to_user);
@@ -883,5 +912,52 @@ public void addFavourite(String user, String userPost, String postID){
         }
      }
     return spannableString;
+    }
+
+    public boolean checkHashtag(String body){
+        int index = body.indexOf("#"); // looks for the position of # in string
+        if (index != -1) { //index of produces a -1 if it cannot find the substring
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    public SpannableString processHashtag(String body, String ID, String URL, String post_time, String username_post){
+        int index = body.indexOf("#"); // looks for the position of # in string
+        int endIndex = body.indexOf(" ", index);
+        String str = body.substring(index,endIndex);
+            SpannableString spanString = new SpannableString(body);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    Intent intent = new Intent(getActivity(), Display_Hashtag_Posts.class );
+                    intent.putExtra("username", account_user);
+                    intent.putExtra("loggedinuser",account_user);
+                    intent.putExtra("hashtag", str);
+                    intent.putExtra("ID", ID);
+                    intent.putExtra("post_body", body);
+                    intent.putExtra("URL", URL);
+                    intent.putExtra("post_time", post_time);
+                    intent.putExtra("username_post", username_post);
+                    intent.putExtra("is_searched_user", false);
+                    getActivity().startActivity(intent);
+                    getActivity().finish();
+                }
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    super.updateDrawState(ds);
+                    ds.setColor(Color.CYAN);
+                    ds.setUnderlineText(false);
+                }
+            };
+
+        spanString.setSpan(clickableSpan, index, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
+
+        return spanString;
     }
 }

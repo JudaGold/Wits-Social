@@ -24,7 +24,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:autoSizeTextType="uniform"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="11sp" />
 
 
 
@@ -47,15 +48,15 @@
 
     <Button
         android:id="@+id/btn_reply"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#123F4C"
         android:color="@android:color/holo_blue_bright"
         android:fontFamily="@font/lato_regular"
         android:text="Reply"
-        android:textColor="@color/white" />
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 </LinearLayout>

@@ -33,19 +33,18 @@
             android:id="@+id/Search_user_button"
             android:layout_width="41dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:background="@drawable/buttonshape"
-            app:srcCompat="@drawable/search_icon" />
+            android:background="@drawable/search_icon"
+            android:backgroundTint="@color/iconButton" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/LP_profile"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:background="#26E3EA"
-        android:backgroundTint="#D02ABEE3"
+        android:background="@color/iconButton"
         android:orientation="vertical">
 
         <LinearLayout
@@ -105,7 +104,11 @@
         android:id="@+id/TabLayout"
         android:layout_width="409dp"
         android:layout_height="40dp"
+<<<<<<< Updated upstream
         app:tabTextColor="@color/white">
+=======
+        android:background="@color/white">
+>>>>>>> Stashed changes
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

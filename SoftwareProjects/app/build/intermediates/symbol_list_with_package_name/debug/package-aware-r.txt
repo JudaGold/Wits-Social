@@ -1297,6 +1297,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color iconButton
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2477,11 +2478,14 @@ drawable abc_vector_test
 drawable add_pic
 drawable avd_hide_password
 drawable avd_show_password
+<<<<<<< Updated upstream
 drawable baseline_add_circle_outline_white_18
 drawable baseline_add_circle_outline_white_20
 drawable baseline_add_circle_outline_white_24
 drawable baseline_add_circle_outline_white_36
 drawable baseline_add_circle_outline_white_48
+=======
+>>>>>>> Stashed changes
 drawable blue_and_grey_background
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -2491,6 +2495,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable button_shape_square
 drawable buttonshape
 drawable circle
 drawable common_full_open_on_phone
@@ -2519,11 +2524,18 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable edit_text_border
+<<<<<<< Updated upstream
 drawable exp
+=======
+>>>>>>> Stashed changes
 drawable favorite_filled
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_baseline_account_circle_24
+<<<<<<< Updated upstream
+=======
+drawable ic_baseline_add_circle_outline_24
+>>>>>>> Stashed changes
 drawable ic_baseline_favorite_border_24
 drawable ic_baseline_home_24
 drawable ic_baseline_lock_24
@@ -2995,6 +3007,7 @@ id popup_image
 id position
 id postLayout
 id post_body
+id post_layout
 id post_replying_to
 id profile_pic
 id progress_circular
@@ -3021,6 +3034,7 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
+id scrollView2
 id scroll_posts
 id scroll_replies
 id scrollable
@@ -3256,6 +3270,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_profile_pic
+layout activity_display_hashtag_posts
 layout activity_forgot_password
 layout activity_main
 layout activity_sign_up
