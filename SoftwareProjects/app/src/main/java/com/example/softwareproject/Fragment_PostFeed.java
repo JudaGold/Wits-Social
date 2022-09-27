@@ -292,7 +292,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     @RequiresApi(api = Build.VERSION_CODES.O)
     void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_searched_user) {
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
-        int counter_reply = 0;
 
         if (Posts.size() >0) {
         if (Edits) {
