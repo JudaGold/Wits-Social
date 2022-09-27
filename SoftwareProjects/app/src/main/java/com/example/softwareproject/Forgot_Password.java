@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class Forgot_Password extends AppCompatActivity {
+    // Declaration of variables
     EditText emailfield,p1,p2;
     Button btn,cbtn,btntemp;
     LinearLayout l,ll;
@@ -28,6 +29,7 @@ public class Forgot_Password extends AppCompatActivity {
     FirebaseDatabase fb,rootnode,temp;
     DatabaseReference Gdb;
     Field_Validations fv = new Field_Validations();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
