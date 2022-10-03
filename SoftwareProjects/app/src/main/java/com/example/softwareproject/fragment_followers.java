@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class fragment_followers extends Fragment {
     LinearLayout l;
-    String user;
+    String user,curr_user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class fragment_followers extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_followers, container, false);
         Intent intent = getActivity().getIntent();
         user = intent.getStringExtra("username");
+        curr_user = intent.getStringExtra("loggedinuser");
         l = (LinearLayout) v.findViewById(R.id.LP_followers);
         l.setOrientation(LinearLayout.VERTICAL);
 
@@ -71,7 +72,7 @@ public class fragment_followers extends Fragment {
                             public void onClick(View v) {
                                 Intent intent = new Intent(getActivity(), user_display.class);
                                 intent.putExtra("username", data.getValue(String.class));
-                                intent.putExtra("loggedinuser",user);
+                                intent.putExtra("loggedinuser",curr_user);
                                 getActivity().startActivity(intent);
                                 getActivity().finish();
                             }

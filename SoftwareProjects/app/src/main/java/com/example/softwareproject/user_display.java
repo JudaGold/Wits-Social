@@ -52,20 +52,25 @@ public class user_display extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         tabLayout.setupWithViewPager(viewPager);
 
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");//establishing fragment for viewing posts
-        pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");//establishing fragment for viewing user followers
-        pagerAdapter.addFragmentTitle(new fragment_following(),"Following");//establishing fragment for viewing user following list
-        viewPager.setAdapter(pagerAdapter);//setting up a viewpager to make swiping across fragments
-
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         logged_in_user =  intent.getStringExtra("loggedinuser");
         intent.putExtra("loggedinuser",logged_in_user);
         update_FCM_token();
 
+
+
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");//establishing fragment for viewing posts
+        pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");//establishing fragment for viewing user followers
+        pagerAdapter.addFragmentTitle(new fragment_following(),"Following");//establishing fragment for viewing user following list
+
+        if(username.equalsIgnoreCase(logged_in_user)){
+            pagerAdapter.addFragmentTitle(new fragment_Favourites(),"liked");//adding fragment favourite post to page adapter to view fragment favorites.xml
+        }
+        viewPager.setAdapter(pagerAdapter);//setting up a viewpager to make swiping across fragments
+
+        reference = FirebaseDatabase.getInstance().getReference("Users");
         usernameText = (TextView) findViewById(R.id.username_text);
         bioText = (TextView) findViewById(R.id.bio_text);
         user_image = findViewById(R.id.searched_user_image);
