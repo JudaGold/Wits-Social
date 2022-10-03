@@ -35,7 +35,7 @@ public class user_display extends AppCompatActivity {
     private ViewPager viewPager;
     TextView usernameText, bioText;// bioText will have the user's bio
     ImageButton btn_search_user;
-    Button btnfollow;
+    Button btnfollow,btnblock;
     DatabaseReference reference;// this the reference of the Firebase database
     de.hdodenhof.circleimageview.CircleImageView user_image;
     AutoCompleteTextView search_bar;
@@ -58,8 +58,6 @@ public class user_display extends AppCompatActivity {
         intent.putExtra("loggedinuser",logged_in_user);
         update_FCM_token();
 
-
-
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");//establishing fragment for viewing posts
         pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");//establishing fragment for viewing user followers
@@ -76,6 +74,8 @@ public class user_display extends AppCompatActivity {
         user_image = findViewById(R.id.searched_user_image);
         btnfollow = new Button(getApplicationContext());
         btnfollow.setText("follow");
+        btnblock = new Button(getApplicationContext());
+        btnblock.setText("block");
         display_user_information();
 
         if(username.equalsIgnoreCase(logged_in_user)){
@@ -94,7 +94,11 @@ public class user_display extends AppCompatActivity {
         else{
             main_user = false;
             LinearLayout lp_info= findViewById(R.id.lp_info);
-            lp_info.addView(btnfollow);
+            LinearLayout lv = new LinearLayout(getApplicationContext());
+            lv.setOrientation(LinearLayout.HORIZONTAL);
+            lv.addView(btnfollow);
+            lv.addView(btnblock);
+            lp_info.addView(lv);
             lp_info.removeView(bioText);
             is_following();
         }
@@ -221,4 +225,9 @@ public class user_display extends AppCompatActivity {
                     }
                 });
     }
+
+    void unblock_user(){
+
+    }
 }
+
