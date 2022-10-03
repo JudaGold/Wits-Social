@@ -37,7 +37,7 @@ public class fragment_Favourites extends Fragment {
         l = (LinearLayout) v.findViewById(R.id.layout_favourites);
         l.setOrientation(LinearLayout.VERTICAL);
 
-        dr = fb.getInstance().getReference("FavouritePosts").child(curr_user);
+        dr = fb.getInstance().getReference("FavouritePosts").child(curr_user);//reference to collect all favourite posts
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -45,13 +45,15 @@ public class fragment_Favourites extends Fragment {
                     for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                         String post_user = dataSnapshot.getKey();
                         long count = dataSnapshot.child("ID").getChildrenCount();
-                        for(int i = 1;i<=count;i++){
+                        for(int i = 1;i<=count;i++){//checking multiple likes from a single user
                             String id = dataSnapshot.child("ID").child(String.valueOf(i)).getValue(String.class);
-                            add_post(post_user,id);
+                            add_post(post_user,id);//adding a post to the list of liked posts to display
                         }
 
                     }
                 }else{
+                    views = new UI_Views();
+                    l.addView(views.createUsernameTextView(getContext(),"\n\t\tNothing to show :( ,\tTry liking a post."));
                 }
             }
             @Override
@@ -61,7 +63,7 @@ public class fragment_Favourites extends Fragment {
         return v;
     }
 
-    void add_post(String user_post, String post_id){
+    void add_post(String user_post, String post_id){//function to add a post to later display
         DatabaseReference bd = FirebaseDatabase.getInstance().getReference("Posts").child(user_post).child(post_id);
         bd.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -70,7 +72,7 @@ public class fragment_Favourites extends Fragment {
                     String body = snapshot.child("body").getValue(String.class);
                     String image = snapshot.child("post_image_url").getValue(String.class);
                     String time = snapshot.child("time").getValue(String.class);
-                    display_post(user_post,body,image,time);
+                    display_post(user_post,body,image,time);//calling function to display post
                 }
             }
             @Override
@@ -81,16 +83,16 @@ public class fragment_Favourites extends Fragment {
     }
 
     void display_post(String user_post, String body,String image,String time){
-        views = new UI_Views();
+        views = new UI_Views();//initializing UI_views class to create ui views
         LinearLayout lh = views.createPostLayout(getContext());
 
-        l.addView(views.createUsernameTextView(getContext(),user_post));
-        lh.addView(views.createTimeTextView(getContext(),time));
-        if(!image.equalsIgnoreCase("")){
-            lh.addView(views.createImageView(getContext(),getActivity(),image));
+        l.addView(views.createUsernameTextView(getContext(),user_post));//adding posts user
+        lh.addView(views.createTimeTextView(getContext(),time));//adding post time
+        if(!image.equalsIgnoreCase("")){//checking if user posted a image
+            lh.addView(views.createImageView(getContext(),getActivity(),image));//adding post image
         }
-        lh.addView(views.createBodyTextView(getContext(),getActivity(),body));
-        l.addView(lh);
-        l.addView(views.addSpace(getContext()));
+        lh.addView(views.createBodyTextView(getContext(),getActivity(),body));//adding post body
+        l.addView(lh);//adding post to main layout
+        l.addView(views.addSpace(getContext()));//adding a space to separate posts
     }
 }

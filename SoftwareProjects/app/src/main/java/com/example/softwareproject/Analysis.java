@@ -19,6 +19,9 @@ public class Analysis {
 
     Analysis(){ // Constructor for the class
     }
+    Analysis(String post_body){
+        this.post_body = post_body;
+    }
 
     static boolean valid_URL(String url){ // Checks for a valid URL
         try{
@@ -43,7 +46,7 @@ public class Analysis {
         return data;
     }
 
-    public SpannableString Create_Link(Activity activity,String body){
+    public SpannableString Create_Link(Activity activity,String body){//function to set up link from spannable strings
         ArrayList<Pair<Integer,Integer>>data = new ArrayList<Pair<Integer,Integer>>();
         data = this.Find_link(body);
         SpannableString spannableString = new SpannableString(body);
