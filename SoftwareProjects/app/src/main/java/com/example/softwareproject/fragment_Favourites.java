@@ -53,7 +53,7 @@ public class fragment_Favourites extends Fragment {
                     }
                 }else{
                     views = new UI_Views();
-                    l.addView(views.createUsernameTextView(getContext(),"\n\t\tNothing to show :( ,\tTry liking a post."));
+                    l.addView(views.createErrorTextView(getContext(),"Nothing to show :(  Try liking a post."));
                 }
             }
             @Override

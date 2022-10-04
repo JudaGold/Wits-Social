@@ -29,6 +29,19 @@ public class UI_Views {
 
     }
 
+    public TextView createErrorTextView(Context context,String str) {
+        TextView user = new TextView(context);
+        user.setTextSize(20);
+        user.setHeight(200);
+        user.setBackgroundColor(Color.parseColor("#403D3D"));
+        user.setText(str);
+        user.setPadding(30, 30, 30, 30);
+        user.setTextColor(Color.parseColor("white"));
+        user.setGravity(Gravity.CENTER);
+        return user;
+
+    }
+
     public ImageView createImageView(Context context,Activity activity,String str) {
         ImageView imageView = new ImageView(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
