@@ -100,7 +100,7 @@ public class UI_Views {
         LinearLayout horizontalLayout = new LinearLayout(context);
         horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
         horizontalLayout.setHorizontalGravity(Gravity.RIGHT);
-        horizontalLayout.setPadding(30, 10, 20, 20);
+        horizontalLayout.setPadding(0, 50, 20, 10);
         return horizontalLayout;
     }
 }

@@ -372,15 +372,17 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
                LinearLayout horizontalLayout = views.createHorizontalLayout(getContext());
                postview.addView(body);
-               if (!num_of_replies.equalsIgnoreCase("")) {
-                   TextView replies = createNumOfReplies(num_of_replies);
-                   horizontalLayout.addView(replies);
-               }
 
                if (!account_main) {
                    horizontalLayout.addView(favouritesButton);
                    horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
                }
+               if (!num_of_replies.equalsIgnoreCase("")) {
+                   TextView replies = createNumOfReplies(num_of_replies);
+                   horizontalLayout.addView(replies);
+               }
+
+
 
                if (username_post.equalsIgnoreCase(username) && !Edits) {
                    postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
@@ -571,9 +573,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     {
         TextView textView = new TextView(getContext());
         textView.setText(num_of_replies);
-        textView.setTextSize(15);
-        textView.setGravity(Gravity.RIGHT);
-        textView.setPadding(30,0,20,0);
+        textView.setTextSize(10);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80,80);
+        textView.setLayoutParams(params);
+        params.bottomMargin = 4;
+        textView.setPadding(0,0,0,15);
+        textView.setGravity(Gravity.CENTER);
         textView.setTextColor(Color.parseColor("white"));
         textView.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_round_chat_bubble_outline_24));
 
