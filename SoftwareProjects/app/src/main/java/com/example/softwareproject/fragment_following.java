@@ -92,7 +92,7 @@ public class fragment_following extends Fragment {
 
         public View Divider(){
             View viewDivider = new View(getContext());
-            int dividerHeight = 5;
+            int dividerHeight = 4;
             viewDivider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dividerHeight));
             viewDivider.setBackgroundColor(Color.parseColor("#A417AFEA"));
             return  viewDivider;

@@ -23,7 +23,8 @@ public class UI_Views {
         user.setTextSize(20);
         user.setText(str);
         user.setPadding(30, 30, 30, 30);
-        user.setTextColor(Color.parseColor("#FF47FAF3"));
+        //user.setTextColor(Color.parseColor("#FF47FAF3"));
+        user.setTextColor(Color.parseColor("white"));
         user.setGravity(Gravity.LEFT);
         return user;
 

@@ -44,7 +44,7 @@
         android:id="@+id/LP_profile"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#A417AFEA"
+        android:background="#5417AFEA"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/lato_regular"
                 android:gravity="start"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 app:autoSizeTextType="uniform" />
@@ -75,9 +75,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/lato_regular"
                 android:textAlignment="textStart"
-                android:textColor="@color/black"
+                android:textColor="#CEFFFFFF"
                 android:textSize="16sp"
                 android:textStyle="italic" />
+
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -100,6 +101,7 @@
         android:id="@+id/TabLayout"
         android:layout_width="409dp"
         android:layout_height="40dp"
+        android:layout_marginTop="10dp"
         app:tabTextColor="@color/white">
 
         android:background="@color/white">
