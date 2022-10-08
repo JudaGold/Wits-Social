@@ -3,6 +3,7 @@ package com.example.softwareproject;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
@@ -20,9 +21,12 @@ public class UI_Views {
     Analysis analysis;
     public TextView createUsernameTextView(Context context,String str) {
         TextView user = new TextView(context);
-        user.setTextSize(20);
+        user.setTextSize(21);
         user.setText(str);
-        user.setPadding(30, 30, 30, 30);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(852, ViewGroup.LayoutParams.WRAP_CONTENT);
+        user.setLayoutParams(params);
+        user.setTypeface(null,Typeface.BOLD);
+        user.setPadding(10, 5, 30, 0);
         //user.setTextColor(Color.parseColor("#FF47FAF3"));
         user.setTextColor(Color.parseColor("white"));
         user.setGravity(Gravity.LEFT);
@@ -64,9 +68,9 @@ public class UI_Views {
         TextView body = new TextView(context);
         SpannableString sp = analysis.Create_Link(activity,str);
         body.setText(sp);
-        body.setTextSize(20);
+        body.setTextSize(18);
         body.setTextColor(Color.parseColor("white"));
-        body.setPadding(30, 30, 30, 30);
+        body.setPadding(40, 30, 30, 30);
         body.setMovementMethod(LinkMovementMethod.getInstance());
 
         return body;
@@ -78,7 +82,7 @@ public class UI_Views {
         time.setGravity(Gravity.RIGHT);
         time.setTextSize(11);
         time.setTextColor(Color.parseColor("white"));
-        time.setPadding(0, 5, 20, 0);
+        time.setPadding(0, 20, 20, 0);
         return time;
     }
 
@@ -86,22 +90,24 @@ public class UI_Views {
         LinearLayout post = new LinearLayout(context);
         post.setOrientation(LinearLayout.VERTICAL);
         post.setBackground(ContextCompat.getDrawable(context, R.drawable.post_layout));
-        post.setPadding(30, 30, 20, 30);
+        post.setPadding(20, 0, 20, 20);
         return post;
     }
 
     public Space addSpace(Context context) {
         Space space = new Space(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 50);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30);
         space.setLayoutParams(params);
         return space;
     }
 
     public LinearLayout createHorizontalLayout(Context context) {
         LinearLayout horizontalLayout = new LinearLayout(context);
+       /* LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150);
+        horizontalLayout.setLayoutParams(params);*/
         horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
         horizontalLayout.setHorizontalGravity(Gravity.RIGHT);
-        horizontalLayout.setPadding(0, 50, 20, 10);
+        horizontalLayout.setPadding(0, 20, 20, 5);
         return horizontalLayout;
     }
 }

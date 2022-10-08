@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,14 +86,23 @@ public class fragment_Favourites extends Fragment {
     void display_post(String user_post, String body,String image,String time){
         views = new UI_Views();//initializing UI_views class to create ui views
         LinearLayout lh = views.createPostLayout(getContext());
+        LinearLayout hl = views.createHorizontalLayout(getContext());
+        hl.setGravity(Gravity.NO_GRAVITY);
 
-        l.addView(views.createUsernameTextView(getContext(),user_post));//adding posts user
-        lh.addView(views.createTimeTextView(getContext(),time));//adding post time
+       /* l.addView(views.createUsernameTextView(getContext(),user_post));
+        lh.addView(views.createTimeTextView(getContext(),time));*/
+        TextView user = views.createUsernameTextView(getContext(),user_post);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(720,ViewGroup.LayoutParams.WRAP_CONTENT);
+        user.setLayoutParams(params); //change width of username textview to separate the username and time
+        hl.addView(user); //adding posts user
+        hl.addView(views.createTimeTextView(getContext(),time)); //adding post time
+        lh.addView(hl);
         if(!image.equalsIgnoreCase("")){//checking if user posted a image
             lh.addView(views.createImageView(getContext(),getActivity(),image));//adding post image
         }
         lh.addView(views.createBodyTextView(getContext(),getActivity(),body));//adding post body
-        l.addView(lh);//adding post to main layout
         l.addView(views.addSpace(getContext()));//adding a space to separate posts
+        l.addView(lh);//adding post to main layout
+
     }
 }
