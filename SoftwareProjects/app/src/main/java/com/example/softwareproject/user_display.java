@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -100,7 +101,8 @@ public class user_display extends AppCompatActivity {
             lv.addView(btnblock);
             lp_info.addView(lv);
             lp_info.removeView(bioText);
-            is_following();
+            is_following();//checking if current user is following this account
+            is_blocked();//checking if current user is blocking this account
         }
         search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
         btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
@@ -111,6 +113,14 @@ public class user_display extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 update_social();
+            }
+        });
+
+        btnblock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Search_User_class su = new Search_User_class();//instantiating class to call for blocking and unblocking a user
+                su.block_user(logged_in_user,username,btnblock);//calling blocking function to block user
             }
         });
 
@@ -210,6 +220,30 @@ public class user_display extends AppCompatActivity {
             }
         });
     }
+
+    public void is_blocked(){//function to check if current user is currently blocked
+        DatabaseReference blockdb = FirebaseDatabase.getInstance().getReference("social").child(logged_in_user).child("Blocking");
+        blockdb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for(DataSnapshot ds :snapshot.getChildren()){//checking if user is on the list
+                        if(ds.getValue().equals(username)){
+                            btnblock.setText("blocked");//setting button test to notify usr is blocked
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
     public void update_FCM_token()
     {
         FirebaseMessaging.getInstance().getToken()
