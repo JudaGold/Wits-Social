@@ -47,7 +47,7 @@ public class Sign_Up extends AppCompatActivity {
         edtFirstName = (EditText) findViewById(R.id.first_name);
         edtLastName = (EditText) findViewById(R.id.last_name);
         tv = (TextView) findViewById(R.id.tv);
-        pa = (TextView) findViewById(R.id.pad);
+        //pa = (TextView) findViewById(R.id.pad);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
