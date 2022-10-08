@@ -319,6 +319,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                String username_post = post.getUsername();
                String num_of_replies = post.getNum_of_replies();
 
+               LinearLayout hl = views.createHorizontalLayout(getContext()); //creating horizontal linear
+                                                                                // layout for username and time
+               hl.setHorizontalGravity(Gravity.TOP); //reseting the gravity that was defined
                TextView usernameView;
                TextView body = null;
 
@@ -347,9 +350,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                    }
                }
 
-               lp.addView(usernameView);
-
-
                boolean hashtag = checkHashtag(post_body);
                if(hashtag){
                    String new_post_body = post_body + " ";
@@ -363,15 +363,20 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                TextView time = views.createTimeTextView(getContext(),post_time);
 
                LinearLayout postview = views.createPostLayout(getContext());
-               postview.addView(time);
+
+               //adding username and time textview to the horizontal layout
+               hl.addView(usernameView);
+               hl.addView(time);
+               postview.addView(hl);
 
                if (URL.length() >= 1) {
                    postview.addView(views.createImageView(getContext(),getActivity(),URL));
                }
 
+
+               postview.addView(body);
                ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
                LinearLayout horizontalLayout = views.createHorizontalLayout(getContext());
-               postview.addView(body);
 
                if (!account_main) {
                    horizontalLayout.addView(favouritesButton);
@@ -418,8 +423,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                }
 
                postview.addView(horizontalLayout);
-               lp.addView(postview);
                lp.addView(views.addSpace(getContext()));
+               lp.addView(postview);
+
 
            }catch(Exception e){
 
@@ -508,8 +514,9 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
                     post.addView(horizontalLayout);
 
-                    lp.addView(post);
                     lp.addView(space); //adds space so that the posts look better
+                    lp.addView(post);
+
 
                     String finalPost_time = post_time;
                     post.setOnClickListener(new View.OnClickListener() {
@@ -554,7 +561,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         textView.setText("reply");
         textView.setTextSize(18);
         textView.setGravity(Gravity.RIGHT);
-        textView.setPadding(30,0,20,0);
+        textView.setPadding(20,0,20,0);
         textView.setTextColor(Color.parseColor("white"));
 
         textView.setOnClickListener(new View.OnClickListener() {
@@ -604,7 +611,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         toggleButton.setTextOff("");
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80,80);
         toggleButton.setLayoutParams(params);
-        toggleButton.setPadding(30,0,200,0);
+        toggleButton.setPadding(30,0,190,0);
         toggleButton.setBackgroundResource(R.drawable.toggle_selector);
         toggleButton.setClickable(true);
 

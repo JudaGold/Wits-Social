@@ -41,6 +41,8 @@ public class Replies extends AppCompatActivity {
     String username, account_user;
     Boolean is_searched_user;
 
+    UI_Views views = new UI_Views();
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,34 +95,39 @@ public class Replies extends AppCompatActivity {
             String ID = post.getID();
             String username_post = post.getUsername();
 
-            TextView usernameView = createUsernameTextView();
+            TextView usernameView;
             //usernameView.setTextSize(20);
 
             boolean account_main = false;//checking for logged in user
             if (!is_searched_user) {
                 if (username_post.equalsIgnoreCase(username)) {
-                    usernameView.setText("Me");
+                    usernameView = views.createUsernameTextView(Replies.this, "Me");
                     account_main = true;
                 } else {
-                    usernameView.setText(username_post);
+                    usernameView= views.createUsernameTextView(Replies.this, username_post);
                 }
             } else {
                 if (username_post.equalsIgnoreCase(account_user)) {
-                    usernameView.setText("Me");
+                    usernameView = views.createUsernameTextView(Replies.this, "Me");
                     account_main = true;
                 } else {
-                    usernameView.setText(username_post);
+                    usernameView= views.createUsernameTextView(Replies.this, username_post);
                 }
             }
 
-            lp.addView(usernameView);
+            LinearLayout hl = views.createHorizontalLayout(Replies.this);
+            hl.setGravity(Gravity.NO_GRAVITY);
+            hl.addView(usernameView);
+            //lp.addView(usernameView);
 
             TextView body = createBodyTextView(" " + post_body);
-            TextView time = createTimeTextView(post_time);
+            TextView time = views.createTimeTextView(Replies.this, post_time);
 
-            LinearLayout postview = createPostLayout();
-            postview.addView(time);
+            LinearLayout postview = views.createPostLayout(Replies.this);
 
+            hl.addView(time);
+           // postview.addView(time);
+            postview.addView(hl);
             if (URL.length() >= 1) {
                 ImageView image = createImageView();
                 getImage(URL, image);
@@ -149,29 +156,22 @@ public class Replies extends AppCompatActivity {
                 }
             });
 
-
+            lp.addView(views.addSpace(Replies.this));
             lp.addView(postview);
 
             counter_reply++;
 
             if (counter_reply == 1) {
                 TextView replyTextView = new TextView(Replies.this);
-                replyTextView.setTextSize(20);
+                replyTextView.setTextSize(25);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+                replyTextView.setLayoutParams(params);
+                replyTextView.setGravity(Gravity.CENTER);
                 replyTextView.setText("Replies");
-                replyTextView.setTextColor(Color.parseColor("black"));
+                replyTextView.setTextColor(Color.parseColor("white"));
                 lp.addView(replyTextView);
             }
         }
-    }
-
-    public TextView createUsernameTextView(){
-        TextView user = new TextView(Replies.this);
-        user.setTextSize(20);
-        user.setPadding(30,30,30,30);
-        user.setTextColor(Color.parseColor("#FF47FAF3"));
-        user.setGravity(Gravity.LEFT);
-        return user;
-
     }
 
     public ImageView createImageView() {
@@ -199,22 +199,6 @@ public class Replies extends AppCompatActivity {
         return body;
     }
 
-    public TextView createTimeTextView(String str) {
-        TextView time = new TextView(Replies.this);
-        time.setText(str);
-        time.setGravity(Gravity.RIGHT);
-        time.setTextSize(11);
-        time.setTextColor(Color.parseColor("white"));
-        return time;
-    }
-
-    public LinearLayout createPostLayout() {
-        LinearLayout post = new LinearLayout(Replies.this);
-        post.setOrientation(LinearLayout.VERTICAL);
-        post.setBackground(ContextCompat.getDrawable(Replies.this, R.drawable.post_layout));
-        post.setPadding(30, 30, 20, 30);
-        return post;
-    }
 
     public void display_replies(String postID, ArrayList<Post> Replies, Boolean is_searched_user) {
         reference = FirebaseDatabase.getInstance().getReference("Posts").child(username_post).child(postID).child("Replies");
@@ -252,6 +236,7 @@ public class Replies extends AppCompatActivity {
     public TextView createReplyOption(String Reply_to,String post_msg,String uid){//adding a reply text for user to click on to reply to a post
         TextView textView = new TextView(Replies.this);
         textView.setText("reply");
+        textView.setTextColor(Color.parseColor("white"));
         textView.setTextSize(18);
         textView.setGravity(Gravity.RIGHT);
         textView.setPadding(30,0,20,0);

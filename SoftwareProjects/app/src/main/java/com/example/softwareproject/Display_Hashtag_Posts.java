@@ -51,18 +51,16 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
     String account_user;
     String hashtag;
     LinearLayout lp;
-    int counter_reply = 0;
     DatabaseReference reference,reference2, reference3;// this the reference of the Firebase database
     long maxId = 1;
 
     String post_body, URL, post_time, ID, username_post;
 
-    Boolean is_searched_user;
     ArrayList<String> all_usernames;/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
-    Search_User_class su = new Search_User_class();
     ArrayList<String> all_fcm_tokens;
+    UI_Views views = new UI_Views();
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -198,22 +196,22 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
 
                     int index = post_body.indexOf(hashtag); // looks for the position of # in string
                     if (index != -1) { //index of produces a -1 if it cannot find the substring
-                        TextView usernameView = createUsernameTextView();
+                        TextView usernameView;
 
                         boolean account_main = false;//checking for logged in user
                         if (!is_searched_user) {
                             if (username_post.equalsIgnoreCase(username)) {
-                                usernameView.setText("Me");
+                                usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this,"Me");
                                 account_main = true;
                             } else {
-                                usernameView.setText(username_post);
+                                usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this,username_post);
                             }
                         } else {
                             if (username_post.equalsIgnoreCase(account_user)) {
-                                usernameView.setText("Me");
+                                usernameView= views.createUsernameTextView(Display_Hashtag_Posts.this,"Me");
                                 account_main = true;
                             } else {
-                                usernameView.setText(username_post);
+                                usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this,username_post);
                             }
                         }
 
@@ -225,19 +223,20 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                             }
                         }
 
-                        lp.addView(usernameView);
-
-
+                        LinearLayout hl = views.createHorizontalLayout(Display_Hashtag_Posts.this);
+                        hl.setGravity(Gravity.NO_GRAVITY);
+                        hl.addView(usernameView);
 
                         String new_post_body = post_body + " ";
                         SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
                         TextView body = createBodyTextViewHashtag(spanString);
 
 
-                        TextView time = createTimeTextView(post_time);
+                        TextView time = views.createTimeTextView(Display_Hashtag_Posts.this, post_time);
 
-                        LinearLayout postview = createPostLayout();
-                        postview.addView(time);
+                        LinearLayout postview = views.createPostLayout(Display_Hashtag_Posts.this);
+                        hl.addView(time);
+                        postview.addView(hl);
 
                         if (URL.length() >= 1) {
                             ImageView image = createImageView();
@@ -292,13 +291,11 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                         }
 
                         postview.addView(horizontalLayout);
+                        lp.addView(views.addSpace(Display_Hashtag_Posts.this));
                         lp.addView(postview);
-                        lp.addView(addSpace());
                     }
-
-
-                }catch(Exception e){
-
+                }
+                catch(Exception e){
                 }
             }
         }
@@ -407,15 +404,6 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
 
     }
 
-    public TextView createUsernameTextView(){
-        TextView user = new TextView(Display_Hashtag_Posts.this);
-        user.setTextSize(20);
-        user.setPadding(30,30,30,30);
-        user.setTextColor(Color.parseColor("#FF47FAF3"));
-        user.setGravity(Gravity.LEFT);
-        return user;
-
-    }
     public ImageView createImageView(){
         ImageView imageView = new ImageView(Display_Hashtag_Posts.this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
