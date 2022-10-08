@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -201,6 +202,28 @@ public class Search_User_class {
             }
         });
     }
+
+
+    public void block_user(String curr_user, String block_user, Button btn){//function to block a user
+        DatabaseReference bdBlock = FirebaseDatabase.getInstance()
+                .getReference("social").child(curr_user).child("Blocking");
+        bdBlock.addListenerForSingleValueEvent(new ValueEventListener() {//setting a new listener to access the database
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long maxId = snapshot.getChildrenCount()+1;//incrementing the amount of blocked users for this user
+                    bdBlock.child(String.valueOf(maxId)).setValue(block_user);//updating table to include new user to blocked table
+                    btn.setText("Blocked");
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
 
 
 }
