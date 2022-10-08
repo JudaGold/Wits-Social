@@ -1,9 +1,11 @@
 package com.example.softwareproject;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.util.Pair;
 import android.view.View;
@@ -61,6 +63,12 @@ public class Analysis {
                         Uri uri = Uri.parse(url);
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         activity.startActivity(intent);
+                    }
+
+                    @Override
+                    public void updateDrawState(@NonNull TextPaint ds) {
+                        super.updateDrawState(ds);
+                        ds.setColor(Color.CYAN);
                     }
                 };
                 spannableString.setSpan(clickableSpan,a,b, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
