@@ -7,10 +7,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -207,19 +210,42 @@ public class Search_User_class {
     public void block_user(String curr_user, String block_user, Button btn){//function to block a user
         DatabaseReference bdBlock = FirebaseDatabase.getInstance()
                 .getReference("social").child(curr_user).child("Blocking");
-        bdBlock.addListenerForSingleValueEvent(new ValueEventListener() {//setting a new listener to access the database
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long maxId = snapshot.getChildrenCount()+1;//incrementing the amount of blocked users for this user
+        String buttonText = btn.getText().toString();
+        if(buttonText == "Blocked"){
+            bdBlock.addListenerForSingleValueEvent(new ValueEventListener() {//setting a new listener to access the database
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot data: snapshot.getChildren()) {
+                        if (data.getValue(String.class).equalsIgnoreCase(block_user)) {
+                            data.getRef().removeValue();
+                            break;
+
+                        }
+                    }
+                    btn.setText("Block");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        else {
+            bdBlock.addListenerForSingleValueEvent(new ValueEventListener() {//setting a new listener to access the database
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long maxId = snapshot.getChildrenCount() + 1;//incrementing the amount of blocked users for this user
                     bdBlock.child(String.valueOf(maxId)).setValue(block_user);//updating table to include new user to blocked table
                     btn.setText("Blocked");
                 }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }
 
     }
 
