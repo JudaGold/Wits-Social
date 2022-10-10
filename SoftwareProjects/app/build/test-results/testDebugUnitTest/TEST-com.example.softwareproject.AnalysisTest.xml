@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.softwareproject.AnalysisTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-26T16:52:50" hostname="DESKTOP-LKOB4CL" time="0.03">
-  <properties/>
-  <testcase name="Analysis_initialState_validOutput()" classname="com.example.softwareproject.AnalysisTest" time="0.03"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
