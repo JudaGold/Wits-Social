@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.softwareproject.Display_Hashtag_PostsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-10T19:44:20" hostname="DESKTOP-13IN9B6" time="0.055">
-  <properties/>
-  <testcase name="fetchPosts()" classname="com.example.softwareproject.Display_Hashtag_PostsTest" time="0.055"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
