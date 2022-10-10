@@ -69,6 +69,7 @@ id UserName_Label
 id UserName_txt
 id bio_text
 id btnAddNewPic
+id btnHome
 id btnLogin
 id btnSave
 id btnSave2
@@ -87,10 +88,10 @@ id imgAddPic
 id imgClose
 id last_name
 id layout
+id layout_favourites
 id logOut
 id lp_info
 id mainlayout
-id pad
 id pass1
 id pass2
 id password
@@ -104,6 +105,7 @@ id rememberMe
 id reply_body
 id reply_header
 id scrollView2
+id scrollView3
 id scroll_posts
 id scroll_replies
 id search_bar_input
@@ -126,6 +128,7 @@ layout activity_forgot_password
 layout activity_main
 layout activity_sign_up
 layout activity_user_display
+layout fragment__favourites
 layout fragment__post_feed
 layout fragment_followers
 layout fragment_following
