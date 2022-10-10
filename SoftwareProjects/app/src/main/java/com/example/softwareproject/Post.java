@@ -28,9 +28,6 @@ public class Post
         this.body = body;
         this.post_image_url = post_image_url;
     }
-
-
-
     //Line 27-76: get and set functions for each detail on the post
     public String getUsername() {
         return username;
