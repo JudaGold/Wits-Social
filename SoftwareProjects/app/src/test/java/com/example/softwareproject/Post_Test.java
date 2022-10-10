@@ -53,7 +53,7 @@ class Post_Test {
         fakePostwUserName.setBody("NaazniBody");
         fakePostwUserName.setPost_image_url("__--");
         fakePostwUserName.setTime("25-03-2000 13:25:25");
-        fakePostwUserName.setNum_of_replies("5");
+
     }
 
     public void getId_idCreation_validOutput(){
