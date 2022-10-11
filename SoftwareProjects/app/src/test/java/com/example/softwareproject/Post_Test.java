@@ -28,21 +28,20 @@ class Post_Test {
     public void Post_postCreation_validOutput(){
         // Creating a post
         Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
-
         // Setting the post's details
-        fakePost.setUsername("David The Boy");
+        /*fakePost.setUsername("David The Boy");
         fakePost.setBody("Hello its David");
         fakePost.setTime("00:00");
-        fakePost.setPost_image_url("---");
+        fakePost.setPost_image_url("---");*/
 
         // Verifying the post's get methods outputs
-        assertEquals(fakePost.getBody(),"Hello its David");
-        assertEquals(fakePost.getPost_image_url(),"---");
-        assertEquals(fakePost.getTime(),"00:00");
-        assertEquals(fakePost.getUsername(),"David The Boy");
+        assertEquals(fakePost.getBody(),"Hello Everyone");
+        assertEquals(fakePost.getPost_image_url(),"__");
+        assertEquals(fakePost.getTime(),"25-03-2000 13:55:55");
+        //assertEquals(fakePost.getUsername(),"David The Boy");
 
     }
-
+    @Test
     public void Post_postCreationWUsername_validOutput(){
         // creating a post
 
@@ -50,11 +49,11 @@ class Post_Test {
 
         // Setting the fakepost to specific Strings
 
-        fakePostwUserName.setID("1");
+        /*fakePostwUserName.setID("1");
         fakePostwUserName.setUsername("NaazniUserName");
         fakePostwUserName.setBody("NaazniBody");
         fakePostwUserName.setPost_image_url("__--");
-        fakePostwUserName.setTime("25-03-2000 13:25:25");
+        fakePostwUserName.setTime("25-03-2000 13:25:25");*/
 
         assertEquals(fakePostwUserName.getID(),"1");
         assertEquals(fakePostwUserName.getUsername(),"NaazniUserName");
@@ -65,7 +64,7 @@ class Post_Test {
 
 
     }
-
+    @Test
     public void getId_idCreation_validOutput(){
         Post fakePostwUserName = new Post("1","NaazniUserName","NaazniBody","__--","25-03-2000 13:25:25");
 
@@ -73,8 +72,7 @@ class Post_Test {
 
     }
 
-
-
+    @Test
     public void getNumberOfReplies(){
         String numberOfReplies = "5";
         //Post fakePostwUserName = new Post("1","NaazniUserName","NaazniBody","__--","25-03-2000 13:25:25");

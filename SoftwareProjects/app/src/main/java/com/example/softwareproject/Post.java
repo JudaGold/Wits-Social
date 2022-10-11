@@ -60,7 +60,7 @@ public class Post
         return ID;
     }
 
-    public void setID(String ID){this.ID = ID; }
+   // public void setID(String ID){this.ID = ID; }
 
     public String getTime() {
         return time;
