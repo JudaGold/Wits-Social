@@ -49,10 +49,16 @@ class Post_Test {
         Post fakePostwUserName = new Post("1","NaazniUserName","NaazniBody","__--","25-03-2000 13:25:25");
 
         // Setting the fakepost to specific Strings
+
         fakePostwUserName.setUsername("NaazniUserName");
         fakePostwUserName.setBody("NaazniBody");
         fakePostwUserName.setPost_image_url("__--");
         fakePostwUserName.setTime("25-03-2000 13:25:25");
+
+        assertEquals(fakePostwUserName.getUsername(),"NaazniUserName");
+        assertEquals(fakePostwUserName.getBody(),"NaazniBody");
+        assertEquals(fakePostwUserName.getPost_image_url(),"__--");
+        assertEquals(fakePostwUserName.getTime(),"25-03-2000 13:25:25");
 
     }
 
