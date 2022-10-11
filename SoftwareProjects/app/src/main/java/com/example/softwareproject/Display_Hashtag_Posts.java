@@ -16,6 +16,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
@@ -51,7 +52,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
     String account_user;
     String hashtag;
     LinearLayout lp;
-    DatabaseReference reference,reference2, reference3;// this the reference of the Firebase database
+    DatabaseReference reference, reference2, reference3;// this the reference of the Firebase database
     long maxId = 1;
 
     String post_body, URL, post_time, ID, username_post;
@@ -73,20 +74,8 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         username = intent.getStringExtra("username");
         account_user = intent.getStringExtra("loggedinuser");
         hashtag = intent.getStringExtra("hashtag");
-        username_post = intent.getStringExtra("username_post");
-        ID = intent.getStringExtra("ID");
-        post_body = intent.getStringExtra("post_body");
-        URL = intent.getStringExtra("URL");
-        post_time = intent.getStringExtra("post_time");
 
-        if(username.equalsIgnoreCase(account_user)){
-
-            fetch_fcm_tokens();
-            getFollowing();
-        }
-        else{
-            display_searched_user_posts();
-        }
+        fetch_hashtag_posts(hashtag);
 
         lp = (LinearLayout) findViewById(R.id.post_layout);
         ImageButton btn_home = (ImageButton) findViewById(R.id.btnHome);
@@ -102,6 +91,50 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         });
 
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void fetch_hashtag_posts(String hashtag) {
+        ArrayList<Post> Posts = new ArrayList<Post>();
+
+        reference = FirebaseDatabase.getInstance().getReference("Hashtags").child(hashtag.trim());
+        Query hashtag_posts = reference.orderByChild(String.valueOf(maxId));
+        hashtag_posts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Log.i("Snapshot", "It exists");
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        try {
+                            String id = data.getKey();
+                            String b = data.child("body").getValue(String.class);
+                            String t = data.child("time").getValue(String.class);
+                            String URL = data.child("post_image_url").getValue(String.class);
+                            String num_of_replies = data.child("Replies").getChildrenCount() + "";
+                            String username = data.child("username").getValue(String.class);
+                            Post post = new Post(id, username, b, URL, t);
+                            post.setNum_of_replies(num_of_replies);
+                            try {
+                                post.convertDate();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            Posts.add(post);
+                        } catch (Exception e) {
+                        }
+
+                    }
+                    Posts.sort(new DateComparator());
+                    display_posts(Posts, false, false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fetchPosts(ArrayList<String> following) {
@@ -148,7 +181,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    try{
+                    try {
                         String id = data.getKey();
                         String b = data.child("body").getValue(String.class);
                         String t = data.child("time").getValue(String.class);
@@ -162,9 +195,9 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         Posts.add(post);
+                    } catch (Exception e) {
                     }
-                    catch(Exception e){
-                    }}
+                }
                 Posts.sort(new DateComparator());
                 display_posts(Posts, false, false);
             }
@@ -180,12 +213,12 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
     void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_searched_user) {
 
 
-        if (Posts.size() >0) {
+        if (Posts.size() > 0) {
 
             lp.setOrientation(LinearLayout.VERTICAL);
             lp.removeAllViews();
             for (Post post : Posts) {
-                try{
+                try {
                     String uid = post.getID();
                     String post_body = post.getBody();
                     String post_time = post.getTime().substring(0, 10);
@@ -194,112 +227,109 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                     String username_post = post.getUsername();
                     String num_of_replies = post.getNum_of_replies();
 
-                    int index = post_body.indexOf(hashtag); // looks for the position of # in string
-                    if (index != -1) { //index of produces a -1 if it cannot find the substring
-                        TextView usernameView;
 
-                        boolean account_main = false;//checking for logged in user
-                        if (!is_searched_user) {
-                            if (username_post.equalsIgnoreCase(username)) {
-                                usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this,"Me");
-                                account_main = true;
-                            } else {
-                                usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this,username_post);
-                            }
+                    TextView usernameView;
+
+                    boolean account_main = false;//checking for logged in user
+                    if (!is_searched_user) {
+                        if (username_post.equalsIgnoreCase(username)) {
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, "Me");
+                            account_main = true;
                         } else {
-                            if (username_post.equalsIgnoreCase(account_user)) {
-                                usernameView= views.createUsernameTextView(Display_Hashtag_Posts.this,"Me");
-                                account_main = true;
-                            } else {
-                                usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this,username_post);
-                            }
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, username_post);
                         }
-
-                        if (username_post.length() > 2)
-                        {
-                            if (username_post.substring(0, 2).equalsIgnoreCase("Me"))
-                            {
-                                account_main = true;
-                            }
+                    } else {
+                        if (username_post.equalsIgnoreCase(account_user)) {
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, "Me");
+                            account_main = true;
+                        } else {
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, username_post);
                         }
-
-                        LinearLayout hl = views.createHorizontalLayout(Display_Hashtag_Posts.this);
-                        hl.setGravity(Gravity.NO_GRAVITY);
-                        hl.addView(usernameView);
-
-                        String new_post_body = post_body + " ";
-                        SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
-                        TextView body = createBodyTextViewHashtag(spanString);
-
-
-                        TextView time = views.createTimeTextView(Display_Hashtag_Posts.this, post_time);
-
-                        LinearLayout postview = views.createPostLayout(Display_Hashtag_Posts.this);
-                        hl.addView(time);
-                        postview.addView(hl);
-
-                        if (URL.length() >= 1) {
-                            ImageView image = createImageView();
-                            getImage(URL, image);
-                            postview.addView(image);
-                        }
-
-                        ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
-                        LinearLayout horizontalLayout = createHorizontalLayout();
-                        postview.addView(body);
-                        if (!num_of_replies.equalsIgnoreCase("")) {
-                            TextView replies = createNumOfReplies(num_of_replies);
-                            horizontalLayout.addView(replies);
-                        }
-
-                        if (!account_main) {
-                            horizontalLayout.addView(favouritesButton);
-                            horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
-                        }
-
-                        if (username_post.equalsIgnoreCase(username) && !Edits) {
-                            postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
-                                @Override
-                                public boolean onLongClick(View view) {
-                                    setBody(post_body);
-                                    setURL(URL);
-                                    setID(ID);
-                                    setTime(post_time);
-                                    //showPopupMenu(postview); //shows popup edit option
-                                    return true;
-                                }
-                            });
-                        }
-
-                        if (!Edits) {
-                            postview.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(Display_Hashtag_Posts.this, Replies.class);
-                                    intent.putExtra("username", account_user);
-                                    intent.putExtra("loggedinuser", account_user);
-                                    intent.putExtra("ID", ID);
-                                    intent.putExtra("post_body", post_body);
-                                    intent.putExtra("URL", URL);
-                                    intent.putExtra("post_time", post_time);
-                                    intent.putExtra("username_post", username_post);
-                                    intent.putExtra("is_searched_user", false);
-                                    Display_Hashtag_Posts.this.startActivity(intent);
-                                    Display_Hashtag_Posts.this.finish();
-                                }
-                            });
-                        }
-
-                        postview.addView(horizontalLayout);
-                        lp.addView(views.addSpace(Display_Hashtag_Posts.this));
-                        lp.addView(postview);
                     }
-                }
-                catch(Exception e){
+
+                    if (username_post.length() > 2) {
+                        if (username_post.substring(0, 2).equalsIgnoreCase("Me")) {
+                            account_main = true;
+                        }
+                    }
+
+                    LinearLayout hl = views.createHorizontalLayout(Display_Hashtag_Posts.this);
+                    hl.setGravity(Gravity.NO_GRAVITY);
+                    hl.addView(usernameView);
+
+                    String new_post_body = post_body + " ";
+                    SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
+                    TextView body = createBodyTextViewHashtag(spanString);
+
+
+                    TextView time = views.createTimeTextView(Display_Hashtag_Posts.this, post_time);
+
+                    LinearLayout postview = views.createPostLayout(Display_Hashtag_Posts.this);
+                    hl.addView(time);
+                    postview.addView(hl);
+
+                    if (URL.length() >= 1) {
+                        ImageView image = createImageView();
+                        getImage(URL, image);
+                        postview.addView(image);
+                    }
+
+                    ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
+                    LinearLayout horizontalLayout = createHorizontalLayout();
+                    postview.addView(body);
+                    if (!num_of_replies.equalsIgnoreCase("")) {
+                        TextView replies = createNumOfReplies(num_of_replies);
+                        horizontalLayout.addView(replies);
+                    }
+
+                    if (!account_main) {
+                        horizontalLayout.addView(favouritesButton);
+                        horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
+                    }
+
+                    if (username_post.equalsIgnoreCase(username) && !Edits) {
+                        postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
+                            @Override
+                            public boolean onLongClick(View view) {
+                                setBody(post_body);
+                                setURL(URL);
+                                setID(ID);
+                                setTime(post_time);
+                                //showPopupMenu(postview); //shows popup edit option
+                                return true;
+                            }
+                        });
+                    }
+
+                    if (!Edits) {
+                        postview.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Display_Hashtag_Posts.this, Replies.class);
+                                intent.putExtra("username", account_user);
+                                intent.putExtra("loggedinuser", account_user);
+                                intent.putExtra("ID", ID);
+                                intent.putExtra("post_body", post_body);
+                                intent.putExtra("URL", URL);
+                                intent.putExtra("post_time", post_time);
+                                intent.putExtra("username_post", username_post);
+                                intent.putExtra("is_searched_user", false);
+                                Display_Hashtag_Posts.this.startActivity(intent);
+                                Display_Hashtag_Posts.this.finish();
+                            }
+                        });
+                    }
+
+                    postview.addView(horizontalLayout);
+                    lp.addView(views.addSpace(Display_Hashtag_Posts.this));
+                    lp.addView(postview);
+
+                } catch (Exception e) {
                 }
             }
         }
     }
+
     public void getFollowing() {
         all_usernames = new ArrayList<>();/* this will have the user's username
                                                            and the usernames of the users, the
@@ -326,94 +356,19 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
             }
         });
     }
-    public void display_searched_user_posts(){
-        lp.setOrientation(LinearLayout.VERTICAL);
-        lp.removeAllViews();
-        DatabaseReference bd = FirebaseDatabase.getInstance().getReference().child("Posts").child(username);
-        Query posts = bd.orderByChild(String.valueOf(maxId));
-        posts.addListenerForSingleValueEvent(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Vector<Post> post_data;
-                post_data = new Vector<>();
-                for(DataSnapshot data:snapshot.getChildren()){
-                    String id = data.getKey();
-                    String b = data.child("body").getValue(String.class);
-                    String t = data.child("time").getValue(String.class);
-                    String URL = data.child("post_image_url").getValue(String.class);
-                    post_data.add(new Post(id,b,URL,t));
-                }
-                for(int i = post_data.size()-1;i>=0;i--){
-                    String post_body = post_data.elementAt(i).getBody();
-                    String post_time = post_data.elementAt(i).getTime();
-                    String uid = post_data.elementAt(i).getID();
-                    post_time = post_time.substring(0,10);
-                    String URL = post_data.elementAt(i).getPost_image_url();
 
-                    String new_post_body = post_body + " ";
-                    SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
-                    TextView body = createBodyTextViewHashtag(spanString);
-                    TextView time = createTimeTextView(post_time);
-                    LinearLayout post = createPostLayout();
 
-                    post.addView(time);
-
-                    if (URL.length() >= 1) {
-                        ImageView im = createImageView();
-                        getImage(URL, im);
-                        post.addView(im);
-                    }
-
-                    post.addView(body);
-                    Space space = addSpace();
-                    ToggleButton favouritesButton = createFavouriteToggleButton(account_user,username,uid);
-                    LinearLayout horizontalLayout = createHorizontalLayout();
-                    horizontalLayout.addView(favouritesButton);
-                    horizontalLayout.addView(createReplyOption(username,post_body,uid));
-
-                    post.addView(horizontalLayout);
-
-                    lp.addView(post);
-                    lp.addView(space); //adds space so that the posts look better
-
-                    String finalPost_time = post_time;
-                    post.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Display_Hashtag_Posts.this, Replies.class);
-                            intent.putExtra("username", account_user);
-                            intent.putExtra("loggedinuser",account_user);
-                            intent.putExtra("ID",uid);
-                            intent.putExtra("post_body",post_body);
-                            intent.putExtra("URL",URL);
-                            intent.putExtra("post_time",finalPost_time);
-                            intent.putExtra("username_post",username);
-                            intent.putExtra("is_searched_user",false);
-                            Display_Hashtag_Posts.this.startActivity(intent);
-                            Display_Hashtag_Posts.this.finish();
-                        }
-                    });
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
-    public ImageView createImageView(){
+    public ImageView createImageView() {
         ImageView imageView = new ImageView(Display_Hashtag_Posts.this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
         params.gravity = Gravity.LEFT; //sets the image at the centre
-        params.setMargins(0,40,0,50);
+        params.setMargins(0, 40, 0, 50);
         imageView.setLayoutParams(params);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         return imageView;
     }
-    public void getImage(String URL, ImageView image){
+
+    public void getImage(String URL, ImageView image) {
         Glide.with(Display_Hashtag_Posts.this).load(URL).into(image); /*gets image from the internet and adds
                                                                                             it to imageView*/
     }
@@ -428,60 +383,61 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         return body;
     }*/
 
-    public TextView createBodyTextViewHashtag(SpannableString str){
+    public TextView createBodyTextViewHashtag(SpannableString str) {
         TextView body = new TextView(Display_Hashtag_Posts.this);
         body.setText(str);
         body.setTextSize(20);
         body.setMovementMethod(LinkMovementMethod.getInstance());
         body.setTextColor(Color.parseColor("white"));
-        body.setPadding(30,30,30,30);
+        body.setPadding(30, 30, 30, 30);
         body.setMovementMethod(LinkMovementMethod.getInstance());
         return body;
     }
 
-    public TextView createReplyOption(String Reply_to,String post_msg,String uid){//adding a reply text for user to click on to reply to a post
+    public TextView createReplyOption(String Reply_to, String post_msg, String uid) {//adding a reply text for user to click on to reply to a post
         TextView textView = new TextView(Display_Hashtag_Posts.this);
         textView.setText("reply");
         textView.setTextSize(18);
         textView.setGravity(Gravity.RIGHT);
-        textView.setPadding(30,0,20,0);
+        textView.setPadding(30, 0, 20, 0);
         textView.setTextColor(Color.parseColor("white"));
 
         textView.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                Reply(Reply_to,post_msg,uid);
+                Reply(Reply_to, post_msg, uid);
             }
         });
         return textView;
     }
-    public TextView createTimeTextView(String str){
+
+    public TextView createTimeTextView(String str) {
         TextView time = new TextView(Display_Hashtag_Posts.this);
         time.setText(str);
         time.setGravity(Gravity.RIGHT);
         time.setTextSize(11);
         time.setTextColor(Color.parseColor("white"));
-        time.setPadding(0,5,20,0);
+        time.setPadding(0, 5, 20, 0);
         return time;
     }
-    public LinearLayout createPostLayout(){
+
+    public LinearLayout createPostLayout() {
         LinearLayout post = new LinearLayout(Display_Hashtag_Posts.this);
         post.setOrientation(LinearLayout.VERTICAL);
         post.setBackground(ContextCompat.getDrawable(Display_Hashtag_Posts.this, R.drawable.post_layout));
-        post.setPadding(30,30,20,30);
+        post.setPadding(30, 30, 20, 30);
         return post;
     }
 
-    public TextView createNumOfReplies(String num_of_replies)
-    {
+    public TextView createNumOfReplies(String num_of_replies) {
         TextView textView = new TextView(Display_Hashtag_Posts.this);
         textView.setText(num_of_replies);
         textView.setTextSize(15);
         textView.setGravity(Gravity.RIGHT);
-        textView.setPadding(30,0,20,0);
+        textView.setPadding(30, 0, 20, 0);
         textView.setTextColor(Color.parseColor("white"));
-        textView.setBackground(ContextCompat.getDrawable(Display_Hashtag_Posts.this,R.drawable.ic_round_chat_bubble_outline_24));
+        textView.setBackground(ContextCompat.getDrawable(Display_Hashtag_Posts.this, R.drawable.ic_round_chat_bubble_outline_24));
 
         return textView;
     }
@@ -496,38 +452,39 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
 //        return replies_icon;
 //    }
 
-    public Space addSpace(){
+    public Space addSpace() {
         Space space = new Space(Display_Hashtag_Posts.this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,50);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 50);
         space.setLayoutParams(params);
         return space;
     }
-    public LinearLayout createHorizontalLayout(){
+
+    public LinearLayout createHorizontalLayout() {
         LinearLayout horizontalLayout = new LinearLayout(Display_Hashtag_Posts.this);
         horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
         horizontalLayout.setHorizontalGravity(Gravity.RIGHT);
-        horizontalLayout.setPadding(30,10,20,20);
+        horizontalLayout.setPadding(30, 10, 20, 20);
         return horizontalLayout;
     }
-    public ToggleButton createFavouriteToggleButton(String user, String userPost, String ID){
+
+    public ToggleButton createFavouriteToggleButton(String user, String userPost, String ID) {
         ToggleButton toggleButton = new ToggleButton(Display_Hashtag_Posts.this);
         toggleButton.setText(""); //removes all text from the toggle button so that only the heart shows
         toggleButton.setTextOn("");
         toggleButton.setTextOff("");
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80,80);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80, 80);
         toggleButton.setLayoutParams(params);
-        toggleButton.setPadding(30,0,200,0);
+        toggleButton.setPadding(30, 0, 200, 0);
         toggleButton.setBackgroundResource(R.drawable.toggle_selector);
         toggleButton.setClickable(true);
 
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (toggleButton.isChecked()){
+                if (toggleButton.isChecked()) {
                     Toast.makeText(Display_Hashtag_Posts.this, "added to favourites", Toast.LENGTH_SHORT).show();
-                    addFavourite(user,userPost,ID);
-                }
-                else{
+                    addFavourite(user, userPost, ID);
+                } else {
                     Toast.makeText(Display_Hashtag_Posts.this, "removed from favourites", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -546,27 +503,28 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
     /*adds the details of the post that must be edited to global variables so that it
     can be used by other classes
      */
-    public void setBody(String b){
+    public void setBody(String b) {
         ExistingBody = b;
     }
-    public void setURL(String url){
+
+    public void setURL(String url) {
         ExistingURL = url;
     }
-    public void setID(String ID){
+
+    public void setID(String ID) {
         ExistingID = ID;
     }
-    public void setTime(String time){
+
+    public void setTime(String time) {
         ExistingTime = time;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         ExistingUsername = username;
     }
 
 
-    public void fetch_fcm_tokens()
-    {
+    public void fetch_fcm_tokens() {
         all_fcm_tokens = new ArrayList<>();/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
@@ -600,7 +558,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
           }
       }*/
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void Reply(String Reply_to_user, String original_post_msg, String uid){
+    public void Reply(String Reply_to_user, String original_post_msg, String uid) {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(Display_Hashtag_Posts.this);
         AlertDialog dialog;
         final View popup_content = getLayoutInflater().inflate(R.layout.pop_up_reply, null);
@@ -609,7 +567,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         popup_original.setTextSize(11);
         EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
         Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
-        popup_header.setText("Replying to:\n\t"+Reply_to_user);
+        popup_header.setText("Replying to:\n\t" + Reply_to_user);
         popup_original.setText(original_post_msg);
 
 
@@ -634,10 +592,11 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                 reply_ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long count = snapshot.getChildrenCount()+1;
-                        Post post = new Post(uid,account_user,reply_msg,"",t);
+                        long count = snapshot.getChildrenCount() + 1;
+                        Post post = new Post(uid, account_user, reply_msg, "", t);
                         reply_ref.child(String.valueOf(count)).setValue(post);
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -649,8 +608,8 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                 add_reply_post.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long count = snapshot.getChildrenCount()+1;
-                        Post post = new Post(String.valueOf(count),Reply_to_user,reply_msg,"",t);
+                        long count = snapshot.getChildrenCount() + 1;
+                        Post post = new Post(String.valueOf(count), Reply_to_user, reply_msg, "", t);
                         add_reply_post.child(String.valueOf(count)).setValue(post);
                     }
 
@@ -667,7 +626,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         ;
     }
 
-    public void addFavourite(String user, String userPost, String postID){
+    public void addFavourite(String user, String userPost, String postID) {
         DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
         favRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -683,8 +642,9 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         });
     }
 
-    public void initializeFavourites(String user, String userPost, String postID){
-        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);}
+    public void initializeFavourites(String user, String userPost, String postID) {
+        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
+    }
 
 
     /*public SpannableString Create_Link(String body){
@@ -712,25 +672,24 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         return spannableString;
     }*/
 
-    public boolean checkHashtag(String body){
+    public boolean checkHashtag(String body) {
         int index = body.indexOf("#"); // looks for the position of # in string
         if (index != -1) { //index of produces a -1 if it cannot find the substring
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
 
-    public SpannableString processHashtag(String body, String ID, String URL, String post_time, String username_post){
+    public SpannableString processHashtag(String body, String ID, String URL, String post_time, String username_post) {
         int index = body.indexOf("#"); // looks for the position of # in string
         int endIndex = body.indexOf(" ", index);
-        String str = body.substring(index,endIndex);
+        String str = body.substring(index, endIndex);
         SpannableString spanString = new SpannableString(body);
         ForegroundColorSpan fcsCyan = new ForegroundColorSpan(Color.CYAN);
 
-        spanString.setSpan(fcsCyan, index, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
+        spanString.setSpan(fcsCyan, index, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return spanString;
     }
