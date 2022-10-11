@@ -44,6 +44,8 @@ public class Post
         return body;
     }
 
+
+
     public void setBody(String body) {
         this.body = body;
     }
@@ -59,6 +61,8 @@ public class Post
     public String getID() {
         return ID;
     }
+
+
 
     public String getTime() {
         return time;
