@@ -11,288 +11,151 @@
         android:layout_height="100dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv"
             android:layout_width="match_parent"
-            android:layout_height="133dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/lato_black"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Please fill \nin all the fields"
+            android:textColor="@color/button"
+            android:textSize="36sp">
 
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_black"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="Please fill \nin all the fields"
-                android:textColor="@color/button"
-                android:textSize="36sp">
-
-            </TextView>
-        </LinearLayout>
+        </TextView>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="274dp"
             android:layout_height="85dp"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/username"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="@color/white"
+            android:textColorLink="#00BCD4">
 
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"></TextView>
+        </EditText>
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="274dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"
-                android:foregroundTint="#C32020"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/username"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHighlight="#00BCD4"
-                android:textColorHint="@color/white"
-                android:textColorLink="#00BCD4">
-
-            </EditText>
-
-            <TextView
-                android:layout_width="87dp"
-                android:layout_height="274dp">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/email_address"
+            android:layout_width="274dp"
             android:layout_height="85dp"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/Email_Address"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="@color/white"
+            android:textColorLink="#00BCD4"></EditText>
 
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/email_address"
-                android:layout_width="274dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/Email_Address"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHighlight="#00BCD4"
-                android:textColorHint="@color/white"
-                android:textColorLink="#00BCD4"></EditText>
-
-
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/Phone_number"
+            android:layout_width="274dp"
             android:layout_height="85dp"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/phone_number"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="@color/white"
+            android:textColorLink="#00BCD4">
 
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
+        </EditText>
 
-            </TextView>
-
-            <EditText
-                android:id="@+id/Phone_number"
-                android:layout_width="274dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/phone_number"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal"
-                android:textColor="@color/white"
-                android:textColorHighlight="#00BCD4"
-                android:textColorHint="@color/white"
-                android:textColorLink="#00BCD4">
-
-            </EditText>
-
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/first_name"
+            android:layout_width="274dp"
             android:layout_height="85dp"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/first_name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="@color/white"
+            android:textColorLink="#00BCD4">
 
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
+        </EditText>
 
-            </TextView>
-
-            <EditText
-                android:id="@+id/first_name"
-                android:layout_width="275dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/first_name"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHighlight="#00BCD4"
-                android:textColorHint="@color/white"
-                android:textColorLink="#00BCD4">
-
-            </EditText>
-
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/last_name"
+            android:layout_width="275dp"
             android:layout_height="85dp"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/last_name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="@color/white"
+            android:textColorLink="#00BCD4">
 
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
+        </EditText>
 
-            </TextView>
-
-            <EditText
-                android:id="@+id/last_name"
-                android:layout_width="275dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/last_name"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHighlight="#00BCD4"
-                android:textColorHint="@color/white"
-                android:textColorLink="#00BCD4">
-
-            </EditText>
-
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/pass1"
+            android:layout_width="274dp"
             android:layout_height="85dp"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="@color/white"
+            android:textColorLink="#00BCD4">
 
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
+        </EditText>
 
-            </TextView>
-
-            <EditText
-                android:id="@+id/pass1"
-                android:layout_width="275dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/password"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHighlight="#00BCD4"
-                android:textColorHint="@color/white"
-                android:textColorLink="#00BCD4">
-
-            </EditText>
-
-            <TextView
-                android:id="@+id/pad"
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/pass2"
+            android:layout_width="274dp"
             android:layout_height="85dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="66dp"
-                android:layout_height="match_parent">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/pass2"
-                android:layout_width="277dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/lato_regular"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/retype_password"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHighlight="#00BCD4"
-                android:textColorHint="@color/white"
-                android:textColorLink="#00BCD4"></EditText>
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/retype_password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHighlight="#00BCD4"
+            android:textColorHint="@color/white"
+            android:textColorLink="#00BCD4"></EditText>
 
 
-            <TextView
-                android:layout_width="67dp"
-                android:layout_height="match_parent">
+        <Button
+            android:id="@+id/sibt"
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/button"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/sign_up"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp">
 
-            </TextView>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="136dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="100dp"
-            android:paddingTop="50dp"
-            android:paddingRight="100dp">
-
-            <Button
-                android:id="@+id/sibt"
-                android:layout_width="wrap_content"
-                android:layout_height="63dp"
-                android:layout_gravity="top"
-                android:backgroundTint="@color/button"
-                android:fontFamily="@font/lato_regular"
-                android:text="@string/sign_up"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp">
-
-            </Button>
-
-        </LinearLayout>
+        </Button>
 
 
     </LinearLayout>

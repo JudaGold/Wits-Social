@@ -7,13 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,40 +20,57 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Search_User_class {
-    private static ArrayList<String> users;
+    private static ArrayList<String> users_hashtags;
     boolean following = false;
     Intent intent;
 
     public void search(String loggedin_user, String My_username, AutoCompleteTextView ACT, ImageButton btn, Activity activity){
-        getUsers(My_username, loggedin_user);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, users);
+        getUsersHashtags(My_username, loggedin_user);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, users_hashtags);
         ACT.setThreshold(1);
         ACT.setAdapter(adapter);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = ACT.getText().toString();
-                if (search_user(user)) {
-                    intent = new Intent(activity, user_display.class);
-                    intent.putExtra("username", user);
-                    intent.putExtra("loggedinuser",loggedin_user);
-                    activity.startActivity(intent);
-                    activity.finish();
+                String text = ACT.getText().toString();
+
+                if (text.charAt(0) == '#')
+                {
+                    if (search_user_hashtags(text)) {
+                        text = text.substring(1);
+                        intent = new Intent(activity, Display_Hashtag_Posts.class);
+                        intent.putExtra("username", My_username);
+                        intent.putExtra("loggedinuser", loggedin_user);
+                        intent.putExtra("hashtag", text);
+                        activity.startActivity(intent);
+                        activity.finish();
+                    } else {
+                        ACT.setText("");
+                        ACT.setHint("no " + text + " found");
+                    }
                 }
                 else {
-                    ACT.setText("");
-                    ACT.setHint("no user " + user + " found");
+                    if (search_user_hashtags(text)) {
+                        intent = new Intent(activity, user_display.class);
+                        intent.putExtra("username", text);
+                        intent.putExtra("loggedinuser", loggedin_user);
+                        activity.startActivity(intent);
+                        activity.finish();
+                    } else {
+                        ACT.setText("");
+                        ACT.setHint("no user " + text + " found");
+                    }
                 }
 
             }
         });
     }
 
-    private void getUsers(String My_username, String loggedin_user) {
+    private void getUsersHashtags(String My_username, String loggedin_user) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         Query userlist = reference.orderByChild("username");
-        users = new ArrayList<>();
+        users_hashtags = new ArrayList<>();
         userlist.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,7 +79,7 @@ public class Search_User_class {
                     try{
                         if (!username.equalsIgnoreCase(My_username)) {
                             if (!username.equalsIgnoreCase(loggedin_user)) {
-                                users.add(username);
+                                users_hashtags.add(username);
                             }
                         }
                     }
@@ -80,10 +93,30 @@ public class Search_User_class {
 
             }
         });
+
+        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Hashtags");
+        reference2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String hashtag = data.getKey();
+                    try{
+                        users_hashtags.add("#" + hashtag);
+                    }
+                    catch(Exception c){}
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
-    private boolean search_user(String user) {
-        for (String item : users) {
+    private boolean search_user_hashtags(String user) {
+        for (String item : users_hashtags) {
             if (user.equalsIgnoreCase(item)) {
                 return true;
             }

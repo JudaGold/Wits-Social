@@ -40,6 +40,10 @@
         "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_lock_24.xml"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/layout_fragment__favourites.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/layout/fragment__favourites.xml"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_add_circle_outline_24.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_add_circle_outline_24.xml"
     },

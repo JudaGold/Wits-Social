@@ -2716,6 +2716,7 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btnAddNewPic
+id btnHome
 id btnLogin
 id btnSave
 id btnSave2
@@ -2878,6 +2879,7 @@ id jumpToStart
 id labeled
 id last_name
 id layout
+id layout_favourites
 id left
 id leftToRight
 id legacy
@@ -2972,7 +2974,6 @@ id outline
 id outward
 id overshoot
 id packed
-id pad
 id parallax
 id parent
 id parentPanel
@@ -3020,6 +3021,7 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollView2
+id scrollView3
 id scroll_posts
 id scroll_replies
 id scrollable
@@ -3276,6 +3278,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment__favourites
 layout fragment__post_feed
 layout fragment_followers
 layout fragment_following
