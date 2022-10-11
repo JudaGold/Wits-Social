@@ -44,8 +44,6 @@ public class Post
         return body;
     }
 
-
-
     public void setBody(String body) {
         this.body = body;
     }
@@ -62,7 +60,7 @@ public class Post
         return ID;
     }
 
-
+    public void setID(String ID){this.ID = ID; }
 
     public String getTime() {
         return time;
