@@ -82,7 +82,7 @@ public class UI_Views {
         time.setGravity(Gravity.RIGHT);
         time.setTextSize(11);
         time.setTextColor(Color.parseColor("white"));
-        time.setPadding(0, 20, 20, 0);
+        time.setPadding(0, 20, 0, 20);
         return time;
     }
 
