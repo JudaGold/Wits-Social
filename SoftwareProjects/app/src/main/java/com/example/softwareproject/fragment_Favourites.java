@@ -95,7 +95,7 @@ public class fragment_Favourites extends Fragment {
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(720,ViewGroup.LayoutParams.WRAP_CONTENT);
         user.setLayoutParams(params); //change width of username textview to separate the username and time
         hl.addView(user); //adding posts user
-        hl.addView(views.createTimeTextView(getContext(),time)); //adding post time
+        hl.addView(views.createTimeTextView(getContext(),time.substring(0, 10))); //adding post time
         lh.addView(hl);
         if(!image.equalsIgnoreCase("")){//checking if user posted a image
             lh.addView(views.createImageView(getContext(),getActivity(),image));//adding post image
