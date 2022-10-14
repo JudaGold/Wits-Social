@@ -240,16 +240,17 @@ public class Search_User_class {
     }
 
 
-    public void block_user(String curr_user, String block_user, Button btn){//function to block a user
+    public void block_user(String curr_user, String block_user, Button btn,Button btn2){//function to block a user
         DatabaseReference bdBlock = FirebaseDatabase.getInstance()
                 .getReference("social").child(curr_user).child("Blocking");
         String buttonText = btn.getText().toString();
-        if(buttonText == "Blocked"){
+        if(buttonText.equalsIgnoreCase("Blocked")){
             bdBlock.addListenerForSingleValueEvent(new ValueEventListener() {//setting a new listener to access the database
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot data: snapshot.getChildren()) {
                         if (data.getValue(String.class).equalsIgnoreCase(block_user)) {
+                            btn2.setVisibility(View.VISIBLE);
                             data.getRef().removeValue();
                             break;
 
@@ -268,9 +269,11 @@ public class Search_User_class {
             bdBlock.addListenerForSingleValueEvent(new ValueEventListener() {//setting a new listener to access the database
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    long maxId = snapshot.getChildrenCount() + 1;//incrementing the amount of blocked users for this user
-                    bdBlock.child(String.valueOf(maxId)).setValue(block_user);//updating table to include new user to blocked table
+                    bdBlock.push().setValue(block_user);//updating table to include new user to blocked table
                     btn.setText("Blocked");
+                    unfollow(curr_user,block_user);//sets user to unfollow the user that blocked them
+                    btn2.setVisibility(View.INVISIBLE);
+                    btn2.setText("follow");
                 }
 
                 @Override

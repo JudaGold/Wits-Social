@@ -68,9 +68,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     ArrayList<String> all_usernames;/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
+    ArrayList<String>BlockedUsers;
     Search_User_class su = new Search_User_class();
     ArrayList<String> all_fcm_tokens;
     UI_Views views = new UI_Views();
+
 
 
     @Override
@@ -91,8 +93,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     add_post(false, null, null, null, null);
                 }
             });
+
             getFollowing();
-        } else {
+
+        }
+        else {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,11 +108,37 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     getActivity().startActivity(intent);
                     getActivity().finish();
                 }
-            });
-            display_searched_user_posts();
 
+            });
+            blocked_user();//checks is user is block, prevent them from seeing posts
         }
         return v;
+    }
+
+
+    public void blocked_user(){//function to check is user is currently block by another user
+        DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference("social").child(username).child("Blocking");
+        b_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean temp =false;
+                if(snapshot.exists()){
+                    for(DataSnapshot ds: snapshot.getChildren()){
+                        if(ds.getValue(String.class).equalsIgnoreCase(account_user)){
+                            temp = true;
+                            break;
+                        }
+                    }
+
+                }
+                if(!temp){display_searched_user_posts();}//prevents blocked users from seeing posts
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -466,6 +497,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
 
     public void getFollowing() {
+        su = new Search_User_class();
         all_usernames = new ArrayList<>();/* this will have the user's username
                                                            and the usernames of the users, the
                                                            user is following*/
@@ -480,7 +512,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String following_username = data.getValue(String.class);
-                    all_usernames.add(following_username);
+                        all_usernames.add(following_username);
                 }
                 lp.removeAllViews();
                 fetchPosts(all_usernames);

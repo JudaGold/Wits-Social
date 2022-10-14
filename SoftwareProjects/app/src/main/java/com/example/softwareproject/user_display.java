@@ -103,6 +103,8 @@ public class user_display extends AppCompatActivity {
             lp_info.removeView(bioText);
             is_following();//checking if current user is following this account
             is_blocked();//checking if current user is blocking this account
+            am_block();//checking is current is being blocked by another user
+            intent.putExtra("Blocked",btnblock.getText().toString());
         }
         search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
         btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
@@ -120,11 +122,36 @@ public class user_display extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Search_User_class su = new Search_User_class();//instantiating class to call for blocking and unblocking a user
-                su.block_user(logged_in_user,username,btnblock);//calling blocking function to block user
+                su.block_user(logged_in_user,username,btnblock,btnfollow);//calling blocking function to block user
+                intent.putExtra("Blocked",btnblock.getText().toString());
             }
         });
 
+    }
 
+    public void am_block(){
+        DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference("social").child(username).child("Blocking");
+        b_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean temp =false;
+                if(snapshot.exists()){
+                    for(DataSnapshot ds: snapshot.getChildren()){
+                        if(ds.getValue(String.class).equalsIgnoreCase(logged_in_user)){
+                            temp = true;
+                            break;
+                        }
+                    }
+
+                }
+                if(!temp){btnfollow.setVisibility(View.INVISIBLE);}//prevents blocked users from seeing posts
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void display_user_information() {
@@ -222,18 +249,21 @@ public class user_display extends AppCompatActivity {
     }
 
     public void is_blocked(){//function to check if current user is currently blocked
+        su = new Search_User_class();
         DatabaseReference blockdb = FirebaseDatabase.getInstance().getReference("social").child(logged_in_user).child("Blocking");
         blockdb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
                     for(DataSnapshot ds :snapshot.getChildren()){//checking if user is on the list
                         if(ds.getValue().equals(username)){
-                            btnblock.setText("blocked");//setting button test to notify usr is blocked
+                            btnblock.setText("blocked");//setting button test to notify user is blocked
+                            btnfollow.setVisibility(View.INVISIBLE);
+                            break;
                         }
-                    }
+                        btnfollow.setVisibility(View.VISIBLE);
+                        btnfollow.setText("follow");
 
-                }
+                    }
             }
 
             @Override
@@ -260,8 +290,6 @@ public class user_display extends AppCompatActivity {
                 });
     }
 
-    void unblock_user(){
 
-    }
 }
 

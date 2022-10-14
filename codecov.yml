@@ -18,3 +18,4 @@ ignore:
     - "**/UI_Views.java"
     - "**/fragment_Favourites.java"
     - "**/Display_Hashtag_Posts.java"
+    - "**/Analysis.java"
