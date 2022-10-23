@@ -4,25 +4,29 @@ package com.example.softwareproject;
 
 import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.net.Uri;
+import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
+import android.provider.MediaStore;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Gravity;
@@ -51,6 +55,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -58,8 +63,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+
 //import com.google.firebase.messaging.Message;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -73,20 +84,29 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
     View v;
     EditText popup_post_body;
+
     Button popup_add_post, upload_media;
-    ImageButton popup_upload_media;
+    ImageButton popup_upload_media,pop_up_camera_btn;
     ImageButton btnadd_post;
+
     DatabaseReference reference, reference2, reference3, reference4;// this the reference of the Firebase database
     long maxId = 1;
     String username, account_user;
     LinearLayout lp;
     ArrayList<String> all_usernames;/* this will have the user's username
                                                            and the usernames of the users, the
-                                                           user is following*/
+                                                            user is following*/
     ArrayList<String>BlockedUsers;
+    View popup_content,popup_content2;
     Search_User_class su = new Search_User_class();
     ArrayList<String> all_fcm_tokens;
     UI_Views views = new UI_Views();
+    public final int CAMERA_REQUEST = 1888;
+    public final int MY_CAMERA_PERMISSION_CODE = 100;
+    String Image_from_camera = "1";
+    private static final int pic_int = 123;
+
+
 
 
 
@@ -125,7 +145,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
 
             });
-            blocked_user();//checks is user is block, prevent them from seeing posts
+            blocked_user();//checks if user is block, prevent them from seeing posts
         }
 
 
@@ -158,43 +178,97 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         });
     }
 
-    /*public void showPopupMenu(View view){
-        PopupMenu popup = new PopupMenu(v.getContext(), view);
-        popup.setOnMenuItemClickListener(this);
-        popup.inflate(R.menu.popup_upload_media_menu);
-        popup.show();
-
-    }*/
-
     public void showUpload(){
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
         AlertDialog dialog;
-        final View popup_content = getLayoutInflater().inflate(R.layout.popup_upload, null);
-        dialogB.setView(popup_content);
+        final View popup_content2 = getLayoutInflater().inflate(R.layout.popup_upload, null);
+        dialogB.setView(popup_content2);
         dialog = dialogB.create();
         dialog.show();
+        pop_up_camera_btn = (ImageButton) popup_content2.findViewById(R.id.CameraBtn);////instantiating  button to use the camera api
+        pop_up_camera_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(popup_content2.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+                    Intent Camera_Intent  = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(Camera_Intent,pic_int);//overriden function to store picture from camera
+                    dialog.dismiss();
+
+                }else{
+                    Toast.makeText(popup_content2.getContext(), "Camera not available",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+
+    }
+
+    private String getFileExtension(Uri uri){//fucntion to get the compression type from the picture the user tool
+        ContentResolver cR = getContext().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));//return string to upload.
+    }
+
+    public Uri convert_bitmap(Context context,Bitmap bitmap){
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
     }
 
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == pic_int) {//checking if app has permission to use camera
+            Bitmap photo = (Bitmap) data.getExtras().get("data");//storing the image in a bitmap
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();//instantiating a bitmap stream to use to convert to a string button
+            photo.compress(Bitmap.CompressFormat.PNG, 100, baos);//rearranging the bitmap into a picture form
 
+            Uri temp  =convert_bitmap(getContext(),photo);//converting bitmap to uri to store in firebase
+            StorageReference dbref = FirebaseStorage.getInstance().getReference("Post_pictures")//ref to store image
+                    .child(System.currentTimeMillis() + "." + getFileExtension(temp));;
+            StorageTask mUploadTask =dbref.putFile(temp).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    dbref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Image_from_camera = temp.toString();
+                        }//storing local var as the images string version.
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d("ERROR","did not work");
+                }
+            });
+        }
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void add_post(Boolean edit, String body, String URL, String Id, String time) {
+
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
         AlertDialog dialog;
-        final View popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);
+        popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);
         popup_post_body = (EditText) popup_content.findViewById(R.id.post_body);
         popup_add_post = (Button) popup_content.findViewById(R.id.btn_post);
+
         popup_upload_media = (ImageButton) popup_content.findViewById(R.id.btn_upload);
+
 
         popup_upload_media.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //showPopupMenu(view);
                 showUpload();
-            }
-        });
 
+            }
+
+        });
 
         if (edit) {
             if (URL.equalsIgnoreCase("")) {
@@ -235,15 +309,26 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             public void onClick(View v) {
 
                 try {
-                    String body, image_url;
-                    String post = popup_post_body.getText().toString();
-                    if (post.substring(0, 4).equalsIgnoreCase("http")) {
-                        body = post;
-                        image_url = post;
-                    } else {
-                        body = post;
+                    String body , image_url;
+                    if(Image_from_camera.length()>1){//checking if user has taken a picture from the camera.
+                        body = popup_post_body.getText().toString();
+                        image_url = Image_from_camera;
+                    }else if(popup_post_body.getText().toString().length()<4){
+                        body = popup_post_body.getText().toString();
                         image_url = "";
                     }
+                    else{
+                        String post = popup_post_body.getText().toString();
+                        if (post.substring(0, 4).equalsIgnoreCase("http")) {
+                            body = post;
+                            image_url = post;
+                        } else {
+                            body = post;
+                            image_url = "";
+                        }
+                    }
+
+
                     Date date = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     String t = (format.format(date));
@@ -561,7 +646,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String following_username = data.getValue(String.class);
-                        all_usernames.add(following_username);
+                    all_usernames.add(following_username);
                 }
                 lp.removeAllViews();
                 fetchPosts(all_usernames);
