@@ -1,6 +1,9 @@
 package com.example.softwareproject;
 
+
+
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
@@ -9,6 +12,7 @@ import android.os.Bundle;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -26,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,12 +43,21 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 //import com.google.firebase.messaging.Message;
 
 import java.text.ParseException;
@@ -59,7 +73,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
     View v;
     EditText popup_post_body;
-    Button popup_add_post;
+    Button popup_add_post, upload_media;
     ImageButton btnadd_post;
     DatabaseReference reference, reference2, reference3, reference4;// this the reference of the Firebase database
     long maxId = 1;
@@ -148,6 +162,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         final View popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);
         popup_post_body = (EditText) popup_content.findViewById(R.id.post_body);
         popup_add_post = (Button) popup_content.findViewById(R.id.btn_post);
+
 
         if (edit) {
             if (URL.equalsIgnoreCase("")) {
@@ -278,7 +293,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
             }
         });
+
     }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fetchPosts(ArrayList<String> following) {
