@@ -12,24 +12,26 @@
         android:layout_height="match_parent">
 
 
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:ignore="SpeakableTextPresentCheck">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
-                    <LinearLayout
-                        android:id="@+id/scroll_posts"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/scroll_posts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                    </LinearLayout>
-                </ScrollView>
+            </LinearLayout>
+        </ScrollView>
 
         <ImageButton
             android:id="@+id/btn_add_post"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="280dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_shape_square"
