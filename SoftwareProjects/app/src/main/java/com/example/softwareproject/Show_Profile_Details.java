@@ -1,11 +1,16 @@
 package com.example.softwareproject;
 
+import android.Manifest;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -16,7 +21,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +39,9 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileWriter;
+
 public class Show_Profile_Details extends AppCompatActivity
 {
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -41,7 +51,7 @@ public class Show_Profile_Details extends AppCompatActivity
     String username;
     ImageView profile_pic;
     long maxId = 0;
-    Button btnAddNewPic, btnSave2, logOut;
+    Button btnAddNewPic, btnSave2, logOut,DownloadInfoBtn,DeleteProfileBtn;
     Field_Validations fv;
 
     private Uri mImageUri;
@@ -180,7 +190,39 @@ public class Show_Profile_Details extends AppCompatActivity
                 startActivity(intent);
             }
         });
+         DownloadInfoBtn = (Button) findViewById(R.id.DwnBtn);//instantiating download button
+         DeleteProfileBtn = (Button) findViewById(R.id.DltBtn);//instantiating delete button
 
+         DownloadInfoBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Download_info();//calling function to download users information
+             }
+         });
+        DeleteProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {//calling a prompt
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE://checking if yes is clicked
+                                Download_info();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE://checking if no is clicked
+
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Show_Profile_Details.this);
+                builder.setMessage("Would you like to first download your data before you delete your profile?")
+                        .setPositiveButton("Absolutely", dialogClickListener)
+                        .setNegativeButton("of course no.", dialogClickListener).show();//asking user a question
+            }
+        });
     }
 
     //Function to open the file selector
@@ -192,10 +234,10 @@ public class Show_Profile_Details extends AppCompatActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {//overriding start activity function  so store a picture once take a picture from the camera
+        super.onActivityResult(requestCode, resultCode, data);//inheriting from parent
 
-        if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)
+        if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)//checking if camera has provision to be used
                 && (data != null) && (data.getData() != null)) {
             mImageUri = data.getData();
             Picasso.get().load(mImageUri).into(profile_pic);
@@ -260,5 +302,74 @@ public class Show_Profile_Details extends AppCompatActivity
             startActivity(intent);
         }
 
+    }
+
+    void Download_info(){
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)  == PackageManager.PERMISSION_GRANTED){//checking for perission.
+            create_file();//function to create all 3 text files
+        }else{
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
+        }
+    }
+
+    private void create_file(){
+        String root = "/Download/"+username +  "'s WitsSocial profile info";//root path to store data
+
+        try{
+            File file = new File(Environment.getExternalStorageDirectory(),root);//creating file
+            if(file.exists()){
+                file.delete();
+            }
+            file.mkdirs();//making dir
+
+            write_to_file(file,"Users","Personal_Information.txt");//3 following lines call function to write a specific table from the firebase db to a file in the path dit
+            write_to_file(file,"social","Social_Information.txt");
+            write_to_file(file,"Posts","Posts_Information.txt");
+            Toast.makeText(Show_Profile_Details.this,"Information Successfully downloaded",Toast.LENGTH_SHORT).show();//alerting user their data has been saved on their device
+
+        }catch(Exception e){
+            Log.d("Stack","Error creating  file");
+        }
+    }
+    void write_to_file(File root,String dir,String path) {
+        try {
+            File textfile = new File(root,path);//creating to new file to write to
+            if(textfile.exists()){
+                textfile.delete();
+            }
+            FileWriter writer = new FileWriter(textfile);//creating textfile
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(dir).child(username);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    if (snapshot.exists()) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {//iterating through the table in firebase
+                            writer.append(dataSnapshot.toString() + "\n");//writing data to file from snapshot
+                        }
+                    }
+                    writer.flush();
+                    writer.close();//closing file
+                } catch (Exception e) {
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }catch (Exception r) {
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 100 && (grantResults.length > 0)
+                && (grantResults[0] == PackageManager.PERMISSION_GRANTED)){//checking if app has permission to save and write to a file on the device
+            create_file();
+        }
     }
 }
