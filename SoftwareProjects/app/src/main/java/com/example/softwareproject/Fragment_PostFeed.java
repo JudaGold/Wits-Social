@@ -313,7 +313,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     if(Image_from_camera.length()>1){//checking if user has taken a picture from the camera.
                         body = popup_post_body.getText().toString();
                         image_url = Image_from_camera;
-                    }else if(popup_post_body.getText().toString().length()<4){
+                    }else if(popup_post_body.getText().toString().length() <=4 || popup_post_body.getText().toString().isEmpty()){
                         body = popup_post_body.getText().toString();
                         image_url = "";
                     }
@@ -327,7 +327,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                             image_url = "";
                         }
                     }
-
 
                     Date date = new Date();
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
