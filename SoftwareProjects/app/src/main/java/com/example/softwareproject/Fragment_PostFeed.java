@@ -74,6 +74,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     View v;
     EditText popup_post_body;
     Button popup_add_post, upload_media;
+    ImageButton popup_upload_media;
     ImageButton btnadd_post;
     DatabaseReference reference, reference2, reference3, reference4;// this the reference of the Firebase database
     long maxId = 1;
@@ -126,6 +127,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             });
             blocked_user();//checks is user is block, prevent them from seeing posts
         }
+
+
         return v;
     }
 
@@ -155,6 +158,26 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         });
     }
 
+    /*public void showPopupMenu(View view){
+        PopupMenu popup = new PopupMenu(v.getContext(), view);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.popup_upload_media_menu);
+        popup.show();
+
+    }*/
+
+    public void showUpload(){
+        AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
+        AlertDialog dialog;
+        final View popup_content = getLayoutInflater().inflate(R.layout.popup_upload, null);
+        dialogB.setView(popup_content);
+        dialog = dialogB.create();
+        dialog.show();
+    }
+
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void add_post(Boolean edit, String body, String URL, String Id, String time) {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
@@ -162,6 +185,15 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         final View popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);
         popup_post_body = (EditText) popup_content.findViewById(R.id.post_body);
         popup_add_post = (Button) popup_content.findViewById(R.id.btn_post);
+        popup_upload_media = (ImageButton) popup_content.findViewById(R.id.btn_upload);
+
+        popup_upload_media.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //showPopupMenu(view);
+                showUpload();
+            }
+        });
 
 
         if (edit) {
