@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/popup_dialog_box"
     android:orientation="vertical">
 
@@ -36,19 +36,34 @@
         android:minLines="6"
         android:scrollbars="vertical" />
 
-    <Button
-        android:id="@+id/btn_post"
-        android:layout_width="90dp"
-        android:layout_height="47dp"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_margin="20dp"
-        android:background="@drawable/popup_butons"
-        android:fontFamily="@font/lato_regular"
-        android:soundEffectsEnabled="true"
-        android:text="Post"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textColorHighlight="@color/white"
-        android:textSize="20sp" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_upload"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:background="@drawable/popup_butons"
+            app:srcCompat="@drawable/ic_baseline_library_add_24" />
+
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="90dp"
+            android:layout_height="47dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/popup_butons"
+            android:fontFamily="@font/lato_regular"
+            android:soundEffectsEnabled="true"
+            android:text="Post"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
 
 </LinearLayout>
