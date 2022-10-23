@@ -30,7 +30,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tell_eveyone_n_what_s_on_you_re_mind">Tell everyone\n what\'s on you\'re mind</string>
+    <string name="tell_eveyone_n_what_s_on_you_re_mind">Tell everyone what\'s on your mind</string>
     <string name="image_url">image url</string>
     <string name="reply_to">Reply to:</string>
 </resources>

@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/popup_dialog_box"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView2"
-        style="@style/Widget.MaterialComponents.TextView"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="154dp"
-        android:autoSizeTextType="uniform"
-        android:fontFamily="@font/lato_bold"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:padding="20dp"
         android:text="@string/tell_eveyone_n_what_s_on_you_re_mind"
-        android:textColor="#09464C"
-        android:textSize="12sp" />
+        android:textColor="@color/white"
+        android:textSize="28sp" />
 
     <EditText
         android:id="@+id/post_body"
         android:layout_width="match_parent"
         android:layout_height="154dp"
+        android:layout_gravity="start"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
@@ -37,16 +38,32 @@
 
     <Button
         android:id="@+id/btn_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#123F4C"
-        android:color="@android:color/holo_blue_bright"
+        android:backgroundTint="#C82F88A1"
         android:fontFamily="@font/lato_regular"
+        android:soundEffectsEnabled="true"
         android:text="Post"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/btn_default"
+        android:backgroundTint="#C82F88A1"
+        android:fontFamily="cursive"
+        android:text="Upload media"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
 </LinearLayout>

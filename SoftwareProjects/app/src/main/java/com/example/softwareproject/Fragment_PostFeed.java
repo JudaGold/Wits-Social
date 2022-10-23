@@ -181,7 +181,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
         dialogB.setView(popup_content);
         dialog = dialogB.create();
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);
         dialog.show();
 
         popup_add_post.setOnClickListener(new View.OnClickListener() {
@@ -821,7 +820,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         final View popup_content = getLayoutInflater().inflate(R.layout.pop_up_reply, null);
         TextView popup_header = (TextView) popup_content.findViewById(R.id.reply_header);
         TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);
-        popup_original.setTextSize(11);
+        //popup_original.setTextSize(11);
         EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
         Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
         popup_header.setText("Replying to:\n\t" + Reply_to_user);
@@ -830,7 +829,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
         dialogB.setView(popup_content);
         dialog = dialogB.create();
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);
+        //dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);
         dialog.show();
 
 
