@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/button_shape_square"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/popup_dialog_box">
 
     <LinearLayout
+        android:id="@+id/upload_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,7 +29,7 @@
                 app:srcCompat="@drawable/add_media" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/imgBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
@@ -37,7 +38,7 @@
                 app:srcCompat="@drawable/add_photo_alternate" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/vidBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
@@ -45,7 +46,7 @@
                 app:srcCompat="@drawable/ic_baseline_video_library_24" />
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/gifBtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"

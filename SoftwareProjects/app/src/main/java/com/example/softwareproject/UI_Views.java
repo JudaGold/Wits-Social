@@ -8,10 +8,12 @@ import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.core.content.ContextCompat;
 
@@ -34,6 +36,28 @@ public class UI_Views {
 
     }
 
+    public ImageView previewImageView(Context context){
+        ImageView imgView = new ImageView(context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
+        params.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
+        params.setMargins(10, 40, 10, 50);
+        imgView.setLayoutParams(params);
+        return imgView;
+    }
+
+    public Button createButton(Context context){
+        Button button = new Button(context);
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 120);
+        buttonParams.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
+        buttonParams.setMargins(0,10,0,40);
+        button.setLayoutParams(buttonParams);
+        button.setTextColor(Color.parseColor("white"));
+        button.setBackgroundResource(R.drawable.button_shape_square);
+        button.setText("Upload Gif");
+
+        return button;
+    }
+
     public TextView createErrorTextView(Context context,String str) {
         TextView user = new TextView(context);
         user.setTextSize(20);
@@ -45,6 +69,17 @@ public class UI_Views {
         user.setGravity(Gravity.CENTER);
         return user;
 
+    }
+
+    public VideoView createVideoView(Context context) {
+        VideoView videoView = new VideoView(context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
+        params.gravity = Gravity.LEFT; //sets the image at the centre
+        params.setMargins(0, 40, 0, 50);
+        videoView.setLayoutParams(params);
+        //videoView.setScaleType(VideoView.ScaleType.FIT_XY);
+        //this.getImage(activity,str,videoView);
+        return videoView;
     }
 
     public ImageView createImageView(Context context,Activity activity,String str) {
