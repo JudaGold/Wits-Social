@@ -236,7 +236,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 upload_layout = (LinearLayout) popup_content2.findViewById(R.id.upload_layout);
                 imgView = views.previewImageView(popup_content2.getContext());
 
-                Button button = views.createButton(popup_content2.getContext());
+                Button button = views.createButton(popup_content2.getContext(), "gif");
                 openFileUser("image/gif");
                 upload_layout.addView(imgView);
                 upload_layout.setBackgroundResource(R.drawable.button_shape_square);
@@ -259,7 +259,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 upload_layout = (LinearLayout) popup_content2.findViewById(R.id.upload_layout);
                 imgView = views.previewImageView(popup_content2.getContext());
 
-                Button button = views.createButton(popup_content2.getContext());
+                Button button = views.createButton(popup_content2.getContext(), "image");
                 openFileUser("image/*");
                 upload_layout.addView(imgView);
                 upload_layout.setBackgroundResource(R.drawable.button_shape_square);

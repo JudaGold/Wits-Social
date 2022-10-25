@@ -40,20 +40,20 @@ public class UI_Views {
         ImageView imgView = new ImageView(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
         params.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
-        params.setMargins(10, 40, 10, 50);
+        params.setMargins(10, 20, 10, 20);
         imgView.setLayoutParams(params);
         return imgView;
     }
 
-    public Button createButton(Context context){
+    public Button createButton(Context context, String media){
         Button button = new Button(context);
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 120);
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(350, 120);
         buttonParams.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
-        buttonParams.setMargins(0,10,0,40);
+        buttonParams.setMargins(0,10,0,50);
         button.setLayoutParams(buttonParams);
         button.setTextColor(Color.parseColor("white"));
         button.setBackgroundResource(R.drawable.button_shape_square);
-        button.setText("Upload Gif");
+        button.setText("Upload " + media);
 
         return button;
     }
