@@ -293,7 +293,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
     }*/
 
-    //opens the file so that a user can select a ,edia file
+    //opens the file so that a user can select a ,edit file
     private void openFileUser(String type){
         Intent intent = new Intent();
         intent.setType(type); //type is either image, image gif or video
