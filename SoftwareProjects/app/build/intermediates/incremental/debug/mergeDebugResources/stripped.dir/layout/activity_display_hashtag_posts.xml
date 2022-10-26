@@ -21,8 +21,8 @@
 
     <ImageButton
         android:id="@+id/btnHome"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="322dp"
         android:layout_marginTop="646dp"
         android:layout_marginEnd="29dp"

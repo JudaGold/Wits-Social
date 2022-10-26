@@ -23,6 +23,9 @@
             android:name=".user_display"
             android:exported="false" />
         <activity
+            android:name=".Blocked_Users"
+            android:exported="false" />
+        <activity
             android:name=".Add_Profile_Pic"
             android:exported="false" />
         <activity

@@ -76,9 +76,9 @@ public class fragment_following extends Fragment {
                                 getActivity().finish();
                             }
                         });
-                    index++;
-                    l.addView(df);
-                    l.addView(Divider());
+                        index++;
+                        l.addView(df);
+                        l.addView(Divider());
                     }
                 }
             }

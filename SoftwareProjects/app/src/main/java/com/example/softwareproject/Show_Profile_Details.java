@@ -51,7 +51,7 @@ public class Show_Profile_Details extends AppCompatActivity
     String username;
     ImageView profile_pic;
     long maxId = 0;
-    Button btnAddNewPic, btnSave2, logOut,DownloadInfoBtn,DeleteProfileBtn;
+    Button btnAddNewPic, btnSave2, logOut,DownloadInfoBtn,DeleteProfileBtn, BlockedUsersBtn;
     Field_Validations fv;
 
     private Uri mImageUri;
@@ -190,15 +190,25 @@ public class Show_Profile_Details extends AppCompatActivity
                 startActivity(intent);
             }
         });
-         DownloadInfoBtn = (Button) findViewById(R.id.DwnBtn);//instantiating download button
-         DeleteProfileBtn = (Button) findViewById(R.id.DltBtn);//instantiating delete button
+        BlockedUsersBtn = (Button) findViewById(R.id.BlockUserBtn);
+        BlockedUsersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Show_Profile_Details.this, Blocked_Users.class);
+                intent.putExtra("Username", username);
+                startActivity(intent);
+            }
+        });
 
-         DownloadInfoBtn.setOnClickListener(new View.OnClickListener() {
+        DownloadInfoBtn = (Button) findViewById(R.id.DwnBtn);//instantiating download button
+        DeleteProfileBtn = (Button) findViewById(R.id.DltBtn);//instantiating delete button
+
+        DownloadInfoBtn.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  Download_info();//calling function to download users information
              }
-         });
+        });
         DeleteProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

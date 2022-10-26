@@ -269,5 +269,31 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/DwnBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/button"
+            android:text="Download profile information"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"></Button>
+
+        <Button
+            android:id="@+id/DltBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/button"
+            android:text="Delete Profile"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"></Button>
+
     </LinearLayout>
 </ScrollView>
