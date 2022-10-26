@@ -94,6 +94,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     ImageView imgView;
     Boolean camera = true;
     EditText popup_post_body;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     StorageReference mstorageRef;
     DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
@@ -143,7 +147,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
             getFollowing();
 
+<<<<<<< Updated upstream
         } else {
+=======
+>>>>>>> Stashed changes
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -159,11 +166,14 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             blocked_user();//checks if user is block, prevent them from seeing posts
         }
 
+<<<<<<< Updated upstream
 
         return v;
     }
 
 
+=======
+>>>>>>> Stashed changes
     public void blocked_user() {//function to check is user is currently block by another user
         DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference("social").child(username).child("Blocking");
         b_ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -191,6 +201,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         });
     }
 
+<<<<<<< Updated upstream
+=======
+    //function processes when user clicks camera icon on add post popup
+>>>>>>> Stashed changes
     public void showUpload() {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
         AlertDialog dialog;
@@ -286,9 +300,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 });
             }
         });
-
-
-    }
+        }
 
     public void uploadFile() {
         if (mImgUri != null) {
