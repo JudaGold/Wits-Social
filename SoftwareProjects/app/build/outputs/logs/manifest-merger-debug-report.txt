@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
 MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\melon\.gradle\caches\transforms-3\461959a5d6de96fcadee58a71d808224\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.material:material:1.6.1] C:\Users\melon\.gradle\caches\transforms-3\96e7d067667b8b61be5efdfeeca2f9af\transformed\material-1.6.1\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\melon\.gradle\caches\transforms-3\3035680fe32fee378430c468fbd609d4\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -88,20 +88,20 @@ MERGED from [com.android.volley:volley:1.2.1] C:\Users\melon\.gradle\caches\tran
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\melon\.gradle\caches\transforms-3\80f6b73346b8da28a10b311cf1c81578\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\melon\.gradle\caches\transforms-3\6a2a6cbe9867613923158a3b9dc3b72f\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.44.1] C:\Users\melon\.gradle\caches\transforms-3\6768ff37d1b4324ce7e84af21d11158d\transformed\jetified-grpc-android-1.44.1\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
 	package
 		INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
 		INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
 		INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-60:12
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:1-63:12
 		INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:2:11-69
@@ -140,7 +140,7 @@ ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-
 	android:name
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:6:22-78
 application
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:9:5-58:19
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:9:5-61:19
 MERGED from [com.google.android.material:material:1.6.1] C:\Users\melon\.gradle\caches\transforms-3\96e7d067667b8b61be5efdfeeca2f9af\transformed\material-1.6.1\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.6.1] C:\Users\melon\.gradle\caches\transforms-3\96e7d067667b8b61be5efdfeeca2f9af\transformed\material-1.6.1\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\melon\.gradle\caches\transforms-3\3035680fe32fee378430c468fbd609d4\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -243,64 +243,70 @@ ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:24:13-37
 	android:name
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:23:13-41
-activity#com.example.softwareproject.Add_Profile_Pic
+activity#com.example.softwareproject.Blocked_Users
 ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:25:9-27:40
 	android:exported
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:26:13-44
-activity#com.example.softwareproject.Forgot_Password
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:26:13-42
+activity#com.example.softwareproject.Add_Profile_Pic
 ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:28:9-30:40
 	android:exported
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:30:13-37
 	android:name
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:29:13-44
-activity#com.example.softwareproject.Show_Profile_Details
+activity#com.example.softwareproject.Forgot_Password
 ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:31:9-33:40
 	android:exported
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:33:13-37
 	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:32:13-49
-activity#com.example.softwareproject.Sign_Up
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:32:13-44
+activity#com.example.softwareproject.Show_Profile_Details
 ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:34:9-36:40
 	android:exported
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:35:13-36
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:35:13-49
+activity#com.example.softwareproject.Sign_Up
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:37:9-39:40
+	android:exported
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:39:13-37
+	android:name
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:38:13-36
 activity#com.example.softwareproject.Main_Activity
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:37:9-45:20
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:40:9-48:20
 	android:exported
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:39:13-36
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:42:13-36
 	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:38:13-42
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:41:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:40:13-44:29
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:43:13-47:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:41:17-69
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:44:17-69
 	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:41:25-66
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:44:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:43:17-77
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:46:17-77
 	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:43:27-74
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:46:27-74
 meta-data#preloaded_fonts
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:47:9-49:57
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:50:9-52:57
 	android:resource
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:49:13-54
-	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:48:13-43
-service#com.example.softwareproject.Push_Notification_Service
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:51:9-57:19
-	android:exported
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:53:13-37
-	android:name
 		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:52:13-54
-intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:54:13-56:29
-action#com.google.firebase.MESSAGING_EVENT
-ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:55:17-78
 	android:name
-		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:55:25-75
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:51:13-43
+service#com.example.softwareproject.Push_Notification_Service
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:54:9-60:19
+	android:exported
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:56:13-37
+	android:name
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:55:13-54
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:57:13-59:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:58:17-78
+	android:name
+		ADDED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:58:25-75
 uses-sdk
 INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml

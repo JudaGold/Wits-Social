@@ -1215,12 +1215,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 intent.putExtra("username", account_user);
                 intent.putExtra("loggedinuser", account_user);
                 intent.putExtra("hashtag", str);
-                intent.putExtra("ID", ID);
-                intent.putExtra("post_body", body);
-                intent.putExtra("URL", URL);
-                intent.putExtra("post_time", post_time);
-                intent.putExtra("username_post", username_post);
-                intent.putExtra("is_searched_user", false);
                 getActivity().startActivity(intent);
                 getActivity().finish();
             }

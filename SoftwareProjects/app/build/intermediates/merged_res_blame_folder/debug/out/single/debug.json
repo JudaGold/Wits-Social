@@ -124,6 +124,10 @@
         "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_person_24.xml"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/layout_blocked_users.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/layout/blocked_users.xml"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_fragment_following.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/layout/fragment_following.xml"
     },
