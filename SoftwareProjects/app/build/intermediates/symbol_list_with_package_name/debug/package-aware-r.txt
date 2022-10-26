@@ -2475,6 +2475,8 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable add_media
+drawable add_photo_alternate
 drawable add_pic
 drawable avd_hide_password
 drawable avd_show_password
@@ -2520,12 +2522,16 @@ drawable favorite_filled
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_baseline_account_circle_24
-drawable ic_baseline_add_circle_outline_24
+drawable ic_baseline_edit_24
 drawable ic_baseline_favorite_border_24
+drawable ic_baseline_gif_24
 drawable ic_baseline_home_24
+drawable ic_baseline_library_add_24
 drawable ic_baseline_lock_24
 drawable ic_baseline_person_24
+drawable ic_baseline_photo_camera_24
 drawable ic_baseline_post_add_24
+drawable ic_baseline_video_library_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2582,6 +2588,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable popup_butons
 drawable popup_dialog_box
 drawable post_layout
 drawable search_icon
@@ -2603,8 +2610,12 @@ id BOTTOM_START
 id BioText
 id Bio_Label
 id CTRL
+id CameraBtn
+id DltBtn
+id DwnBtn
 id EmailAddress_Label
 id FUNCTION
+id GIF
 id LP_followers
 id LP_following
 id LP_profile
@@ -2724,9 +2735,11 @@ id btn_add_post
 id btn_home
 id btn_post
 id btn_reply
+id btn_upload
 id buttonPanel
 id cache_measures
 id callMeasure
+id camera
 id cancel_button
 id carryVelocity
 id center
@@ -2840,6 +2853,7 @@ id full_name_Label
 id fullscreen_header
 id ghost_view
 id ghost_view_holder
+id gifBtn
 id glide_custom_view_target_tag
 id gone
 id graph
@@ -2862,6 +2876,7 @@ id ignore
 id ignoreRequest
 id image
 id imgAddPic
+id imgBtn
 id imgClose
 id immediateStop
 id included
@@ -3022,6 +3037,7 @@ id scrollIndicatorUp
 id scrollView
 id scrollView2
 id scrollView3
+id scrollView4
 id scroll_posts
 id scroll_replies
 id scrollable
@@ -3104,7 +3120,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView2
+id textView
 id textView3
 id textView4
 id textView5
@@ -3139,11 +3155,14 @@ id unchecked
 id uniform
 id unlabeled
 id up
+id upload_layout
 id useLogo
 id user_bio2
 id username
 id username_text
 id vertical_only
+id vidBtn
+id video
 id view_edited_posts
 id view_offset_helper
 id view_transition
@@ -3339,6 +3358,7 @@ layout notification_template_part_time
 layout pop_up_reply
 layout popup_image
 layout popup_post
+layout popup_upload
 layout replies_page
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
@@ -3364,6 +3384,7 @@ layout text_view_without_line_height
 menu example_menu
 menu example_menu2
 menu popup_edit
+menu popup_upload_media_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

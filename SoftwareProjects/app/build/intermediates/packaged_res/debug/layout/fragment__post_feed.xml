@@ -31,12 +31,12 @@
 
         <ImageButton
             android:id="@+id/btn_add_post"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="340dp"
-            android:layout_marginTop="586dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginBottom="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="348dp"
+            android:layout_marginTop="597dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginBottom="109dp"
             android:background="@drawable/button_shape_square"
             android:backgroundTintMode="src_atop"
             android:foregroundTint="#36200571"

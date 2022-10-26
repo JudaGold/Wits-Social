@@ -44,15 +44,15 @@
 
         <ImageButton
             android:id="@+id/btn_upload"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/popup_butons"
             app:srcCompat="@drawable/ic_baseline_library_add_24" />
 
         <Button
             android:id="@+id/btn_post"
-            android:layout_width="90dp"
-            android:layout_height="47dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="20dp"
             android:background="@drawable/popup_butons"
