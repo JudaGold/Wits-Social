@@ -89,11 +89,20 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
     String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
     View v;
-    Uri mImgUri;
-    VideoView videoView;
-    ImageView imgView;
-    Boolean camera = true;
+    Uri mImgUri; //for the file opener when the user picks an image
+    ImageView imgView; //lets user preview image/gif before psoting
+    Boolean camera = true; //sets to false if the user wishes to upload an image instead of take a picture
+                            //variable used because the same function uses different code based on what we want to do
     EditText popup_post_body;
+
+
+    private StorageReference mstorageRef;
+    private DatabaseReference mDatabaseRef;
+
+    Button popup_add_post;
+    ImageButton popup_upload_media,pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;
+    ImageButton btnadd_post;
+
     StorageReference mstorageRef;
     DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
@@ -102,6 +111,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     Button popup_add_post;
     ImageButton popup_upload_media, pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;
     ImageButton btnadd_post;
+
 
     DatabaseReference reference, reference2, reference3, reference4, reference5;// this the reference of the Firebase database
     long maxId = 1;
@@ -130,6 +140,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         account_user = intent.getStringExtra("loggedinuser");
         btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);
 
+
+        mstorageRef  = FirebaseStorage.getInstance().getReference("upload_gifs");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Posts");
+
         if (username.equalsIgnoreCase(account_user)) {
 
             fetch_fcm_tokens();
@@ -141,9 +155,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
             });
 
-            getFollowing();
+        }
+        else {
 
         } else {
+
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -158,13 +174,15 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             });
             blocked_user();//checks if user is block, prevent them from seeing posts
         }
-
-
         return v;
     }
 
 
+    public void blocked_user(){//function to check is user is currently block by another user
+
+
     public void blocked_user() {//function to check is user is currently block by another user
+
         DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference("social").child(username).child("Blocking");
         b_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -177,19 +195,19 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                             break;
                         }
                     }
-
                 }
                 if (!temp) {
                     display_searched_user_posts();
                 }//prevents blocked users from seeing posts
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
+
+    //function processes when user clicks camera icon on add post popup
+    public void showUpload(){
 
     public void showUpload() {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
@@ -197,7 +215,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         final View popup_content2 = getLayoutInflater().inflate(R.layout.popup_upload, null);
         dialogB.setView(popup_content2);
         dialog = dialogB.create();
-        dialog.show(); //creates s dialog to open a pop up window and communicate with it
+        dialog.show(); //creates dialog to open the upload pop up window and communicate with it
+
         pop_up_camera_btn = (ImageButton) popup_content2.findViewById(R.id.CameraBtn);////instantiating  button to use the camera api
         pop_up_camera_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,10 +227,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     startActivityForResult(Camera_Intent, pic_int);//overriden function to store picture from camera
                     dialog.dismiss();
 
-                } else {
-//                    Toast.makeText(popup_content2.getContext(), "Camera not available", Toast.LENGTH_SHORT).show();
-                }
-
+                }else{
+                    Toast.makeText(popup_content2.getContext(), "Camera not available",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -232,11 +249,14 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         popup_gif_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mstorageRef = FirebaseStorage.getInstance().getReference("upload_gifs");
-                camera = false;
-                upload_layout = (LinearLayout) popup_content2.findViewById(R.id.upload_layout);
-                imgView = views.previewImageView(popup_content2.getContext());
 
+                camera = false; //user wants to upload gif, not take a pick so camera is set to false
+
+                mstorageRef = FirebaseStorage.getInstance().getReference("upload_gifs");
+
+                upload_layout = (LinearLayout) popup_content2.findViewById(R.id.upload_layout);
+                imgView = views.previewImageView(popup_content2.getContext()); //creates image view to
+                                                                                //display image/gif chosen
                 Button button = views.createButton(popup_content2.getContext(), "gif");
                 openFileUser("image/gif");
                 upload_layout.addView(imgView);
@@ -258,6 +278,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         });
 
         popup_img_btn = (ImageButton) popup_content2.findViewById(R.id.imgBtn);
+        //code is the same as above
         popup_img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -340,9 +361,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
     }
 
+
+    //opens the file so that a user can select a ,edit file
     private void openFileUser(String type) {
         Intent intent = new Intent();
-        intent.setType(type);
+        intent.setType(type); //type is either image, image gif or video
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
@@ -419,7 +442,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     && (data != null) && (data.getData() != null)) {
                 mImgUri = data.getData();
                 //Picasso.get().load(mVideUri).into(videoView);
-                Glide.with(this).load(mImgUri).into(imgView);
+                Glide.with(this).load(mImgUri).into(imgView); //use glide so we can display gifs as well
             }
         }
 
