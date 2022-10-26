@@ -36,8 +36,6 @@ public class UI_Views {
 
     }
 
-    //image view for when someone uploads image or gif
-    //lets user preview image/gif before posting
     public ImageView previewImageView(Context context){
         ImageView imgView = new ImageView(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
@@ -47,7 +45,6 @@ public class UI_Views {
         return imgView;
     }
 
-    //displays when the user pick image/gif/video to allow them to upload it
     public Button createButton(Context context, String media){
         Button button = new Button(context);
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(350, 120);
