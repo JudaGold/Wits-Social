@@ -59,6 +59,8 @@ font lato_bold
 font lato_regular
 id BioText
 id Bio_Label
+id BlockUserBtn
+id Blocked_Users
 id CameraBtn
 id DltBtn
 id DwnBtn
@@ -148,6 +150,7 @@ layout activity_forgot_password
 layout activity_main
 layout activity_sign_up
 layout activity_user_display
+layout blocked_users
 layout fragment__favourites
 layout fragment__post_feed
 layout fragment_followers

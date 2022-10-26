@@ -144,7 +144,7 @@ public class user_display extends AppCompatActivity {
                     }
 
                 }
-                if(!temp){btnfollow.setVisibility(View.INVISIBLE);}//prevents blocked users from seeing posts
+                if(temp){btnfollow.setVisibility(View.INVISIBLE);}//prevents blocked users from seeing posts
             }
 
             @Override

@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 public class Add_Profile_Pic extends AppCompatActivity {
 
+    // This tells the phone's system UI that the user wants to pick an image from the phone
     private static final int PICK_IMAGE_REQUEST = 1;
     // Declarations of variables
     ImageView UploadImg;    // Image view for profile picture
@@ -57,14 +58,15 @@ public class Add_Profile_Pic extends AppCompatActivity {
             username = intent.getStringExtra("Username");
                             // Get the username from sign up activity
 
-        UploadImg.setOnClickListener(new View.OnClickListener() {
+        UploadImg.setOnClickListener(new View.OnClickListener() { // When the upload image button is pressed
             @Override
             public void onClick(View view) {
                 openFileUser();
             }
         });
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() { /* When user saves the chosen image
+                                                                   as their bio*/
             @Override
             public void onClick(View view) {
                 String userBio = bio.getText().toString();
@@ -80,7 +82,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
                         Toast.makeText(Add_Profile_Pic.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                             // Displaying message when the upload is progress
                     } else {
-                        uploadFile();
+                        uploadFile(); // Calls the method that uploads the file to our database
                     }
                 }
             }
@@ -90,7 +92,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
     // This method will open a file in the phone
     private void openFileUser(){
         Intent intent = new Intent();
-        intent.setType("image/*");
+        intent.setType("image/*"); // This tells the phone's system UI that the user can only pick an image
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
@@ -100,7 +102,8 @@ public class Add_Profile_Pic extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)
+        if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK) /*Checks if the user
+                                                                               picked an image*/
                 && (data != null) && (data.getData() != null)) {
             mImageUri = data.getData();
             Picasso.get().load(mImageUri).into(UploadImg);
@@ -134,7 +137,7 @@ public class Add_Profile_Pic extends AppCompatActivity {
                                     // Showing a message when the photo is done uploading
 
                                     Intent intent= new Intent(Add_Profile_Pic.this, Main_Activity.class);
-                                    intent.putExtra("Username", username);
+                                    intent.putExtra("Username", username); /*Sends the user's username to the login screen*/
                                     startActivity(intent);
                                     // This will redirect the user to the Login screen
                                 }

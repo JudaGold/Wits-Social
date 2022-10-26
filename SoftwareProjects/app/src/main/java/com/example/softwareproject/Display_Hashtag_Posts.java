@@ -47,38 +47,31 @@ import java.util.Locale;
 import java.util.Vector;
 
 public class Display_Hashtag_Posts extends AppCompatActivity {
-    String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
-    String username;
-    String account_user;
-    String hashtag;
-    LinearLayout lp;
-    DatabaseReference reference, reference2, reference3;// this the reference of the Firebase database
-    long maxId = 1;
-
-    String post_body, URL, post_time, ID, username_post;
-
-    ArrayList<String> all_usernames;/* this will have the user's username
-                                                           and the usernames of the users, the
-                                                           user is following*/
-    ArrayList<String> all_fcm_tokens;
-    UI_Views views = new UI_Views();
-
+    // Declarations of variables
+    String username; // Username of the logged in user
+    String account_user; // Placeholder of the user's username
+    String hashtag; // The post's hashtag
+    LinearLayout lp; // Layout of the screen
+    DatabaseReference reference; // this the reference of the Firebase database
+    long maxId = 1; // This is the default value for the first record's ID in a table has in the database
+    UI_Views views = new UI_Views(); /* This is an object to the class UI_Views which is used to
+                                        create views in the layout of the screen*/
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Initialisation of variables
         setContentView(R.layout.activity_display_hashtag_posts);
-        //v =  inflater.inflate(R.layout.fragment__post_feed, container, false);
         Intent intent = Display_Hashtag_Posts.this.getIntent();
-        username = intent.getStringExtra("username");
-        account_user = intent.getStringExtra("loggedinuser");
-        hashtag = intent.getStringExtra("hashtag");
-
-        fetch_hashtag_posts(hashtag);
-
+        username = intent.getStringExtra("username"); // Fetching the user's username
+        account_user = intent.getStringExtra("username"); // Fetching the user's username
+        hashtag = intent.getStringExtra("hashtag"); // Fetching the clicked hashtag
         lp = (LinearLayout) findViewById(R.id.post_layout);
         ImageButton btn_home = (ImageButton) findViewById(R.id.btnHome);
+
+        fetch_hashtag_posts(hashtag); /* Calls the method that displays the posts with the clicked
+                                         hashtag on to the screen*/
 
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,17 +85,16 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
 
     }
 
+    // This method fetches the posts with the hashtag from the database
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fetch_hashtag_posts(String hashtag) {
         ArrayList<Post> Posts = new ArrayList<Post>();
-
         reference = FirebaseDatabase.getInstance().getReference("Hashtags").child(hashtag.trim());
         Query hashtag_posts = reference.orderByChild(String.valueOf(maxId));
         hashtag_posts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Log.i("Snapshot", "It exists");
                     for (DataSnapshot data : snapshot.getChildren()) {
                         try {
                             String id = data.getKey();
@@ -135,80 +127,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         });
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void fetchPosts(ArrayList<String> following) {
-        ArrayList<Post> Posts = new ArrayList<Post>();
-
-        for (String usernames : following) {
-            reference = FirebaseDatabase.getInstance().getReference().child("Posts").child(usernames);
-            Query following_posts = reference.orderByChild(String.valueOf(maxId));
-            following_posts.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        for (DataSnapshot data : snapshot.getChildren()) {
-                            try {
-                                String id = data.getKey();
-                                String b = data.child("body").getValue(String.class);
-                                String t = data.child("time").getValue(String.class);
-                                String URL = data.child("post_image_url").getValue(String.class);
-                                String num_of_replies = data.child("Replies").getChildrenCount() + "";
-                                Post post = new Post(id, b, URL, t);
-                                post.setNum_of_replies(num_of_replies);
-                                post.setUsername(usernames);
-                                try {
-                                    post.convertDate();
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                Posts.add(post);
-                            } catch (Exception e) {
-                            }
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-        reference = FirebaseDatabase.getInstance().getReference().child("Replies").child(username);
-        Query replies = reference.orderByChild(String.valueOf(maxId));
-        replies.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    try {
-                        String id = data.getKey();
-                        String b = data.child("body").getValue(String.class);
-                        String t = data.child("time").getValue(String.class);
-                        String URL = data.child("post_image_url").getValue(String.class);
-                        String username_post = data.child("username").getValue(String.class);
-                        Post post = new Post(id, b, URL, t);
-                        post.setUsername("Me replied to " + username_post);
-                        try {
-                            post.convertDate();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        Posts.add(post);
-                    } catch (Exception e) {
-                    }
-                }
-                Posts.sort(new DateComparator());
-                display_posts(Posts, false, false);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
+    // This method displays the posts withe hashtag onto the screen
     @RequiresApi(api = Build.VERSION_CODES.O)
     void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_searched_user) {
 
@@ -275,7 +194,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                     }
 
                     ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
-                    LinearLayout horizontalLayout = createHorizontalLayout();
+                    LinearLayout horizontalLayout = views.createHorizontalLayout(Display_Hashtag_Posts.this);
                     postview.addView(body);
                     if (!num_of_replies.equalsIgnoreCase("")) {
                         TextView replies = createNumOfReplies(num_of_replies);
@@ -285,20 +204,6 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                     if (!account_main) {
                         horizontalLayout.addView(favouritesButton);
                         horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
-                    }
-
-                    if (username_post.equalsIgnoreCase(username) && !Edits) {
-                        postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post
-                            @Override
-                            public boolean onLongClick(View view) {
-                                setBody(post_body);
-                                setURL(URL);
-                                setID(ID);
-                                setTime(post_time);
-                                //showPopupMenu(postview); //shows popup edit option
-                                return true;
-                            }
-                        });
                     }
 
                     if (!Edits) {
@@ -330,34 +235,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         }
     }
 
-    public void getFollowing() {
-        all_usernames = new ArrayList<>();/* this will have the user's username
-                                                           and the usernames of the users, the
-                                                           user is following*/
-        all_usernames.add(username);
-        reference = FirebaseDatabase.getInstance().getReference("social")
-                .child(username).child("following");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    String following_username = data.getValue(String.class);
-                    all_usernames.add(following_username);
-                }
-                lp.removeAllViews();
-                fetchPosts(all_usernames);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-
+    // This displays an image onto the screen
     public ImageView createImageView() {
         ImageView imageView = new ImageView(Display_Hashtag_Posts.this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
@@ -368,21 +246,12 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         return imageView;
     }
 
+    // Gets image from the internet and adds it to imageView
     public void getImage(String URL, ImageView image) {
-        Glide.with(Display_Hashtag_Posts.this).load(URL).into(image); /*gets image from the internet and adds
-                                                                                            it to imageView*/
+        Glide.with(Display_Hashtag_Posts.this).load(URL).into(image);
     }
-    /*public TextView createBodyTextView(String str){
-        TextView body = new TextView(Display_Hashtag_Posts.this);
-        SpannableString sp = Create_Link(str);
-        body.setText(sp);
-        body.setTextSize(20);
-        body.setTextColor(Color.parseColor("white"));
-        body.setPadding(30,30,30,30);
-        body.setMovementMethod(LinkMovementMethod.getInstance());
-        return body;
-    }*/
 
+    // Shows text with a hashtag
     public TextView createBodyTextViewHashtag(SpannableString str) {
         TextView body = new TextView(Display_Hashtag_Posts.this);
         body.setText(str);
@@ -394,6 +263,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         return body;
     }
 
+    // Creates a reply button onto a post
     public TextView createReplyOption(String Reply_to, String post_msg, String uid) {//adding a reply text for user to click on to reply to a post
         TextView textView = new TextView(Display_Hashtag_Posts.this);
         textView.setText("reply");
@@ -412,24 +282,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         return textView;
     }
 
-    public TextView createTimeTextView(String str) {
-        TextView time = new TextView(Display_Hashtag_Posts.this);
-        time.setText(str);
-        time.setGravity(Gravity.RIGHT);
-        time.setTextSize(11);
-        time.setTextColor(Color.parseColor("white"));
-        time.setPadding(0, 5, 20, 0);
-        return time;
-    }
-
-    public LinearLayout createPostLayout() {
-        LinearLayout post = new LinearLayout(Display_Hashtag_Posts.this);
-        post.setOrientation(LinearLayout.VERTICAL);
-        post.setBackground(ContextCompat.getDrawable(Display_Hashtag_Posts.this, R.drawable.post_layout));
-        post.setPadding(30, 30, 20, 30);
-        return post;
-    }
-
+    // Shows the number of replies for a post
     public TextView createNumOfReplies(String num_of_replies) {
         TextView textView = new TextView(Display_Hashtag_Posts.this);
         textView.setText(num_of_replies);
@@ -442,31 +295,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         return textView;
     }
 
-//    public ImageView createRepliesIcon()
-//    {
-//        ImageView replies_icon = new ImageView(getContext());
-//        replies_icon.setImageResource(R.drawable.ic_round_chat_bubble_outline_24);
-//        replies_icon.setForegroundGravity(Gravity.RIGHT);
-//        replies_icon.setPadding(30,0,5,0);
-//
-//        return replies_icon;
-//    }
-
-    public Space addSpace() {
-        Space space = new Space(Display_Hashtag_Posts.this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 50);
-        space.setLayoutParams(params);
-        return space;
-    }
-
-    public LinearLayout createHorizontalLayout() {
-        LinearLayout horizontalLayout = new LinearLayout(Display_Hashtag_Posts.this);
-        horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
-        horizontalLayout.setHorizontalGravity(Gravity.RIGHT);
-        horizontalLayout.setPadding(30, 10, 20, 20);
-        return horizontalLayout;
-    }
-
+    // Creates a button to favourite a post
     public ToggleButton createFavouriteToggleButton(String user, String userPost, String ID) {
         ToggleButton toggleButton = new ToggleButton(Display_Hashtag_Posts.this);
         toggleButton.setText(""); //removes all text from the toggle button so that only the heart shows
@@ -493,70 +322,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         return toggleButton;
     }
 
-   /* public void showPopupMenu(LinearLayout ll){
-        PopupMenu popup_menu = new PopupMenu(Display_Hashtag_Posts.this, ll); //shows popup edit menu only on the post
-        popup_menu.setOnMenuItemClickListener();
-        popup_menu.inflate(R.menu.popup_edit);
-        popup_menu.show();
-    }*/
-
-    /*adds the details of the post that must be edited to global variables so that it
-    can be used by other classes
-     */
-    public void setBody(String b) {
-        ExistingBody = b;
-    }
-
-    public void setURL(String url) {
-        ExistingURL = url;
-    }
-
-    public void setID(String ID) {
-        ExistingID = ID;
-    }
-
-    public void setTime(String time) {
-        ExistingTime = time;
-    }
-
-    public void setUsername(String username) {
-        ExistingUsername = username;
-    }
-
-
-    public void fetch_fcm_tokens() {
-        all_fcm_tokens = new ArrayList<>();/* this will have the user's username
-                                                           and the usernames of the users, the
-                                                           user is following*/
-        reference3 = FirebaseDatabase.getInstance().getReference("Notifications")
-                .child(username);
-        reference3.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    String fcm_token = data.getValue(String.class);
-                    all_fcm_tokens.add(fcm_token);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-
-    /*  public boolean isPostChanged(String body, String imgURL){
-          if (!body.equals(ExistingBody)||!imgURL.equals(ExistingURL)){
-              return true;
-          }
-          else {
-              return false;
-          }
-      }*/
+    // This method saves a reply made byt the user to the database
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void Reply(String Reply_to_user, String original_post_msg, String uid) {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(Display_Hashtag_Posts.this);
@@ -620,12 +386,12 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                 });
 
                 dialog.dismiss();
-                getFollowing();
             }
         });
         ;
     }
 
+    // This saves the liked post to the database
     public void addFavourite(String user, String userPost, String postID) {
         DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
         favRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -642,46 +408,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         });
     }
 
-    public void initializeFavourites(String user, String userPost, String postID) {
-        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
-    }
-
-
-    /*public SpannableString Create_Link(String body){
-        Analysis textAnalysyis = new Analysis(body);
-        ArrayList<Pair<Integer,Integer>>data = new ArrayList<Pair<Integer,Integer>>();
-        data = textAnalysyis.Find_link();
-        SpannableString spannableString = new SpannableString(body);
-        if(data.size() > 0) {
-            for (Pair it : data) {
-
-                int a = Integer.parseInt("" + it.first);
-                int b = Integer.parseInt("" + it.second);
-                ClickableSpan clickableSpan = new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull View widget) {
-                        String url = body.substring(a,b).toLowerCase(Locale.ROOT);
-                        Uri uri = Uri.parse(url);
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-                };
-                spannableString.setSpan(clickableSpan,a,b,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-        }
-        return spannableString;
-    }*/
-
-    public boolean checkHashtag(String body) {
-        int index = body.indexOf("#"); // looks for the position of # in string
-        if (index != -1) { //index of produces a -1 if it cannot find the substring
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
+    // This displays a hashtag in a post
     public SpannableString processHashtag(String body, String ID, String URL, String post_time, String username_post) {
         int index = body.indexOf("#"); // looks for the position of # in string
         int endIndex = body.indexOf(" ", index);

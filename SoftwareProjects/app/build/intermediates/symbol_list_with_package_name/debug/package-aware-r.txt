@@ -2609,6 +2609,8 @@ id BOTTOM_END
 id BOTTOM_START
 id BioText
 id Bio_Label
+id BlockUserBtn
+id Blocked_Users
 id CTRL
 id CameraBtn
 id DltBtn
@@ -3281,6 +3283,7 @@ layout activity_forgot_password
 layout activity_main
 layout activity_sign_up
 layout activity_user_display
+layout blocked_users
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
