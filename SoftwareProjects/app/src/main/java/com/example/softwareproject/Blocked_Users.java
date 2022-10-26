@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -22,9 +23,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Blocked_Users extends AppCompatActivity {
-    DatabaseReference bd = FirebaseDatabase.getInstance().getReference("Users");
     LinearLayout l;
     String username;
+
+    //@Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        View v = inflater.inflate(R.layout.blocked_users, container, false);
+//        Intent intent = getIntent();
+//        username = intent.getStringExtra("username");
+//        l = (LinearLayout) v.findViewById(R.id.Blocked_Users);
+//        l.setOrientation(LinearLayout.VERTICAL);
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,150,1.5f);
+//        l.setLayoutParams(lp);
+//
+//        processUsers();
+//        return v;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,33 +56,42 @@ public class Blocked_Users extends AppCompatActivity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,150,1.5f);
         l.setLayoutParams(lp);
 
-        DatabaseReference bdBlock = FirebaseDatabase.getInstance()
-                .getReference("social").child(username).child("Blocking");
-        bdBlock.addListenerForSingleValueEvent(new ValueEventListener() {//setting a new listener to access the database
+        processUsers();
+    }
+
+    public void processUsers(){
+        l.removeAllViews();
+        int index = 0;
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("social")
+                .child(username).child("blocking");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int index = 0;
-                for(DataSnapshot data: snapshot.getChildren()) {
-                    TextView df = new TextView(getContext());
-                    df.setText(data.getValue(String.class));
-                    df.setTextSize(20);
-                    df.setPadding(30,15,0,30);
-                    df.setTextColor(Color.parseColor("white"));
-                    df.setHeight(140);
-                    df.setBackgroundColor(Color.parseColor("#F51E1B1B"));
-                    df.setGravity(Gravity.CENTER_VERTICAL);
-                    df.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(Blocked_Users.this, user_display.class);
-                            intent.putExtra("username", data.getValue(String.class));
-                            intent.putExtra("loggedinuser",username);
-                            startActivity(intent);
-                        }
-                    });
-                    index++;
-                    l.addView(df);
-                    l.addView(Divider());
+                if(snapshot.exists()){
+                    int index = 0;
+                    for(DataSnapshot data:snapshot.getChildren()){
+                        TextView df = new TextView(getContext());
+                        df.setText(data.getValue(String.class));
+                        df.setTextSize(20);
+                        df.setPadding(30,15,0,30);
+                        df.setTextColor(Color.parseColor("white"));
+                        df.setHeight(140);
+                        df.setBackgroundColor(Color.parseColor("#F51E1B1B"));
+                        df.setGravity(Gravity.CENTER_VERTICAL);
+                        df.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Blocked_Users.this, user_display.class);
+                                intent.putExtra("username", data.getValue(String.class));
+                                intent.putExtra("loggedinuser",username);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+                        index++;
+                        l.addView(df);
+                        l.addView(Divider());
+                    }
                 }
             }
 
