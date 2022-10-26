@@ -1,16 +1,18 @@
 package com.example.softwareproject;
 
-import static android.app.PendingIntent.getActivity;
 import static androidx.test.InstrumentationRegistry.getContext;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,14 +34,15 @@ public class Blocked_Users extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("Username");
 
-        //l = findViewById(R.id.Blocked_Users);
+//        l = findViewById(R.id.Blocked_Users);
         l = new LinearLayout(this);
         l.setOrientation(LinearLayout.VERTICAL);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1200, 5000, 1.5f);
-        l.setLayoutParams(lp);
-        l.setBackgroundColor(Color.BLACK);
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1200, 150, 1.5f);
+//        l.setLayoutParams(lp);
+//        l.setBackgroundColor(Color.BLACK);
         setContentView(l);
         processUsers();
+
 
     }
 
@@ -49,14 +52,13 @@ public class Blocked_Users extends AppCompatActivity {
         t.setText("Blocked Users");
         t.setTextSize(20);
         t.setPadding(350,15,0,30);
-        t.setTextColor(Color.parseColor("white"));
+        t.setTextColor(Color.parseColor("yellow"));
         t.setHeight(140);
         t.setBackgroundColor(Color.parseColor("blue"));
         t.setGravity(Gravity.CENTER_VERTICAL);
         l.addView(t);
-        int index = 0;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("social")
-                .child(username).child("blocking");
+                .child(username).child("Blocking");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
