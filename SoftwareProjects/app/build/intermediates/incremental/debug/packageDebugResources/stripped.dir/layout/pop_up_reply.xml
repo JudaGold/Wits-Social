@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/popup_dialog_box"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/reply_header"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
-        android:autoSizeTextType="uniform"
-        android:fontFamily="@font/lato_bold"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="#09464C" />
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
 
     <TextView
         android:id="@+id/post_replying_to"
         android:layout_width="match_parent"
-        android:layout_height="138dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:autoSizeTextType="uniform"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:textSize="11sp" />
-
-
+        android:textColor="@color/iconButton"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/reply_body"
@@ -38,9 +38,9 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/custom_inputbox"
         android:ems="10"
+        android:fontFamily="@font/lato_regular"
         android:gravity="center"
         android:hint="reply"
-        android:fontFamily="@font/lato_regular"
         android:inputType="textMultiLine"
         android:lines="8"
         android:minLines="6"
@@ -49,11 +49,11 @@
     <Button
         android:id="@+id/btn_reply"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#123F4C"
-        android:color="@android:color/holo_blue_bright"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/popup_butons"
         android:fontFamily="@font/lato_regular"
         android:text="Reply"
         android:textAllCaps="false"

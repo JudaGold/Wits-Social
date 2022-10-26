@@ -24,12 +24,20 @@
         "source": "com.example.softwareproject.app-main-40:/drawable-xxhdpi/ic_notification.png"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_photo_camera_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_photo_camera_24.xml"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_activity_forgot_password.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/layout/activity_forgot_password.xml"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable-xhdpi_ic_notification.png.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable-xhdpi/ic_notification.png"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/menu_popup_upload_media_menu.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/menu/popup_upload_media_menu.xml"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_fragment__post_feed.xml.flat",
@@ -44,12 +52,12 @@
         "source": "com.example.softwareproject.app-main-40:/layout/fragment__favourites.xml"
     },
     {
-        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_add_circle_outline_24.xml.flat",
-        "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_add_circle_outline_24.xml"
-    },
-    {
         "merged": "com.example.softwareproject.app-merged_res-38:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_edit_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_edit_24.xml"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_show_profile_details.xml.flat",
@@ -74,6 +82,10 @@
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "com.example.softwareproject.app-main-40:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_gif_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_gif_24.xml"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_activity_main.xml.flat",
@@ -128,6 +140,14 @@
         "source": "com.example.softwareproject.app-main-40:/font/lato_regular.ttf"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_library_add_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_library_add_24.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_popup_butons.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/popup_butons.xml"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/font_font.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/font/font.xml"
     },
@@ -176,8 +196,16 @@
         "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_account_circle_24.xml"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_add_media.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/add_media.xml"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/layout_pop_up_reply.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/layout/pop_up_reply.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/layout_popup_upload.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/layout/popup_upload.xml"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable_user__1_.png.flat",
@@ -194,6 +222,10 @@
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "com.example.softwareproject.app-main-40:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_add_photo_alternate.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/add_photo_alternate.xml"
     },
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -254,5 +286,9 @@
     {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable_toggle_selector.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable/toggle_selector.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_video_library_24.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_video_library_24.xml"
     }
 ]
