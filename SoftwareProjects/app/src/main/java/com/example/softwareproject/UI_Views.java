@@ -7,17 +7,26 @@ import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UI_Views {
     Analysis analysis;
@@ -33,7 +42,32 @@ public class UI_Views {
         user.setTextColor(Color.parseColor("white"));
         user.setGravity(Gravity.LEFT);
         return user;
+    }
 
+    public TextView createNumOfReplies(Context context, String num_of_replies) {
+        TextView textView = new TextView(context);
+        textView.setText(num_of_replies);
+        textView.setTextSize(10);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80, 80);
+        textView.setLayoutParams(params);
+        params.bottomMargin = 4;
+        textView.setPadding(0, 0, 0, 15);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextColor(Color.parseColor("white"));
+        textView.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_round_chat_bubble_outline_24));
+        return textView;
+    }
+
+
+    public TextView createBodyTextViewHashtag(Context context, SpannableString str) {
+        TextView body = new TextView(context);
+        body.setText(str);
+        body.setTextSize(20);
+        body.setMovementMethod(LinkMovementMethod.getInstance());
+        body.setTextColor(Color.parseColor("white"));
+        body.setPadding(30, 30, 30, 30);
+        body.setMovementMethod(LinkMovementMethod.getInstance());
+        return body;
     }
 
     public ImageView previewImageView(Context context){
@@ -88,7 +122,7 @@ public class UI_Views {
         params.gravity = Gravity.LEFT; //sets the image at the centre
         params.setMargins(0, 40, 0, 50);
         imageView.setLayoutParams(params);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        //imageView.setScaleType(ImageView.ScaleType);
         this.getImage(activity,str,imageView);
         return imageView;
     }
@@ -145,4 +179,5 @@ public class UI_Views {
         horizontalLayout.setPadding(0, 20, 20, 5);
         return horizontalLayout;
     }
+
 }
