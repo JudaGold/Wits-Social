@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Search_User_class {
+public class Search_User_class {//class to search for users
     private static ArrayList<String> users_hashtags;
     boolean following = false;
     Intent intent;
@@ -35,11 +35,11 @@ public class Search_User_class {
             public void onClick(View v) {
                 String text = ACT.getText().toString();
 
-                if (text.charAt(0) == '#')
+                if (text.charAt(0) == '#')//if searching for a hashtag
                 {
                     if (search_user_hashtags(text)) {
                         text = text.substring(1);
-                        intent = new Intent(activity, Display_Hashtag_Posts.class);
+                        intent = new Intent(activity, Display_Hashtag_Posts.class);//show all posts with that hashtag
                         intent.putExtra("username", My_username);
                         intent.putExtra("loggedinuser", loggedin_user);
                         intent.putExtra("hashtag", text);
@@ -51,8 +51,8 @@ public class Search_User_class {
                     }
                 }
                 else {
-                    if (search_user_hashtags(text)) {
-                        intent = new Intent(activity, user_display.class);
+                    if (search_user_hashtags(text)) {//if searching for users
+                        intent = new Intent(activity, user_display.class);//go take to that users page
                         intent.putExtra("username", text);
                         intent.putExtra("loggedinuser", loggedin_user);
                         activity.startActivity(intent);
@@ -67,14 +67,14 @@ public class Search_User_class {
         });
     }
 
-    private void getUsersHashtags(String My_username, String loggedin_user) {
+    private void getUsersHashtags(String My_username, String loggedin_user) {//getting all hashtags/users for search
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         Query userlist = reference.orderByChild("username");
-        users_hashtags = new ArrayList<>();
+        users_hashtags = new ArrayList<>();//an array to store all the users on database
         userlist.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
+                for (DataSnapshot data : snapshot.getChildren()) {//getting all users from the database for search
                     String username = data.child("username").getValue(String.class);
                     try{
                         if (!username.equalsIgnoreCase(My_username)) {
@@ -97,7 +97,7 @@ public class Search_User_class {
         DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Hashtags");
         reference2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {//getting all hashtags from the database for search
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String hashtag = data.getKey();
                     try{
@@ -115,7 +115,7 @@ public class Search_User_class {
         });
     }
 
-    private boolean search_user_hashtags(String user) {
+    private boolean search_user_hashtags(String user) {//checking if searched user/hashtag is valid
         for (String item : users_hashtags) {
             if (user.equalsIgnoreCase(item)) {
                 return true;
@@ -124,12 +124,12 @@ public class Search_User_class {
         return false;
     }
 
-    public void follow(String main,String user, String fcm_token){
+    public void follow(String main,String user, String fcm_token){//set that current user now follows searched user when they click follow
         follow_user(main,user);
         setFollowing(main,user, fcm_token);
 
     }
-    private void follow_user(String user,String searched_user){
+    private void follow_user(String user,String searched_user){//way for user to foolow another user
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("social").child(user).child("following");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -151,18 +151,18 @@ public class Search_User_class {
         });
     }
 
-    private void setFollowing(String main_user,String user, String fcm_token){
+    private void setFollowing(String main_user,String user, String fcm_token){//way to allow user to follow another user
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("social").child(user).child("followers");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long maxId = snapshot.getChildrenCount()+1;
-                if(snapshot.child(main_user).exists()){
+                if(snapshot.child(main_user).exists()){//if already following do nothing
 
                 }
                 else{
-                    ref.child(String.valueOf(maxId)).setValue(main_user);
+                    ref.child(String.valueOf(maxId)).setValue(main_user);//else add follower
                 }
             }
 
@@ -178,11 +178,11 @@ public class Search_User_class {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long maxId = snapshot.getChildrenCount()+1;
-                if(snapshot.child(fcm_token).exists()){
+                if(snapshot.child(fcm_token).exists()){//add that current user gets a notification from searched user(if done already do nothing)
 
                 }
                 else{
-                    ref2.child(String.valueOf(maxId)).setValue(fcm_token);
+                    ref2.child(String.valueOf(maxId)).setValue(fcm_token);//add that current user gets a notification from searched user
                 }
             }
 
@@ -193,12 +193,12 @@ public class Search_User_class {
         });
     }
 
-    public void unfollow(String main,String user){
+    public void unfollow(String main,String user){//way to unfollow user
         set_unfollow(main,user);
         set_unfollower(main,user);
     }
 
-    private void set_unfollow(String main,String user){
+    private void set_unfollow(String main,String user){//remove that current user is no longer following another user who he is trying to unfollow
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("social").child(main).child("following");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -206,7 +206,7 @@ public class Search_User_class {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
               for(DataSnapshot data: snapshot.getChildren()){
                   if(data.getValue(String.class).equalsIgnoreCase(user)){
-                      data.getRef().removeValue();
+                      data.getRef().removeValue();//remove the follow from the database
                       break;
 
                   }
@@ -218,7 +218,7 @@ public class Search_User_class {
             }
         });
     }
-    private void set_unfollower(String main,String user){
+    private void set_unfollower(String main,String user){//remove follower from database
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("social").child(user).child("followers");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
