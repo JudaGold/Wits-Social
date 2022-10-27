@@ -19,3 +19,4 @@ ignore:
     - "**/fragment_Favourites.java"
     - "**/Display_Hashtag_Posts.java"
     - "**/Analysis.java"
+    - "**/Blocked_Users.java"
