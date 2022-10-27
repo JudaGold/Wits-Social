@@ -96,11 +96,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     EditText popup_post_body;
 
 
-    private StorageReference mstorageRef;
-    private DatabaseReference mDatabaseRef;
+    private StorageReference mstorageRef;//storage ref to store images inside firebase
+    private DatabaseReference mDatabaseRef;//ref to firebase storage
 
-    Button popup_add_post;
-    ImageButton popup_upload_media, pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;
+    Button popup_add_post;//button to add a post
+    ImageButton popup_upload_media,pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;//varirous button to add functionality
     ImageButton btnadd_post;
 
 
