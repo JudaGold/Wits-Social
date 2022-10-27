@@ -5,4 +5,5 @@
 [![codecov](https://codecov.io/gh/JudaGold/Wits-Social/branch/main/graph/badge.svg?token=ZV7XER23DY)](https://codecov.io/gh/JudaGold/Wits-Social)
 
 Project to create Chatter
+
 The best social media app!!!
