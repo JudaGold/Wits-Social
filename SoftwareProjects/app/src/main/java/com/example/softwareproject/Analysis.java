@@ -51,18 +51,18 @@ public class Analysis {
     public SpannableString Create_Link(Activity activity,String body){//function to set up link from spannable strings
         ArrayList<Pair<Integer,Integer>>data = new ArrayList<Pair<Integer,Integer>>();
         data = this.Find_link(body);
-        SpannableString spannableString = new SpannableString(body);
+        SpannableString spannableString = new SpannableString(body);//setting up a spannable string to process links
         if(data.size() > 0) {
-            for (Pair it : data) {
-                int a = Integer.parseInt("" + it.first);
-                int b = Integer.parseInt("" + it.second);
+            for (Pair it : data) {//iterating through all the links ina given post
+                int a = Integer.parseInt("" + it.first);////getting positions of the begining and end of the link
+                int b = Integer.parseInt("" + it.second);//same as above but for end position
                 ClickableSpan clickableSpan = new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull View widget) {
-                        String url = body.substring(a,b).toLowerCase(Locale.ROOT);
-                        Uri uri = Uri.parse(url);
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        activity.startActivity(intent);
+                        String url = body.substring(a,b).toLowerCase(Locale.ROOT);//getting the exact link from the post
+                        Uri uri = Uri.parse(url);//setting up a url from the post
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);//opening up browser to search for the link
+                        activity.startActivity(intent);//starting search of link provided by user
                     }
 
                     @Override
@@ -71,7 +71,7 @@ public class Analysis {
                         ds.setColor(Color.CYAN);
                     }
                 };
-                spannableString.setSpan(clickableSpan,a,b, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                spannableString.setSpan(clickableSpan,a,b, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);//creating a clickable part of the string for user to press
             }
         }
         return spannableString;

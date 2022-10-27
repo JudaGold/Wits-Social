@@ -23,23 +23,23 @@ import java.io.InputStream;
 
 public class Display_Posts extends LinearLayout {
     //Declaration of variables
-    LinearLayout l;
-    ScrollView sv;
-    TextView body,time;
-    ImageView image;
-    Typeface typeface;
+    LinearLayout l;//layout for post
+    ScrollView sv;//scroll view for posts
+    TextView body,time;//textview for post body
+    ImageView image;//image view to show iages
+    Typeface typeface;//typetace var
 
 
     public Display_Posts(Context context) {
         //Assignment to the variables
         super(context);
-        typeface = ResourcesCompat.getFont(context,R.font.lato_regular);
-        setOrientation(LinearLayout.VERTICAL);
-        l = new LinearLayout(context);
-        l.setOrientation(LinearLayout.VERTICAL);
-        this.addView(l);
-        sv = new ScrollView(context);
-        l.addView(sv);
+        typeface = ResourcesCompat.getFont(context,R.font.lato_regular);//settiing font for text view
+        setOrientation(LinearLayout.VERTICAL);//setting orientation
+        l = new LinearLayout(context);//creating new layout
+        l.setOrientation(LinearLayout.VERTICAL);//setting orientation
+        this.addView(l);//adding view
+        sv = new ScrollView(context);//adding scroll view
+        l.addView(sv);//adding cscroll
 
         //Assignment to the variables
         body = new TextView(context);

@@ -24,51 +24,51 @@ import java.util.ArrayList;
 
 
 public class fragment_followers extends Fragment {
-    LinearLayout l;
-    String user,curr_user;
-    UI_Views views = new UI_Views();
+    LinearLayout l;//layout for fragment
+    String user,curr_user;//string to store user
+    UI_Views views = new UI_Views();//ui_view callss to create views
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_followers, container, false);
-        Intent intent = getActivity().getIntent();
-        user = intent.getStringExtra("username");
-        curr_user = intent.getStringExtra("loggedinuser");
-        l = (LinearLayout) v.findViewById(R.id.LP_followers);
-        l.setOrientation(LinearLayout.VERTICAL);
+        View v =  inflater.inflate(R.layout.fragment_followers, container, false);//setting fragmet view from inflator
+        Intent intent = getActivity().getIntent();//getting var from previios activity
+        user = intent.getStringExtra("username");//getting username
+        curr_user = intent.getStringExtra("loggedinuser");//getting main user
+        l = (LinearLayout) v.findViewById(R.id.LP_followers);//setting up layout
+        l.setOrientation(LinearLayout.VERTICAL);//setting orientation
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,150,1.5f);
-        l.setLayoutParams(lp);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,150,1.5f);//adding padding
+        l.setLayoutParams(lp);//adding padding
 
-        processUsers();
-        Search_User_class su = new Search_User_class();
+        processUsers();//function to show followers
+        Search_User_class su = new Search_User_class();//class to search for who is user following
 
 
 
         return v;
     }
 
-    public void processUsers(){
+    public void processUsers(){//fucntion to process the user
         l.removeAllViews();
         int index = 0;
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("social")
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("social")//firebase ref to social tabl in database
                 .child(user).child("followers");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    int index = 0;
+                    int index = 0;//no of folowers
                     for(DataSnapshot data:snapshot.getChildren()){
                         TextView df = views.UserList(getContext(), data.getValue(String.class));
                         df.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(getActivity(), user_display.class);
-                                intent.putExtra("username", data.getValue(String.class));
-                                intent.putExtra("loggedinuser",curr_user);
+                                intent.putExtra("username", data.getValue(String.class));//sending daa to next activity
+                                intent.putExtra("loggedinuser",curr_user);//sending daa to next activity
                                 getActivity().startActivity(intent);
-                                getActivity().finish();
+                                getActivity().finish();//starting new activity
                             }
                         });
                         index++;

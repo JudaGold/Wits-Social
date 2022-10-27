@@ -87,36 +87,36 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
 
     // This method fetches the posts with the hashtag from the database
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void fetch_hashtag_posts(String hashtag) {
-        ArrayList<Post> Posts = new ArrayList<Post>();
-        reference = FirebaseDatabase.getInstance().getReference("Hashtags").child(hashtag.trim());
-        Query hashtag_posts = reference.orderByChild(String.valueOf(maxId));
+    public void fetch_hashtag_posts(String hashtag) {//function to fetch all the post witha hash tag
+        ArrayList<Post> Posts = new ArrayList<Post>();//setting up a new array to store posts
+        reference = FirebaseDatabase.getInstance().getReference("Hashtags").child(hashtag.trim());//firebase ref
+        Query hashtag_posts = reference.orderByChild(String.valueOf(maxId));//firebase query for all the hashtags
         hashtag_posts.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot data : snapshot.getChildren()) {
                         try {
-                            String id = data.getKey();
-                            String b = data.child("body").getValue(String.class);
-                            String t = data.child("time").getValue(String.class);
-                            String URL = data.child("post_image_url").getValue(String.class);
-                            String num_of_replies = data.child("Replies").getChildrenCount() + "";
-                            String username = data.child("username").getValue(String.class);
-                            Post post = new Post(id, username, b, URL, t);
-                            post.setNum_of_replies(num_of_replies);
+                            String id = data.getKey();//getting id from snapshot
+                            String b = data.child("body").getValue(String.class);//getting body from snapshot
+                            String t = data.child("time").getValue(String.class);//getting time from snapshot
+                            String URL = data.child("post_image_url").getValue(String.class);//getting image from snapshot
+                            String num_of_replies = data.child("Replies").getChildrenCount() + "";//getting number of replies from snapshot
+                            String username = data.child("username").getValue(String.class);//getting username from snapshot
+                            Post post = new Post(id, username, b, URL, t);//creating new instance of a post
+                            post.setNum_of_replies(num_of_replies);//establishing number of replies per post
                             try {
-                                post.convertDate();
+                                post.convertDate();//converting the data if there is one.
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            Posts.add(post);
+                            Posts.add(post);//adding a post to the array of posts
                         } catch (Exception e) {
                         }
 
                     }
-                    Posts.sort(new DateComparator());
-                    display_posts(Posts, false, false);
+                    Posts.sort(new DateComparator());//comparing the posts by their data.
+                    display_posts(Posts, false, false);//displaying all the posts.
                 }
             }
 
@@ -132,95 +132,94 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
     void display_posts(ArrayList<Post> Posts, Boolean Edits, Boolean is_searched_user) {
 
 
-        if (Posts.size() > 0) {
+        if (Posts.size() > 0) {//chekcing if their are posts availible
 
-            lp.setOrientation(LinearLayout.VERTICAL);
-            lp.removeAllViews();
-            for (Post post : Posts) {
+            lp.setOrientation(LinearLayout.VERTICAL);//setting layout orientation
+            lp.removeAllViews();//removing all posts that where there previosulsy
+            for (Post post : Posts) {//iterating therough all the posts
                 try {
-                    String uid = post.getID();
-                    String post_body = post.getBody();
-                    String post_time = post.getTime().substring(0, 10);
-                    String URL = post.getPost_image_url();
-                    String ID = post.getID();
-                    String username_post = post.getUsername();
-                    String num_of_replies = post.getNum_of_replies();
+                    String uid = post.getID();//getting post id from snapshot
+                    String post_body = post.getBody();//getting body from snapshot
+                    String post_time = post.getTime().substring(0, 10);//getting time from snapshot
+                    String URL = post.getPost_image_url();//getting image from snapshot
+                    String ID = post.getID();//getting post ID from snapshot
+                    String username_post = post.getUsername();//getting posts user from snapshot
+                    String num_of_replies = post.getNum_of_replies();//getting number of replies for the post from snapshot
 
 
                     TextView usernameView;
 
                     boolean account_main = false;//checking for logged in user
-                    if (!is_searched_user) {
+                    if (!is_searched_user) {//checking is main user
                         if (username_post.equalsIgnoreCase(username)) {
-                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, "Me");
-                            account_main = true;
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, "Me");//setting text to show its main account that posted
+                            account_main = true;//main account
                         } else {
-                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, username_post);
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, username_post);//setting text to show its searched account that posted
                         }
                     } else {
                         if (username_post.equalsIgnoreCase(account_user)) {
-                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, "Me");
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, "Me");//setting text to show its main account that posted
                             account_main = true;
                         } else {
-                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, username_post);
+                            usernameView = views.createUsernameTextView(Display_Hashtag_Posts.this, username_post);//setting text to show its searched account that pos
                         }
                     }
 
                     if (username_post.length() > 2) {
-                        if (username_post.substring(0, 2).equalsIgnoreCase("Me")) {
+                        if (username_post.substring(0, 2).equalsIgnoreCase("Me")) {//setting text to show its main account that posted
                             account_main = true;
                         }
                     }
 
-                    LinearLayout hl = views.createHorizontalLayout(Display_Hashtag_Posts.this);
-                    hl.setGravity(Gravity.NO_GRAVITY);
-                    hl.addView(usernameView);
+                    LinearLayout hl = views.createHorizontalLayout(Display_Hashtag_Posts.this);//setting orientation
+                    hl.setGravity(Gravity.NO_GRAVITY);//text will fill the space
+                    hl.addView(usernameView);//adding who posed the postto the layout
 
-                    String new_post_body = post_body + " ";
-                    SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
-                    TextView body = createBodyTextViewHashtag(spanString);
+                    String new_post_body = post_body + " ";//stringable post
+                    SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);//creating a spannable string
+                    TextView body = views.createBodyTextViewHashtag(Display_Hashtag_Posts.this,spanString);//creating a spannable textview
 
 
-                    TextView time = views.createTimeTextView(Display_Hashtag_Posts.this, post_time);
+                    TextView time = views.createTimeTextView(Display_Hashtag_Posts.this, post_time);//adding a time view
 
-                    LinearLayout postview = views.createPostLayout(Display_Hashtag_Posts.this);
-                    hl.addView(time);
-                    postview.addView(hl);
+                    LinearLayout postview = views.createPostLayout(Display_Hashtag_Posts.this);////adding a post view
+                    hl.addView(time);//adding time view
+                    postview.addView(hl);//adding post view
 
-                    if (URL.length() >= 1) {
-                        ImageView image = createImageView();
-                        getImage(URL, image);
-                        postview.addView(image);
+                    if (URL.length() >= 1) {//if post body is a url
+                        ImageView image = views.createImageView(Display_Hashtag_Posts.this,this,URL);//creating an image view for post
+                        postview.addView(image);//adding image to post
                     }
 
                     ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
                     LinearLayout horizontalLayout = views.createHorizontalLayout(Display_Hashtag_Posts.this);
                     postview.addView(body);
-                    if (!num_of_replies.equalsIgnoreCase("")) {
-                        TextView replies = createNumOfReplies(num_of_replies);
-                        horizontalLayout.addView(replies);
+                    if (!num_of_replies.equalsIgnoreCase("")) {//checking for number of replies
+                        TextView replies = createNumOfReplies(num_of_replies);//adding a reply counter
+                        horizontalLayout.addView(replies);//displaying number of replies
                     }
 
-                    if (!account_main) {
-                        horizontalLayout.addView(favouritesButton);
-                        horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
+                    if (!account_main) {//id searched user
+                        horizontalLayout.addView(favouritesButton);//adding a favourite option for each post
+                        horizontalLayout.addView(createReplyOption(username_post, post_body, uid));//adding a repl option to each post
                     }
 
-                    if (!Edits) {
+                    if (!Edits) {//checking if its not an edit
                         postview.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(Display_Hashtag_Posts.this, Replies.class);
-                                intent.putExtra("username", account_user);
-                                intent.putExtra("loggedinuser", account_user);
-                                intent.putExtra("ID", ID);
-                                intent.putExtra("post_body", post_body);
-                                intent.putExtra("URL", URL);
-                                intent.putExtra("post_time", post_time);
-                                intent.putExtra("username_post", username_post);
-                                intent.putExtra("is_searched_user", false);
-                                Display_Hashtag_Posts.this.startActivity(intent);
-                                Display_Hashtag_Posts.this.finish();
+                                intent.putExtra("username", account_user);//adding value to intent
+                                intent.putExtra("loggedinuser", account_user);//adding value to intent
+                                intent.putExtra("ID", ID);//adding value to intent
+                                intent.putExtra("post_body", post_body);//adding value to intent
+                                intent.putExtra("URL", URL);//adding value to intent
+                                intent.putExtra("post_time", post_time);//adding value to intent
+                                intent.putExtra("username_post", username_post);//adding value to intent
+                                intent.putExtra("is_searched_user", false);//adding value to intent
+                                Display_Hashtag_Posts.this.startActivity(intent);//starting activity to display all the related hashtags
+                                Display_Hashtag_Posts.this.finish();//ending intent
                             }
                         });
                     }
@@ -234,35 +233,6 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
             }
         }
     }
-
-    // This displays an image onto the screen
-    public ImageView createImageView() {
-        ImageView imageView = new ImageView(Display_Hashtag_Posts.this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
-        params.gravity = Gravity.LEFT; //sets the image at the centre
-        params.setMargins(0, 40, 0, 50);
-        imageView.setLayoutParams(params);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        return imageView;
-    }
-
-    // Gets image from the internet and adds it to imageView
-    public void getImage(String URL, ImageView image) {
-        Glide.with(Display_Hashtag_Posts.this).load(URL).into(image);
-    }
-
-    // Shows text with a hashtag
-    public TextView createBodyTextViewHashtag(SpannableString str) {
-        TextView body = new TextView(Display_Hashtag_Posts.this);
-        body.setText(str);
-        body.setTextSize(20);
-        body.setMovementMethod(LinkMovementMethod.getInstance());
-        body.setTextColor(Color.parseColor("white"));
-        body.setPadding(30, 30, 30, 30);
-        body.setMovementMethod(LinkMovementMethod.getInstance());
-        return body;
-    }
-
     // Creates a reply button onto a post
     public TextView createReplyOption(String Reply_to, String post_msg, String uid) {//adding a reply text for user to click on to reply to a post
         TextView textView = new TextView(Display_Hashtag_Posts.this);
@@ -337,30 +307,30 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
         popup_original.setText(original_post_msg);
 
 
-        dialogB.setView(popup_content);
-        dialog = dialogB.create();
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);
-        dialog.show();
+        dialogB.setView(popup_content);//displaying pop up screen
+        dialog = dialogB.create();//creating a dialog to show pop up
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);//setting background of drawble
+        dialog.show();//shoeing popup
 
 
-        popup_reply_button.setOnClickListener(new View.OnClickListener() {
+        popup_reply_button.setOnClickListener(new View.OnClickListener() {//function tot replyto a user post
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                String reply_msg = popup_reply_body.getText().toString();
+                String reply_msg = popup_reply_body.getText().toString();//getting perly to post
 
-                Date date = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                String t = (format.format(date));
+                Date date = new Date();//getting data of reply
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");//format for data
+                String t = (format.format(date));//formatting data
 
-                DatabaseReference reply_ref = FirebaseDatabase.getInstance().getReference("Posts")
+                DatabaseReference reply_ref = FirebaseDatabase.getInstance().getReference("Posts")//firebase ref for post table
                         .child(Reply_to_user).child(uid).child("Replies");
                 reply_ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long count = snapshot.getChildrenCount() + 1;
-                        Post post = new Post(uid, account_user, reply_msg, "", t);
-                        reply_ref.child(String.valueOf(count)).setValue(post);
+                        long count = snapshot.getChildrenCount() + 1;//gettting number of replies
+                        Post post = new Post(uid, account_user, reply_msg, "", t);//creating a new post instance
+                        reply_ref.child(String.valueOf(count)).setValue(post);//adding new post to reply table
                     }
 
                     @Override
@@ -369,14 +339,14 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                     }
                 });
 
-                DatabaseReference add_reply_post = FirebaseDatabase.getInstance().getReference("Replies")
+                DatabaseReference add_reply_post = FirebaseDatabase.getInstance().getReference("Replies")//fireabse ref to replies table
                         .child(account_user);
                 add_reply_post.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long count = snapshot.getChildrenCount() + 1;
-                        Post post = new Post(String.valueOf(count), Reply_to_user, reply_msg, "", t);
-                        add_reply_post.child(String.valueOf(count)).setValue(post);
+                        long count = snapshot.getChildrenCount() + 1;//increamenting number of replies to a post
+                        Post post = new Post(String.valueOf(count), Reply_to_user, reply_msg, "", t);//creating ne wpost
+                        add_reply_post.child(String.valueOf(count)).setValue(post);//adding reply to post
                     }
 
                     @Override
@@ -385,7 +355,7 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
                     }
                 });
 
-                dialog.dismiss();
+                dialog.dismiss();//closing view
             }
         });
         ;
@@ -393,11 +363,11 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
 
     // This saves the liked post to the database
     public void addFavourite(String user, String userPost, String postID) {
-        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);
+        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(user).child(userPost);//fierebase ref
         favRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                favRef.child("ID").setValue(postID);
+                favRef.child("ID").setValue(postID);//adding post to hashtag table
             }
 
             @Override
@@ -411,12 +381,12 @@ public class Display_Hashtag_Posts extends AppCompatActivity {
     // This displays a hashtag in a post
     public SpannableString processHashtag(String body, String ID, String URL, String post_time, String username_post) {
         int index = body.indexOf("#"); // looks for the position of # in string
-        int endIndex = body.indexOf(" ", index);
+        int endIndex = body.indexOf(" ", index);//position of the end of the string
         String str = body.substring(index, endIndex);
-        SpannableString spanString = new SpannableString(body);
-        ForegroundColorSpan fcsCyan = new ForegroundColorSpan(Color.CYAN);
+        SpannableString spanString = new SpannableString(body);//creating a new spannalble clickable sting
+        ForegroundColorSpan fcsCyan = new ForegroundColorSpan(Color.CYAN);//setting color
 
-        spanString.setSpan(fcsCyan, index, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spanString.setSpan(fcsCyan, index, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);//creating clicakable string for hashtags
 
         return spanString;
     }
