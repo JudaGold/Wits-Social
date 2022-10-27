@@ -100,13 +100,12 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     private DatabaseReference mDatabaseRef;
 
     Button popup_add_post;
-    ImageButton popup_upload_media,pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;
+    ImageButton popup_upload_media, pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;
     ImageButton btnadd_post;
 
 
     private StorageTask mUploadTask;
     // Task for uploading the profile picture in the database and storage
-
 
 
     DatabaseReference reference, reference2, reference3, reference4, reference5;// this the reference of the Firebase database
@@ -147,13 +146,8 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
             });
 
-
             getFollowing();
-
-        }
-   else {
-
-
+        } else {
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -172,8 +166,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     }
 
 
-
-    public void blocked_user(){//function to check is user is currently block by another user
+    public void blocked_user() {//function to check is user is currently block by another user
 
         DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference("social").child(username).child("Blocking");
         b_ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -200,7 +193,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             }
         });
     }
-    
+
     //function processes when user clicks camera icon on add post popup
     public void showUpload() {
         AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());
@@ -303,7 +296,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 });
             }
         });
-        }
+    }
 
     public void uploadFile() {
         if (mImgUri != null) { //checks if media was chosen
@@ -312,7 +305,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
                                 @Override
                                 public void onSuccess(Uri uri) {
@@ -381,7 +374,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (camera) {
-            if (requestCode == pic_int ) { //checking if app has permission to use camera
+            if (requestCode == pic_int && (data != null) && data.getExtras().get("data") != null) { //checking if app has permission to use camera
                 Bitmap photo = (Bitmap) data.getExtras().get("data");//storing the image in a bitmap
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();//instantiating a bitmap stream to use to convert to a string button
                 photo.compress(Bitmap.CompressFormat.PNG, 100, baos);//rearranging the bitmap into a picture form
@@ -724,7 +717,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     if (hashtag) {
                         String new_post_body = post_body + " ";
                         SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
-                        body = views.createBodyTextViewHashtag(getContext(),spanString);
+                        body = views.createBodyTextViewHashtag(getContext(), spanString);
                     } else {
                         body = views.createBodyTextView(getContext(), getActivity(), " " + post_body);
                     }
@@ -752,7 +745,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
                     }
                     if (!num_of_replies.equalsIgnoreCase("")) {
-                        TextView replies = views.createNumOfReplies(getContext(),num_of_replies);
+                        TextView replies = views.createNumOfReplies(getContext(), num_of_replies);
                         horizontalLayout.addView(replies);
                     }
 
@@ -862,7 +855,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     if (hashtag) {
                         String new_post_body = post_body + " ";
                         SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username);
-                        body = views.createBodyTextViewHashtag(getContext(),spanString);
+                        body = views.createBodyTextViewHashtag(getContext(), spanString);
                     } else {
                         body = views.createBodyTextView(getContext(), getActivity(), "\t" + post_body);
                     }

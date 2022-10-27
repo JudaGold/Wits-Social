@@ -4,5 +4,6 @@
     android:id="@+id/Blocked_Users"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Blocked_Users"
-    android:orientation="horizontal" />
+    android:background="@drawable/blue_and_grey_background"
+    android:orientation="vertical"
+    tools:context=".Blocked_Users" />
