@@ -84,7 +84,7 @@ public class Show_Profile_Details extends AppCompatActivity
         btnSave2 = (Button) findViewById(R.id.btnSave2);
         logOut = findViewById(R.id.logOut);
 
-
+        //getting all user info line 88-117
         Query getUserInfo = bd.orderByChild("username").equalTo(username);
         getUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -115,7 +115,7 @@ public class Show_Profile_Details extends AppCompatActivity
 
 
         });
-
+        //getting how many post a user has made line 119-137
         Query getPostCount = bd2.child(username).orderByChild(String.valueOf(maxId));
         getPostCount.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -177,7 +177,7 @@ public class Show_Profile_Details extends AppCompatActivity
             }
         });
 
-        //Click listener for logout button
+        //Click listener for logout button and makes sure that automatic log  in will not happen in future
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,6 +190,7 @@ public class Show_Profile_Details extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        //button to see which users you've blocked
         BlockedUsersBtn = (Button) findViewById(R.id.BlockUserBtn);
         BlockedUsersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,13 +254,15 @@ public class Show_Profile_Details extends AppCompatActivity
             Picasso.get().load(mImageUri).into(profile_pic);
         }
     }
-
+    
+    //gets the file extension
     private String getFileExtension(Uri uri){
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
-
+    
+    //checks to see all details are completed
     public boolean completed(){
         boolean key = true;
         if(TextUtils.isEmpty(EmailAddress.getText().toString())){
@@ -276,7 +279,8 @@ public class Show_Profile_Details extends AppCompatActivity
         }
         return key;
     }
-
+    
+    //upload picture to database 284-319
     private void uploadFile(){
         if (mImageUri != null){
             StorageReference fileReference = storageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
@@ -313,7 +317,8 @@ public class Show_Profile_Details extends AppCompatActivity
         }
 
     }
-
+    
+    //download all info
     void Download_info(){
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)  == PackageManager.PERMISSION_GRANTED){//checking for perission.
             create_file();//function to create all 3 text files
@@ -322,7 +327,7 @@ public class Show_Profile_Details extends AppCompatActivity
         }
     }
 
-    private void create_file(){
+    private void create_file(){//craetes a file for download
         String root = "/Download/"+username +  "'s WitsSocial profile info";//root path to store data
 
         try{
@@ -341,7 +346,7 @@ public class Show_Profile_Details extends AppCompatActivity
             Log.d("Stack","Error creating  file");
         }
     }
-    void write_to_file(File root,String dir,String path) {
+    void write_to_file(File root,String dir,String path) {//writes to file made for the download
         try {
             File textfile = new File(root,path);//creating to new file to write to
             if(textfile.exists()){
