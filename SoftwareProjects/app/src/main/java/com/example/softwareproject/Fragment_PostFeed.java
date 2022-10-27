@@ -94,14 +94,20 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     ImageView imgView;
     Boolean camera = true;
     EditText popup_post_body;
-    StorageReference mstorageRef;
-    DatabaseReference mDatabaseRef;
+
+
+    private StorageReference mstorageRef;
+    private DatabaseReference mDatabaseRef;
+
+    Button popup_add_post;
+    ImageButton popup_upload_media,pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;
+    ImageButton btnadd_post;
+
+
     private StorageTask mUploadTask;
     // Task for uploading the profile picture in the database and storage
 
-    Button popup_add_post;
-    ImageButton popup_upload_media, pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;
-    ImageButton btnadd_post;
+
 
     DatabaseReference reference, reference2, reference3, reference4, reference5;// this the reference of the Firebase database
     long maxId = 1;
@@ -141,7 +147,13 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 }
             });
 
+
             getFollowing();
+
+        }
+   else {
+
+
             btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);
             btnadd_post.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -159,7 +171,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         return v;
     }
 
-    public void blocked_user() {//function to check is user is currently block by another user
+
+
+    public void blocked_user(){//function to check is user is currently block by another user
+
         DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference("social").child(username).child("Blocking");
         b_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -205,11 +220,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     dialog.dismiss();
 
                 } else {
-//                    Toast.makeText(popup_content2.getContext(), "Camera not available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(popup_content2.getContext(), "Camera not available", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
+
 
         popup_vid_btn = (ImageButton) popup_content2.findViewById(R.id.vidBtn);
         popup_vid_btn.setOnClickListener(new View.OnClickListener() {
@@ -703,7 +718,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     if (hashtag) {
                         String new_post_body = post_body + " ";
                         SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);
-                        body = createBodyTextViewHashtag(spanString);
+                        body = views.createBodyTextViewHashtag(getContext(),spanString);
                     } else {
                         body = views.createBodyTextView(getContext(), getActivity(), " " + post_body);
                     }
@@ -731,7 +746,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
                     }
                     if (!num_of_replies.equalsIgnoreCase("")) {
-                        TextView replies = createNumOfReplies(num_of_replies);
+                        TextView replies = views.createNumOfReplies(getContext(),num_of_replies);
                         horizontalLayout.addView(replies);
                     }
 
@@ -841,7 +856,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     if (hashtag) {
                         String new_post_body = post_body + " ";
                         SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username);
-                        body = createBodyTextViewHashtag(spanString);
+                        body = views.createBodyTextViewHashtag(getContext(),spanString);
                     } else {
                         body = views.createBodyTextView(getContext(), getActivity(), "\t" + post_body);
                     }
@@ -895,17 +910,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
 
     }
 
-    public TextView createBodyTextViewHashtag(SpannableString str) {
-        TextView body = new TextView(getContext());
-        body.setText(str);
-        body.setTextSize(20);
-        body.setMovementMethod(LinkMovementMethod.getInstance());
-        body.setTextColor(Color.parseColor("white"));
-        body.setPadding(30, 30, 30, 30);
-        body.setMovementMethod(LinkMovementMethod.getInstance());
-        return body;
-    }
-
     public TextView createReplyOption(String Reply_to, String post_msg, String uid) {//adding a reply text for user to click on to reply to a post
         TextView textView = new TextView(getContext());
         textView.setText("reply");
@@ -921,22 +925,6 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 Reply(Reply_to, post_msg, uid);
             }
         });
-        return textView;
-    }
-
-
-    public TextView createNumOfReplies(String num_of_replies) {
-        TextView textView = new TextView(getContext());
-        textView.setText(num_of_replies);
-        textView.setTextSize(10);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80, 80);
-        textView.setLayoutParams(params);
-        params.bottomMargin = 4;
-        textView.setPadding(0, 0, 0, 15);
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.parseColor("white"));
-        textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.ic_round_chat_bubble_outline_24));
-
         return textView;
     }
 
@@ -1177,14 +1165,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 if (!snapshot.child("ID").child(String.valueOf(postmaxid + 1)).exists()) {
                     favRef.child("ID").child(String.valueOf(postmaxid + 1)).setValue(postID);
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
-
         });
     }
 
