@@ -92,7 +92,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
     Uri mImgUri;
     VideoView videoView;
     ImageView imgView;
-    Boolean camera = true;
+    Boolean camera = true; //used because 1 built in function is used for many processes
     EditText popup_post_body;
 
 
@@ -213,7 +213,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         pop_up_camera_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                camera = true;
+                camera = true; //user is using the camera instead of uploading
                 if (popup_content2.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
                     Intent Camera_Intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(Camera_Intent, pic_int);//overriden function to store picture from camera
@@ -244,10 +244,15 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             @Override
             public void onClick(View view) {
                 mstorageRef = FirebaseStorage.getInstance().getReference("upload_gifs");
-                camera = false;
+                camera = false; //user wants to upload media instead of taking a picture
                 upload_layout = (LinearLayout) popup_content2.findViewById(R.id.upload_layout);
+
+                //creates an image view to preview the image/gif before uploading
                 imgView = views.previewImageView(popup_content2.getContext());
 
+                //creates upload button so the user uploads the image after preview
+                // media parameter shows what media you uploading so the button text is "upload" + media
+                //eg here is "upload gif"
                 Button button = views.createButton(popup_content2.getContext(), "gif");
                 openFileUser("image/gif");
                 upload_layout.addView(imgView);
@@ -268,6 +273,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             }
         });
 
+        //code is same as above
         popup_img_btn = (ImageButton) popup_content2.findViewById(R.id.imgBtn);
         popup_img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,7 +306,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
 
     public void uploadFile() {
-        if (mImgUri != null) {
+        if (mImgUri != null) { //checks if media was chosen
             StorageReference fileReference = mstorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImgUri));
             mUploadTask = fileReference.putFile(mImgUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -349,9 +355,10 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
         }
     }
 
+    //lets the user pick a file from their device storage
     private void openFileUser(String type) {
         Intent intent = new Intent();
-        intent.setType(type);
+        intent.setType(type); //sets the type of file the user must select
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
@@ -424,12 +431,11 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 });
             }
         } else {
-            if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK)
-                    && (data != null) && (data.getData() != null)) {
-                mImgUri = data.getData();
-                //Picasso.get().load(mVideUri).into(videoView);
-                Glide.with(this).load(mImgUri).into(imgView);
-            }
+            if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK) //checks if app is allowed to use the file
+                    && (data != null) && (data.getData() != null)) { //checks if a file was chosen
+                mImgUri = data.getData();//gets data of the media selected
+                Glide.with(this).load(mImgUri).into(imgView); //uses glide so you can also upload gifs
+            }                                                           //and the gif will play
         }
 
     }
