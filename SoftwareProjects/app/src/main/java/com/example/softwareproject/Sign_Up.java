@@ -49,7 +49,7 @@ public class Sign_Up extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.tv);
         //pa = (TextView) findViewById(R.id.pad);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {//btn you click to signup
             @Override
             public void onClick(View view) {
                 //Convert to string
@@ -68,26 +68,27 @@ public class Sign_Up extends AppCompatActivity {
                 Gdb = fb.getReference("Users");
 
                 //Decarations and Assignments
+                //checking to see if all required information is filled in
                 boolean completed = completed();
                 boolean matchingPassword = fv.passwords_match(password, ConfirmPassword, edtConfirmPassword);
                 boolean validPassword = fv.valid_password(password, edtPassword);
                 boolean validEmail = fv.check_email(email,edtEmail);
                 boolean validNUmber = fv.Valid_number(number,edtPhoneNo);
 
-                if (completed && matchingPassword && validPassword && validEmail && validNUmber) {
+                if (completed && matchingPassword && validPassword && validEmail && validNUmber) {//iff all info complete add to database
                     //Valid input- Add to database
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                     Query checkUsername = ref.orderByChild("username").equalTo(username);
                     checkUsername.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()) {
-                                edtUsername.setError("Username already taken");
-                            } else {
+                            if (snapshot.exists()) {//check if username is already in system
+                                edtUsername.setError("Username already taken");//if in system stop process
+                            } else {//if not in process and to database
                                 User createUserClass = new User(username, email, number, password, name, bio, imageUrl, fcm_token);
                                 Gdb.child(username).setValue(createUserClass);
 
-                                Intent intent = new Intent(Sign_Up.this, Add_Profile_Pic.class);
+                                Intent intent = new Intent(Sign_Up.this, Add_Profile_Pic.class);//move to add a profile pic
                                 intent.putExtra("Username", username);
                                 startActivity(intent);
                             }
