@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class fragment_followers extends Fragment {
     LinearLayout l;
     String user,curr_user;
+    UI_Views views = new UI_Views();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,14 +60,7 @@ public class fragment_followers extends Fragment {
                 if(snapshot.exists()){
                     int index = 0;
                     for(DataSnapshot data:snapshot.getChildren()){
-                        TextView df = new TextView(getContext());
-                        df.setText(data.getValue(String.class));
-                        df.setTextSize(20);
-                        df.setPadding(30,15,0,30);
-                        df.setTextColor(Color.parseColor("white"));
-                        df.setHeight(140);
-                        df.setBackgroundColor(Color.parseColor("#F51E1B1B"));
-                        df.setGravity(Gravity.CENTER_VERTICAL);
+                        TextView df = views.UserList(getContext(), data.getValue(String.class));
                         df.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -79,7 +73,7 @@ public class fragment_followers extends Fragment {
                         });
                         index++;
                         l.addView(df);
-                        l.addView(Divider());
+                        l.addView(views.Divider(getContext()));
                     }
                 }
             }
@@ -91,11 +85,4 @@ public class fragment_followers extends Fragment {
         });
     }
 
-    public View Divider(){
-        View viewDivider = new View(getContext());
-        int dividerHeight = 5;
-        viewDivider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dividerHeight));
-        viewDivider.setBackgroundColor(Color.parseColor("#A417AFEA"));
-        return  viewDivider;
-    }
 }

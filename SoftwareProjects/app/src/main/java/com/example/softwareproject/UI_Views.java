@@ -44,6 +44,14 @@ public class UI_Views {
         return user;
     }
 
+    public View Divider(Context context){
+        View viewDivider = new View(context);
+        int dividerHeight = 4;
+        viewDivider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dividerHeight));
+        viewDivider.setBackgroundColor(Color.parseColor("#A417AFEA"));
+        return  viewDivider;
+    }
+
     public TextView createNumOfReplies(Context context, String num_of_replies) {
         TextView textView = new TextView(context);
         textView.setText(num_of_replies);
@@ -103,6 +111,19 @@ public class UI_Views {
         user.setGravity(Gravity.CENTER);
         return user;
 
+    }
+
+    public TextView UserList(Context context, String str){
+        TextView df = new TextView(context);
+        df.setText(str);
+        df.setTextSize(20);
+        df.setPadding(30,15,0,30);
+        df.setTextColor(Color.parseColor("white"));
+        df.setHeight(140);
+        df.setBackgroundColor(Color.parseColor("#F51E1B1B"));
+        df.setGravity(Gravity.CENTER_VERTICAL);
+
+        return df;
     }
 
     public VideoView createVideoView(Context context) {
