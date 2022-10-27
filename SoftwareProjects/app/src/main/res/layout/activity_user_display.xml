@@ -104,13 +104,11 @@
         android:layout_marginTop="10dp"
         app:tabTextColor="@color/white">
 
-        android:background="@color/white">
-
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Post Feed" />
+            android:text="Posts" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
