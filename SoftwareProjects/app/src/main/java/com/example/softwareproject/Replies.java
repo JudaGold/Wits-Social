@@ -31,9 +31,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+//class for replies to a post
 public class Replies extends AppCompatActivity {
-
+    //variable creation
     String post_body, URL, post_time, ID, username_post;
     DatabaseReference reference;
     ImageButton btn_home;
@@ -47,8 +47,10 @@ public class Replies extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //variable assignment
         setContentView(R.layout.replies_page);
         lp = (LinearLayout) findViewById(R.id.scroll_replies);
+        //getting all passed through data
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         account_user = intent.getStringExtra("loggedinuser");
@@ -59,7 +61,7 @@ public class Replies extends AppCompatActivity {
         post_time = intent.getStringExtra("post_time");
         is_searched_user = intent.getBooleanExtra("is_searched_user", false);
         ArrayList<Post> Posts = new ArrayList<>();
-        Post post = new Post(ID, username_post, post_body, URL, post_time);
+        Post post = new Post(ID, username_post, post_body, URL, post_time);//making the current post
         try {
             post.convertDate();
         } catch (ParseException e) {
@@ -70,7 +72,7 @@ public class Replies extends AppCompatActivity {
 
         btn_home = (ImageButton) findViewById(R.id.btn_home);
 
-        btn_home.setOnClickListener(new View.OnClickListener() {
+        btn_home.setOnClickListener(new View.OnClickListener() {//btn that allows you to return to the home page
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Replies.this, user_display.class);
@@ -82,13 +84,13 @@ public class Replies extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void display_posts(ArrayList<Post> Posts, Boolean is_searched_user) {
+    public void display_posts(ArrayList<Post> Posts, Boolean is_searched_user) {//displays all posts
         int counter_reply = 0;
 
         lp.setOrientation(LinearLayout.VERTICAL);
         //lp.setBackgroundColor(Color.parseColor("white"));
         lp.removeAllViews();
-        for (Post post : Posts) {
+        for (Post post : Posts) {//all the posts have been collected and passed through
             String post_body = post.getBody();
             String post_time = post.getTime().substring(0, 10);
             String URL = post.getPost_image_url();
@@ -99,7 +101,7 @@ public class Replies extends AppCompatActivity {
             //usernameView.setTextSize(20);
 
             boolean account_main = false;//checking for logged in user
-            if (!is_searched_user) {
+            if (!is_searched_user) {//checking to see its not a searched user
                 if (username_post.equalsIgnoreCase(username)) {
                     usernameView = views.createUsernameTextView(Replies.this, "Me");
                     account_main = true;
@@ -114,7 +116,7 @@ public class Replies extends AppCompatActivity {
                     usernameView= views.createUsernameTextView(Replies.this, username_post);
                 }
             }
-
+            //creating views for each post 120-159
             LinearLayout hl = views.createHorizontalLayout(Replies.this);
             hl.setGravity(Gravity.NO_GRAVITY);
             hl.addView(usernameView);
@@ -155,7 +157,7 @@ public class Replies extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
+            //adding created post(reply) to the screen
             lp.addView(views.addSpace(Replies.this));
             lp.addView(postview);
 
@@ -174,7 +176,7 @@ public class Replies extends AppCompatActivity {
         }
     }
 
-    public ImageView createImageView() {
+    public ImageView createImageView() {//creates image view for pictures
         ImageView imageView = new ImageView(Replies.this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
         params.gravity = Gravity.CENTER; //sets the image at the centre
@@ -200,7 +202,7 @@ public class Replies extends AppCompatActivity {
     }
 
 
-    public void display_replies(String postID, ArrayList<Post> Replies, Boolean is_searched_user) {
+    public void display_replies(String postID, ArrayList<Post> Replies, Boolean is_searched_user) {//showing all the replies given in the vector 206-236
         reference = FirebaseDatabase.getInstance().getReference("Posts").child(username_post).child(postID).child("Replies");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -252,7 +254,7 @@ public class Replies extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)//making the way to reply 258-325
     public void Reply(String Reply_to_user, String original_post_msg, String uid){
         AlertDialog.Builder dialogB = new AlertDialog.Builder(Replies.this);
         AlertDialog dialog;
@@ -260,7 +262,7 @@ public class Replies extends AppCompatActivity {
         TextView popup_header = (TextView) popup_content.findViewById(R.id.reply_header);
         TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);
 
-        EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);
+        EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);//creating the textview to type your reply on
         Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);
         popup_header.setText("Replying to:\n\t"+Reply_to_user);
         popup_original.setText(original_post_msg);
@@ -285,7 +287,7 @@ public class Replies extends AppCompatActivity {
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                 String t = (format.format(date));
 
-                DatabaseReference reply_ref = FirebaseDatabase.getInstance().getReference("Posts")
+                DatabaseReference reply_ref = FirebaseDatabase.getInstance().getReference("Posts")//adding the reply to the database under a users replies
                         .child(Reply_to_user).child(uid).child("Replies");
                 reply_ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -300,7 +302,7 @@ public class Replies extends AppCompatActivity {
                     }
                 });
 
-                DatabaseReference add_reply_post = FirebaseDatabase.getInstance().getReference("Replies")
+                DatabaseReference add_reply_post = FirebaseDatabase.getInstance().getReference("Replies")//adding the reply to the database
                         .child(account_user);
                 add_reply_post.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
