@@ -34,55 +34,42 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 public class user_display extends AppCompatActivity {
-
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    // Declaration of variables
+    private TabLayout tabLayout; // The tab on the screen
+    private ViewPager viewPager; // The screen which will show posts, followers, following and liked posts
     TextView usernameText, bioText;// bioText will have the user's bio
-    ImageButton btn_search_user;
-    Button btnfollow,btnblock;
-    LinearLayout user_display_layout;
+    ImageButton btn_search_user; // Button used to search a user or hashtag
+    Button btnfollow,btnblock; // Buttons to follow/unfollow and block/unblock users
     DatabaseReference reference;// this the reference of the Firebase database
-    de.hdodenhof.circleimageview.CircleImageView user_image;
-    AutoCompleteTextView search_bar;
-    String username,logged_in_user, fcm_token;
+    de.hdodenhof.circleimageview.CircleImageView user_image; /* This shows the user's profile
+                                                                picture in a circle */
+    AutoCompleteTextView search_bar; /* The place where the user inputs the username or hashtag
+                                        they went to search */
+    String username,logged_in_user, fcm_token; // The user's username and their fcm token
     boolean main_user  = true;
-    boolean isfollowing_user = false;
-    Search_User_class su;
+    Search_User_class su; // Class used for searching users and hashtags
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Initialisation of variables
         setContentView(R.layout.activity_user_display);
         tabLayout = findViewById(R.id.TabLayout);
         viewPager = findViewById(R.id.viewpager);
         tabLayout.setupWithViewPager(viewPager);
-
-        Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-        logged_in_user =  intent.getStringExtra("loggedinuser");
-        intent.putExtra("loggedinuser",logged_in_user);
-        update_FCM_token();
-
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");//establishing fragment for viewing posts
-        pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");//establishing fragment for viewing user followers
-        pagerAdapter.addFragmentTitle(new fragment_following(),"Following");//establishing fragment for viewing user following list
-
-        if(username.equalsIgnoreCase(logged_in_user)){
-            pagerAdapter.addFragmentTitle(new fragment_Favourites(),"liked");//adding fragment favourite post to page adapter to view fragment favorites.xml
-        }
-        viewPager.setAdapter(pagerAdapter);//setting up a viewpager to make swiping across fragments
-
-        reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference = FirebaseDatabase.getInstance().getReference("Users"); // Database reference to the User table
         usernameText = (TextView) findViewById(R.id.username_text);
         bioText = (TextView) findViewById(R.id.bio_text);
         user_image = findViewById(R.id.searched_user_image);
-        btnfollow = new Button(getApplicationContext());
-        btnfollow.setText("follow");
-        btnfollow.setTextColor(Color.parseColor("white"));
+
+        // Parameters of the buttons block and follow
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 100);
         buttonParams.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
         buttonParams.setMargins(0,10,20,0);
+
+        btnfollow = new Button(getApplicationContext());
+        btnfollow.setText("follow");
+        btnfollow.setTextColor(Color.parseColor("white"));
         btnfollow.setLayoutParams(buttonParams);
         btnfollow.setBackgroundResource(R.drawable.popup_butons);
         btnblock = new Button(getApplicationContext());
@@ -90,7 +77,29 @@ public class user_display extends AppCompatActivity {
         btnblock.setBackgroundResource(R.drawable.popup_butons);
         btnblock.setLayoutParams(buttonParams);
         btnblock.setText("block");
-        display_user_information();
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username"); // Fetches the user's username or searched user's username
+        logged_in_user =  intent.getStringExtra("loggedinuser"); // Fetches the user's username
+        intent.putExtra("loggedinuser",logged_in_user); // Sends the user's username
+        search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
+        btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
+        su = new Search_User_class();
+
+        // When the user searches for a user or hashtag
+        su.search(logged_in_user,username,search_bar,btn_search_user,user_display.this);
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),"Posts");//establishing fragment for viewing posts
+        pagerAdapter.addFragmentTitle(new fragment_followers(),"Followers");//establishing fragment for viewing user followers
+        pagerAdapter.addFragmentTitle(new fragment_following(),"Following");//establishing fragment for viewing user following list
+
+        if(username.equalsIgnoreCase(logged_in_user)){ // Checks if the user is viewing their home page
+            pagerAdapter.addFragmentTitle(new fragment_Favourites(),"liked");//adding fragment favourite post to page adapter to view fragment favorites.xml
+        }
+
+        viewPager.setAdapter(pagerAdapter);//setting up a viewpager to make swiping across fragments
+
+        update_FCM_token(); // This updates the user's fcm token on the database
+        display_user_information(); // This displays the user's information onto the screen
 
         if(username.equalsIgnoreCase(logged_in_user)){
             LinearLayout.LayoutParams Lp = new LinearLayout.LayoutParams(248,52);
@@ -119,11 +128,6 @@ public class user_display extends AppCompatActivity {
             am_block();//checking is current is being blocked by another user
             intent.putExtra("Blocked",btnblock.getText().toString());
         }
-        search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);
-        btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);
-        su = new Search_User_class();
-        su.search(logged_in_user,username,search_bar,btn_search_user,user_display.this);
-
         btnfollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -286,10 +290,11 @@ public class user_display extends AppCompatActivity {
         });
     }
 
-
+    // This method updates the user's fcm token on the database
     public void update_FCM_token()
     {
-        FirebaseMessaging.getInstance().getToken()
+        FirebaseMessaging.getInstance().getToken() /* This gets the user's fcm token in the device
+                                                      which is used for notifications*/
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
@@ -298,6 +303,7 @@ public class user_display extends AppCompatActivity {
                         }
                         fcm_token = task.getResult();
 
+                        // Saves the token on the database
                         reference.child(username).child("fcm_token").setValue(fcm_token);
                     }
                 });

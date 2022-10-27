@@ -164,10 +164,6 @@
         "source": "C:\\Users\\melon\\.gradle\\daemon\\7.4\\com.example.softwareproject.app-main-40:\\layout\\fragment__post_feed.xml"
     },
     {
-        "merged": "com.example.softwareproject.app-merged_res-38:/layout_blocked_users.xml.flat",
-        "source": "com.example.softwareproject.app-main-40:/layout/blocked_users.xml"
-    },
-    {
         "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.4\\com.example.softwareproject.app-merged_res-38:\\drawable_user.png.flat",
         "source": "C:\\Users\\melon\\.gradle\\daemon\\7.4\\com.example.softwareproject.app-main-40:\\drawable\\user.png"
     },
@@ -282,6 +278,10 @@
     {
         "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.4\\com.example.softwareproject.app-merged_res-38:\\mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\melon\\.gradle\\daemon\\7.4\\com.example.softwareproject.app-main-40:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/layout_activity_user_display.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/layout/activity_user_display.xml"
     },
     {
         "merged": "C:\\Users\\melon\\.gradle\\daemon\\7.4\\com.example.softwareproject.app-merged_res-38:\\drawable_favorite_filled.xml.flat",
