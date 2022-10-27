@@ -7,10 +7,13 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -37,6 +40,7 @@ public class user_display extends AppCompatActivity {
     TextView usernameText, bioText;// bioText will have the user's bio
     ImageButton btn_search_user;
     Button btnfollow,btnblock;
+    LinearLayout user_display_layout;
     DatabaseReference reference;// this the reference of the Firebase database
     de.hdodenhof.circleimageview.CircleImageView user_image;
     AutoCompleteTextView search_bar;
@@ -75,7 +79,16 @@ public class user_display extends AppCompatActivity {
         user_image = findViewById(R.id.searched_user_image);
         btnfollow = new Button(getApplicationContext());
         btnfollow.setText("follow");
+        btnfollow.setTextColor(Color.parseColor("white"));
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 100);
+        buttonParams.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
+        buttonParams.setMargins(0,10,20,0);
+        btnfollow.setLayoutParams(buttonParams);
+        btnfollow.setBackgroundResource(R.drawable.popup_butons);
         btnblock = new Button(getApplicationContext());
+        btnblock.setTextColor(Color.parseColor("white"));
+        btnblock.setBackgroundResource(R.drawable.popup_butons);
+        btnblock.setLayoutParams(buttonParams);
         btnblock.setText("block");
         display_user_information();
 
