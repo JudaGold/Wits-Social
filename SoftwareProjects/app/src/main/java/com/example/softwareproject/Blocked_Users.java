@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Blocked_Users extends AppCompatActivity {
     LinearLayout l;
     String username;
+    UI_Views views = new UI_Views();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,16 +35,12 @@ public class Blocked_Users extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("Username");
 
-//        l = findViewById(R.id.Blocked_Users);
+        //l = (LinearLayout) findViewById(R.id.Blocked_Users);
         l = new LinearLayout(this);
         l.setOrientation(LinearLayout.VERTICAL);
-//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1200, 150, 1.5f);
-//        l.setLayoutParams(lp);
-//        l.setBackgroundColor(Color.BLACK);
         setContentView(l);
+        l.setBackgroundResource(R.drawable.blue_and_grey_background);
         processUsers();
-
-
     }
 
     public void processUsers(){
@@ -52,9 +49,9 @@ public class Blocked_Users extends AppCompatActivity {
         t.setText("Blocked Users");
         t.setTextSize(20);
         t.setPadding(350,15,0,30);
-        t.setTextColor(Color.parseColor("yellow"));
+        t.setTextColor(Color.parseColor("white"));
         t.setHeight(140);
-        t.setBackgroundColor(Color.parseColor("blue"));
+        t.setBackgroundColor(Color.parseColor("#CB17AFEA"));
         t.setGravity(Gravity.CENTER_VERTICAL);
         l.addView(t);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("social")
@@ -65,14 +62,7 @@ public class Blocked_Users extends AppCompatActivity {
                 if(snapshot.exists()){
                     int index = 0;
                     for(DataSnapshot data:snapshot.getChildren()){
-                        TextView df = new TextView(getApplicationContext());
-                        df.setText(data.getValue(String.class));
-                        df.setTextSize(20);
-                        df.setPadding(30,15,0,30);
-                        df.setTextColor(Color.parseColor("white"));
-                        df.setHeight(140);
-                        df.setBackgroundColor(Color.parseColor("#F51E1B1B"));
-                        df.setGravity(Gravity.CENTER_VERTICAL);
+                        TextView df = views.UserList(getApplicationContext(), data.getValue(String.class));
 //                        df.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View v) {
@@ -85,7 +75,7 @@ public class Blocked_Users extends AppCompatActivity {
 //                        });
                         index++;
                         l.addView(df);
-                        l.addView(Divider());
+                        l.addView(views.Divider(getApplicationContext()));
                     }
                 }
             }
@@ -95,13 +85,5 @@ public class Blocked_Users extends AppCompatActivity {
 
             }
         });
-    }
-
-    public View Divider(){
-        View viewDivider = new View(getContext());
-        int dividerHeight = 4;
-        viewDivider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dividerHeight));
-        viewDivider.setBackgroundColor(Color.parseColor("#A417AFEA"));
-        return  viewDivider;
     }
 }
