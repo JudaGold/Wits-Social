@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 
 class Post_Test {
-
     //initialStateTestClass
     @Test
     public void Post_initialState_validOutput(){
@@ -44,7 +43,6 @@ class Post_Test {
     @Test
     public void Post_postCreationWUsername_validOutput(){
         // creating a post
-
         Post fakePostwUserName = new Post("1","NaazniUserName","NaazniBody","__--","25-03-2000 13:25:25");
 
         // Setting the fakepost to specific Strings
