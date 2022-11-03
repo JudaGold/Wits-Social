@@ -44,6 +44,18 @@ public class UI_Views {
         return user;
     }
 
+    public Button userDisplayButtons(Context context, String text){ //follow and block buttons in user display class
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 90);
+        buttonParams.gravity = Gravity.CENTER_HORIZONTAL;
+        buttonParams.setMargins(0,0,20,0);
+        Button button = new Button(context);
+        button.setText(text);
+        button.setTextColor(Color.parseColor("white"));
+        button.setLayoutParams(buttonParams);
+        button.setBackgroundColor(Color.parseColor("#339CBA"));
+        return button;
+    }
+
     public View Divider(Context context){
         View viewDivider = new View(context);
         int dividerHeight = 4;
@@ -126,7 +138,7 @@ public class UI_Views {
         return df;
     }
 
-    public VideoView createVideoView(Context context) {
+    /*public VideoView createVideoView(Context context) {
         VideoView videoView = new VideoView(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
         params.gravity = Gravity.LEFT; //sets the image at the centre
@@ -135,7 +147,7 @@ public class UI_Views {
         //videoView.setScaleType(VideoView.ScaleType.FIT_XY);
         //this.getImage(activity,str,videoView);
         return videoView;
-    }
+    }*/
 
     public ImageView createImageView(Context context,Activity activity,String str) {
         ImageView imageView = new ImageView(context);
@@ -189,6 +201,12 @@ public class UI_Views {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30);
         space.setLayoutParams(params);
         return space;
+    }
+
+    public LinearLayout createLinearLayout(Context context){
+        LinearLayout lv = new LinearLayout(context);
+        lv.setOrientation(LinearLayout.HORIZONTAL);
+        return lv;
     }
 
     public LinearLayout createHorizontalLayout(Context context) {

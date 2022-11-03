@@ -37,6 +37,7 @@ public class user_display extends AppCompatActivity {
     // Declaration of variables
     private TabLayout tabLayout; // The tab on the screen
     private ViewPager viewPager; // The screen which will show posts, followers, following and liked posts
+    UI_Views views = new UI_Views();//ui_view callss to create views
     TextView usernameText, bioText;// bioText will have the user's bio
     ImageButton btn_search_user; // Button used to search a user or hashtag
     Button btnfollow,btnblock; // Buttons to follow/unfollow and block/unblock users
@@ -62,21 +63,8 @@ public class user_display extends AppCompatActivity {
         bioText = (TextView) findViewById(R.id.bio_text);
         user_image = findViewById(R.id.searched_user_image);
 
-        // Parameters of the buttons block and follow
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 100);
-        buttonParams.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
-        buttonParams.setMargins(0,10,20,0);
-
-        btnfollow = new Button(getApplicationContext());
-        btnfollow.setText("follow");
-        btnfollow.setTextColor(Color.parseColor("white"));
-        btnfollow.setLayoutParams(buttonParams);
-        btnfollow.setBackgroundResource(R.drawable.popup_butons);
-        btnblock = new Button(getApplicationContext());
-        btnblock.setTextColor(Color.parseColor("white"));
-        btnblock.setBackgroundResource(R.drawable.popup_butons);
-        btnblock.setLayoutParams(buttonParams);
-        btnblock.setText("block");
+        btnfollow = views.userDisplayButtons(getApplicationContext(),"follow");
+        btnblock = views.userDisplayButtons(getApplicationContext(), "block");
         Intent intent = getIntent();
         username = intent.getStringExtra("username"); // Fetches the user's username or searched user's username
         logged_in_user =  intent.getStringExtra("loggedinuser"); // Fetches the user's username
@@ -101,9 +89,9 @@ public class user_display extends AppCompatActivity {
         update_FCM_token(); // This updates the user's fcm token on the database
         display_user_information(); // This displays the user's information onto the screen
 
-        if(username.equalsIgnoreCase(logged_in_user)){
-            LinearLayout.LayoutParams Lp = new LinearLayout.LayoutParams(248,52);
-            usernameText.setLayoutParams(Lp);
+        if(username.equalsIgnoreCase(logged_in_user)){ //checks if the user we are displaying the information about is the logged inn user or searched user
+            //LinearLayout.LayoutParams Lp = new LinearLayout.LayoutParams(248,52);
+            //usernameText.setLayoutParams(Lp);
             user_image.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -117,12 +105,14 @@ public class user_display extends AppCompatActivity {
         else{
             main_user = false;
             LinearLayout lp_info= findViewById(R.id.lp_info);
-            LinearLayout lv = new LinearLayout(getApplicationContext());
-            lv.setOrientation(LinearLayout.HORIZONTAL);
-            lv.addView(btnfollow);
-            lv.addView(btnblock);
-            lp_info.addView(lv);
-            lp_info.removeView(bioText);
+            LinearLayout lp_profile= findViewById(R.id.lp_profile);
+            LinearLayout layoutButtons = views.createLinearLayout(getApplicationContext());
+            layoutButtons.addView(btnfollow);
+            layoutButtons.addView(btnblock);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 280);
+            lp_profile.setLayoutParams(params);
+            lp_info.addView(layoutButtons);
+            //lp_info.removeView(bioText);
             is_following();//checking if current user is following this account
             is_blocked();//checking if current user is blocking this account
             am_block();//checking is current is being blocked by another user
@@ -184,21 +174,12 @@ public class user_display extends AppCompatActivity {
                         try {
                             Picasso.get().load(imageUrl).into(user_image);
                         }catch(Exception c){}
-                    if(main_user){
+
                         if (bio.length() >= 1) {
                             bioText.setText(bio);
-                        } else {
-                            bioText.setHint("(Bio will be displayed here)");
                         }
                     }
-                    else{
-                        if (bio.length() >= 1) {
-                            usernameText.append(":\t"+bio);
-                        } else {
-                            usernameText.append(":\t(Bio will be displayed here)");
-                        }
-                    }
-                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
