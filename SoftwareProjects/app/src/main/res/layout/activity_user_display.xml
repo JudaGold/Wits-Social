@@ -41,7 +41,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/LP_profile"
+        android:id="@+id/lp_profile"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#5417AFEA"
@@ -58,21 +58,20 @@
             <TextView
                 android:id="@+id/username_text"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/lato_regular"
                 android:gravity="start"
                 android:textColor="@color/white"
-                android:textSize="34sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/bio_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="25dp"
                 android:layout_marginTop="4dp"
-                android:layout_weight="1"
                 android:fontFamily="@font/lato_regular"
                 android:textAlignment="textStart"
                 android:textColor="#CEFFFFFF"
