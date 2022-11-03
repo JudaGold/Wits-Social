@@ -4,16 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment_Favourites">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
         tools:ignore="SpeakableTextPresentCheck">
-            <LinearLayout
+
+        <LinearLayout
             android:id="@+id/layout_favourites"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </FrameLayout>

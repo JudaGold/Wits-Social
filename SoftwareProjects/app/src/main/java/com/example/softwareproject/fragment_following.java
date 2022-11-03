@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class fragment_following extends Fragment {
-    LinearLayout l;
+    LinearLayout layoutFollowing;
     String user;
     String curr_user;
     UI_Views views = new UI_Views();
@@ -36,20 +36,15 @@ public class fragment_following extends Fragment {
         Intent intent = getActivity().getIntent();
         user = intent.getStringExtra("username");
         curr_user = intent.getStringExtra("loggedinuser");
-        l = (LinearLayout) v.findViewById(R.id.LP_following);
-        l.setOrientation(LinearLayout.VERTICAL);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,150,1.5f);
-        l.setLayoutParams(lp);
-
+        layoutFollowing = (LinearLayout) v.findViewById(R.id.layoutFollowing);
         processUsers();
         Search_User_class su = new Search_User_class();
-
-
-
-    return v;
+        
+        return v;
     }
+
     public void processUsers(){
-        l.removeAllViews();
+        layoutFollowing.removeAllViews();
         int index = 0;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("social")
                 .child(user).child("following");
@@ -71,8 +66,8 @@ public class fragment_following extends Fragment {
                             }
                         });
                         index++;
-                        l.addView(df);
-                        l.addView(views.Divider(getContext()));
+                        layoutFollowing.addView(df);
+                        layoutFollowing.addView(views.Divider(getContext()));
                     }
                 }
             }
