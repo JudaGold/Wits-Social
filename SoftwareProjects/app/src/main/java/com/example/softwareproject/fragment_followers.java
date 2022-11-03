@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 
 public class fragment_followers extends Fragment {
-    LinearLayout l;//layout for fragment
+    LinearLayout LayoutFollowers;//layout for fragment
     String user,curr_user;//string to store user
     UI_Views views = new UI_Views();//ui_view callss to create views
     @Override
@@ -35,22 +35,15 @@ public class fragment_followers extends Fragment {
         Intent intent = getActivity().getIntent();//getting var from previios activity
         user = intent.getStringExtra("username");//getting username
         curr_user = intent.getStringExtra("loggedinuser");//getting main user
-        l = (LinearLayout) v.findViewById(R.id.LP_followers);//setting up layout
-        l.setOrientation(LinearLayout.VERTICAL);//setting orientation
-
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,150,1.5f);//adding padding
-        l.setLayoutParams(lp);//adding padding
-
+        LayoutFollowers = (LinearLayout) v.findViewById(R.id.layoutFollowers);//setting up layout
         processUsers();//function to show followers
         Search_User_class su = new Search_User_class();//class to search for who is user following
-
-
 
         return v;
     }
 
     public void processUsers(){//fucntion to process the user
-        l.removeAllViews();
+        LayoutFollowers.removeAllViews();
         int index = 0;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("social")//firebase ref to social tabl in database
                 .child(user).child("followers");
@@ -72,8 +65,8 @@ public class fragment_followers extends Fragment {
                             }
                         });
                         index++;
-                        l.addView(df);
-                        l.addView(views.Divider(getContext()));
+                        LayoutFollowers.addView(df);
+                        LayoutFollowers.addView(views.Divider(getContext()));
                     }
                 }
             }
