@@ -750,7 +750,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.child(uid).exists()) {
                                     favouritesButton.setBackgroundResource(R.drawable.favorite_filled);
-
+                                    favouritesButton.setOnClickListener(null);
                                 }
                             }
 
@@ -901,7 +901,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.child(uid).exists()) {
                                 favouritesButton.setBackgroundResource(R.drawable.favorite_filled);
-
+                                favouritesButton.setOnClickListener(null);
                             }
                         }
 
