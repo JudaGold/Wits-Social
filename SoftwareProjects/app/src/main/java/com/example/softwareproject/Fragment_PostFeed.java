@@ -740,7 +740,26 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);
                     LinearLayout horizontalLayout = views.createHorizontalLayout(getContext());
 
+
                     if (!account_main) {
+
+                        DatabaseReference like_ref = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(username).child(username_post)
+                                .child("ID");
+                        like_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.child(uid).exists()) {
+                                    favouritesButton.setBackgroundResource(R.drawable.favorite_filled);
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                         horizontalLayout.addView(favouritesButton);
                         horizontalLayout.addView(createReplyOption(username_post, post_body, uid));
                     }
@@ -835,6 +854,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Vector<Post> post_data;
+
                 post_data = new Vector<>();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     String id = data.getKey();
@@ -872,9 +892,27 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                     Space space = views.addSpace(getContext());
                     ToggleButton favouritesButton = createFavouriteToggleButton(account_user, username, uid);
                     LinearLayout horizontalLayout = views.createHorizontalLayout(getContext());
+
+
+                    DatabaseReference like_ref = FirebaseDatabase.getInstance().getReference("FavouritePosts").child(account_user).child(username)
+                            .child("ID");
+                    like_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child(uid).exists()) {
+                                favouritesButton.setBackgroundResource(R.drawable.favorite_filled);
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
                     horizontalLayout.addView(favouritesButton);
                     horizontalLayout.addView(createReplyOption(username, post_body, uid));
-
                     post.addView(horizontalLayout);
 
                     lp.addView(space); //adds space so that the posts look better
@@ -1163,6 +1201,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 long postmaxid = snapshot.child("ID").getChildrenCount();
                 if (!snapshot.child("ID").child(String.valueOf(postmaxid + 1)).exists()) {
                     favRef.child("ID").child(String.valueOf(postmaxid + 1)).setValue(postID);
+
                 }
             }
 

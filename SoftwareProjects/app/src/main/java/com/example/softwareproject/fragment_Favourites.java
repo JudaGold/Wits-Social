@@ -65,22 +65,25 @@ public class fragment_Favourites extends Fragment {
     }
 
     void add_post(String user_post, String post_id){//function to add a post to later display
-        DatabaseReference bd = FirebaseDatabase.getInstance().getReference("Posts").child(user_post).child(post_id);
-        bd.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String body = snapshot.child("body").getValue(String.class);
-                    String image = snapshot.child("post_image_url").getValue(String.class);
-                    String time = snapshot.child("time").getValue(String.class);
-                    display_post(user_post,body,image,time);//calling function to display post
+        try{
+            DatabaseReference bd = FirebaseDatabase.getInstance().getReference("Posts").child(user_post).child(post_id);
+            bd.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        String body = snapshot.child("body").getValue(String.class);
+                        String image = snapshot.child("post_image_url").getValue(String.class);
+                        String time = snapshot.child("time").getValue(String.class);
+                        display_post(user_post,body,image,time);//calling function to display post
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }catch(Exception s){}
+
     }
 
     void display_post(String user_post, String body,String image,String time){
