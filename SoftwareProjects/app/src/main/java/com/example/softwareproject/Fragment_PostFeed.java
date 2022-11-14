@@ -993,6 +993,7 @@ public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemC
                 if (toggleButton.isChecked()) {
                     Toast.makeText(getContext(), "added to favourites", Toast.LENGTH_SHORT).show();
                     addFavourite(user, userPost, ID);
+                    toggleButton.setOnClickListener(null);
                 } else {
                     Toast.makeText(getContext(), "removed from favourites", Toast.LENGTH_SHORT).show();
                 }
