@@ -25,46 +25,50 @@ public class Search_User_class {//class to search for users
     Intent intent;
 
     public void search(String loggedin_user, String My_username, AutoCompleteTextView ACT, ImageButton btn, Activity activity){
-        getUsersHashtags(My_username, loggedin_user);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, users_hashtags);
-        ACT.setThreshold(1);
-        ACT.setAdapter(adapter);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = ACT.getText().toString();
+            getUsersHashtags(My_username, loggedin_user);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, users_hashtags);
+            ACT.setThreshold(1);
+            ACT.setAdapter(adapter);
 
-                if (text.charAt(0) == '#')//if searching for a hashtag
-                {
-                    if (search_user_hashtags(text)) {
-                        text = text.substring(1);
-                        intent = new Intent(activity, Display_Hashtag_Posts.class);//show all posts with that hashtag
-                        intent.putExtra("username", My_username);
-                        intent.putExtra("loggedinuser", loggedin_user);
-                        intent.putExtra("hashtag", text);
-                        activity.startActivity(intent);
-                        activity.finish();
-                    } else {
-                        ACT.setText("");
-                        ACT.setHint("no " + text + " found");
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String text = ACT.getText().toString();
+                    if(!text.isEmpty()){
+                        if (text.charAt(0) == '#')//if searching for a hashtag
+                        {
+                            if (search_user_hashtags(text)) {
+                                text = text.substring(1);
+                                intent = new Intent(activity, Display_Hashtag_Posts.class);//show all posts with that hashtag
+                                intent.putExtra("username", My_username);
+                                intent.putExtra("loggedinuser", loggedin_user);
+                                intent.putExtra("hashtag", text);
+                                activity.startActivity(intent);
+                                activity.finish();
+                            } else {
+                                ACT.setText("");
+                                ACT.setHint("no " + text + " found");
+                            }
+                        }
+                        else {
+                            if (search_user_hashtags(text)) {//if searching for users
+                                intent = new Intent(activity, user_display.class);//go take to that users page
+                                intent.putExtra("username", text);
+                                intent.putExtra("loggedinuser", loggedin_user);
+                                activity.startActivity(intent);
+                                activity.finish();
+                            } else {
+                                ACT.setText("");
+                                ACT.setHint("no user " + text + " found");
+                            }
+                        }
                     }
-                }
-                else {
-                    if (search_user_hashtags(text)) {//if searching for users
-                        intent = new Intent(activity, user_display.class);//go take to that users page
-                        intent.putExtra("username", text);
-                        intent.putExtra("loggedinuser", loggedin_user);
-                        activity.startActivity(intent);
-                        activity.finish();
-                    } else {
-                        ACT.setText("");
-                        ACT.setHint("no user " + text + " found");
-                    }
-                }
 
-            }
-        });
+                }
+            });
+
+
     }
 
     private void getUsersHashtags(String My_username, String loggedin_user) {//getting all hashtags/users for search
@@ -137,10 +141,10 @@ public class Search_User_class {//class to search for users
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long maxId = snapshot.getChildrenCount()+1;
                 if(snapshot.child(searched_user).exists()){
-                    ref.child(String.valueOf(maxId)).setValue(searched_user);
+
                 }
                 else{
-                    ref.child(String.valueOf(maxId)).setValue(searched_user);
+                    ref.push().setValue(searched_user);
                 }
 
             }
@@ -162,7 +166,7 @@ public class Search_User_class {//class to search for users
 
                 }
                 else{
-                    ref.child(String.valueOf(maxId)).setValue(main_user);//else add follower
+                    ref.push().setValue(main_user);
                 }
             }
 
