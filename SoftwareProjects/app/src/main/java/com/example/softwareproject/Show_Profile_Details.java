@@ -219,10 +219,11 @@ public class Show_Profile_Details extends AppCompatActivity
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE://checking if yes is clicked
                                 Download_info();
+                                delete_profile();
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE://checking if no is clicked
-
+                                delete_profile();
                                 break;
                         }
                     }
@@ -235,6 +236,109 @@ public class Show_Profile_Details extends AppCompatActivity
             }
         });
     }
+
+    private void delete_profile(){
+        Search_User_class su = new Search_User_class();
+        DatabaseReference bd_likes = FirebaseDatabase.getInstance().getReference("FavouritePosts");
+        bd_likes.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {//snapshot to remove user from liked table
+                if(snapshot.child(username).exists()){
+                    bd_likes.child(username).getRef().removeValue();
+                }
+
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    for(DataSnapshot inner:dataSnapshot.getChildren()){
+                        if(inner.getKey().equals(username)){
+                            inner.getRef().removeValue();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //removing user from notification table
+        DatabaseReference db_notif = FirebaseDatabase.getInstance().getReference("Notifications").child(username);
+        db_notif.getRef().removeValue();
+        //removing all the replys from the user
+        DatabaseReference db_reply = FirebaseDatabase.getInstance().getReference("Replies");
+        db_reply.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot outer:snapshot.getChildren()){
+                    for(DataSnapshot inner:outer.getChildren()){
+                        if(inner.child("username").getValue().equals(username)){
+                            inner.getRef().removeValue();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        db_reply.child(username).getRef().removeValue();
+
+        //removing all the users posts
+        DatabaseReference db_posts = FirebaseDatabase.getInstance().getReference("Posts").child(username);
+        db_posts.getRef().removeValue();
+
+        //removing the users social circles, who they block, follow and who follows them.
+        DatabaseReference db_social = FirebaseDatabase.getInstance().getReference("social").child(username);
+        db_social.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot following:snapshot.child("following").getChildren()){//unfollowing who the user follows
+                        su.unfollow(username,following.getValue(String.class));
+                    }
+                    for(DataSnapshot followers:snapshot.child("followers").getChildren()){//unfollowing the users followers list
+                        su.unfollow(followers.getValue(String.class),username);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        db_social.getRef().removeValue();//removing user from the social table
+         // removing all the users hashtags.
+        DatabaseReference db_hashtags = FirebaseDatabase.getInstance().getReference("Hashtags");
+        db_hashtags.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot outer:snapshot.getChildren()){
+                    for(DataSnapshot inner: outer.getChildren()){
+                        if(inner.child("username").getValue().equals(username)){
+                            inner.getRef().removeValue();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+         //final function that removes user from the system and then sends them back to the log in page
+        DatabaseReference profile = FirebaseDatabase.getInstance().getReference("Users").child(username);
+        profile.getRef().removeValue();
+
+        Intent intent = new Intent(this,Main_Activity.class);
+        startActivity(intent);
+    }
+
+
+
+
+
 
     //Function to open the file selector
     private void openFileUser(){
