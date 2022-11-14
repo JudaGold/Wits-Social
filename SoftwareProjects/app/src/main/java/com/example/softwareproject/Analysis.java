@@ -17,12 +17,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Analysis {
-    String post_body; // The post text by the user
-
     Analysis(){ // Constructor for the class
-    }
-    Analysis(String post_body){
-        this.post_body = post_body;
     }
 
     static boolean valid_URL(String url){ // Checks for a valid URL
@@ -35,7 +30,7 @@ public class Analysis {
         }
     }
 
-    private ArrayList Find_link(String post_body){ // Find a URL link in a text
+    public ArrayList <Pair<Integer,Integer>>Find_link(String post_body){ // Find a URL link in a text
         ArrayList<Pair<Integer,Integer>>data = new ArrayList<>();
         String words[] = post_body.split(" ");
         for(String it:words){
@@ -53,7 +48,7 @@ public class Analysis {
         data = this.Find_link(body);
         SpannableString spannableString = new SpannableString(body);//setting up a spannable string to process links
         if(data.size() > 0) {
-            for (Pair it : data) {//iterating through all the links ina given post
+            for (Pair it : data) {//iterating through all the links in a given post
                 int a = Integer.parseInt("" + it.first);////getting positions of the begining and end of the link
                 int b = Integer.parseInt("" + it.second);//same as above but for end position
                 ClickableSpan clickableSpan = new ClickableSpan() {

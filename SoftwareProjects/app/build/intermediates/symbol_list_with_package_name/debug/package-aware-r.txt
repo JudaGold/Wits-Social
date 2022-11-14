@@ -2620,7 +2620,6 @@ id FUNCTION
 id GIF
 id LP_followers
 id LP_following
-id LP_profile
 id META
 id NO_DEBUG
 id PhoneNumber_Label
@@ -2896,6 +2895,8 @@ id jumpToStart
 id labeled
 id last_name
 id layout
+id layoutFollowers
+id layoutFollowing
 id layout_favourites
 id left
 id leftToRight
@@ -2908,6 +2909,7 @@ id listMode
 id list_item
 id logOut
 id lp_info
+id lp_profile
 id mainlayout
 id masked
 id match_constraint

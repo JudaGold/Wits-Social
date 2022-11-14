@@ -68,7 +68,6 @@ id EmailAddress_Label
 id GIF
 id LP_followers
 id LP_following
-id LP_profile
 id PhoneNumber_Label
 id Phone_number
 id PostCount_Label
@@ -106,9 +105,12 @@ id imgBtn
 id imgClose
 id last_name
 id layout
+id layoutFollowers
+id layoutFollowing
 id layout_favourites
 id logOut
 id lp_info
+id lp_profile
 id mainlayout
 id pass1
 id pass2
