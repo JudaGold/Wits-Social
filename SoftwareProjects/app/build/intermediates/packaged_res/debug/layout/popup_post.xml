@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/popup_dialog_box"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <TextView
@@ -25,7 +25,8 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
-        android:background="@drawable/custom_inputbox"
+        android:background="@color/TextBackgroundTint"
+        android:backgroundTint="@color/TextBackgroundTint"
         android:ems="10"
         android:fontFamily="@font/lato_regular"
         android:gravity="center"
@@ -33,7 +34,9 @@
         android:inputType="textMultiLine"
         android:lines="8"
         android:minLines="6"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
