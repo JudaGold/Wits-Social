@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/download_profile"
+        android:title="Download profile"/>
+    <item android:id="@+id/blocked_users"
+        android:title="Blocked Users"/>
+    <item android:id="@+id/delete_profile"
+        android:title="Delete account"/>
+    <item android:id="@+id/log_out"
+        android:title="Log out"/>
+
+</menu>

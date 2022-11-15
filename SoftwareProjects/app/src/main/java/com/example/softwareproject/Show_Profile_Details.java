@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +44,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileWriter;
 
-public class Show_Profile_Details extends AppCompatActivity
+public class Show_Profile_Details extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener
 {
     private static final int PICK_IMAGE_REQUEST = 1;
     //Declarations of variable
@@ -235,6 +237,65 @@ public class Show_Profile_Details extends AppCompatActivity
                         .setNegativeButton("of course no.", dialogClickListener).show();//asking user a question
             }
         });
+    }
+
+    public void showOptionMenu(View v){
+        PopupMenu pop = new PopupMenu(Show_Profile_Details.this,v);
+        pop.setOnMenuItemClickListener(this);
+        pop.inflate(R.menu.user_options);
+        pop.show();
+
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.log_out:
+                SharedPreferences preferences = getSharedPreferences("checkBox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember","false");
+                editor.apply();
+
+                Intent intent = new Intent(Show_Profile_Details.this, Main_Activity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.download_profile:
+                Download_info();//calling function to download users information
+                return true;
+
+            case R.id.delete_profile:
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {//calling a prompt
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE://checking if yes is clicked
+                                Download_info();
+                                delete_profile();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE://checking if no is clicked
+                                delete_profile();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Show_Profile_Details.this);
+                builder.setMessage("Would you like to first download your data before you delete your profile?")
+                        .setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No.", dialogClickListener).show();//asking user a question
+                return true;
+
+            case R.id.blocked_users:
+                Intent i = new Intent(Show_Profile_Details.this, Blocked_Users.class);
+                i.putExtra("Username", username);
+                startActivity(i);
+                return true;
+
+            default:
+                return false;
+        }
     }
 
     private void delete_profile(){
