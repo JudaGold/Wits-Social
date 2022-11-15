@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.softwareproject.User_Test" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-15T07:11:55" hostname="DESKTOP-LKOB4CL" time="0.003">
-  <properties/>
-  <testcase name="User_initialState_validOutput()" classname="com.example.softwareproject.User_Test" time="0.002"/>
-  <testcase name="User_settingUser_validOutput()" classname="com.example.softwareproject.User_Test" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

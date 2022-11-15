@@ -5,9 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class User_Test {
+
+    // Testing the constructor of the User class
     @Test
     public void User_initialState_validOutput() {
-        // Creating a user.
         // Initializing the user
         User fakeUser = new User("Elementrix08",
                 "verushannaidoo@gmail.com", "0615805094", "Elementrix",
@@ -23,12 +24,12 @@ class User_Test {
         assertEquals(fakeUser.getmImageUrl(),"-");
         assertEquals(fakeUser.getFcm_token(),"fcm_token");
     }
+
+    // Testing the set methods of the User class
     @Test
     public void User_settingUser_validOutput(){
         // Creating a user
-        User fakeUser = new User("Naazni",
-                "naaznijagdew@gmail.com", "0729119119", "NaazniPassword",
-                "Naazni Jagdew", "Hello Sky", "__", "fcm_token");
+        User fakeUser = new User();
 
         // Setting the user's details
         fakeUser.setBio("Hello Rover");

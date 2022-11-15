@@ -2539,6 +2539,7 @@ drawable ic_launcher_foreground
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_menu
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
@@ -2609,12 +2610,9 @@ id BOTTOM_END
 id BOTTOM_START
 id BioText
 id Bio_Label
-id BlockUserBtn
 id Blocked_Users
 id CTRL
 id CameraBtn
-id DltBtn
-id DwnBtn
 id EmailAddress_Label
 id FUNCTION
 id GIF
@@ -2721,6 +2719,7 @@ id beginOnFirstDraw
 id beginning
 id bestChoice
 id bio_text
+id blocked_users
 id blocking
 id bottom
 id bounce
@@ -2732,6 +2731,7 @@ id btnHome
 id btnLogin
 id btnSave
 id btnSave2
+id btnShowOptions
 id btn_add_post
 id btn_home
 id btn_post
@@ -2787,6 +2787,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id delete_profile
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -2802,6 +2803,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id download_profile
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -2907,7 +2909,7 @@ id line3
 id linear
 id listMode
 id list_item
-id logOut
+id log_out
 id lp_info
 id lp_profile
 id mainlayout
@@ -3390,6 +3392,7 @@ menu example_menu
 menu example_menu2
 menu popup_edit
 menu popup_upload_media_menu
+menu user_options
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
