@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Sign_Up.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Sign_Up.java</span></div><h1>Sign_Up.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+<span class="nc" id="L25">public class Sign_Up extends AppCompatActivity {</span>
+    //Declarations of variables
+    EditText edtEmail, edtPhoneNo, edtUsername, edtPassword, edtConfirmPassword, edtFirstName, edtLastName;
+    Button btnSignUp;
+    TextView tv, pa;
+    FirebaseDatabase fb;
+    DatabaseReference Gdb;
+<span class="nc" id="L32">    Field_Validations fv = new Field_Validations();</span>
+    String fcm_token;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+<span class="nc" id="L37">        super.onCreate(savedInstanceState);</span>
+<span class="nc" id="L38">        setContentView(R.layout.activity_sign_up);</span>
+
+        //Assign variables
+<span class="nc" id="L41">        edtEmail = (EditText) findViewById(R.id.email_address);</span>
+<span class="nc" id="L42">        edtPhoneNo = (EditText) findViewById(R.id.Phone_number);</span>
+<span class="nc" id="L43">        edtUsername = (EditText) findViewById(R.id.username);</span>
+<span class="nc" id="L44">        edtPassword = (EditText) findViewById(R.id.pass1);</span>
+<span class="nc" id="L45">        edtConfirmPassword = (EditText) findViewById(R.id.pass2);</span>
+<span class="nc" id="L46">        btnSignUp = (Button) findViewById(R.id.sibt);</span>
+<span class="nc" id="L47">        edtFirstName = (EditText) findViewById(R.id.first_name);</span>
+<span class="nc" id="L48">        edtLastName = (EditText) findViewById(R.id.last_name);</span>
+<span class="nc" id="L49">        tv = (TextView) findViewById(R.id.tv);</span>
+        //pa = (TextView) findViewById(R.id.pad);
+
+<span class="nc" id="L52">        btnSignUp.setOnClickListener(new View.OnClickListener() {//btn you click to signup</span>
+            @Override
+            public void onClick(View view) {
+                //Convert to string
+<span class="nc" id="L56">                String email = edtEmail.getText().toString();</span>
+<span class="nc" id="L57">                String number = edtPhoneNo.getText().toString();</span>
+<span class="nc" id="L58">                String username = edtUsername.getText().toString();</span>
+<span class="nc" id="L59">                String password = edtPassword.getText().toString();</span>
+<span class="nc" id="L60">                String ConfirmPassword = edtConfirmPassword.getText().toString();</span>
+<span class="nc" id="L61">                String name = edtFirstName.getText().toString() + &quot; &quot; + edtLastName.getText().toString();</span>
+<span class="nc" id="L62">                String bio = &quot;&quot;;</span>
+<span class="nc" id="L63">                String imageUrl = &quot;&quot;;</span>
+<span class="nc" id="L64">                getDeviceToken();</span>
+
+                //Instance of a database
+<span class="nc" id="L67">                fb = FirebaseDatabase.getInstance();</span>
+<span class="nc" id="L68">                Gdb = fb.getReference(&quot;Users&quot;);</span>
+
+                //Decarations and Assignments
+                //checking to see if all required information is filled in
+<span class="nc" id="L72">                boolean completed = completed();</span>
+<span class="nc" id="L73">                boolean matchingPassword = fv.passwords_match(password, ConfirmPassword, edtConfirmPassword);</span>
+<span class="nc" id="L74">                boolean validPassword = fv.valid_password(password, edtPassword);</span>
+<span class="nc" id="L75">                boolean validEmail = fv.check_email(email,edtEmail);</span>
+<span class="nc" id="L76">                boolean validNUmber = fv.Valid_number(number,edtPhoneNo);</span>
+
+<span class="nc bnc" id="L78" title="All 10 branches missed.">                if (completed &amp;&amp; matchingPassword &amp;&amp; validPassword &amp;&amp; validEmail &amp;&amp; validNUmber) {//iff all info complete add to database</span>
+                    //Valid input- Add to database
+<span class="nc" id="L80">                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference(&quot;Users&quot;);</span>
+<span class="nc" id="L81">                    Query checkUsername = ref.orderByChild(&quot;username&quot;).equalTo(username);</span>
+<span class="nc" id="L82">                    checkUsername.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                            if (snapshot.exists()) {//check if username is already in system</span>
+<span class="nc" id="L86">                                edtUsername.setError(&quot;Username already taken&quot;);//if in system stop process</span>
+                            } else {//if not in process and to database
+<span class="nc" id="L88">                                User createUserClass = new User(username, email, number, password, name, bio, imageUrl, fcm_token);</span>
+<span class="nc" id="L89">                                Gdb.child(username).setValue(createUserClass);</span>
+
+<span class="nc" id="L91">                                Intent intent = new Intent(Sign_Up.this, Add_Profile_Pic.class);//move to add a profile pic</span>
+<span class="nc" id="L92">                                intent.putExtra(&quot;Username&quot;, username);</span>
+<span class="nc" id="L93">                                startActivity(intent);</span>
+                            }
+<span class="nc" id="L95">                        }</span>
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L100">                        }</span>
+                    });
+
+                }
+<span class="nc" id="L104">            }</span>
+        });
+<span class="nc" id="L106">    }</span>
+
+    // Get Device Token
+    public void getDeviceToken() {
+<span class="nc" id="L110">        FirebaseMessaging.getInstance().getToken()</span>
+<span class="nc" id="L111">                .addOnCompleteListener(new OnCompleteListener&lt;String&gt;() {</span>
+                    @Override
+                    public void onComplete(@NonNull Task&lt;String&gt; task) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">                        if (!task.isSuccessful()) {</span>
+<span class="nc" id="L115">                            return;</span>
+                        }
+<span class="nc" id="L117">                        fcm_token = task.getResult();</span>
+<span class="nc" id="L118">                    }</span>
+                });
+<span class="nc" id="L120">    }</span>
+
+    public boolean completed() {
+<span class="nc" id="L123">        boolean key = true;</span>
+        //Validate username
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (TextUtils.isEmpty(edtUsername.getText().toString())) {</span>
+<span class="nc" id="L126">            edtUsername.setError(&quot;Please enter in a username&quot;);</span>
+<span class="nc" id="L127">            key = false;</span>
+        }
+
+        //Validate email address
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (TextUtils.isEmpty(edtEmail.getText().toString())) {</span>
+<span class="nc" id="L132">            edtEmail.setError(&quot;Please enter in an email address&quot;);</span>
+<span class="nc" id="L133">            key = false;</span>
+        }
+
+        //Validate Phone number
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        if (TextUtils.isEmpty(edtPhoneNo.getText().toString())) {</span>
+<span class="nc" id="L138">            edtPhoneNo.setError(&quot;Please enter in a phone number&quot;);</span>
+<span class="nc" id="L139">            key = false;</span>
+        }
+
+        //Validate first name
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (TextUtils.isEmpty(edtFirstName.getText().toString())) {</span>
+<span class="nc" id="L144">            edtFirstName.setError(&quot;Please enter in your first name&quot;);</span>
+<span class="nc" id="L145">            key = false;</span>
+        }
+
+        //Validate surname
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        if (TextUtils.isEmpty(edtLastName.getText().toString())) {</span>
+<span class="nc" id="L150">            edtLastName.setError(&quot;Please enter in your surname &quot;);</span>
+<span class="nc" id="L151">            key = false;</span>
+        }
+
+        //Validate password
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (TextUtils.isEmpty(edtPassword.getText().toString())) {</span>
+<span class="nc" id="L156">            edtPassword.setError(&quot;Please enter in a password &quot;);</span>
+<span class="nc" id="L157">            key = false;</span>
+        }
+
+        //Validate password
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        if (TextUtils.isEmpty(edtConfirmPassword.getText().toString())) {</span>
+<span class="nc" id="L162">            edtConfirmPassword.setError(&quot;Please enter in a password &quot;);</span>
+<span class="nc" id="L163">            key = false;</span>
+        }
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        if (key == false) {</span>
+<span class="nc" id="L166">            tv.setText(&quot;Please ensure you have\ncompleted all the fields&quot;);</span>
+        }
+<span class="nc" id="L168">        return key;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

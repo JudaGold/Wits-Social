@@ -1,0 +1,41 @@
+com.example.softwareproject.app-transition-1.2.0-0 C:\Users\melon\.gradle\caches\transforms-3\02a4481fc2b475029ea67ed8a2c5579f\transformed\transition-1.2.0\res
+com.example.softwareproject.app-jetified-firebase-messaging-23.0.7-1 C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\res
+com.example.softwareproject.app-cardview-1.0.0-2 C:\Users\melon\.gradle\caches\transforms-3\0cb698a424f6438850f3782a457c4a3c\transformed\cardview-1.0.0\res
+com.example.softwareproject.app-swiperefreshlayout-1.1.0-3 C:\Users\melon\.gradle\caches\transforms-3\105fdd9df0068c453a041896e05feb10\transformed\swiperefreshlayout-1.1.0\res
+com.example.softwareproject.app-jetified-lifecycle-viewmodel-ktx-2.4.1-4 C:\Users\melon\.gradle\caches\transforms-3\126f1375637b735fd8833ebd7ccbdeba\transformed\jetified-lifecycle-viewmodel-ktx-2.4.1\res
+com.example.softwareproject.app-lifecycle-livedata-2.4.1-5 C:\Users\melon\.gradle\caches\transforms-3\1fe9cee82380ef01ccc7363e4348b959\transformed\lifecycle-livedata-2.4.1\res
+com.example.softwareproject.app-jetified-play-services-basement-18.0.0-6 C:\Users\melon\.gradle\caches\transforms-3\24e27bbd0dc2ae384c375c88a24ba153\transformed\jetified-play-services-basement-18.0.0\res
+com.example.softwareproject.app-constraintlayout-2.1.4-7 C:\Users\melon\.gradle\caches\transforms-3\3035680fe32fee378430c468fbd609d4\transformed\constraintlayout-2.1.4\res
+com.example.softwareproject.app-jetified-glide-4.13.0-8 C:\Users\melon\.gradle\caches\transforms-3\30e1e79187dd6c42e5a428af8b16fb44\transformed\jetified-glide-4.13.0\res
+com.example.softwareproject.app-recyclerview-1.1.0-9 C:\Users\melon\.gradle\caches\transforms-3\37e88af4b52948cdb91a11fdc79cc15e\transformed\recyclerview-1.1.0\res
+com.example.softwareproject.app-jetified-lifecycle-livedata-ktx-2.4.1-10 C:\Users\melon\.gradle\caches\transforms-3\50add91c4fc9171aff96b018f9389ff5\transformed\jetified-lifecycle-livedata-ktx-2.4.1\res
+com.example.softwareproject.app-jetified-circleimageview-3.1.0-11 C:\Users\melon\.gradle\caches\transforms-3\58bd907d10b3cce1341ab20a08db00c6\transformed\jetified-circleimageview-3.1.0\res
+com.example.softwareproject.app-jetified-appcompat-resources-1.4.2-12 C:\Users\melon\.gradle\caches\transforms-3\61fbc15e462717a134a7ea112dca5dfd\transformed\jetified-appcompat-resources-1.4.2\res
+com.example.softwareproject.app-appcompat-1.4.2-13 C:\Users\melon\.gradle\caches\transforms-3\6e7a355660c69287654dcae8b59c7eb6\transformed\appcompat-1.4.2\res
+com.example.softwareproject.app-fragment-1.3.6-14 C:\Users\melon\.gradle\caches\transforms-3\791ec97b45f37394024eb59d3e8862d2\transformed\fragment-1.3.6\res
+com.example.softwareproject.app-jetified-firebase-common-20.1.1-15 C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\res
+com.example.softwareproject.app-jetified-annotation-experimental-1.1.0-16 C:\Users\melon\.gradle\caches\transforms-3\80f6b73346b8da28a10b311cf1c81578\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.softwareproject.app-jetified-emoji2-views-helper-1.0.0-17 C:\Users\melon\.gradle\caches\transforms-3\861750c9f2ffa76a88d0713834452469\transformed\jetified-emoji2-views-helper-1.0.0\res
+com.example.softwareproject.app-jetified-viewpager2-1.0.0-18 C:\Users\melon\.gradle\caches\transforms-3\92565c646dca23370d0808ba40d4c23a\transformed\jetified-viewpager2-1.0.0\res
+com.example.softwareproject.app-coordinatorlayout-1.1.0-19 C:\Users\melon\.gradle\caches\transforms-3\966d2ce0368fcb7568ed31d45886f15f\transformed\coordinatorlayout-1.1.0\res
+com.example.softwareproject.app-core-1.7.0-20 C:\Users\melon\.gradle\caches\transforms-3\96961894a6055cddd1e8394144aa1a88\transformed\core-1.7.0\res
+com.example.softwareproject.app-material-1.6.1-21 C:\Users\melon\.gradle\caches\transforms-3\96e7d067667b8b61be5efdfeeca2f9af\transformed\material-1.6.1\res
+com.example.softwareproject.app-lifecycle-viewmodel-2.4.1-22 C:\Users\melon\.gradle\caches\transforms-3\991020d979f437014b74eacba7233347\transformed\lifecycle-viewmodel-2.4.1\res
+com.example.softwareproject.app-drawerlayout-1.1.1-23 C:\Users\melon\.gradle\caches\transforms-3\9dc7a85fdd9645c37a96a5638c4e8be7\transformed\drawerlayout-1.1.1\res
+com.example.softwareproject.app-jetified-play-services-base-18.0.1-24 C:\Users\melon\.gradle\caches\transforms-3\c2d5b4282867c49ef8d271cb05545c18\transformed\jetified-play-services-base-18.0.1\res
+com.example.softwareproject.app-jetified-startup-runtime-1.0.0-25 C:\Users\melon\.gradle\caches\transforms-3\c3ddecfea1cbc01c94d837f1c9e15658\transformed\jetified-startup-runtime-1.0.0\res
+com.example.softwareproject.app-jetified-lifecycle-process-2.4.0-26 C:\Users\melon\.gradle\caches\transforms-3\d187c47d37baf576e316bf2058b59422\transformed\jetified-lifecycle-process-2.4.0\res
+com.example.softwareproject.app-jetified-emoji2-1.0.0-27 C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\res
+com.example.softwareproject.app-lifecycle-livedata-core-2.4.1-28 C:\Users\melon\.gradle\caches\transforms-3\e88df9beec06441f7496693cede34b92\transformed\lifecycle-livedata-core-2.4.1\res
+com.example.softwareproject.app-jetified-lifecycle-livedata-core-ktx-2.4.1-29 C:\Users\melon\.gradle\caches\transforms-3\ea2800965e0ccea6cab865c3243e5b8d\transformed\jetified-lifecycle-livedata-core-ktx-2.4.1\res
+com.example.softwareproject.app-jetified-savedstate-1.1.0-30 C:\Users\melon\.gradle\caches\transforms-3\f453d52419d2456359882567a25ad27c\transformed\jetified-savedstate-1.1.0\res
+com.example.softwareproject.app-lifecycle-runtime-2.4.0-31 C:\Users\melon\.gradle\caches\transforms-3\f48e1e21fa314f5baa50997a495d9b17\transformed\lifecycle-runtime-2.4.0\res
+com.example.softwareproject.app-google-services-32 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\generated\res\google-services\release
+com.example.softwareproject.app-pngs-33 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\generated\res\pngs\release
+com.example.softwareproject.app-resValues-34 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\generated\res\resValues\release
+com.example.softwareproject.app-rs-35 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\generated\res\rs\release
+com.example.softwareproject.app-packageReleaseResources-36 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.example.softwareproject.app-packageReleaseResources-37 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.example.softwareproject.app-merged_res-38 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\intermediates\merged_res\release
+com.example.softwareproject.app-main-39 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\res
+com.example.softwareproject.app-release-40 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\release\res

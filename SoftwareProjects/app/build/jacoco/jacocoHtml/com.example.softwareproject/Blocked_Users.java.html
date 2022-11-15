@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Blocked_Users.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Blocked_Users.java</span></div><h1>Blocked_Users.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+import static androidx.test.InstrumentationRegistry.getContext;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+<span class="nc" id="L26">public class Blocked_Users extends AppCompatActivity {</span>
+    LinearLayout l;//layout of fragment
+    String username;//string to store username of the main user running the app
+<span class="nc" id="L29">    UI_Views views = new UI_Views();//instantiating a ui_views class to sut up various view for fragment</span>
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        //setContentView(R.id.Blocked_Users);
+<span class="nc" id="L34">        super.onCreate(savedInstanceState);</span>
+<span class="nc" id="L35">        Intent intent = getIntent();</span>
+<span class="nc" id="L36">        username = intent.getStringExtra(&quot;Username&quot;);//getting the user who is running the app</span>
+
+        //l = (LinearLayout) findViewById(R.id.Blocked_Users);
+<span class="nc" id="L39">        l = new LinearLayout(this);//layout for this activity</span>
+<span class="nc" id="L40">        l.setOrientation(LinearLayout.VERTICAL);//setting orientation to vertical for the linear layout</span>
+<span class="nc" id="L41">        setContentView(l);//setting up l as main layout for fragment</span>
+<span class="nc" id="L42">        l.setBackgroundResource(R.drawable.blue_and_grey_background);//setting background color</span>
+<span class="nc" id="L43">        processUsers();//function to</span>
+<span class="nc" id="L44">    }</span>
+
+    public void processUsers(){
+<span class="nc" id="L47">        l.removeAllViews();</span>
+<span class="nc" id="L48">        TextView t = new TextView(this);//creating anew text view</span>
+<span class="nc" id="L49">        t.setText(&quot;Blocked Users&quot;);//setting text</span>
+<span class="nc" id="L50">        t.setTextSize(20);//text size</span>
+<span class="nc" id="L51">        t.setPadding(350,15,0,30);//padding for text views</span>
+<span class="nc" id="L52">        t.setTextColor(Color.parseColor(&quot;white&quot;));//color of text insode the text view</span>
+<span class="nc" id="L53">        t.setHeight(140);//hight of text view</span>
+<span class="nc" id="L54">        t.setBackgroundColor(Color.parseColor(&quot;#CB17AFEA&quot;));</span>
+<span class="nc" id="L55">        t.setGravity(Gravity.CENTER_VERTICAL);</span>
+<span class="nc" id="L56">        l.addView(t);</span>
+<span class="nc" id="L57">        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(&quot;social&quot;)//firebase re fto get all blacked users</span>
+<span class="nc" id="L58">                .child(username).child(&quot;Blocking&quot;);</span>
+<span class="nc" id="L59">        ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">                if(snapshot.exists()){</span>
+<span class="nc" id="L63">                    int index = 0;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">                    for(DataSnapshot data:snapshot.getChildren()){</span>
+<span class="nc" id="L65">                        TextView df = views.UserList(getApplicationContext(), data.getValue(String.class));</span>
+//                        df.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                Intent intent = new Intent(Blocked_Users.this, user_display.class);
+//                                intent.putExtra(&quot;username&quot;, data.getValue(String.class));
+//                                intent.putExtra(&quot;loggedinuser&quot;,username);
+//                                startActivity(intent);
+//                                finish();
+//                            }
+//                        });
+<span class="nc" id="L76">                        index++;</span>
+<span class="nc" id="L77">                        l.addView(df);</span>
+<span class="nc" id="L78">                        l.addView(views.Divider(getApplicationContext()));</span>
+<span class="nc" id="L79">                    }</span>
+                }
+<span class="nc" id="L81">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L86">            }</span>
+        });
+<span class="nc" id="L88">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
