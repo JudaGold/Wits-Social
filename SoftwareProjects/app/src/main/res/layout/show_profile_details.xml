@@ -31,11 +31,10 @@
             <ImageButton
                 android:id="@+id/btnShowOptions"
                 android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
-                android:background="@color/TextBackgroundTint"
+                android:background="@color/background"
                 android:onClick="showOptionMenu"
                 app:srcCompat="@drawable/ic_menu" />
         </LinearLayout>
@@ -272,58 +271,6 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/logOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/button"
-            android:text="Log Out"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/BlockUserBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/button"
-            android:text="Blocked Users"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"></Button>
-
-        <Button
-            android:id="@+id/DwnBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/button"
-            android:text="Download profile information"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"></Button>
-
-        <Button
-            android:id="@+id/DltBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/button"
-            android:text="Delete Profile"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"></Button>
 
     </LinearLayout>
 </ScrollView>

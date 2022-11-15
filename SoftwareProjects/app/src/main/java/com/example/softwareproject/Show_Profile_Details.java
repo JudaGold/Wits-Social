@@ -53,7 +53,7 @@ public class Show_Profile_Details extends AppCompatActivity implements PopupMenu
     String username;
     ImageView profile_pic;
     long maxId = 0;
-    Button btnAddNewPic, btnSave2, logOut,DownloadInfoBtn,DeleteProfileBtn, BlockedUsersBtn;
+    Button btnAddNewPic, btnSave2;
     Field_Validations fv;
 
     private Uri mImageUri;
@@ -84,7 +84,7 @@ public class Show_Profile_Details extends AppCompatActivity implements PopupMenu
         bio = (EditText) findViewById(R.id.BioText);
         btnAddNewPic = (Button) findViewById(R.id.btnAddNewPic);
         btnSave2 = (Button) findViewById(R.id.btnSave2);
-        logOut = findViewById(R.id.logOut);
+
 
         //getting all user info line 88-117
         Query getUserInfo = bd.orderByChild("username").equalTo(username);
@@ -179,64 +179,6 @@ public class Show_Profile_Details extends AppCompatActivity implements PopupMenu
             }
         });
 
-        //Click listener for logout button and makes sure that automatic log  in will not happen in future
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences preferences = getSharedPreferences("checkBox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember","false");
-                editor.apply();
-
-                Intent intent = new Intent(Show_Profile_Details.this, Main_Activity.class);
-                startActivity(intent);
-            }
-        });
-        //button to see which users you've blocked
-        BlockedUsersBtn = (Button) findViewById(R.id.BlockUserBtn);
-        BlockedUsersBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Show_Profile_Details.this, Blocked_Users.class);
-                intent.putExtra("Username", username);
-                startActivity(intent);
-            }
-        });
-
-        DownloadInfoBtn = (Button) findViewById(R.id.DwnBtn);//instantiating download button
-        DeleteProfileBtn = (Button) findViewById(R.id.DltBtn);//instantiating delete button
-
-        DownloadInfoBtn.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Download_info();//calling function to download users information
-             }
-        });
-        DeleteProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {//calling a prompt
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE://checking if yes is clicked
-                                Download_info();
-                                delete_profile();
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE://checking if no is clicked
-                                delete_profile();
-                                break;
-                        }
-                    }
-                };
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(Show_Profile_Details.this);
-                builder.setMessage("Would you like to first download your data before you delete your profile?")
-                        .setPositiveButton("Absolutely", dialogClickListener)
-                        .setNegativeButton("of course no.", dialogClickListener).show();//asking user a question
-            }
-        });
     }
 
     public void showOptionMenu(View v){
