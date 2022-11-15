@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UI_Views.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">UI_Views.java</span></div><h1>UI_Views.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+import android.widget.VideoView;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+<span class="nc" id="L31">public class UI_Views {</span>
+    Analysis analysis;
+    public TextView createUsernameTextView(Context context,String str) {
+<span class="nc" id="L34">        TextView user = new TextView(context);</span>
+<span class="nc" id="L35">        user.setTextSize(21);</span>
+<span class="nc" id="L36">        user.setText(str);</span>
+<span class="nc" id="L37">        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(852, ViewGroup.LayoutParams.WRAP_CONTENT);</span>
+<span class="nc" id="L38">        user.setLayoutParams(params);</span>
+<span class="nc" id="L39">        user.setTypeface(null,Typeface.BOLD);</span>
+<span class="nc" id="L40">        user.setPadding(10, 5, 30, 0);</span>
+        //user.setTextColor(Color.parseColor(&quot;#FF47FAF3&quot;));
+<span class="nc" id="L42">        user.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L43">        user.setGravity(Gravity.LEFT);</span>
+<span class="nc" id="L44">        return user;</span>
+    }
+
+    public Button userDisplayButtons(Context context, String text){ //follow and block buttons in user display class
+<span class="nc" id="L48">        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 90);</span>
+<span class="nc" id="L49">        buttonParams.gravity = Gravity.CENTER_HORIZONTAL;</span>
+<span class="nc" id="L50">        buttonParams.setMargins(0,0,20,0);</span>
+<span class="nc" id="L51">        Button button = new Button(context);</span>
+<span class="nc" id="L52">        button.setText(text);</span>
+<span class="nc" id="L53">        button.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L54">        button.setLayoutParams(buttonParams);</span>
+<span class="nc" id="L55">        button.setBackgroundColor(Color.parseColor(&quot;#339CBA&quot;));</span>
+<span class="nc" id="L56">        return button;</span>
+    }
+
+    public View Divider(Context context){
+<span class="nc" id="L60">        View viewDivider = new View(context);</span>
+<span class="nc" id="L61">        int dividerHeight = 4;</span>
+<span class="nc" id="L62">        viewDivider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dividerHeight));</span>
+<span class="nc" id="L63">        viewDivider.setBackgroundColor(Color.parseColor(&quot;#A417AFEA&quot;));</span>
+<span class="nc" id="L64">        return  viewDivider;</span>
+    }
+
+    public TextView createNumOfReplies(Context context, String num_of_replies) {
+<span class="nc" id="L68">        TextView textView = new TextView(context);</span>
+<span class="nc" id="L69">        textView.setText(num_of_replies);</span>
+<span class="nc" id="L70">        textView.setTextSize(10);</span>
+<span class="nc" id="L71">        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80, 80);</span>
+<span class="nc" id="L72">        textView.setLayoutParams(params);</span>
+<span class="nc" id="L73">        params.bottomMargin = 4;</span>
+<span class="nc" id="L74">        textView.setPadding(0, 0, 0, 15);</span>
+<span class="nc" id="L75">        textView.setGravity(Gravity.CENTER);</span>
+<span class="nc" id="L76">        textView.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L77">        textView.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_round_chat_bubble_outline_24));</span>
+<span class="nc" id="L78">        return textView;</span>
+    }
+
+
+    public TextView createBodyTextViewHashtag(Context context, SpannableString str) {
+<span class="nc" id="L83">        TextView body = new TextView(context);</span>
+<span class="nc" id="L84">        body.setText(str);</span>
+<span class="nc" id="L85">        body.setTextSize(20);</span>
+<span class="nc" id="L86">        body.setMovementMethod(LinkMovementMethod.getInstance());</span>
+<span class="nc" id="L87">        body.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L88">        body.setPadding(30, 30, 30, 30);</span>
+<span class="nc" id="L89">        body.setMovementMethod(LinkMovementMethod.getInstance());</span>
+<span class="nc" id="L90">        return body;</span>
+    }
+
+    public ImageView previewImageView(Context context){
+<span class="nc" id="L94">        ImageView imgView = new ImageView(context);</span>
+<span class="nc" id="L95">        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);</span>
+<span class="nc" id="L96">        params.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre</span>
+<span class="nc" id="L97">        params.setMargins(10, 20, 10, 20);</span>
+<span class="nc" id="L98">        imgView.setLayoutParams(params);</span>
+<span class="nc" id="L99">        return imgView;</span>
+    }
+
+    public Button createButton(Context context, String media){
+<span class="nc" id="L103">        Button button = new Button(context);</span>
+<span class="nc" id="L104">        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(350, 120);</span>
+<span class="nc" id="L105">        buttonParams.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre</span>
+<span class="nc" id="L106">        buttonParams.setMargins(0,10,0,50);</span>
+<span class="nc" id="L107">        button.setLayoutParams(buttonParams);</span>
+<span class="nc" id="L108">        button.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L109">        button.setBackgroundResource(R.drawable.button_shape_square);</span>
+<span class="nc" id="L110">        button.setText(&quot;Upload &quot; + media);</span>
+
+<span class="nc" id="L112">        return button;</span>
+    }
+
+    public TextView createErrorTextView(Context context,String str) {
+<span class="nc" id="L116">        TextView user = new TextView(context);</span>
+<span class="nc" id="L117">        user.setTextSize(20);</span>
+<span class="nc" id="L118">        user.setHeight(200);</span>
+<span class="nc" id="L119">        user.setBackgroundColor(Color.parseColor(&quot;#403D3D&quot;));</span>
+<span class="nc" id="L120">        user.setText(str);</span>
+<span class="nc" id="L121">        user.setPadding(30, 30, 30, 30);</span>
+<span class="nc" id="L122">        user.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L123">        user.setGravity(Gravity.CENTER);</span>
+<span class="nc" id="L124">        return user;</span>
+
+    }
+
+    public TextView UserList(Context context, String str){
+<span class="nc" id="L129">        TextView df = new TextView(context);</span>
+<span class="nc" id="L130">        df.setText(str);</span>
+<span class="nc" id="L131">        df.setTextSize(20);</span>
+<span class="nc" id="L132">        df.setPadding(30,15,0,30);</span>
+<span class="nc" id="L133">        df.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L134">        df.setHeight(140);</span>
+<span class="nc" id="L135">        df.setBackgroundColor(Color.parseColor(&quot;#F51E1B1B&quot;));</span>
+<span class="nc" id="L136">        df.setGravity(Gravity.CENTER_VERTICAL);</span>
+
+<span class="nc" id="L138">        return df;</span>
+    }
+
+    /*public VideoView createVideoView(Context context) {
+        VideoView videoView = new VideoView(context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
+        params.gravity = Gravity.LEFT; //sets the image at the centre
+        params.setMargins(0, 40, 0, 50);
+        videoView.setLayoutParams(params);
+        //videoView.setScaleType(VideoView.ScaleType.FIT_XY);
+        //this.getImage(activity,str,videoView);
+        return videoView;
+    }*/
+
+    public ImageView createImageView(Context context,Activity activity,String str) {
+<span class="nc" id="L153">        ImageView imageView = new ImageView(context);</span>
+<span class="nc" id="L154">        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);</span>
+<span class="nc" id="L155">        params.gravity = Gravity.LEFT; //sets the image at the centre</span>
+<span class="nc" id="L156">        params.setMargins(0, 40, 0, 50);</span>
+<span class="nc" id="L157">        imageView.setLayoutParams(params);</span>
+        //imageView.setScaleType(ImageView.ScaleType);
+<span class="nc" id="L159">        this.getImage(activity,str,imageView);</span>
+<span class="nc" id="L160">        return imageView;</span>
+    }
+    private void getImage(Activity activity,String URL, ImageView image){
+<span class="nc" id="L163">        Glide.with(activity).load(URL).into(image); /*gets image from the internet and adds</span>
+                                                                                            it to imageView*/
+<span class="nc" id="L165">    }</span>
+
+
+    public TextView createBodyTextView(Context context,Activity activity,String str) {
+<span class="nc" id="L169">        analysis = new Analysis();</span>
+<span class="nc" id="L170">        TextView body = new TextView(context);</span>
+<span class="nc" id="L171">        SpannableString sp = analysis.Create_Link(activity,str);</span>
+<span class="nc" id="L172">        body.setText(sp);</span>
+<span class="nc" id="L173">        body.setTextSize(18);</span>
+<span class="nc" id="L174">        body.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L175">        body.setPadding(40, 30, 30, 30);</span>
+<span class="nc" id="L176">        body.setMovementMethod(LinkMovementMethod.getInstance());</span>
+
+<span class="nc" id="L178">        return body;</span>
+    }
+
+    public TextView createTimeTextView(Context context, String str) {
+<span class="nc" id="L182">        TextView time = new TextView(context);</span>
+<span class="nc" id="L183">        time.setText(str);</span>
+<span class="nc" id="L184">        time.setGravity(Gravity.RIGHT);</span>
+<span class="nc" id="L185">        time.setTextSize(11);</span>
+<span class="nc" id="L186">        time.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+<span class="nc" id="L187">        time.setPadding(0, 20, 0, 20);</span>
+<span class="nc" id="L188">        return time;</span>
+    }
+
+    public LinearLayout createPostLayout(Context context) {
+<span class="nc" id="L192">        LinearLayout post = new LinearLayout(context);</span>
+<span class="nc" id="L193">        post.setOrientation(LinearLayout.VERTICAL);</span>
+<span class="nc" id="L194">        post.setBackground(ContextCompat.getDrawable(context, R.drawable.post_layout));</span>
+<span class="nc" id="L195">        post.setPadding(20, 0, 20, 20);</span>
+<span class="nc" id="L196">        return post;</span>
+    }
+
+    public Space addSpace(Context context) {
+<span class="nc" id="L200">        Space space = new Space(context);</span>
+<span class="nc" id="L201">        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30);</span>
+<span class="nc" id="L202">        space.setLayoutParams(params);</span>
+<span class="nc" id="L203">        return space;</span>
+    }
+
+    public LinearLayout createLinearLayout(Context context){
+<span class="nc" id="L207">        LinearLayout lv = new LinearLayout(context);</span>
+<span class="nc" id="L208">        lv.setOrientation(LinearLayout.HORIZONTAL);</span>
+<span class="nc" id="L209">        return lv;</span>
+    }
+
+    public LinearLayout createHorizontalLayout(Context context) {
+<span class="nc" id="L213">        LinearLayout horizontalLayout = new LinearLayout(context);</span>
+       /* LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150);
+        horizontalLayout.setLayoutParams(params);*/
+<span class="nc" id="L216">        horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);</span>
+<span class="nc" id="L217">        horizontalLayout.setHorizontalGravity(Gravity.RIGHT);</span>
+<span class="nc" id="L218">        horizontalLayout.setPadding(0, 20, 20, 5);</span>
+<span class="nc" id="L219">        return horizontalLayout;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

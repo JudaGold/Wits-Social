@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Display_Posts.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Display_Posts.java</span></div><h1>Display_Posts.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.core.content.res.ResourcesCompat;
+
+import com.google.firebase.database.DataSnapshot;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+
+public class Display_Posts extends LinearLayout {
+    //Declaration of variables
+    LinearLayout l;//layout for post
+    ScrollView sv;//scroll view for posts
+    TextView body,time;//textview for post body
+    ImageView image;//image view to show iages
+    Typeface typeface;//typetace var
+
+
+    public Display_Posts(Context context) {
+        //Assignment to the variables
+<span class="nc" id="L35">        super(context);</span>
+<span class="nc" id="L36">        typeface = ResourcesCompat.getFont(context,R.font.lato_regular);//settiing font for text view</span>
+<span class="nc" id="L37">        setOrientation(LinearLayout.VERTICAL);//setting orientation</span>
+<span class="nc" id="L38">        l = new LinearLayout(context);//creating new layout</span>
+<span class="nc" id="L39">        l.setOrientation(LinearLayout.VERTICAL);//setting orientation</span>
+<span class="nc" id="L40">        this.addView(l);//adding view</span>
+<span class="nc" id="L41">        sv = new ScrollView(context);//adding scroll view</span>
+<span class="nc" id="L42">        l.addView(sv);//adding cscroll</span>
+
+        //Assignment to the variables
+<span class="nc" id="L45">        body = new TextView(context);</span>
+<span class="nc" id="L46">        time = new TextView(context);</span>
+<span class="nc" id="L47">        image = new ImageView(context);</span>
+
+        //Set parameter values
+<span class="nc" id="L50">        body.setTextSize(20);</span>
+<span class="nc" id="L51">        time.setTextSize(15);</span>
+<span class="nc" id="L52">        body.setPadding(30,30,30,30);</span>
+<span class="nc" id="L53">        time.setPadding(30,30,30,30);</span>
+
+        //Assignment to the variables
+<span class="nc" id="L56">        LinearLayout ll = new LinearLayout(context);</span>
+<span class="nc" id="L57">        ll.setOrientation(LinearLayout.VERTICAL);</span>
+<span class="nc" id="L58">        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(1000,5000);</span>
+<span class="nc" id="L59">        ll.setLayoutParams(lp);</span>
+<span class="nc" id="L60">        int with = ll.getWidth();</span>
+
+<span class="nc" id="L62">        body.setTypeface(typeface);</span>
+<span class="nc" id="L63">        time.setTypeface(typeface);</span>
+
+        //Add views to the app
+<span class="nc" id="L66">        ll.addView(body);</span>
+<span class="nc" id="L67">        ll.addView(time);</span>
+<span class="nc" id="L68">        ll.addView(image);</span>
+<span class="nc" id="L69">        l.addView(ll);</span>
+<span class="nc" id="L70">    }</span>
+
+    public void populate(DataSnapshot data){
+<span class="nc" id="L73">        body.setText(data.child(&quot;body&quot;).getValue(String.class));</span>
+<span class="nc" id="L74">        time.setText(data.child(&quot;time&quot;).getValue(String.class));</span>
+
+
+<span class="nc" id="L77">    }</span>
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

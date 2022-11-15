@@ -1,0 +1,360 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.softwareproject"
+4    android:versionCode="1"
+5    android:versionName="1.1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:4:22-64
+12
+13    <uses-feature
+13-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:5:5-98
+14        android:name="android.hardware.camera"
+14-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:5:19-57
+15        android:required="false" />
+15-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:5:58-82
+16
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:6:5-80
+17-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:6:22-78
+18
+19    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+20    <!-- <uses-sdk android:minSdkVersion="14" /> -->
+21    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+21-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:13:5-79
+21-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:13:22-76
+22    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+22-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:26:5-77
+22-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:26:22-74
+23    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+23-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:27:5-68
+23-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:27:22-65
+24    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+24-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:29:5-82
+24-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:29:22-79
+25    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+25-->[com.google.android.gms:play-services-measurement-api:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\54fa485cc88cf4a9d6e56ef3ab2fece8\transformed\jetified-play-services-measurement-api-21.1.0\AndroidManifest.xml:25:5-79
+25-->[com.google.android.gms:play-services-measurement-api:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\54fa485cc88cf4a9d6e56ef3ab2fece8\transformed\jetified-play-services-measurement-api-21.1.0\AndroidManifest.xml:25:22-76
+26    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+26-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:26:5-110
+26-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:26:22-107
+27
+28    <application
+28-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:9:5-61:19
+29        android:allowBackup="true"
+29-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:10:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.7.0] C:\Users\melon\.gradle\caches\transforms-3\96961894a6055cddd1e8394144aa1a88\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+31        android:extractNativeLibs="false"
+32        android:icon="@mipmap/ic_launcher"
+32-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:11:9-43
+33        android:label=""
+33-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:12:9-25
+34        android:roundIcon="@mipmap/ic_launcher_round"
+34-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:13:9-54
+35        android:supportsRtl="true"
+35-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:14:9-35
+36        android:theme="@style/AppTheme" >
+36-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:15:9-40
+37        <activity
+37-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:16:9-18:40
+38            android:name="com.example.softwareproject.Display_Hashtag_Posts"
+38-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:17:13-50
+39            android:exported="false" />
+39-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:18:13-37
+40        <activity
+40-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:19:9-21:40
+41            android:name="com.example.softwareproject.Replies"
+41-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:20:13-36
+42            android:exported="false" />
+42-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:21:13-37
+43        <activity
+43-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:22:9-24:40
+44            android:name="com.example.softwareproject.user_display"
+44-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:23:13-41
+45            android:exported="false" />
+45-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:24:13-37
+46        <activity
+46-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:25:9-27:40
+47            android:name="com.example.softwareproject.Blocked_Users"
+47-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:26:13-42
+48            android:exported="false" />
+48-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:27:13-37
+49        <activity
+49-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:28:9-30:40
+50            android:name="com.example.softwareproject.Add_Profile_Pic"
+50-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:29:13-44
+51            android:exported="false" />
+51-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:30:13-37
+52        <activity
+52-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:31:9-33:40
+53            android:name="com.example.softwareproject.Forgot_Password"
+53-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:32:13-44
+54            android:exported="false" />
+54-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:33:13-37
+55        <activity
+55-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:34:9-36:40
+56            android:name="com.example.softwareproject.Show_Profile_Details"
+56-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:35:13-49
+57            android:exported="false" />
+57-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:36:13-37
+58        <activity
+58-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:37:9-39:40
+59            android:name="com.example.softwareproject.Sign_Up"
+59-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:38:13-36
+60            android:exported="false" />
+60-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:39:13-37
+61        <activity
+61-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:40:9-48:20
+62            android:name="com.example.softwareproject.Main_Activity"
+62-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:41:13-42
+63            android:exported="true" >
+63-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:42:13-36
+64            <intent-filter>
+64-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:43:13-47:29
+65                <action android:name="android.intent.action.MAIN" />
+65-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:44:17-69
+65-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:44:25-66
+66
+67                <category android:name="android.intent.category.LAUNCHER" />
+67-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:46:17-77
+67-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:46:27-74
+68            </intent-filter>
+69        </activity>
+70
+71        <meta-data
+71-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:50:9-52:57
+72            android:name="preloaded_fonts"
+72-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:51:13-43
+73            android:resource="@array/preloaded_fonts" />
+73-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:52:13-54
+74
+75        <service
+75-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:54:9-60:19
+76            android:name="com.example.softwareproject.Push_Notification_Service"
+76-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:55:13-54
+77            android:exported="false" >
+77-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:56:13-37
+78            <intent-filter>
+78-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:57:13-59:29
+79                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+79-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:58:17-78
+79-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:58:25-75
+80            </intent-filter>
+81        </service>
+82
+83        <provider
+83-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\771d4690f28161db8a2deb6fd105e5c7\transformed\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+84            android:name="com.squareup.picasso.PicassoProvider"
+84-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\771d4690f28161db8a2deb6fd105e5c7\transformed\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+85            android:authorities="com.example.softwareproject.com.squareup.picasso"
+85-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\771d4690f28161db8a2deb6fd105e5c7\transformed\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+86            android:exported="false" />
+86-->[com.squareup.picasso:picasso:2.71828] C:\Users\melon\.gradle\caches\transforms-3\771d4690f28161db8a2deb6fd105e5c7\transformed\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+87
+88        <service
+88-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:17:9-23:19
+89            android:name="com.google.firebase.components.ComponentDiscoveryService"
+89-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:18:13-84
+90            android:directBootAware="true"
+90-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:35:13-43
+91            android:exported="false" >
+91-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:19:13-37
+92            <meta-data
+92-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:20:13-22:85
+93                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+93-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:21:17-111
+94                android:value="com.google.firebase.components.ComponentRegistrar" />
+94-->[com.google.firebase:firebase-firestore:24.2.2] C:\Users\melon\.gradle\caches\transforms-3\c1d1653dedcc3ea284986d0285defaf0\transformed\jetified-firebase-firestore-24.2.2\AndroidManifest.xml:22:17-82
+95            <meta-data
+95-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\melon\.gradle\caches\transforms-3\dcb0c07abf5832fa114711da991260ed\transformed\jetified-firebase-storage-20.0.1\AndroidManifest.xml:33:13-35:85
+96                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+96-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\melon\.gradle\caches\transforms-3\dcb0c07abf5832fa114711da991260ed\transformed\jetified-firebase-storage-20.0.1\AndroidManifest.xml:34:17-107
+97                android:value="com.google.firebase.components.ComponentRegistrar" />
+97-->[com.google.firebase:firebase-storage:20.0.1] C:\Users\melon\.gradle\caches\transforms-3\dcb0c07abf5832fa114711da991260ed\transformed\jetified-firebase-storage-20.0.1\AndroidManifest.xml:35:17-82
+98            <meta-data
+98-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:56:13-58:85
+99                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+99-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:57:17-119
+100                android:value="com.google.firebase.components.ComponentRegistrar" />
+100-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:58:17-82
+101            <meta-data
+101-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\2312980309b718584abc2f6097021868\transformed\jetified-firebase-database-20.0.5\AndroidManifest.xml:32:13-34:85
+102                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+102-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\2312980309b718584abc2f6097021868\transformed\jetified-firebase-database-20.0.5\AndroidManifest.xml:33:17-109
+103                android:value="com.google.firebase.components.ComponentRegistrar" />
+103-->[com.google.firebase:firebase-database:20.0.5] C:\Users\melon\.gradle\caches\transforms-3\2312980309b718584abc2f6097021868\transformed\jetified-firebase-database-20.0.5\AndroidManifest.xml:34:17-82
+104            <meta-data
+104-->[com.google.android.gms:play-services-measurement-api:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\54fa485cc88cf4a9d6e56ef3ab2fece8\transformed\jetified-play-services-measurement-api-21.1.0\AndroidManifest.xml:31:13-33:85
+105                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+105-->[com.google.android.gms:play-services-measurement-api:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\54fa485cc88cf4a9d6e56ef3ab2fece8\transformed\jetified-play-services-measurement-api-21.1.0\AndroidManifest.xml:32:17-139
+106                android:value="com.google.firebase.components.ComponentRegistrar" />
+106-->[com.google.android.gms:play-services-measurement-api:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\54fa485cc88cf4a9d6e56ef3ab2fece8\transformed\jetified-play-services-measurement-api-21.1.0\AndroidManifest.xml:33:17-82
+107            <meta-data
+107-->[com.google.firebase:firebase-datatransport:18.1.5] C:\Users\melon\.gradle\caches\transforms-3\12ec1b228a4ad509c5ae492a1094d51a\transformed\jetified-firebase-datatransport-18.1.5\AndroidManifest.xml:28:13-30:85
+108                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+108-->[com.google.firebase:firebase-datatransport:18.1.5] C:\Users\melon\.gradle\caches\transforms-3\12ec1b228a4ad509c5ae492a1094d51a\transformed\jetified-firebase-datatransport-18.1.5\AndroidManifest.xml:29:17-115
+109                android:value="com.google.firebase.components.ComponentRegistrar" />
+109-->[com.google.firebase:firebase-datatransport:18.1.5] C:\Users\melon\.gradle\caches\transforms-3\12ec1b228a4ad509c5ae492a1094d51a\transformed\jetified-firebase-datatransport-18.1.5\AndroidManifest.xml:30:17-82
+110            <meta-data
+110-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\melon\.gradle\caches\transforms-3\cdd0535913187df1f046b24d3b01033a\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:18:13-20:85
+111                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+111-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\melon\.gradle\caches\transforms-3\cdd0535913187df1f046b24d3b01033a\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:19:17-127
+112                android:value="com.google.firebase.components.ComponentRegistrar" />
+112-->[com.google.firebase:firebase-installations:17.0.1] C:\Users\melon\.gradle\caches\transforms-3\cdd0535913187df1f046b24d3b01033a\transformed\jetified-firebase-installations-17.0.1\AndroidManifest.xml:20:17-82
+113        </service>
+114
+115        <receiver
+115-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:32:9-39:20
+116            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+116-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:33:13-78
+117            android:exported="true"
+117-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:34:13-36
+118            android:permission="com.google.android.c2dm.permission.SEND" >
+118-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:35:13-73
+119            <intent-filter>
+119-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:36:13-38:29
+120                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+120-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:37:17-81
+120-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:37:25-78
+121            </intent-filter>
+122        </receiver>
+123        <!--
+124             FirebaseMessagingService performs security checks at runtime,
+125             but set to not exported to explicitly avoid allowing another app to call it.
+126        -->
+127        <service
+127-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:45:9-52:19
+128            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+128-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:46:13-82
+129            android:directBootAware="true"
+129-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:47:13-43
+130            android:exported="false" >
+130-->[com.google.firebase:firebase-messaging:23.0.7] C:\Users\melon\.gradle\caches\transforms-3\09852389f1e668d87d76228315c05d3d\transformed\jetified-firebase-messaging-23.0.7\AndroidManifest.xml:48:13-37
+131            <intent-filter android:priority="-500" >
+131-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:57:13-59:29
+132                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+132-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:58:17-78
+132-->C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\main\AndroidManifest.xml:58:25-75
+133            </intent-filter>
+134        </service>
+135
+136        <activity
+136-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\c2d5b4282867c49ef8d271cb05545c18\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+137            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+137-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\c2d5b4282867c49ef8d271cb05545c18\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+138            android:exported="false"
+138-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\c2d5b4282867c49ef8d271cb05545c18\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+139            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+139-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\melon\.gradle\caches\transforms-3\c2d5b4282867c49ef8d271cb05545c18\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+140
+141        <provider
+141-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:26:9-31:39
+142            android:name="com.google.firebase.provider.FirebaseInitProvider"
+142-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:27:13-77
+143            android:authorities="com.example.softwareproject.firebaseinitprovider"
+143-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:28:13-72
+144            android:directBootAware="true"
+144-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:29:13-43
+145            android:exported="false"
+145-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:30:13-37
+146            android:initOrder="100" />
+146-->[com.google.firebase:firebase-common:20.1.1] C:\Users\melon\.gradle\caches\transforms-3\80734ab8bf21eb2fb8de48e7b998c149\transformed\jetified-firebase-common-20.1.1\AndroidManifest.xml:31:13-36
+147
+148        <receiver
+148-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:29:9-33:20
+149            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+149-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:30:13-85
+150            android:enabled="true"
+150-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:31:13-35
+151            android:exported="false" >
+151-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:32:13-37
+152        </receiver>
+153
+154        <service
+154-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:35:9-38:40
+155            android:name="com.google.android.gms.measurement.AppMeasurementService"
+155-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:36:13-84
+156            android:enabled="true"
+156-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:37:13-35
+157            android:exported="false" />
+157-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:38:13-37
+158        <service
+158-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:39:9-43:72
+159            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+159-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:40:13-87
+160            android:enabled="true"
+160-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:41:13-35
+161            android:exported="false"
+161-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:42:13-37
+162            android:permission="android.permission.BIND_JOB_SERVICE" />
+162-->[com.google.android.gms:play-services-measurement:21.1.0] C:\Users\melon\.gradle\caches\transforms-3\193fceb4ceae2f130c5957843400ff90\transformed\jetified-play-services-measurement-21.1.0\AndroidManifest.xml:43:13-69
+163
+164        <meta-data
+164-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\melon\.gradle\caches\transforms-3\24e27bbd0dc2ae384c375c88a24ba153\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+165            android:name="com.google.android.gms.version"
+165-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\melon\.gradle\caches\transforms-3\24e27bbd0dc2ae384c375c88a24ba153\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+166            android:value="@integer/google_play_services_version" />
+166-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\melon\.gradle\caches\transforms-3\24e27bbd0dc2ae384c375c88a24ba153\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+167
+168        <provider
+168-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+169            android:name="androidx.startup.InitializationProvider"
+169-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+170            android:authorities="com.example.softwareproject.androidx-startup"
+170-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+171            android:exported="false" >
+171-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+172            <meta-data
+172-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+173                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+173-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+174                android:value="androidx.startup" />
+174-->[androidx.emoji2:emoji2:1.0.0] C:\Users\melon\.gradle\caches\transforms-3\da11c5fd83aabbb51f57198af1dc0ece\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+175            <meta-data
+175-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\melon\.gradle\caches\transforms-3\d187c47d37baf576e316bf2058b59422\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+176                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+176-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\melon\.gradle\caches\transforms-3\d187c47d37baf576e316bf2058b59422\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+177                android:value="androidx.startup" />
+177-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\melon\.gradle\caches\transforms-3\d187c47d37baf576e316bf2058b59422\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+178        </provider>
+179
+180        <service
+180-->[com.google.android.datatransport:transport-backend-cct:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\4ff3bcf16f02e80141f5bf05e7579cb1\transformed\jetified-transport-backend-cct-3.1.6\AndroidManifest.xml:29:9-35:19
+181            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+181-->[com.google.android.datatransport:transport-backend-cct:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\4ff3bcf16f02e80141f5bf05e7579cb1\transformed\jetified-transport-backend-cct-3.1.6\AndroidManifest.xml:30:13-103
+182            android:exported="false" >
+182-->[com.google.android.datatransport:transport-backend-cct:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\4ff3bcf16f02e80141f5bf05e7579cb1\transformed\jetified-transport-backend-cct-3.1.6\AndroidManifest.xml:31:13-37
+183            <meta-data
+183-->[com.google.android.datatransport:transport-backend-cct:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\4ff3bcf16f02e80141f5bf05e7579cb1\transformed\jetified-transport-backend-cct-3.1.6\AndroidManifest.xml:32:13-34:39
+184                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+184-->[com.google.android.datatransport:transport-backend-cct:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\4ff3bcf16f02e80141f5bf05e7579cb1\transformed\jetified-transport-backend-cct-3.1.6\AndroidManifest.xml:33:17-94
+185                android:value="cct" />
+185-->[com.google.android.datatransport:transport-backend-cct:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\4ff3bcf16f02e80141f5bf05e7579cb1\transformed\jetified-transport-backend-cct-3.1.6\AndroidManifest.xml:34:17-36
+186        </service>
+187        <service
+187-->[com.google.android.datatransport:transport-runtime:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\2e9a0361d452be2e657509c36fc6d2a3\transformed\jetified-transport-runtime-3.1.6\AndroidManifest.xml:26:9-30:19
+188            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+188-->[com.google.android.datatransport:transport-runtime:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\2e9a0361d452be2e657509c36fc6d2a3\transformed\jetified-transport-runtime-3.1.6\AndroidManifest.xml:27:13-117
+189            android:exported="false"
+189-->[com.google.android.datatransport:transport-runtime:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\2e9a0361d452be2e657509c36fc6d2a3\transformed\jetified-transport-runtime-3.1.6\AndroidManifest.xml:28:13-37
+190            android:permission="android.permission.BIND_JOB_SERVICE" >
+190-->[com.google.android.datatransport:transport-runtime:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\2e9a0361d452be2e657509c36fc6d2a3\transformed\jetified-transport-runtime-3.1.6\AndroidManifest.xml:29:13-69
+191        </service>
+192
+193        <receiver
+193-->[com.google.android.datatransport:transport-runtime:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\2e9a0361d452be2e657509c36fc6d2a3\transformed\jetified-transport-runtime-3.1.6\AndroidManifest.xml:32:9-34:40
+194            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+194-->[com.google.android.datatransport:transport-runtime:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\2e9a0361d452be2e657509c36fc6d2a3\transformed\jetified-transport-runtime-3.1.6\AndroidManifest.xml:33:13-132
+195            android:exported="false" />
+195-->[com.google.android.datatransport:transport-runtime:3.1.6] C:\Users\melon\.gradle\caches\transforms-3\2e9a0361d452be2e657509c36fc6d2a3\transformed\jetified-transport-runtime-3.1.6\AndroidManifest.xml:34:13-37
+196    </application>
+197
+198</manifest>

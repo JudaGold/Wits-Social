@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>fragment_following.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">fragment_following.java</span></div><h1>fragment_following.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.Barrier;
+import androidx.fragment.app.Fragment;
+
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+<span class="nc" id="L26">public class fragment_following extends Fragment {</span>
+    LinearLayout layoutFollowing;
+    String user;
+    String curr_user;
+<span class="nc" id="L30">    UI_Views views = new UI_Views();</span>
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+<span class="nc" id="L35">        View v = inflater.inflate(R.layout.fragment_following, container, false);</span>
+<span class="nc" id="L36">        Intent intent = getActivity().getIntent();</span>
+<span class="nc" id="L37">        user = intent.getStringExtra(&quot;username&quot;);</span>
+<span class="nc" id="L38">        curr_user = intent.getStringExtra(&quot;loggedinuser&quot;);</span>
+<span class="nc" id="L39">        layoutFollowing = (LinearLayout) v.findViewById(R.id.layoutFollowing);</span>
+<span class="nc" id="L40">        processUsers();</span>
+<span class="nc" id="L41">        Search_User_class su = new Search_User_class();</span>
+        
+<span class="nc" id="L43">        return v;</span>
+    }
+
+    public void processUsers(){
+<span class="nc" id="L47">        layoutFollowing.removeAllViews();</span>
+<span class="nc" id="L48">        int index = 0;</span>
+<span class="nc" id="L49">        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(&quot;social&quot;)</span>
+<span class="nc" id="L50">                .child(user).child(&quot;following&quot;);</span>
+<span class="nc" id="L51">        ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                if(snapshot.exists()){</span>
+<span class="nc" id="L55">                    int index = 0;</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                    for(DataSnapshot data:snapshot.getChildren()){</span>
+<span class="nc" id="L57">                        TextView df = views.UserList(getContext(), data.getValue(String.class));</span>
+<span class="nc" id="L58">                        df.setOnClickListener(new View.OnClickListener() {</span>
+                            @Override
+                            public void onClick(View v) {
+<span class="nc" id="L61">                                Intent intent = new Intent(getActivity(), user_display.class);</span>
+<span class="nc" id="L62">                                intent.putExtra(&quot;username&quot;, data.getValue(String.class));</span>
+<span class="nc" id="L63">                                intent.putExtra(&quot;loggedinuser&quot;,curr_user);</span>
+<span class="nc" id="L64">                                getActivity().startActivity(intent);</span>
+<span class="nc" id="L65">                                getActivity().finish();</span>
+<span class="nc" id="L66">                            }</span>
+                        });
+<span class="nc" id="L68">                        index++;</span>
+<span class="nc" id="L69">                        layoutFollowing.addView(df);</span>
+<span class="nc" id="L70">                        layoutFollowing.addView(views.Divider(getContext()));</span>
+<span class="nc" id="L71">                    }</span>
+                }
+<span class="nc" id="L73">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L78">            }</span>
+        });
+<span class="nc" id="L80">        }</span>
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

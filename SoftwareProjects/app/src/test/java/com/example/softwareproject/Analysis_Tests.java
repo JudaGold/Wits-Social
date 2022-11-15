@@ -8,7 +8,8 @@ import android.app.Activity;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.util.Log;
-import android.util.Pair;
+
+import androidx.core.util.Pair;
 
 import org.mockito.Mock;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ public class Analysis_Tests {
     {
         String fake_post_body = "Check out " +
                 "https://courses.ms.wits.ac.za/moodle/login/index.php my friend";
-        ArrayList<Pair<Integer,Integer>> fake_pair_indexes;
+        ArrayList<androidx.core.util.Pair<Integer, Integer>> fake_pair_indexes;
 
         fake_pair_indexes = analysis.Find_link(fake_post_body);
 
@@ -54,25 +55,10 @@ public class Analysis_Tests {
     public void Find_link_findingLink_notFoundLink()
     {
         String fake_post_body = "Check out the moodle website my friend";
-        ArrayList<Pair<Integer,Integer>> fake_pair_indexes;
+        ArrayList<Pair<Integer, Integer>> fake_pair_indexes;
 
         fake_pair_indexes = analysis.Find_link(fake_post_body);
 
         assertEquals(0, fake_pair_indexes.size());
     }
-
-//    @Test
-//    public void create_Link()
-//    {
-//        SpannableString fake_spannable_string_link = new SpannableString("Check out " +
-//                "https://courses.ms.wits.ac.za/moodle/login/index.php my friend");
-//
-////        fake_spannable_string_link = analysis.Create_Link(mockActivity, "Check out " +
-////                "https://courses.ms.wits.ac.za/moodle/login/index.php my friend");
-//
-//        fake_spannable_string_link.setSpan(null,10,61, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//
-//        assertEquals(10, fake_spannable_string_link.getSpanStart(null));
-//        assertEquals(61, fake_spannable_string_link.getSpanEnd(null));
-//    }
 }

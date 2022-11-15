@@ -1,0 +1,1259 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fragment_PostFeed.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Fragment_PostFeed.java</span></div><h1>Fragment_PostFeed.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+
+import static android.app.Activity.RESULT_OK;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.Icon;
+import android.os.Build;
+import android.os.Bundle;
+import android.net.Uri;
+import android.graphics.Bitmap;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
+import android.provider.MediaStore;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.util.Base64;
+import android.util.Log;
+import android.util.Pair;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.Space;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+import android.widget.VideoView;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+
+//import com.google.firebase.messaging.Message;
+
+import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
+import java.util.*;
+
+
+<span class="nc" id="L87">public class Fragment_PostFeed extends Fragment implements PopupMenu.OnMenuItemClickListener {</span>
+    private static final int PICK_IMAGE_REQUEST = 1;
+
+    String ExistingBody, ExistingURL, ExistingTime, ExistingID, ExistingUsername;
+    View v;
+    Uri mImgUri;
+    VideoView videoView;
+    ImageView imgView;
+<span class="nc" id="L95">    Boolean camera = true; //used because 1 built in function is used for many processes</span>
+    EditText popup_post_body;
+
+
+    private StorageReference mstorageRef;//storage ref to store images inside firebase
+    private DatabaseReference mDatabaseRef;//ref to firebase storage
+
+    Button popup_add_post;//button to add a post
+    ImageButton popup_upload_media,pop_up_camera_btn, popup_img_btn, popup_vid_btn, popup_gif_btn;//varirous button to add functionality
+    ImageButton btnadd_post;
+
+
+    private StorageTask mUploadTask;
+    // Task for uploading the profile picture in the database and storage
+
+
+    DatabaseReference reference, reference2, reference3, reference4, reference5;// this the reference of the Firebase database
+<span class="nc" id="L112">    long maxId = 1;</span>
+    String username, account_user;
+    LinearLayout lp, upload_layout;
+    ArrayList&lt;String&gt; all_usernames;/* this will have the user's username
+                                                           and the usernames of the users, the
+                                                            user is following*/
+    ArrayList&lt;String&gt; BlockedUsers;
+    View popup_content, popup_content2;
+<span class="nc" id="L120">    Search_User_class su = new Search_User_class();</span>
+    ArrayList&lt;String&gt; all_fcm_tokens;
+<span class="nc" id="L122">    UI_Views views = new UI_Views();</span>
+<span class="nc" id="L123">    public final int CAMERA_REQUEST = 1888;</span>
+<span class="nc" id="L124">    public final int MY_CAMERA_PERMISSION_CODE = 100;</span>
+<span class="nc" id="L125">    String Image_from_camera = &quot;1&quot;;</span>
+    private static final int pic_int = 123;
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+<span class="nc" id="L132">        v = inflater.inflate(R.layout.fragment__post_feed, container, false);</span>
+<span class="nc" id="L133">        Intent intent = getActivity().getIntent();</span>
+<span class="nc" id="L134">        username = intent.getStringExtra(&quot;username&quot;);</span>
+<span class="nc" id="L135">        account_user = intent.getStringExtra(&quot;loggedinuser&quot;);</span>
+<span class="nc" id="L136">        btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);</span>
+
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (username.equalsIgnoreCase(account_user)) {</span>
+
+<span class="nc" id="L140">            fetch_fcm_tokens();</span>
+<span class="nc" id="L141">            btnadd_post.setOnClickListener(new View.OnClickListener() {</span>
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onClick(View v) {
+<span class="nc" id="L145">                    add_post(false, null, null, null, null);</span>
+<span class="nc" id="L146">                }</span>
+            });
+
+<span class="nc" id="L149">            getFollowing();</span>
+        } else {
+<span class="nc" id="L151">            btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);</span>
+<span class="nc" id="L152">            btnadd_post.setOnClickListener(new View.OnClickListener() {</span>
+                @Override
+                public void onClick(View v) {
+<span class="nc" id="L155">                    Intent intent = new Intent(getActivity(), user_display.class);</span>
+<span class="nc" id="L156">                    intent.putExtra(&quot;username&quot;, account_user);</span>
+<span class="nc" id="L157">                    intent.putExtra(&quot;loggedinuser&quot;, account_user);</span>
+<span class="nc" id="L158">                    getActivity().startActivity(intent);</span>
+<span class="nc" id="L159">                    getActivity().finish();</span>
+<span class="nc" id="L160">                }</span>
+
+            });
+<span class="nc" id="L163">            blocked_user();//checks if user is block, prevent them from seeing posts</span>
+        }
+<span class="nc" id="L165">        return v;</span>
+    }
+
+
+    public void blocked_user() {//function to check is user is currently block by another user
+
+<span class="nc" id="L171">        DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference(&quot;social&quot;).child(username).child(&quot;Blocking&quot;);</span>
+<span class="nc" id="L172">        b_ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L175">                boolean temp = false;</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">                if (snapshot.exists()) {</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">                    for (DataSnapshot ds : snapshot.getChildren()) {</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">                        if (ds.getValue(String.class).equalsIgnoreCase(account_user)) {</span>
+<span class="nc" id="L179">                            temp = true;</span>
+<span class="nc" id="L180">                            break;</span>
+                        }
+<span class="nc" id="L182">                    }</span>
+
+                }
+<span class="nc bnc" id="L185" title="All 2 branches missed.">                if (!temp) {</span>
+<span class="nc" id="L186">                    display_searched_user_posts();</span>
+                }//prevents blocked users from seeing posts
+<span class="nc" id="L188">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L193">            }</span>
+        });
+<span class="nc" id="L195">    }</span>
+
+    //function processes when user clicks camera icon on add post popup
+    public void showUpload() {
+<span class="nc" id="L199">        AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());</span>
+        AlertDialog dialog;
+<span class="nc" id="L201">        final View popup_content2 = getLayoutInflater().inflate(R.layout.popup_upload, null);</span>
+<span class="nc" id="L202">        dialogB.setView(popup_content2);</span>
+<span class="nc" id="L203">        dialog = dialogB.create();</span>
+<span class="nc" id="L204">        dialog.show(); //creates s dialog to open a pop up window and communicate with it</span>
+<span class="nc" id="L205">        pop_up_camera_btn = (ImageButton) popup_content2.findViewById(R.id.CameraBtn);////instantiating  button to use the camera api</span>
+<span class="nc" id="L206">        pop_up_camera_btn.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View v) {
+<span class="nc" id="L209">                camera = true; //user is using the camera instead of uploading</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">                if (popup_content2.getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {</span>
+<span class="nc" id="L211">                    Intent Camera_Intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);</span>
+<span class="nc" id="L212">                    startActivityForResult(Camera_Intent, pic_int);//overriden function to store picture from camera</span>
+<span class="nc" id="L213">                    dialog.dismiss();</span>
+
+<span class="nc" id="L215">                } else {</span>
+<span class="nc" id="L216">                    Toast.makeText(popup_content2.getContext(), &quot;Camera not available&quot;, Toast.LENGTH_SHORT).show();</span>
+                }
+<span class="nc" id="L218">            }</span>
+        });
+
+
+<span class="nc" id="L222">        popup_vid_btn = (ImageButton) popup_content2.findViewById(R.id.vidBtn);</span>
+<span class="nc" id="L223">        popup_vid_btn.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+
+                /*videoView = views.createVideoView(popup_content2.getContext());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1100);
+                params.gravity = Gravity.CENTER_HORIZONTAL; //sets the image at the centre
+                params.setMargins(0, 40, 0, 50);
+                videoView.setLayoutParams(params);*/
+<span class="nc" id="L232">            }</span>
+        });
+
+<span class="nc" id="L235">        popup_gif_btn = (ImageButton) popup_content2.findViewById(R.id.gifBtn);</span>
+<span class="nc" id="L236">        popup_gif_btn.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+<span class="nc" id="L239">                mstorageRef = FirebaseStorage.getInstance().getReference(&quot;upload_gifs&quot;);</span>
+<span class="nc" id="L240">                camera = false; //user wants to upload media instead of taking a picture</span>
+<span class="nc" id="L241">                upload_layout = (LinearLayout) popup_content2.findViewById(R.id.upload_layout);</span>
+
+                //creates an image view to preview the image/gif before uploading
+<span class="nc" id="L244">                imgView = views.previewImageView(popup_content2.getContext());</span>
+
+                //creates upload button so the user uploads the image after preview
+                // media parameter shows what media you uploading so the button text is &quot;upload&quot; + media
+                //eg here is &quot;upload gif&quot;
+<span class="nc" id="L249">                Button button = views.createButton(popup_content2.getContext(), &quot;gif&quot;);</span>
+<span class="nc" id="L250">                openFileUser(&quot;image/gif&quot;);</span>
+<span class="nc" id="L251">                upload_layout.addView(imgView);</span>
+<span class="nc" id="L252">                upload_layout.setBackgroundResource(R.drawable.button_shape_square);</span>
+<span class="nc" id="L253">                upload_layout.addView(button);</span>
+
+<span class="nc" id="L255">                button.setOnClickListener(new View.OnClickListener() {</span>
+                    @Override
+                    public void onClick(View view) {
+<span class="nc bnc" id="L258" title="All 4 branches missed.">                        if (mUploadTask != null &amp;&amp; mUploadTask.isInProgress()) {</span>
+                            // Displaying message when the upload is progress
+                        } else {
+<span class="nc" id="L261">                            uploadFile();</span>
+<span class="nc" id="L262">                            dialog.dismiss();</span>
+                        }
+<span class="nc" id="L264">                    }</span>
+                });
+<span class="nc" id="L266">            }</span>
+        });
+
+        //code is same as above
+<span class="nc" id="L270">        popup_img_btn = (ImageButton) popup_content2.findViewById(R.id.imgBtn);</span>
+<span class="nc" id="L271">        popup_img_btn.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+<span class="nc" id="L274">                mstorageRef = FirebaseStorage.getInstance().getReference(&quot;Post_pictures&quot;);</span>
+<span class="nc" id="L275">                camera = false;</span>
+<span class="nc" id="L276">                upload_layout = (LinearLayout) popup_content2.findViewById(R.id.upload_layout);</span>
+<span class="nc" id="L277">                imgView = views.previewImageView(popup_content2.getContext());</span>
+
+<span class="nc" id="L279">                Button button = views.createButton(popup_content2.getContext(), &quot;image&quot;);</span>
+<span class="nc" id="L280">                openFileUser(&quot;image/*&quot;);</span>
+<span class="nc" id="L281">                upload_layout.addView(imgView);</span>
+<span class="nc" id="L282">                upload_layout.setBackgroundResource(R.drawable.button_shape_square);</span>
+<span class="nc" id="L283">                upload_layout.addView(button);</span>
+
+<span class="nc" id="L285">                button.setOnClickListener(new View.OnClickListener() {</span>
+                    @Override
+                    public void onClick(View view) {
+<span class="nc bnc" id="L288" title="All 4 branches missed.">                        if (mUploadTask != null &amp;&amp; mUploadTask.isInProgress()) {</span>
+<span class="nc" id="L289">                            Toast.makeText(popup_content2.getContext(), &quot;Upload in progress&quot;, Toast.LENGTH_SHORT).show();</span>
+                            // Displaying message when the upload is progress
+                        } else {
+<span class="nc" id="L292">                            uploadFile();</span>
+<span class="nc" id="L293">                            dialog.dismiss();</span>
+                        }
+<span class="nc" id="L295">                    }</span>
+                });
+<span class="nc" id="L297">            }</span>
+        });
+<span class="nc" id="L299">    }</span>
+
+    public void uploadFile() {
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        if (mImgUri != null) { //checks if media was chosen</span>
+<span class="nc" id="L303">            StorageReference fileReference = mstorageRef.child(System.currentTimeMillis() + &quot;.&quot; + getFileExtension(mImgUri));</span>
+<span class="nc" id="L304">            mUploadTask = fileReference.putFile(mImgUri)</span>
+<span class="nc" id="L305">                    .addOnSuccessListener(new OnSuccessListener&lt;UploadTask.TaskSnapshot&gt;() {</span>
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+<span class="nc" id="L308">                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener&lt;Uri&gt;() {</span>
+
+                                @Override
+                                public void onSuccess(Uri uri) {
+<span class="nc" id="L312">                                    String body = &quot;&quot;;</span>
+<span class="nc" id="L313">                                    String image_url = uri.toString();// Set the image's uri in the database</span>
+<span class="nc" id="L314">                                    Date date = new Date();</span>
+<span class="nc" id="L315">                                    SimpleDateFormat format = new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm:ss&quot;);</span>
+<span class="nc" id="L316">                                    String t = (format.format(date));</span>
+<span class="nc" id="L317">                                    mDatabaseRef = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;).child(username);</span>
+<span class="nc" id="L318">                                    mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                                        @RequiresApi(api = Build.VERSION_CODES.O)
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Post post;
+<span class="nc" id="L323">                                            long maxId = 1;</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">                                            if (snapshot.exists()) {</span>
+<span class="nc" id="L325">                                                maxId = (snapshot.getChildrenCount()) + 1;</span>
+                                            }
+<span class="nc" id="L327">                                            post = new Post(&quot;&quot; + maxId, body.trim(), image_url, t);</span>
+<span class="nc" id="L328">                                            mDatabaseRef.child(String.valueOf(maxId)).setValue(post);</span>
+                                            // Showing a message when the photo is done uploading
+<span class="nc" id="L330">                                            fetchPosts(all_usernames);</span>
+<span class="nc" id="L331">                                        }</span>
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L336">                                        }</span>
+                                    });
+<span class="nc" id="L338">                                }</span>
+                            });
+<span class="nc" id="L340">                        }</span>
+                    })
+<span class="nc" id="L342">                    .addOnFailureListener(new OnFailureListener() {</span>
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+<span class="nc" id="L345">                            Toast.makeText(popup_content2.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();</span>
+<span class="nc" id="L346">                        }</span>
+                    });
+        }
+<span class="nc" id="L349">    }</span>
+
+    //lets the user pick a file from their device storage
+    private void openFileUser(String type) {
+<span class="nc" id="L353">        Intent intent = new Intent();</span>
+<span class="nc" id="L354">        intent.setType(type); //sets the type of file the user must select</span>
+<span class="nc" id="L355">        intent.setAction(Intent.ACTION_GET_CONTENT);</span>
+<span class="nc" id="L356">        startActivityForResult(intent, PICK_IMAGE_REQUEST);</span>
+<span class="nc" id="L357">    }</span>
+
+    private String getFileExtension(Uri uri) {//fucntion to get the compression type from the picture the user tool
+<span class="nc" id="L360">        ContentResolver cR = getContext().getContentResolver();</span>
+<span class="nc" id="L361">        MimeTypeMap mime = MimeTypeMap.getSingleton();</span>
+<span class="nc" id="L362">        return mime.getExtensionFromMimeType(cR.getType(uri));//return string to upload.</span>
+    }
+
+    public Uri convert_bitmap(Context context, Bitmap bitmap) {
+<span class="nc" id="L366">        ByteArrayOutputStream bytes = new ByteArrayOutputStream();</span>
+<span class="nc" id="L367">        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);</span>
+<span class="nc" id="L368">        String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bitmap, &quot;Title&quot;, null);</span>
+<span class="nc" id="L369">        return Uri.parse(path);</span>
+    }
+
+    // This method will load the chosen image onto the image view
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+<span class="nc" id="L375">        super.onActivityResult(requestCode, resultCode, data);</span>
+<span class="nc bnc" id="L376" title="All 2 branches missed.">        if (camera) {</span>
+<span class="nc bnc" id="L377" title="All 6 branches missed.">            if (requestCode == pic_int &amp;&amp; (data != null) &amp;&amp; data.getExtras().get(&quot;data&quot;) != null) { //checking if app has permission to use camera</span>
+<span class="nc" id="L378">                Bitmap photo = (Bitmap) data.getExtras().get(&quot;data&quot;);//storing the image in a bitmap</span>
+<span class="nc" id="L379">                ByteArrayOutputStream baos = new ByteArrayOutputStream();//instantiating a bitmap stream to use to convert to a string button</span>
+<span class="nc" id="L380">                photo.compress(Bitmap.CompressFormat.PNG, 100, baos);//rearranging the bitmap into a picture form</span>
+<span class="nc" id="L381">                Uri temp = convert_bitmap(getContext(), photo);//converting bitmap to uri to store in firebase</span>
+<span class="nc" id="L382">                StorageReference dbref = FirebaseStorage.getInstance().getReference(&quot;Post_pictures&quot;)//ref to store image</span>
+<span class="nc" id="L383">                        .child(System.currentTimeMillis() + &quot;.&quot; + getFileExtension(temp));</span>
+<span class="nc" id="L384">                StorageTask mUploadTask = dbref.putFile(temp).addOnSuccessListener(new OnSuccessListener&lt;UploadTask.TaskSnapshot&gt;() {</span>
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+<span class="nc" id="L387">                        dbref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener&lt;Uri&gt;() {</span>
+                            @Override
+                            public void onSuccess(Uri uri) {
+<span class="nc" id="L390">                                String body = &quot;&quot;;</span>
+<span class="nc" id="L391">                                String image_url = uri.toString();</span>
+<span class="nc" id="L392">                                Date date = new Date();</span>
+<span class="nc" id="L393">                                SimpleDateFormat format = new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm:ss&quot;);</span>
+<span class="nc" id="L394">                                String t = (format.format(date));</span>
+<span class="nc" id="L395">                                reference5 = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;).child(username);</span>
+<span class="nc" id="L396">                                reference5.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                                    @RequiresApi(api = Build.VERSION_CODES.O)
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        Post post;
+<span class="nc" id="L401">                                        long maxId = 1;</span>
+<span class="nc bnc" id="L402" title="All 2 branches missed.">                                        if (snapshot.exists()) {</span>
+<span class="nc" id="L403">                                            maxId = (snapshot.getChildrenCount()) + 1;</span>
+                                        }
+<span class="nc" id="L405">                                        post = new Post(&quot;&quot; + maxId, body.trim(), image_url, t);</span>
+<span class="nc" id="L406">                                        reference5.child(String.valueOf(maxId)).setValue(post);</span>
+<span class="nc" id="L407">                                        fetchPosts(all_usernames);</span>
+<span class="nc" id="L408">                                    }</span>
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L413">                                    }</span>
+                                });
+
+<span class="nc" id="L416">                            }</span>
+                        });
+<span class="nc" id="L418">                    }</span>
+<span class="nc" id="L419">                }).addOnFailureListener(new OnFailureListener() {</span>
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+<span class="nc" id="L422">                        Log.d(&quot;ERROR&quot;, &quot;did not work&quot;);</span>
+<span class="nc" id="L423">                    }</span>
+                });
+<span class="nc" id="L425">            }</span>
+        } else {
+<span class="nc bnc" id="L427" title="All 6 branches missed.">            if ((requestCode == PICK_IMAGE_REQUEST) &amp;&amp; (resultCode == RESULT_OK) //checks if app is allowed to use the file</span>
+<span class="nc bnc" id="L428" title="All 2 branches missed.">                    &amp;&amp; (data != null) &amp;&amp; (data.getData() != null)) { //checks if a file was chosen</span>
+<span class="nc" id="L429">                mImgUri = data.getData();//gets data of the media selected</span>
+<span class="nc" id="L430">                Glide.with(this).load(mImgUri).into(imgView); //uses glide so you can also upload gifs</span>
+            }                                                           //and the gif will play
+        }
+
+<span class="nc" id="L434">    }</span>
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void add_post(Boolean edit, String body, String URL, String Id, String time) {
+
+<span class="nc" id="L439">        AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());</span>
+        AlertDialog dialog;
+<span class="nc" id="L441">        popup_content = getLayoutInflater().inflate(R.layout.popup_post, null);</span>
+<span class="nc" id="L442">        popup_post_body = (EditText) popup_content.findViewById(R.id.post_body);</span>
+<span class="nc" id="L443">        popup_add_post = (Button) popup_content.findViewById(R.id.btn_post);</span>
+<span class="nc" id="L444">        popup_upload_media = (ImageButton) popup_content.findViewById(R.id.btn_upload);</span>
+<span class="nc" id="L445">        popup_upload_media.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+<span class="nc" id="L448">                showUpload();</span>
+<span class="nc" id="L449">            }</span>
+
+        });
+
+<span class="nc bnc" id="L453" title="All 2 branches missed.">        if (edit) {</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">            if (URL.equalsIgnoreCase(&quot;&quot;)) {</span>
+<span class="nc" id="L455">                popup_post_body.setText(body);</span>
+            } else {
+<span class="nc" id="L457">                popup_post_body.setText(URL);</span>
+            }
+<span class="nc" id="L459">            popup_add_post.setText(&quot;Edit Post&quot;);</span>
+            try {
+<span class="nc" id="L461">                reference2 = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;).child(username).child(Id).child(&quot;Edits&quot;);</span>
+<span class="nc" id="L462">                reference2.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L466">                        Post editing = null;</span>
+<span class="nc" id="L467">                        maxId = (snapshot.getChildrenCount()) + 1;</span>
+<span class="nc" id="L468">                        editing = new Post(&quot;&quot; + maxId, body.trim(), URL, time);</span>
+<span class="nc" id="L469">                        reference2.child(String.valueOf(maxId)).setValue(editing);</span>
+<span class="nc" id="L470">                    }</span>
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L475">                    }</span>
+                });
+<span class="nc" id="L477">            } catch (Exception e) {</span>
+<span class="nc" id="L478">            }</span>
+        }
+<span class="nc" id="L480">        dialogB.setView(popup_content);</span>
+<span class="nc" id="L481">        dialog = dialogB.create();</span>
+<span class="nc" id="L482">        dialog.show();</span>
+<span class="nc" id="L483">        popup_add_post.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    String body, image_url;
+<span class="nc" id="L489">                    String post = popup_post_body.getText().toString();</span>
+<span class="nc bnc" id="L490" title="All 2 branches missed.">                    if (post.substring(0, 4).equalsIgnoreCase(&quot;http&quot;)) {</span>
+<span class="nc" id="L491">                        body = &quot;&quot;;</span>
+<span class="nc" id="L492">                        image_url = post;</span>
+                    } else {
+<span class="nc" id="L494">                        body = post;</span>
+<span class="nc" id="L495">                        image_url = &quot;&quot;;</span>
+                    }
+
+<span class="nc" id="L498">                    Date date = new Date();</span>
+<span class="nc" id="L499">                    SimpleDateFormat format = new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm:ss&quot;);</span>
+<span class="nc" id="L500">                    String t = (format.format(date));</span>
+<span class="nc" id="L501">                    reference = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;).child(username);</span>
+<span class="nc" id="L502">                    reference.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L505">                            Post post = null;</span>
+<span class="nc bnc" id="L506" title="All 2 branches missed.">                            if (edit) {</span>
+<span class="nc" id="L507">                                Map&lt;String, Object&gt; dictionary = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L508">                                dictionary.put(&quot;body&quot;, body.trim());</span>
+<span class="nc" id="L509">                                dictionary.put(&quot;time&quot;, t);</span>
+<span class="nc" id="L510">                                dictionary.put(&quot;post_image_url&quot;, image_url);</span>
+                                //post = new Post(&quot;&quot;+Id,body.trim(), image_url, t);
+<span class="nc" id="L512">                                reference.child(Id).updateChildren(dictionary);</span>
+<span class="nc" id="L513">                            } else {</span>
+<span class="nc bnc" id="L514" title="All 2 branches missed.">                                if (snapshot.exists()) {</span>
+<span class="nc" id="L515">                                    maxId = (snapshot.getChildrenCount()) + 1;</span>
+                                }
+<span class="nc" id="L517">                                post = new Post(&quot;&quot; + maxId, body.trim(), image_url, t);</span>
+<span class="nc" id="L518">                                reference.child(String.valueOf(maxId)).setValue(post);</span>
+                            }
+<span class="nc" id="L520">                            dialog.dismiss();</span>
+<span class="nc" id="L521">                            fetchPosts(all_usernames);</span>
+<span class="nc" id="L522">                        }</span>
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L527">                        }</span>
+                    });
+
+<span class="nc bnc" id="L530" title="All 2 branches missed.">                    for (String fcm_token : all_fcm_tokens) {</span>
+<span class="nc" id="L531">                        FcmNotificationsSender notificationsSender = new FcmNotificationsSender(fcm_token, username, body, getContext());</span>
+<span class="nc" id="L532">                        notificationsSender.SendNotifications();</span>
+<span class="nc" id="L533">                    }</span>
+<span class="nc" id="L534">                } catch (Exception e) {</span>
+<span class="nc" id="L535">                }</span>
+
+<span class="nc" id="L537">                String body = popup_post_body.getText().toString();</span>
+<span class="nc" id="L538">                boolean hashtag = checkHashtag(body);</span>
+
+<span class="nc bnc" id="L540" title="All 2 branches missed.">                if (hashtag) {</span>
+<span class="nc" id="L541">                    int index = body.indexOf(&quot;#&quot;); // looks for the position of # in string</span>
+<span class="nc" id="L542">                    int endIndex = body.length();</span>
+<span class="nc" id="L543">                    String tag = body.substring(index + 1, endIndex);</span>
+
+                    try {
+                        String image_url;
+<span class="nc bnc" id="L547" title="All 2 branches missed.">                        if (body.substring(0, 4).equalsIgnoreCase(&quot;http&quot;)) {</span>
+<span class="nc" id="L548">                            image_url = body;</span>
+                        } else {
+<span class="nc" id="L550">                            image_url = &quot;&quot;;</span>
+                        }
+<span class="nc" id="L552">                        Date date = new Date();</span>
+<span class="nc" id="L553">                        SimpleDateFormat format = new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm:ss&quot;);</span>
+<span class="nc" id="L554">                        String t = (format.format(date));</span>
+<span class="nc" id="L555">                        reference4 = FirebaseDatabase.getInstance().getReference(&quot;Hashtags&quot;).child(tag.trim());</span>
+<span class="nc" id="L556">                        reference4.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L559">                                long max_id = 1;</span>
+                                Post post;
+<span class="nc bnc" id="L561" title="All 2 branches missed.">                                if (snapshot.exists()) {</span>
+<span class="nc" id="L562">                                    max_id = (snapshot.getChildrenCount()) + 1;</span>
+                                }
+<span class="nc" id="L564">                                post = new Post(&quot;&quot; + max_id, username, body.trim(), image_url, t);</span>
+<span class="nc" id="L565">                                reference4.child(String.valueOf(max_id)).setValue(post);</span>
+<span class="nc" id="L566">                            }</span>
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L571">                            }</span>
+                        });
+<span class="nc" id="L573">                    } catch (Exception e) {</span>
+
+<span class="nc" id="L575">                    }</span>
+                }
+<span class="nc" id="L577">            }</span>
+        });
+
+<span class="nc" id="L580">    }</span>
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void fetchPosts(ArrayList&lt;String&gt; following) {
+<span class="nc" id="L585">        ArrayList&lt;Post&gt; Posts = new ArrayList&lt;Post&gt;();</span>
+
+<span class="nc bnc" id="L587" title="All 2 branches missed.">        for (String usernames : following) {</span>
+<span class="nc" id="L588">            reference = FirebaseDatabase.getInstance().getReference().child(&quot;Posts&quot;).child(usernames);</span>
+<span class="nc" id="L589">            Query following_posts = reference.orderByChild(String.valueOf(maxId));</span>
+<span class="nc" id="L590">            following_posts.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L593" title="All 2 branches missed.">                    if (snapshot.exists()) {</span>
+<span class="nc bnc" id="L594" title="All 2 branches missed.">                        for (DataSnapshot data : snapshot.getChildren()) {</span>
+                            try {
+<span class="nc" id="L596">                                String id = data.getKey();</span>
+<span class="nc" id="L597">                                String b = data.child(&quot;body&quot;).getValue(String.class);</span>
+<span class="nc" id="L598">                                String t = data.child(&quot;time&quot;).getValue(String.class);</span>
+<span class="nc" id="L599">                                String URL = data.child(&quot;post_image_url&quot;).getValue(String.class);</span>
+<span class="nc" id="L600">                                String num_of_replies = data.child(&quot;Replies&quot;).getChildrenCount() + &quot;&quot;;</span>
+<span class="nc" id="L601">                                Post post = new Post(id, b, URL, t);</span>
+<span class="nc" id="L602">                                post.setNum_of_replies(num_of_replies);</span>
+<span class="nc" id="L603">                                post.setUsername(usernames);</span>
+                                try {
+<span class="nc" id="L605">                                    post.convertDate();</span>
+<span class="nc" id="L606">                                } catch (ParseException e) {</span>
+<span class="nc" id="L607">                                    e.printStackTrace();</span>
+<span class="nc" id="L608">                                }</span>
+<span class="nc" id="L609">                                Posts.add(post);</span>
+<span class="nc" id="L610">                            } catch (Exception e) {</span>
+<span class="nc" id="L611">                            }</span>
+<span class="nc" id="L612">                        }</span>
+                    }
+<span class="nc" id="L614">                }</span>
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L619">                }</span>
+            });
+<span class="nc" id="L621">        }</span>
+<span class="nc" id="L622">        reference = FirebaseDatabase.getInstance().getReference().child(&quot;Replies&quot;).child(username);</span>
+<span class="nc" id="L623">        Query replies = reference.orderByChild(String.valueOf(maxId));</span>
+<span class="nc" id="L624">        replies.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L627" title="All 2 branches missed.">                for (DataSnapshot data : snapshot.getChildren()) {</span>
+                    try {
+<span class="nc" id="L629">                        String id = data.getKey();</span>
+<span class="nc" id="L630">                        String b = data.child(&quot;body&quot;).getValue(String.class);</span>
+<span class="nc" id="L631">                        String t = data.child(&quot;time&quot;).getValue(String.class);</span>
+<span class="nc" id="L632">                        String URL = data.child(&quot;post_image_url&quot;).getValue(String.class);</span>
+<span class="nc" id="L633">                        String username_post = data.child(&quot;username&quot;).getValue(String.class);</span>
+<span class="nc" id="L634">                        Post post = new Post(id, b, URL, t);</span>
+<span class="nc" id="L635">                        post.setUsername(&quot;Me replied to &quot; + username_post);</span>
+                        try {
+<span class="nc" id="L637">                            post.convertDate();</span>
+<span class="nc" id="L638">                        } catch (ParseException e) {</span>
+<span class="nc" id="L639">                            e.printStackTrace();</span>
+<span class="nc" id="L640">                        }</span>
+<span class="nc" id="L641">                        Posts.add(post);</span>
+<span class="nc" id="L642">                    } catch (Exception e) {</span>
+<span class="nc" id="L643">                    }</span>
+<span class="nc" id="L644">                }</span>
+<span class="nc" id="L645">                Posts.sort(new DateComparator());</span>
+<span class="nc" id="L646">                display_posts(Posts, false, false);</span>
+<span class="nc" id="L647">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L652">            }</span>
+        });
+<span class="nc" id="L654">    }</span>
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    void display_posts(ArrayList&lt;Post&gt; Posts, Boolean Edits, Boolean is_searched_user) {
+<span class="nc" id="L658">        btnadd_post = (ImageButton) v.findViewById(R.id.btn_add_post);</span>
+
+<span class="nc bnc" id="L660" title="All 2 branches missed.">        if (Posts.size() &gt; 0) {</span>
+<span class="nc bnc" id="L661" title="All 2 branches missed.">            if (Edits) {</span>
+<span class="nc" id="L662">                btnadd_post.setImageResource(R.drawable.ic_baseline_home_24);</span>
+<span class="nc" id="L663">                btnadd_post.setOnClickListener(new View.OnClickListener() {</span>
+                    @Override
+                    public void onClick(View v) {
+<span class="nc" id="L666">                        Intent intent = new Intent(getActivity(), user_display.class);</span>
+<span class="nc" id="L667">                        intent.putExtra(&quot;username&quot;, account_user);</span>
+<span class="nc" id="L668">                        intent.putExtra(&quot;loggedinuser&quot;, account_user);</span>
+<span class="nc" id="L669">                        getActivity().startActivity(intent);</span>
+<span class="nc" id="L670">                        getActivity().finish();</span>
+<span class="nc" id="L671">                    }</span>
+                });
+            }
+
+<span class="nc" id="L675">            lp.setOrientation(LinearLayout.VERTICAL);</span>
+<span class="nc" id="L676">            lp.removeAllViews();</span>
+<span class="nc bnc" id="L677" title="All 2 branches missed.">            for (Post post : Posts) {</span>
+                try {
+<span class="nc" id="L679">                    String uid = post.getID();</span>
+<span class="nc" id="L680">                    String post_body = post.getBody();</span>
+<span class="nc" id="L681">                    String post_time = post.getTime().substring(0, 10);</span>
+<span class="nc" id="L682">                    String URL = post.getPost_image_url();</span>
+<span class="nc" id="L683">                    String ID = post.getID();</span>
+<span class="nc" id="L684">                    String username_post = post.getUsername();</span>
+<span class="nc" id="L685">                    String num_of_replies = post.getNum_of_replies();</span>
+
+<span class="nc" id="L687">                    LinearLayout hl = views.createHorizontalLayout(getContext()); //creating horizontal linear</span>
+                    // layout for username and time
+<span class="nc" id="L689">                    hl.setHorizontalGravity(Gravity.TOP); //reseting the gravity that was defined</span>
+                    TextView usernameView;
+<span class="nc" id="L691">                    TextView body = null;</span>
+
+<span class="nc" id="L693">                    boolean account_main = false;//checking for logged in user</span>
+<span class="nc bnc" id="L694" title="All 2 branches missed.">                    if (!is_searched_user) {</span>
+<span class="nc bnc" id="L695" title="All 2 branches missed.">                        if (username_post.equalsIgnoreCase(username)) {</span>
+<span class="nc" id="L696">                            usernameView = views.createUsernameTextView(getContext(), &quot;me&quot;);</span>
+<span class="nc" id="L697">                            account_main = true;</span>
+                        } else {
+<span class="nc" id="L699">                            usernameView = views.createUsernameTextView(getContext(), username_post);</span>
+                        }
+                    } else {//whats the point of this, till line 340
+<span class="nc bnc" id="L702" title="All 2 branches missed.">                        if (username_post.equalsIgnoreCase(account_user)) {</span>
+<span class="nc" id="L703">                            usernameView = views.createUsernameTextView(getContext(), &quot;me&quot;);</span>
+<span class="nc" id="L704">                            account_main = true;</span>
+                        } else {
+<span class="nc" id="L706">                            usernameView = views.createUsernameTextView(getContext(), username_post);</span>
+                        }
+                    }
+
+<span class="nc bnc" id="L710" title="All 2 branches missed.">                    if (username_post.length() &gt; 2) {</span>
+<span class="nc bnc" id="L711" title="All 2 branches missed.">                        if (username_post.substring(0, 2).equalsIgnoreCase(&quot;Me&quot;)) {</span>
+<span class="nc" id="L712">                            account_main = true;</span>
+                        }
+                    }
+
+<span class="nc" id="L716">                    boolean hashtag = checkHashtag(post_body);</span>
+<span class="nc bnc" id="L717" title="All 2 branches missed.">                    if (hashtag) {</span>
+<span class="nc" id="L718">                        String new_post_body = post_body + &quot; &quot;;</span>
+<span class="nc" id="L719">                        SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username_post);</span>
+<span class="nc" id="L720">                        body = views.createBodyTextViewHashtag(getContext(), spanString);</span>
+<span class="nc" id="L721">                    } else {</span>
+<span class="nc" id="L722">                        body = views.createBodyTextView(getContext(), getActivity(), &quot; &quot; + post_body);</span>
+                    }
+
+<span class="nc" id="L725">                    TextView time = views.createTimeTextView(getContext(), post_time);</span>
+
+<span class="nc" id="L727">                    LinearLayout postview = views.createPostLayout(getContext());</span>
+
+                    //adding username and time textview to the horizontal layout
+<span class="nc" id="L730">                    hl.addView(usernameView);</span>
+<span class="nc" id="L731">                    hl.addView(time);</span>
+<span class="nc" id="L732">                    postview.addView(hl);</span>
+
+<span class="nc bnc" id="L734" title="All 2 branches missed.">                    if (URL.length() &gt;= 1) {</span>
+<span class="nc" id="L735">                        postview.addView(views.createImageView(getContext(), getActivity(), URL));</span>
+                    } else {
+<span class="nc" id="L737">                        postview.addView(body);</span>
+                    }
+
+<span class="nc" id="L740">                    ToggleButton favouritesButton = createFavouriteToggleButton(username, username_post, ID);</span>
+<span class="nc" id="L741">                    LinearLayout horizontalLayout = views.createHorizontalLayout(getContext());</span>
+
+
+<span class="nc bnc" id="L744" title="All 2 branches missed.">                    if (!account_main) {</span>
+
+<span class="nc" id="L746">                        DatabaseReference like_ref = FirebaseDatabase.getInstance().getReference(&quot;FavouritePosts&quot;).child(username).child(username_post)</span>
+<span class="nc" id="L747">                                .child(&quot;ID&quot;);</span>
+<span class="nc" id="L748">                        like_ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L751" title="All 2 branches missed.">                                if(snapshot.child(uid).exists()) {</span>
+<span class="nc" id="L752">                                    favouritesButton.setBackgroundResource(R.drawable.favorite_filled);</span>
+<span class="nc" id="L753">                                    favouritesButton.setOnClickListener(null);</span>
+                                }
+<span class="nc" id="L755">                            }</span>
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L760">                            }</span>
+                        });
+
+<span class="nc" id="L763">                        horizontalLayout.addView(favouritesButton);</span>
+<span class="nc" id="L764">                        horizontalLayout.addView(createReplyOption(username_post, post_body, uid));</span>
+                    }
+<span class="nc bnc" id="L766" title="All 2 branches missed.">                    if (!num_of_replies.equalsIgnoreCase(&quot;&quot;)) {</span>
+<span class="nc" id="L767">                        TextView replies = views.createNumOfReplies(getContext(), num_of_replies);</span>
+<span class="nc" id="L768">                        horizontalLayout.addView(replies);</span>
+                    }
+
+
+<span class="nc bnc" id="L772" title="All 4 branches missed.">                    if (username_post.equalsIgnoreCase(username) &amp;&amp; !Edits) {</span>
+<span class="nc" id="L773">                        postview.setOnLongClickListener(new View.OnLongClickListener() { //lets you long press to edit post</span>
+                            @Override
+                            public boolean onLongClick(View view) {
+<span class="nc" id="L776">                                setBody(post_body);</span>
+<span class="nc" id="L777">                                setURL(URL);</span>
+<span class="nc" id="L778">                                setID(ID);</span>
+<span class="nc" id="L779">                                setTime(post_time);</span>
+<span class="nc" id="L780">                                showPopupMenu(postview); //shows popup edit option</span>
+<span class="nc" id="L781">                                return true;</span>
+                            }
+                        });
+                    }
+
+<span class="nc bnc" id="L786" title="All 2 branches missed.">                    if (!Edits) {</span>
+<span class="nc" id="L787">                        postview.setOnClickListener(new View.OnClickListener() {</span>
+                            @Override
+                            public void onClick(View view) {
+<span class="nc" id="L790">                                Intent intent = new Intent(getActivity(), Replies.class);</span>
+<span class="nc" id="L791">                                intent.putExtra(&quot;username&quot;, account_user);</span>
+<span class="nc" id="L792">                                intent.putExtra(&quot;loggedinuser&quot;, account_user);</span>
+<span class="nc" id="L793">                                intent.putExtra(&quot;ID&quot;, ID);</span>
+<span class="nc" id="L794">                                intent.putExtra(&quot;post_body&quot;, post_body);</span>
+<span class="nc" id="L795">                                intent.putExtra(&quot;URL&quot;, URL);</span>
+<span class="nc" id="L796">                                intent.putExtra(&quot;post_time&quot;, post_time);</span>
+<span class="nc" id="L797">                                intent.putExtra(&quot;username_post&quot;, username_post);</span>
+<span class="nc" id="L798">                                intent.putExtra(&quot;is_searched_user&quot;, false);</span>
+<span class="nc" id="L799">                                getActivity().startActivity(intent);</span>
+<span class="nc" id="L800">                                getActivity().finish();</span>
+<span class="nc" id="L801">                            }</span>
+                        });
+                    }
+
+<span class="nc" id="L805">                    postview.addView(horizontalLayout);</span>
+<span class="nc" id="L806">                    lp.addView(views.addSpace(getContext()));</span>
+<span class="nc" id="L807">                    lp.addView(postview);</span>
+
+
+<span class="nc" id="L810">                } catch (Exception e) {</span>
+
+<span class="nc" id="L812">                }</span>
+<span class="nc" id="L813">            }</span>
+        }
+<span class="nc" id="L815">    }</span>
+
+    public void getFollowing() {
+<span class="nc" id="L818">        su = new Search_User_class();</span>
+<span class="nc" id="L819">        all_usernames = new ArrayList&lt;&gt;();/* this will have the user's username</span>
+                                                           and the usernames of the users, the
+                                                           user is following*/
+<span class="nc" id="L822">        all_usernames.add(username);</span>
+<span class="nc" id="L823">        lp = (LinearLayout) v.findViewById(R.id.scroll_posts);</span>
+<span class="nc" id="L824">        reference = FirebaseDatabase.getInstance().getReference(&quot;social&quot;)</span>
+<span class="nc" id="L825">                .child(username).child(&quot;following&quot;);</span>
+<span class="nc" id="L826">        reference.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L831" title="All 2 branches missed.">                for (DataSnapshot data : snapshot.getChildren()) {</span>
+<span class="nc" id="L832">                    String following_username = data.getValue(String.class);</span>
+<span class="nc" id="L833">                    all_usernames.add(following_username);</span>
+<span class="nc" id="L834">                }</span>
+<span class="nc" id="L835">                lp.removeAllViews();</span>
+<span class="nc" id="L836">                fetchPosts(all_usernames);</span>
+<span class="nc" id="L837">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L842">            }</span>
+        });
+<span class="nc" id="L844">    }</span>
+
+    public void display_searched_user_posts() {
+<span class="nc" id="L847">        LinearLayout lp = (LinearLayout) v.findViewById(R.id.scroll_posts);</span>
+<span class="nc" id="L848">        lp.setOrientation(LinearLayout.VERTICAL);</span>
+<span class="nc" id="L849">        lp.removeAllViews();</span>
+<span class="nc" id="L850">        DatabaseReference bd = FirebaseDatabase.getInstance().getReference().child(&quot;Posts&quot;).child(username);</span>
+<span class="nc" id="L851">        Query posts = bd.orderByChild(String.valueOf(maxId));</span>
+<span class="nc" id="L852">        posts.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Vector&lt;Post&gt; post_data;
+
+<span class="nc" id="L858">                post_data = new Vector&lt;&gt;();</span>
+<span class="nc bnc" id="L859" title="All 2 branches missed.">                for (DataSnapshot data : snapshot.getChildren()) {</span>
+<span class="nc" id="L860">                    String id = data.getKey();</span>
+<span class="nc" id="L861">                    String b = data.child(&quot;body&quot;).getValue(String.class);</span>
+<span class="nc" id="L862">                    String t = data.child(&quot;time&quot;).getValue(String.class);</span>
+<span class="nc" id="L863">                    String URL = data.child(&quot;post_image_url&quot;).getValue(String.class);</span>
+<span class="nc" id="L864">                    post_data.add(new Post(id, b, URL, t));</span>
+<span class="nc" id="L865">                }</span>
+<span class="nc bnc" id="L866" title="All 2 branches missed.">                for (int i = post_data.size() - 1; i &gt;= 0; i--) {</span>
+<span class="nc" id="L867">                    String post_body = post_data.elementAt(i).getBody();</span>
+<span class="nc" id="L868">                    String post_time = post_data.elementAt(i).getTime();</span>
+<span class="nc" id="L869">                    String uid = post_data.elementAt(i).getID();</span>
+<span class="nc" id="L870">                    post_time = post_time.substring(0, 10);</span>
+<span class="nc" id="L871">                    String URL = post_data.elementAt(i).getPost_image_url();</span>
+
+<span class="nc" id="L873">                    TextView body = null;</span>
+<span class="nc" id="L874">                    boolean hashtag = checkHashtag(post_body);</span>
+<span class="nc bnc" id="L875" title="All 2 branches missed.">                    if (hashtag) {</span>
+<span class="nc" id="L876">                        String new_post_body = post_body + &quot; &quot;;</span>
+<span class="nc" id="L877">                        SpannableString spanString = processHashtag(new_post_body, uid, URL, post_time, username);</span>
+<span class="nc" id="L878">                        body = views.createBodyTextViewHashtag(getContext(), spanString);</span>
+<span class="nc" id="L879">                    } else {</span>
+<span class="nc" id="L880">                        body = views.createBodyTextView(getContext(), getActivity(), &quot;\t&quot; + post_body);</span>
+                    }
+<span class="nc" id="L882">                    TextView time = views.createTimeTextView(getContext(), post_time);</span>
+<span class="nc" id="L883">                    LinearLayout post = views.createPostLayout(getContext());</span>
+
+<span class="nc" id="L885">                    post.addView(time);</span>
+
+<span class="nc bnc" id="L887" title="All 2 branches missed.">                    if (URL.length() &gt;= 1) {</span>
+<span class="nc" id="L888">                        post.addView(views.createImageView(getContext(), getActivity(), URL));</span>
+                    } else {
+<span class="nc" id="L890">                        post.addView(body);</span>
+                    }
+<span class="nc" id="L892">                    Space space = views.addSpace(getContext());</span>
+<span class="nc" id="L893">                    ToggleButton favouritesButton = createFavouriteToggleButton(account_user, username, uid);</span>
+<span class="nc" id="L894">                    LinearLayout horizontalLayout = views.createHorizontalLayout(getContext());</span>
+
+
+<span class="nc" id="L897">                    DatabaseReference like_ref = FirebaseDatabase.getInstance().getReference(&quot;FavouritePosts&quot;).child(account_user).child(username)</span>
+<span class="nc" id="L898">                            .child(&quot;ID&quot;);</span>
+<span class="nc" id="L899">                    like_ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L902" title="All 2 branches missed.">                            if(snapshot.child(uid).exists()) {</span>
+<span class="nc" id="L903">                                favouritesButton.setBackgroundResource(R.drawable.favorite_filled);</span>
+<span class="nc" id="L904">                                favouritesButton.setOnClickListener(null);</span>
+                            }
+<span class="nc" id="L906">                        }</span>
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L911">                        }</span>
+                    });
+
+<span class="nc" id="L914">                    horizontalLayout.addView(favouritesButton);</span>
+<span class="nc" id="L915">                    horizontalLayout.addView(createReplyOption(username, post_body, uid));</span>
+<span class="nc" id="L916">                    post.addView(horizontalLayout);</span>
+
+<span class="nc" id="L918">                    lp.addView(space); //adds space so that the posts look better</span>
+<span class="nc" id="L919">                    lp.addView(post);</span>
+
+
+<span class="nc" id="L922">                    String finalPost_time = post_time;</span>
+<span class="nc" id="L923">                    post.setOnClickListener(new View.OnClickListener() {</span>
+                        @Override
+                        public void onClick(View view) {
+<span class="nc" id="L926">                            Intent intent = new Intent(getActivity(), Replies.class);</span>
+<span class="nc" id="L927">                            intent.putExtra(&quot;username&quot;, account_user);</span>
+<span class="nc" id="L928">                            intent.putExtra(&quot;loggedinuser&quot;, account_user);</span>
+<span class="nc" id="L929">                            intent.putExtra(&quot;ID&quot;, uid);</span>
+<span class="nc" id="L930">                            intent.putExtra(&quot;post_body&quot;, post_body);</span>
+<span class="nc" id="L931">                            intent.putExtra(&quot;URL&quot;, URL);</span>
+<span class="nc" id="L932">                            intent.putExtra(&quot;post_time&quot;, finalPost_time);</span>
+<span class="nc" id="L933">                            intent.putExtra(&quot;username_post&quot;, username);</span>
+<span class="nc" id="L934">                            intent.putExtra(&quot;is_searched_user&quot;, false);</span>
+<span class="nc" id="L935">                            getActivity().startActivity(intent);</span>
+<span class="nc" id="L936">                            getActivity().finish();</span>
+<span class="nc" id="L937">                        }</span>
+                    });
+                }
+<span class="nc" id="L940">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L945">            }</span>
+        });
+
+<span class="nc" id="L948">    }</span>
+
+    public TextView createReplyOption(String Reply_to, String post_msg, String uid) {//adding a reply text for user to click on to reply to a post
+<span class="nc" id="L951">        TextView textView = new TextView(getContext());</span>
+<span class="nc" id="L952">        textView.setText(&quot;reply&quot;);</span>
+<span class="nc" id="L953">        textView.setTextSize(18);</span>
+<span class="nc" id="L954">        textView.setGravity(Gravity.RIGHT);</span>
+<span class="nc" id="L955">        textView.setPadding(20, 0, 20, 0);</span>
+<span class="nc" id="L956">        textView.setTextColor(Color.parseColor(&quot;white&quot;));</span>
+
+<span class="nc" id="L958">        textView.setOnClickListener(new View.OnClickListener() {</span>
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+<span class="nc" id="L962">                Reply(Reply_to, post_msg, uid);</span>
+<span class="nc" id="L963">            }</span>
+        });
+<span class="nc" id="L965">        return textView;</span>
+    }
+
+//    public ImageView createRepliesIcon()
+//    {
+//        ImageView replies_icon = new ImageView(getContext());
+//        replies_icon.setImageResource(R.drawable.ic_round_chat_bubble_outline_24);
+//        replies_icon.setForegroundGravity(Gravity.RIGHT);
+//        replies_icon.setPadding(30,0,5,0);
+//
+//        return replies_icon;
+//    }
+
+
+    public ToggleButton createFavouriteToggleButton(String user, String userPost, String ID) {
+<span class="nc" id="L980">        ToggleButton toggleButton = new ToggleButton(getContext());</span>
+<span class="nc" id="L981">        toggleButton.setText(&quot;&quot;); //removes all text from the toggle button so that only the heart shows</span>
+<span class="nc" id="L982">        toggleButton.setTextOn(&quot;&quot;);</span>
+<span class="nc" id="L983">        toggleButton.setTextOff(&quot;&quot;);</span>
+<span class="nc" id="L984">        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(80, 80);</span>
+<span class="nc" id="L985">        toggleButton.setLayoutParams(params);</span>
+<span class="nc" id="L986">        toggleButton.setPadding(30, 0, 190, 0);</span>
+<span class="nc" id="L987">        toggleButton.setBackgroundResource(R.drawable.toggle_selector);</span>
+<span class="nc" id="L988">        toggleButton.setClickable(true);</span>
+
+<span class="nc" id="L990">        toggleButton.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+<span class="nc bnc" id="L993" title="All 2 branches missed.">                if (toggleButton.isChecked()) {</span>
+<span class="nc" id="L994">                    Toast.makeText(getContext(), &quot;added to favourites&quot;, Toast.LENGTH_SHORT).show();</span>
+<span class="nc" id="L995">                    addFavourite(user, userPost, ID);</span>
+<span class="nc" id="L996">                    toggleButton.setOnClickListener(null);</span>
+                } else {
+<span class="nc" id="L998">                    Toast.makeText(getContext(), &quot;removed from favourites&quot;, Toast.LENGTH_SHORT).show();</span>
+                }
+<span class="nc" id="L1000">            }</span>
+        });
+
+<span class="nc" id="L1003">        return toggleButton;</span>
+    }
+
+    public void showPopupMenu(LinearLayout ll) {
+<span class="nc" id="L1007">        PopupMenu popup_menu = new PopupMenu(v.getContext(), ll); //shows popup edit menu only on the post</span>
+<span class="nc" id="L1008">        popup_menu.setOnMenuItemClickListener(this);</span>
+<span class="nc" id="L1009">        popup_menu.inflate(R.menu.popup_edit);</span>
+<span class="nc" id="L1010">        popup_menu.show();</span>
+<span class="nc" id="L1011">    }</span>
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+<span class="nc bnc" id="L1016" title="All 3 branches missed.">        switch (menuItem.getItemId()) {</span>
+            case R.id.edit_post:
+<span class="nc" id="L1018">                add_post(true, ExistingBody, ExistingURL, ExistingID, ExistingTime);</span>
+<span class="nc" id="L1019">                return true;</span>
+            case R.id.view_edited_posts:
+<span class="nc" id="L1021">                ArrayList&lt;Post&gt; Posts = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L1022">                Post post = new Post(ExistingID, ExistingBody, ExistingURL, ExistingTime);</span>
+<span class="nc" id="L1023">                post.setUsername(username);</span>
+                try {
+<span class="nc" id="L1025">                    post.convertDate();</span>
+<span class="nc" id="L1026">                } catch (ParseException e) {</span>
+<span class="nc" id="L1027">                    e.printStackTrace();</span>
+<span class="nc" id="L1028">                }</span>
+<span class="nc" id="L1029">                Posts.add(post);</span>
+<span class="nc" id="L1030">                getPreviousEdits(ExistingID, Posts);</span>
+<span class="nc" id="L1031">                return true;</span>
+            default:
+<span class="nc" id="L1033">                return false;</span>
+        }
+    }
+
+    /*adds the details of the post that must be edited to global variables so that it
+    can be used by other classes
+     */
+    public void setBody(String b) {
+<span class="nc" id="L1041">        ExistingBody = b;</span>
+<span class="nc" id="L1042">    }</span>
+
+    public void setURL(String url) {
+<span class="nc" id="L1045">        ExistingURL = url;</span>
+<span class="nc" id="L1046">    }</span>
+
+    public void setID(String ID) {
+<span class="nc" id="L1049">        ExistingID = ID;</span>
+<span class="nc" id="L1050">    }</span>
+
+    public void setTime(String time) {
+<span class="nc" id="L1053">        ExistingTime = time;</span>
+<span class="nc" id="L1054">    }</span>
+
+    public void setUsername(String username) {
+<span class="nc" id="L1057">        ExistingUsername = username;</span>
+<span class="nc" id="L1058">    }</span>
+
+    public void getPreviousEdits(String Id, ArrayList&lt;Post&gt; Posts) {
+
+<span class="nc" id="L1062">        lp = (LinearLayout) v.findViewById(R.id.scroll_posts);</span>
+<span class="nc" id="L1063">        reference = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;).child(username).child(Id).child(&quot;Edits&quot;);</span>
+<span class="nc" id="L1064">        reference.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+<span class="nc bnc" id="L1070" title="All 2 branches missed.">                for (DataSnapshot data : snapshot.getChildren()) {</span>
+<span class="nc" id="L1071">                    String id = data.getKey();</span>
+<span class="nc" id="L1072">                    String b = data.child(&quot;body&quot;).getValue(String.class);</span>
+<span class="nc" id="L1073">                    String t = data.child(&quot;time&quot;).getValue(String.class);</span>
+<span class="nc" id="L1074">                    String URL = data.child(&quot;post_image_url&quot;).getValue(String.class);</span>
+<span class="nc" id="L1075">                    Post post = new Post(id, b, URL, t);</span>
+<span class="nc" id="L1076">                    post.setUsername(username);</span>
+                    try {
+<span class="nc" id="L1078">                        post.convertDate();</span>
+<span class="nc" id="L1079">                    } catch (ParseException e) {</span>
+<span class="nc" id="L1080">                        e.printStackTrace();</span>
+<span class="nc" id="L1081">                    }</span>
+<span class="nc" id="L1082">                    Posts.add(post);</span>
+<span class="nc" id="L1083">                }</span>
+<span class="nc" id="L1084">                Posts.sort(new DateComparator());</span>
+<span class="nc" id="L1085">                display_posts(Posts, true, false);</span>
+<span class="nc" id="L1086">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L1091">            }</span>
+        });
+<span class="nc" id="L1093">    }</span>
+
+    public void fetch_fcm_tokens() {
+<span class="nc" id="L1096">        all_fcm_tokens = new ArrayList&lt;&gt;();/* this will have the user's username</span>
+                                                           and the usernames of the users, the
+                                                           user is following*/
+<span class="nc" id="L1099">        reference3 = FirebaseDatabase.getInstance().getReference(&quot;Notifications&quot;)</span>
+<span class="nc" id="L1100">                .child(username);</span>
+<span class="nc" id="L1101">        reference3.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L1106" title="All 2 branches missed.">                for (DataSnapshot data : snapshot.getChildren()) {</span>
+<span class="nc" id="L1107">                    String fcm_token = data.getValue(String.class);</span>
+<span class="nc" id="L1108">                    all_fcm_tokens.add(fcm_token);</span>
+<span class="nc" id="L1109">                }</span>
+<span class="nc" id="L1110">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L1115">            }</span>
+        });
+<span class="nc" id="L1117">    }</span>
+
+
+    /*  public boolean isPostChanged(String body, String imgURL){
+          if (!body.equals(ExistingBody)||!imgURL.equals(ExistingURL)){
+              return true;
+          }
+          else {
+              return false;
+          }
+      }*/
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void Reply(String Reply_to_user, String original_post_msg, String uid) {
+<span class="nc" id="L1130">        AlertDialog.Builder dialogB = new AlertDialog.Builder(v.getContext());</span>
+        AlertDialog dialog;
+<span class="nc" id="L1132">        final View popup_content = getLayoutInflater().inflate(R.layout.pop_up_reply, null);</span>
+<span class="nc" id="L1133">        TextView popup_header = (TextView) popup_content.findViewById(R.id.reply_header);</span>
+<span class="nc" id="L1134">        TextView popup_original = (TextView) popup_content.findViewById(R.id.post_replying_to);</span>
+        //popup_original.setTextSize(11);
+<span class="nc" id="L1136">        EditText popup_reply_body = (EditText) popup_content.findViewById(R.id.reply_body);</span>
+<span class="nc" id="L1137">        Button popup_reply_button = (Button) popup_content.findViewById(R.id.btn_reply);</span>
+<span class="nc" id="L1138">        popup_header.setText(&quot;Replying to:\n\t&quot; + Reply_to_user);</span>
+<span class="nc" id="L1139">        popup_original.setText(original_post_msg);</span>
+
+
+<span class="nc" id="L1142">        dialogB.setView(popup_content);</span>
+<span class="nc" id="L1143">        dialog = dialogB.create();</span>
+        //dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_dialog_box);
+<span class="nc" id="L1145">        dialog.show();</span>
+
+
+<span class="nc" id="L1148">        popup_reply_button.setOnClickListener(new View.OnClickListener() {</span>
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+<span class="nc" id="L1152">                String reply_msg = popup_reply_body.getText().toString();</span>
+
+<span class="nc" id="L1154">                Date date = new Date();</span>
+<span class="nc" id="L1155">                SimpleDateFormat format = new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm:ss&quot;);</span>
+<span class="nc" id="L1156">                String t = (format.format(date));</span>
+
+<span class="nc" id="L1158">                DatabaseReference reply_ref = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;)</span>
+<span class="nc" id="L1159">                        .child(Reply_to_user).child(uid).child(&quot;Replies&quot;);</span>
+<span class="nc" id="L1160">                reply_ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L1163">                        long count = snapshot.getChildrenCount() + 1;</span>
+<span class="nc" id="L1164">                        Post post = new Post(uid, account_user, reply_msg, &quot;&quot;, t);</span>
+<span class="nc" id="L1165">                        reply_ref.child(String.valueOf(count)).setValue(post);</span>
+<span class="nc" id="L1166">                    }</span>
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L1171">                    }</span>
+                });
+
+<span class="nc" id="L1174">                DatabaseReference add_reply_post = FirebaseDatabase.getInstance().getReference(&quot;Replies&quot;)</span>
+<span class="nc" id="L1175">                        .child(account_user);</span>
+<span class="nc" id="L1176">                add_reply_post.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L1179">                        long count = snapshot.getChildrenCount() + 1;</span>
+<span class="nc" id="L1180">                        Post post = new Post(String.valueOf(count), Reply_to_user, reply_msg, &quot;&quot;, t);</span>
+<span class="nc" id="L1181">                        add_reply_post.child(String.valueOf(count)).setValue(post);</span>
+<span class="nc" id="L1182">                    }</span>
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L1187">                    }</span>
+                });
+
+<span class="nc" id="L1190">                dialog.dismiss();</span>
+<span class="nc" id="L1191">                getFollowing();</span>
+<span class="nc" id="L1192">            }</span>
+        });
+        ;
+<span class="nc" id="L1195">    }</span>
+
+    public void addFavourite(String user, String userPost, String postID) {
+<span class="nc" id="L1198">        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference(&quot;FavouritePosts&quot;).child(user).child(userPost);</span>
+<span class="nc" id="L1199">        favRef.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L1202">                long postmaxid = snapshot.child(&quot;ID&quot;).getChildrenCount();</span>
+<span class="nc bnc" id="L1203" title="All 2 branches missed.">                if (!snapshot.child(&quot;ID&quot;).child(String.valueOf(postmaxid + 1)).exists()) {</span>
+<span class="nc" id="L1204">                    favRef.child(&quot;ID&quot;).child(String.valueOf(postmaxid + 1)).setValue(postID);</span>
+
+                }
+<span class="nc" id="L1207">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+<span class="nc" id="L1211">            }</span>
+        });
+<span class="nc" id="L1213">    }</span>
+
+    public void initializeFavourites(String user, String userPost, String postID) {
+<span class="nc" id="L1216">        DatabaseReference favRef = FirebaseDatabase.getInstance().getReference(&quot;FavouritePosts&quot;).child(user).child(userPost);</span>
+<span class="nc" id="L1217">    }</span>
+
+    public boolean checkHashtag(String body) {
+<span class="nc" id="L1220">        int index = body.indexOf(&quot;#&quot;); // looks for the position of # in string</span>
+<span class="nc bnc" id="L1221" title="All 2 branches missed.">        if (index != -1) { //index of produces a -1 if it cannot find the substring</span>
+<span class="nc" id="L1222">            return true;</span>
+        } else {
+<span class="nc" id="L1224">            return false;</span>
+        }
+    }
+
+
+    public SpannableString processHashtag(String body, String ID, String URL, String post_time, String username_post) {
+<span class="nc" id="L1230">        int index = body.indexOf(&quot;#&quot;); // looks for the position of # in string</span>
+<span class="nc" id="L1231">        int endIndex = body.length();</span>
+<span class="nc" id="L1232">        String str = body.substring(index + 1, endIndex);</span>
+<span class="nc" id="L1233">        SpannableString spanString = new SpannableString(body);</span>
+
+<span class="nc" id="L1235">        ClickableSpan clickableSpan = new ClickableSpan() {</span>
+            @Override
+            public void onClick(@NonNull View widget) {
+<span class="nc" id="L1238">                Intent intent = new Intent(getActivity(), Display_Hashtag_Posts.class);</span>
+<span class="nc" id="L1239">                intent.putExtra(&quot;username&quot;, account_user);</span>
+<span class="nc" id="L1240">                intent.putExtra(&quot;loggedinuser&quot;, account_user);</span>
+<span class="nc" id="L1241">                intent.putExtra(&quot;hashtag&quot;, str);</span>
+<span class="nc" id="L1242">                getActivity().startActivity(intent);</span>
+<span class="nc" id="L1243">                getActivity().finish();</span>
+<span class="nc" id="L1244">            }</span>
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+<span class="nc" id="L1248">                super.updateDrawState(ds);</span>
+<span class="nc" id="L1249">                ds.setColor(Color.CYAN);</span>
+<span class="nc" id="L1250">                ds.setUnderlineText(false);</span>
+<span class="nc" id="L1251">            }</span>
+        };
+
+<span class="nc" id="L1254">        spanString.setSpan(clickableSpan, index, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span>
+
+<span class="nc" id="L1256">        return spanString;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

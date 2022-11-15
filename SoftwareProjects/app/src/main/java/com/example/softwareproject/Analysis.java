@@ -7,7 +7,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
-import android.util.Pair;
+import androidx.core.util.Pair;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Analysis {
+    ClickableSpan clickableSpan;
+
     Analysis(){ // Constructor for the class
     }
 
@@ -36,22 +38,24 @@ public class Analysis {
         for(String it:words){
             if(valid_URL(it)) {
                 int num = post_body.indexOf(it);
-                Pair<Integer, Integer> temp = new Pair(num, num + it.length());
+                Pair<Integer, Integer> temp = new Pair<>(num, num + it.length());
                 data.add(temp);
             }
         }
         return data;
     }
 
+    @ExcludeFromJacocoGeneratedReport
     public SpannableString Create_Link(Activity activity,String body){//function to set up link from spannable strings
         ArrayList<Pair<Integer,Integer>>data = new ArrayList<Pair<Integer,Integer>>();
         data = this.Find_link(body);
         SpannableString spannableString = new SpannableString(body);//setting up a spannable string to process links
         if(data.size() > 0) {
             for (Pair it : data) {//iterating through all the links in a given post
-                int a = Integer.parseInt("" + it.first);////getting positions of the begining and end of the link
+                int a = Integer.parseInt("" + it.first);//getting positions of the beginning and end of the link
                 int b = Integer.parseInt("" + it.second);//same as above but for end position
                 ClickableSpan clickableSpan = new ClickableSpan() {
+                    @ExcludeFromJacocoGeneratedReport
                     @Override
                     public void onClick(@NonNull View widget) {
                         String url = body.substring(a,b).toLowerCase(Locale.ROOT);//getting the exact link from the post
@@ -60,6 +64,7 @@ public class Analysis {
                         activity.startActivity(intent);//starting search of link provided by user
                     }
 
+                    @ExcludeFromJacocoGeneratedReport
                     @Override
                     public void updateDrawState(@NonNull TextPaint ds) {
                         super.updateDrawState(ds);

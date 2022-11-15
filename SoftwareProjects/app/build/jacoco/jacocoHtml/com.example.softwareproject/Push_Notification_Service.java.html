@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Push_Notification_Service.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Push_Notification_Service.java</span></div><h1>Push_Notification_Service.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
+
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
+
+<span class="nc" id="L14">public class Push_Notification_Service extends FirebaseMessagingService {</span>
+
+    // This creates the notification received from the other users that the user is following
+    @SuppressLint(&quot;NewApi&quot;)
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+<span class="nc" id="L20">        String title = remoteMessage.getNotification().getTitle(); // The title of the message</span>
+<span class="nc" id="L21">        String text = remoteMessage.getNotification().getBody(); // The post is shown on the message</span>
+<span class="nc" id="L22">        String CHANNEL_ID = &quot;MESSAGE&quot;;</span>
+<span class="nc" id="L23">        NotificationChannel channel = new NotificationChannel( /* This makes the notification to</span>
+                                                                  appear first on the phone*/
+                CHANNEL_ID,
+                &quot;Message Notification&quot;,
+                NotificationManager.IMPORTANCE_HIGH);
+<span class="nc" id="L28">        getSystemService(NotificationManager.class).createNotificationChannel(channel);</span>
+<span class="nc" id="L29">        Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID) // This builds the notification</span>
+<span class="nc" id="L30">                .setContentTitle(title)</span>
+<span class="nc" id="L31">                .setContentText(text)</span>
+<span class="nc" id="L32">                .setSmallIcon(R.drawable.ic_notification) // Puts a notification icon on the the notification</span>
+<span class="nc" id="L33">                .setAutoCancel(true); // Make this notification automatically dismissed when the user touches it</span>
+<span class="nc" id="L34">        NotificationManagerCompat.from(this).notify(1, notification.build());</span>
+<span class="nc" id="L35">        super.onMessageReceived(remoteMessage);</span>
+<span class="nc" id="L36">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

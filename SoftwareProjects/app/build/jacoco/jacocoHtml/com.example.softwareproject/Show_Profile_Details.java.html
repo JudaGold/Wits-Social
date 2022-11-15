@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Show_Profile_Details.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Show_Profile_Details.java</span></div><h1>Show_Profile_Details.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.io.FileWriter;
+
+<span class="nc" id="L45">public class Show_Profile_Details extends AppCompatActivity</span>
+{
+    private static final int PICK_IMAGE_REQUEST = 1;
+    //Declarations of variable
+    TextView UserName, PostCount;
+    EditText bio, fullName, PhoneNumber,EmailAddress;
+    String username;
+    ImageView profile_pic;
+<span class="nc" id="L53">    long maxId = 0;</span>
+    Button btnAddNewPic, btnSave2, logOut,DownloadInfoBtn,DeleteProfileBtn, BlockedUsersBtn;
+    Field_Validations fv;
+
+    private Uri mImageUri;
+
+<span class="nc" id="L59">    private StorageReference storageRef = FirebaseStorage.getInstance().getReference(&quot;profile_pictures&quot;);</span>
+    private StorageTask mUploadTask;
+<span class="nc" id="L61">    DatabaseReference bd = FirebaseDatabase.getInstance().getReference(&quot;Users&quot;);</span>
+<span class="nc" id="L62">    DatabaseReference bd2 = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;);</span>
+
+    FirebaseDatabase fb;
+    DatabaseReference Gdb;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+<span class="nc" id="L68">        super.onCreate(savedInstanceState);</span>
+        //Assign variables
+<span class="nc" id="L70">        setContentView(R.layout.show_profile_details);</span>
+<span class="nc" id="L71">        fv = new Field_Validations();</span>
+<span class="nc" id="L72">        Intent intent = getIntent();</span>
+<span class="nc" id="L73">        username = intent.getStringExtra(&quot;Username&quot;);</span>
+
+        //Assign varibles
+<span class="nc" id="L76">        profile_pic = (ImageView) findViewById(R.id.profile_pic);</span>
+<span class="nc" id="L77">        UserName = (TextView) findViewById(R.id.UserName_txt);</span>
+<span class="nc" id="L78">        PostCount = (TextView) findViewById(R.id.PostCount_txt);</span>
+<span class="nc" id="L79">        fullName = (EditText) findViewById(R.id.full_name);</span>
+<span class="nc" id="L80">        PhoneNumber = (EditText) findViewById(R.id.phone_number);</span>
+<span class="nc" id="L81">        EmailAddress = (EditText) findViewById(R.id.email_address_update);</span>
+<span class="nc" id="L82">        bio = (EditText) findViewById(R.id.BioText);</span>
+<span class="nc" id="L83">        btnAddNewPic = (Button) findViewById(R.id.btnAddNewPic);</span>
+<span class="nc" id="L84">        btnSave2 = (Button) findViewById(R.id.btnSave2);</span>
+<span class="nc" id="L85">        logOut = findViewById(R.id.logOut);</span>
+
+        //getting all user info line 88-117
+<span class="nc" id="L88">        Query getUserInfo = bd.orderByChild(&quot;username&quot;).equalTo(username);</span>
+<span class="nc" id="L89">        getUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                if(snapshot.exists()){</span>
+<span class="nc" id="L93">                    String imageUrl = snapshot.child(username).child(&quot;mImageUrl&quot;).getValue(String.class);</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">                    if (!imageUrl.equalsIgnoreCase(&quot;&quot;))</span>
+                    {
+<span class="nc" id="L96">                        Picasso.get().load(imageUrl).into(profile_pic);</span>
+                    }
+
+<span class="nc" id="L99">                    UserName.setText(username);</span>
+
+<span class="nc" id="L101">                    bio.setText(snapshot.child(username).child(&quot;bio&quot;).getValue(String.class));</span>
+
+<span class="nc" id="L103">                    fullName.setText(snapshot.child(username).child(&quot;name&quot;).getValue(String.class));</span>
+
+<span class="nc" id="L105">                    PhoneNumber.setText(snapshot.child(username).child(&quot;phoneNumber&quot;).getValue(String.class));</span>
+
+<span class="nc" id="L107">                    EmailAddress.setText(snapshot.child(username).child(&quot;email&quot;).getValue(String.class));</span>
+                }
+<span class="nc" id="L109">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L114">            }</span>
+
+
+        });
+        //getting how many post a user has made line 119-137
+<span class="nc" id="L119">        Query getPostCount = bd2.child(username).orderByChild(String.valueOf(maxId));</span>
+<span class="nc" id="L120">        getPostCount.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L123" title="All 2 branches missed.">                if(snapshot.exists()){</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">                    for (DataSnapshot data : snapshot.getChildren()) {</span>
+<span class="nc" id="L125">                        maxId++;</span>
+<span class="nc" id="L126">                    }</span>
+<span class="nc" id="L127">                    PostCount.setText(Long.toString(maxId));</span>
+                }
+<span class="nc" id="L129">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L134">            }</span>
+
+
+        });
+
+<span class="nc" id="L139">        btnSave2.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+                //Assignment variables
+<span class="nc" id="L143">                String email = EmailAddress.getText().toString();</span>
+<span class="nc" id="L144">                String number  = PhoneNumber.getText().toString();</span>
+<span class="nc" id="L145">                String name = fullName.getText().toString();</span>
+<span class="nc" id="L146">                String userBio = bio.getText().toString();</span>
+
+                //Declare and assign variables
+<span class="nc" id="L149">                boolean completed = completed();</span>
+<span class="nc" id="L150">                boolean validEmail = fv.check_email(email,EmailAddress);</span>
+<span class="nc" id="L151">                boolean validNumber = fv.Valid_number(number,PhoneNumber);</span>
+<span class="nc" id="L152">                boolean validBio = fv.bioValidation(userBio,bio);</span>
+
+<span class="nc bnc" id="L154" title="All 8 branches missed.">                if (completed  &amp;&amp; validEmail &amp;&amp; validNumber &amp;&amp; validBio)</span>
+                {
+                    //If true, update details on the screen
+<span class="nc" id="L157">                    bd.child(username).child(&quot;bio&quot;).setValue(userBio);</span>
+<span class="nc" id="L158">                    bd.child(username).child(&quot;email&quot;).setValue(email);</span>
+<span class="nc" id="L159">                    bd.child(username).child(&quot;name&quot;).setValue(name);</span>
+<span class="nc" id="L160">                    bd.child(username).child(&quot;phoneNumber&quot;).setValue(number);</span>
+
+                    //If user clicks the button again, return the message in line 'Upload in progress'
+<span class="nc bnc" id="L163" title="All 4 branches missed.">                    if (mUploadTask != null &amp;&amp; mUploadTask.isInProgress()) {</span>
+<span class="nc" id="L164">                        Toast.makeText(Show_Profile_Details.this, &quot;Upload in progress&quot;, Toast.LENGTH_SHORT).show();</span>
+                    } else {
+<span class="nc" id="L166">                        uploadFile();</span>
+                    }
+                }
+<span class="nc" id="L169">            }</span>
+        });
+
+        //Switch to file selector after clicking the add new picture
+<span class="nc" id="L173">        btnAddNewPic.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+<span class="nc" id="L176">                openFileUser();</span>
+<span class="nc" id="L177">            }</span>
+        });
+
+        //Click listener for logout button and makes sure that automatic log  in will not happen in future
+<span class="nc" id="L181">        logOut.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View view) {
+<span class="nc" id="L184">                SharedPreferences preferences = getSharedPreferences(&quot;checkBox&quot;, MODE_PRIVATE);</span>
+<span class="nc" id="L185">                SharedPreferences.Editor editor = preferences.edit();</span>
+<span class="nc" id="L186">                editor.putString(&quot;remember&quot;,&quot;false&quot;);</span>
+<span class="nc" id="L187">                editor.apply();</span>
+
+<span class="nc" id="L189">                Intent intent = new Intent(Show_Profile_Details.this, Main_Activity.class);</span>
+<span class="nc" id="L190">                startActivity(intent);</span>
+<span class="nc" id="L191">            }</span>
+        });
+        //button to see which users you've blocked
+<span class="nc" id="L194">        BlockedUsersBtn = (Button) findViewById(R.id.BlockUserBtn);</span>
+<span class="nc" id="L195">        BlockedUsersBtn.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View v) {
+<span class="nc" id="L198">                Intent intent = new Intent(Show_Profile_Details.this, Blocked_Users.class);</span>
+<span class="nc" id="L199">                intent.putExtra(&quot;Username&quot;, username);</span>
+<span class="nc" id="L200">                startActivity(intent);</span>
+<span class="nc" id="L201">            }</span>
+        });
+
+<span class="nc" id="L204">        DownloadInfoBtn = (Button) findViewById(R.id.DwnBtn);//instantiating download button</span>
+<span class="nc" id="L205">        DeleteProfileBtn = (Button) findViewById(R.id.DltBtn);//instantiating delete button</span>
+
+<span class="nc" id="L207">        DownloadInfoBtn.setOnClickListener(new View.OnClickListener() {</span>
+             @Override
+             public void onClick(View v) {
+<span class="nc" id="L210">                 Download_info();//calling function to download users information</span>
+<span class="nc" id="L211">             }</span>
+        });
+<span class="nc" id="L213">        DeleteProfileBtn.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View v) {
+<span class="nc" id="L216">                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {//calling a prompt</span>
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+<span class="nc bnc" id="L219" title="All 3 branches missed.">                        switch (which){</span>
+                            case DialogInterface.BUTTON_POSITIVE://checking if yes is clicked
+<span class="nc" id="L221">                                Download_info();</span>
+<span class="nc" id="L222">                                delete_profile();</span>
+<span class="nc" id="L223">                                break;</span>
+
+                            case DialogInterface.BUTTON_NEGATIVE://checking if no is clicked
+<span class="nc" id="L226">                                delete_profile();</span>
+                                break;
+                        }
+<span class="nc" id="L229">                    }</span>
+                };
+
+<span class="nc" id="L232">                AlertDialog.Builder builder = new AlertDialog.Builder(Show_Profile_Details.this);</span>
+<span class="nc" id="L233">                builder.setMessage(&quot;Would you like to first download your data before you delete your profile?&quot;)</span>
+<span class="nc" id="L234">                        .setPositiveButton(&quot;Absolutely&quot;, dialogClickListener)</span>
+<span class="nc" id="L235">                        .setNegativeButton(&quot;of course no.&quot;, dialogClickListener).show();//asking user a question</span>
+<span class="nc" id="L236">            }</span>
+        });
+<span class="nc" id="L238">    }</span>
+
+    private void delete_profile(){
+<span class="nc" id="L241">        Search_User_class su = new Search_User_class();</span>
+<span class="nc" id="L242">        DatabaseReference bd_likes = FirebaseDatabase.getInstance().getReference(&quot;FavouritePosts&quot;);</span>
+<span class="nc" id="L243">        bd_likes.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {//snapshot to remove user from liked table
+<span class="nc bnc" id="L246" title="All 2 branches missed.">                if(snapshot.child(username).exists()){</span>
+<span class="nc" id="L247">                    bd_likes.child(username).getRef().removeValue();</span>
+                }
+
+<span class="nc bnc" id="L250" title="All 2 branches missed.">                for(DataSnapshot dataSnapshot:snapshot.getChildren()){</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">                    for(DataSnapshot inner:dataSnapshot.getChildren()){</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">                        if(inner.getKey().equals(username)){</span>
+<span class="nc" id="L253">                            inner.getRef().removeValue();</span>
+                        }
+<span class="nc" id="L255">                    }</span>
+<span class="nc" id="L256">                }</span>
+<span class="nc" id="L257">            }</span>
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L261">            }</span>
+        });
+        //removing user from notification table
+<span class="nc" id="L264">        DatabaseReference db_notif = FirebaseDatabase.getInstance().getReference(&quot;Notifications&quot;).child(username);</span>
+<span class="nc" id="L265">        db_notif.getRef().removeValue();</span>
+        //removing all the replys from the user
+<span class="nc" id="L267">        DatabaseReference db_reply = FirebaseDatabase.getInstance().getReference(&quot;Replies&quot;);</span>
+<span class="nc" id="L268">        db_reply.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L271" title="All 2 branches missed.">                for(DataSnapshot outer:snapshot.getChildren()){</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">                    for(DataSnapshot inner:outer.getChildren()){</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">                        if(inner.child(&quot;username&quot;).getValue().equals(username)){</span>
+<span class="nc" id="L274">                            inner.getRef().removeValue();</span>
+                        }
+<span class="nc" id="L276">                    }</span>
+<span class="nc" id="L277">                }</span>
+<span class="nc" id="L278">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L283">            }</span>
+        });
+<span class="nc" id="L285">        db_reply.child(username).getRef().removeValue();</span>
+
+        //removing all the users posts
+<span class="nc" id="L288">        DatabaseReference db_posts = FirebaseDatabase.getInstance().getReference(&quot;Posts&quot;).child(username);</span>
+<span class="nc" id="L289">        db_posts.getRef().removeValue();</span>
+
+        //removing the users social circles, who they block, follow and who follows them.
+<span class="nc" id="L292">        DatabaseReference db_social = FirebaseDatabase.getInstance().getReference(&quot;social&quot;).child(username);</span>
+<span class="nc" id="L293">        db_social.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L296" title="All 2 branches missed.">                if(snapshot.exists()){</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">                    for(DataSnapshot following:snapshot.child(&quot;following&quot;).getChildren()){//unfollowing who the user follows</span>
+<span class="nc" id="L298">                        su.unfollow(username,following.getValue(String.class));</span>
+<span class="nc" id="L299">                    }</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">                    for(DataSnapshot followers:snapshot.child(&quot;followers&quot;).getChildren()){//unfollowing the users followers list</span>
+<span class="nc" id="L301">                        su.unfollow(followers.getValue(String.class),username);</span>
+<span class="nc" id="L302">                    }</span>
+                }
+<span class="nc" id="L304">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L309">            }</span>
+        });
+<span class="nc" id="L311">        db_social.getRef().removeValue();//removing user from the social table</span>
+         // removing all the users hashtags.
+<span class="nc" id="L313">        DatabaseReference db_hashtags = FirebaseDatabase.getInstance().getReference(&quot;Hashtags&quot;);</span>
+<span class="nc" id="L314">        db_hashtags.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L317" title="All 2 branches missed.">                for(DataSnapshot outer:snapshot.getChildren()){</span>
+<span class="nc bnc" id="L318" title="All 2 branches missed.">                    for(DataSnapshot inner: outer.getChildren()){</span>
+<span class="nc bnc" id="L319" title="All 2 branches missed.">                        if(inner.child(&quot;username&quot;).getValue().equals(username)){</span>
+<span class="nc" id="L320">                            inner.getRef().removeValue();</span>
+                        }
+<span class="nc" id="L322">                    }</span>
+<span class="nc" id="L323">                }</span>
+<span class="nc" id="L324">            }</span>
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L328">            }</span>
+        });
+         //final function that removes user from the system and then sends them back to the log in page
+<span class="nc" id="L331">        DatabaseReference profile = FirebaseDatabase.getInstance().getReference(&quot;Users&quot;).child(username);</span>
+<span class="nc" id="L332">        profile.getRef().removeValue();</span>
+
+<span class="nc" id="L334">        Intent intent = new Intent(this,Main_Activity.class);</span>
+<span class="nc" id="L335">        startActivity(intent);</span>
+<span class="nc" id="L336">    }</span>
+
+
+
+
+
+
+    //Function to open the file selector
+    private void openFileUser(){
+<span class="nc" id="L345">        Intent intent2 = new Intent();</span>
+<span class="nc" id="L346">        intent2.setType(&quot;image/*&quot;);</span>
+<span class="nc" id="L347">        intent2.setAction(Intent.ACTION_GET_CONTENT);</span>
+<span class="nc" id="L348">        startActivityForResult(intent2, PICK_IMAGE_REQUEST);</span>
+<span class="nc" id="L349">    }</span>
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {//overriding start activity function  so store a picture once take a picture from the camera
+<span class="nc" id="L353">        super.onActivityResult(requestCode, resultCode, data);//inheriting from parent</span>
+
+<span class="nc bnc" id="L355" title="All 6 branches missed.">        if ((requestCode == PICK_IMAGE_REQUEST) &amp;&amp; (resultCode == RESULT_OK)//checking if camera has provision to be used</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">                &amp;&amp; (data != null) &amp;&amp; (data.getData() != null)) {</span>
+<span class="nc" id="L357">            mImageUri = data.getData();</span>
+<span class="nc" id="L358">            Picasso.get().load(mImageUri).into(profile_pic);</span>
+        }
+<span class="nc" id="L360">    }</span>
+    
+    //gets the file extension
+    private String getFileExtension(Uri uri){
+<span class="nc" id="L364">        ContentResolver cR = getContentResolver();</span>
+<span class="nc" id="L365">        MimeTypeMap mime = MimeTypeMap.getSingleton();</span>
+<span class="nc" id="L366">        return mime.getExtensionFromMimeType(cR.getType(uri));</span>
+    }
+    
+    //checks to see all details are completed
+    public boolean completed(){
+<span class="nc" id="L371">        boolean key = true;</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">        if(TextUtils.isEmpty(EmailAddress.getText().toString())){</span>
+<span class="nc" id="L373">            EmailAddress.setError(&quot;Please enter in an email address&quot;);</span>
+<span class="nc" id="L374">            key =  false;</span>
+        }
+<span class="nc bnc" id="L376" title="All 2 branches missed.">        if(TextUtils.isEmpty(PhoneNumber.getText().toString())){</span>
+<span class="nc" id="L377">            PhoneNumber.setError(&quot;Please enter in a phone number&quot;);</span>
+<span class="nc" id="L378">            key =  false;</span>
+        }
+<span class="nc bnc" id="L380" title="All 2 branches missed.">        if(TextUtils.isEmpty(fullName.getText().toString())){</span>
+<span class="nc" id="L381">            fullName.setError(&quot;Please enter in your full name&quot;);</span>
+<span class="nc" id="L382">            key =  false;</span>
+        }
+<span class="nc" id="L384">        return key;</span>
+    }
+    
+    //upload picture to database 284-319
+    private void uploadFile(){
+<span class="nc bnc" id="L389" title="All 2 branches missed.">        if (mImageUri != null){</span>
+<span class="nc" id="L390">            StorageReference fileReference = storageRef.child(System.currentTimeMillis() + &quot;.&quot; + getFileExtension(mImageUri));</span>
+<span class="nc" id="L391">            mUploadTask = fileReference.putFile(mImageUri)</span>
+<span class="nc" id="L392">                    .addOnSuccessListener(new OnSuccessListener&lt;UploadTask.TaskSnapshot&gt;() {</span>
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+<span class="nc" id="L395">                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener&lt;Uri&gt;(){</span>
+
+                                @Override
+                                public void onSuccess(Uri uri) {
+<span class="nc" id="L399">                                    bd.child(username).child(&quot;mImageUrl&quot;).setValue(uri.toString());</span>
+<span class="nc" id="L400">                                    Toast.makeText(Show_Profile_Details.this, &quot;Saved successful&quot;, Toast.LENGTH_LONG).show();</span>
+
+<span class="nc" id="L402">                                    Intent intent= new Intent(Show_Profile_Details.this, user_display.class);</span>
+<span class="nc" id="L403">                                    intent.putExtra(&quot;username&quot;, username);</span>
+<span class="nc" id="L404">                                    startActivity(intent);</span>
+<span class="nc" id="L405">                                }</span>
+                            });
+<span class="nc" id="L407">                        }</span>
+                    })
+<span class="nc" id="L409">                    .addOnFailureListener(new OnFailureListener() {</span>
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+<span class="nc" id="L412">                            Toast.makeText(Show_Profile_Details.this, e.getMessage(), Toast.LENGTH_SHORT).show();</span>
+
+<span class="nc" id="L414">                        }</span>
+                    });
+
+<span class="nc" id="L417">        } else {</span>
+<span class="nc" id="L418">            Intent intent= new Intent(Show_Profile_Details.this, user_display.class);</span>
+<span class="nc" id="L419">            intent.putExtra(&quot;username&quot;, username);</span>
+<span class="nc" id="L420">            startActivity(intent);</span>
+        }
+
+<span class="nc" id="L423">    }</span>
+    
+    //download all info
+    void Download_info(){
+<span class="nc bnc" id="L427" title="All 2 branches missed.">        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)  == PackageManager.PERMISSION_GRANTED){//checking for perission.</span>
+<span class="nc" id="L428">            create_file();//function to create all 3 text files</span>
+        }else{
+<span class="nc" id="L430">            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);</span>
+        }
+<span class="nc" id="L432">    }</span>
+
+    private void create_file(){//craetes a file for download
+<span class="nc" id="L435">        String root = &quot;/Download/&quot;+username +  &quot;'s WitsSocial profile info&quot;;//root path to store data</span>
+
+        try{
+<span class="nc" id="L438">            File file = new File(Environment.getExternalStorageDirectory(),root);//creating file</span>
+<span class="nc bnc" id="L439" title="All 2 branches missed.">            if(file.exists()){</span>
+<span class="nc" id="L440">                file.delete();</span>
+            }
+<span class="nc" id="L442">            file.mkdirs();//making dir</span>
+
+<span class="nc" id="L444">            write_to_file(file,&quot;Users&quot;,&quot;Personal_Information.txt&quot;);//3 following lines call function to write a specific table from the firebase db to a file in the path dit</span>
+<span class="nc" id="L445">            write_to_file(file,&quot;social&quot;,&quot;Social_Information.txt&quot;);</span>
+<span class="nc" id="L446">            write_to_file(file,&quot;Posts&quot;,&quot;Posts_Information.txt&quot;);</span>
+<span class="nc" id="L447">            Toast.makeText(Show_Profile_Details.this,&quot;Information Successfully downloaded&quot;,Toast.LENGTH_SHORT).show();//alerting user their data has been saved on their device</span>
+
+<span class="nc" id="L449">        }catch(Exception e){</span>
+<span class="nc" id="L450">            Log.d(&quot;Stack&quot;,&quot;Error creating  file&quot;);</span>
+<span class="nc" id="L451">        }</span>
+<span class="nc" id="L452">    }</span>
+    void write_to_file(File root,String dir,String path) {//writes to file made for the download
+        try {
+<span class="nc" id="L455">            File textfile = new File(root,path);//creating to new file to write to</span>
+<span class="nc bnc" id="L456" title="All 2 branches missed.">            if(textfile.exists()){</span>
+<span class="nc" id="L457">                textfile.delete();</span>
+            }
+<span class="nc" id="L459">            FileWriter writer = new FileWriter(textfile);//creating textfile</span>
+
+<span class="nc" id="L461">        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(dir).child(username);</span>
+
+<span class="nc" id="L463">        ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+<span class="nc bnc" id="L467" title="All 2 branches missed.">                    if (snapshot.exists()) {</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {//iterating through the table in firebase</span>
+<span class="nc" id="L469">                            writer.append(dataSnapshot.toString() + &quot;\n&quot;);//writing data to file from snapshot</span>
+<span class="nc" id="L470">                        }</span>
+                    }
+<span class="nc" id="L472">                    writer.flush();</span>
+<span class="nc" id="L473">                    writer.close();//closing file</span>
+<span class="nc" id="L474">                } catch (Exception e) {</span>
+<span class="nc" id="L475">                }</span>
+<span class="nc" id="L476">            }</span>
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L480">            }</span>
+        });
+<span class="nc" id="L482">    }catch (Exception r) {</span>
+<span class="nc" id="L483">        }</span>
+<span class="nc" id="L484">    }</span>
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+<span class="nc" id="L488">        super.onRequestPermissionsResult(requestCode, permissions, grantResults);</span>
+<span class="nc bnc" id="L489" title="All 6 branches missed.">        if(requestCode == 100 &amp;&amp; (grantResults.length &gt; 0)</span>
+                &amp;&amp; (grantResults[0] == PackageManager.PERMISSION_GRANTED)){//checking if app has permission to save and write to a file on the device
+<span class="nc" id="L491">            create_file();</span>
+        }
+<span class="nc" id="L493">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

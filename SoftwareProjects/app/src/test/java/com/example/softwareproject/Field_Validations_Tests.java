@@ -13,7 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class Field_Validations_Tests {
     @Mock
-    Context mockContext;
+    Context mockContext; // Creating a fake context
 
     Field_Validations field_validations = new Field_Validations();
     EditText et = new EditText(mockContext);

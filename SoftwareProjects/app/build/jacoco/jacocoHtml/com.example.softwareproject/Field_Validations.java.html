@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Field_Validations.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Field_Validations.java</span></div><h1>Field_Validations.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+import android.widget.EditText;
+
+<span class="fc" id="L5">public class Field_Validations {</span>
+    //Check if the two password fields match
+    public  boolean passwords_match(String pw1, String pw2, EditText Text_filed){
+<span class="fc bfc" id="L8" title="All 2 branches covered.">        if(!pw1.equals(pw2)){</span>
+<span class="fc" id="L9">            Text_filed.setError(&quot;Passwords do not match&quot;);</span>
+<span class="fc" id="L10">            return false;</span>
+        }
+<span class="fc" id="L12">        return true;</span>
+    }
+
+    //Validate Password
+    public boolean valid_password(String password,EditText Text_filed){
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if(password.length()&lt;=7){ //Passoword constraint</span>
+<span class="fc" id="L18">            Text_filed.setError(&quot;Password needs to be of length 8 or more&quot;);</span>
+<span class="fc" id="L19">            return false;</span>
+        }else{
+<span class="fc" id="L21">            return true;</span>
+        }
+    }
+
+    //Validate Phone number
+    public boolean Valid_number(String num,EditText Text_filed) {
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (num.length() !=10) { //Phone number constraint</span>
+<span class="fc" id="L28">            Text_filed.setError(&quot;invalid phone number&quot;);</span>
+<span class="fc" id="L29">            return false;</span>
+        } else {
+<span class="fc" id="L31">            return true;</span>
+        }
+    }
+
+    //Validate email Address
+    public boolean check_email(String email,EditText Text_filed) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (email.contains(&quot;@&quot;)) { //Email address contraint</span>
+<span class="fc" id="L38">            return true;</span>
+        } else {
+<span class="fc" id="L40">            Text_filed.setError(&quot;Invalid email address&quot;);</span>
+<span class="fc" id="L41">            return false;</span>
+        }
+    }
+
+    //Validate bio
+    public boolean bioValidation(String userBio,EditText Text_filed)
+    {
+<span class="fc" id="L48">        boolean bioValid = true;</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (userBio.length() &gt; 50) //Bio constraint</span>
+        {
+<span class="fc" id="L51">            Text_filed.setError(&quot;Bio too long (it needs to be less than 50 characters)&quot;);</span>
+<span class="fc" id="L52">            bioValid = false;</span>
+        }
+<span class="fc" id="L54">        return bioValid;</span>
+    }
+
+    //Validate profile input (e.g. username)
+    public boolean validateInput(String username, String password,EditText Text_filed1,EditText Text_filed2)
+    {
+<span class="fc" id="L60">        boolean validInput = true;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (password.equals(&quot;&quot;)){ //Password constraint</span>
+<span class="fc" id="L62">            validInput= false;</span>
+<span class="fc" id="L63">            Text_filed1.setError(&quot;Password cannot be empty&quot;);</span>
+        }
+
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (username.equals(&quot;&quot;)){ //Username constraint</span>
+<span class="fc" id="L67">            validInput= false;</span>
+<span class="fc" id="L68">            Text_filed2.setError(&quot;Username cannot be empty&quot;);</span>
+        }
+<span class="fc" id="L70">        return validInput;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

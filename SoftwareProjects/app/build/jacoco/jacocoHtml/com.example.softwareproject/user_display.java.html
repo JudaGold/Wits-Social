@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>user_display.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">user_display.java</span></div><h1>user_display.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
+
+<span class="nc" id="L38">public class user_display extends AppCompatActivity {</span>
+    // Declaration of variables
+    private TabLayout tabLayout; // The tab on the screen
+    private ViewPager viewPager; // The screen which will show posts, followers, following and liked posts
+<span class="nc" id="L42">    UI_Views views = new UI_Views();//ui_view callss to create views</span>
+    TextView usernameText, bioText;// bioText will have the user's bio
+    ImageButton btn_search_user; // Button used to search a user or hashtag
+    Button btnfollow,btnblock; // Buttons to follow/unfollow and block/unblock users
+    DatabaseReference reference;// this the reference of the Firebase database
+    de.hdodenhof.circleimageview.CircleImageView user_image; /* This shows the user's profile
+                                                                picture in a circle */
+    AutoCompleteTextView search_bar; /* The place where the user inputs the username or hashtag
+                                        they went to search */
+    String username,logged_in_user, fcm_token; // The user's username and their fcm token
+<span class="nc" id="L52">    boolean main_user  = true;</span>
+    Search_User_class su; // Class used for searching users and hashtags
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+<span class="nc" id="L57">        super.onCreate(savedInstanceState);</span>
+        // Initialisation of variables
+<span class="nc" id="L59">        setContentView(R.layout.activity_user_display);</span>
+<span class="nc" id="L60">        tabLayout = findViewById(R.id.TabLayout);</span>
+<span class="nc" id="L61">        viewPager = findViewById(R.id.viewpager);</span>
+<span class="nc" id="L62">        tabLayout.setupWithViewPager(viewPager);</span>
+<span class="nc" id="L63">        reference = FirebaseDatabase.getInstance().getReference(&quot;Users&quot;); // Database reference to the User table</span>
+<span class="nc" id="L64">        usernameText = (TextView) findViewById(R.id.username_text);</span>
+<span class="nc" id="L65">        bioText = (TextView) findViewById(R.id.bio_text);</span>
+<span class="nc" id="L66">        user_image = findViewById(R.id.searched_user_image);</span>
+
+<span class="nc" id="L68">        btnfollow = views.userDisplayButtons(getApplicationContext(),&quot;follow&quot;);</span>
+<span class="nc" id="L69">        btnblock = views.userDisplayButtons(getApplicationContext(), &quot;block&quot;);</span>
+<span class="nc" id="L70">        Intent intent = getIntent();</span>
+<span class="nc" id="L71">        username = intent.getStringExtra(&quot;username&quot;); // Fetches the user's username or searched user's username</span>
+<span class="nc" id="L72">        logged_in_user =  intent.getStringExtra(&quot;loggedinuser&quot;); // Fetches the user's username</span>
+<span class="nc" id="L73">        intent.putExtra(&quot;loggedinuser&quot;,logged_in_user); // Sends the user's username</span>
+<span class="nc" id="L74">        search_bar = (AutoCompleteTextView) findViewById(R.id.search_bar_input);</span>
+<span class="nc" id="L75">        btn_search_user = (ImageButton) findViewById(R.id.Search_user_button);</span>
+<span class="nc" id="L76">        su = new Search_User_class();</span>
+
+        // When the user searches for a user or hashtag
+<span class="nc" id="L79">        su.search(logged_in_user,username,search_bar,btn_search_user,user_display.this);</span>
+<span class="nc" id="L80">        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);</span>
+<span class="nc" id="L81">        pagerAdapter.addFragmentTitle(new Fragment_PostFeed(),&quot;Posts&quot;);//establishing fragment for viewing posts</span>
+<span class="nc" id="L82">        pagerAdapter.addFragmentTitle(new fragment_followers(),&quot;Followers&quot;);//establishing fragment for viewing user followers</span>
+<span class="nc" id="L83">        pagerAdapter.addFragmentTitle(new fragment_following(),&quot;Following&quot;);//establishing fragment for viewing user following list</span>
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if(username.equalsIgnoreCase(logged_in_user)){ // Checks if the user is viewing their home page</span>
+<span class="nc" id="L86">            pagerAdapter.addFragmentTitle(new fragment_Favourites(),&quot;liked&quot;);//adding fragment favourite post to page adapter to view fragment favorites.xml</span>
+        }
+
+<span class="nc" id="L89">        viewPager.setAdapter(pagerAdapter);//setting up a viewpager to make swiping across fragments</span>
+
+<span class="nc" id="L91">        update_FCM_token(); // This updates the user's fcm token on the database</span>
+<span class="nc" id="L92">        display_user_information(); // This displays the user's information onto the screen</span>
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if(username.equalsIgnoreCase(logged_in_user)){ //checks if the user we are displaying the information about is the logged inn user or searched user</span>
+            //LinearLayout.LayoutParams Lp = new LinearLayout.LayoutParams(248,52);
+            //usernameText.setLayoutParams(Lp);
+<span class="nc" id="L97">            user_image.setOnClickListener(new View.OnClickListener() {</span>
+
+                @Override
+                public void onClick(View v) {
+<span class="nc" id="L101">                    Intent intent2 = new Intent(user_display.this, Show_Profile_Details.class);</span>
+<span class="nc" id="L102">                    intent2.putExtra(&quot;Username&quot;, username);</span>
+<span class="nc" id="L103">                    startActivity(intent2);</span>
+<span class="nc" id="L104">                }</span>
+            });
+        }
+        else{
+<span class="nc" id="L108">            main_user = false;</span>
+<span class="nc" id="L109">            LinearLayout lp_info= findViewById(R.id.lp_info);</span>
+<span class="nc" id="L110">            LinearLayout lp_profile= findViewById(R.id.lp_profile);</span>
+<span class="nc" id="L111">            LinearLayout layoutButtons = views.createLinearLayout(getApplicationContext());</span>
+<span class="nc" id="L112">            layoutButtons.addView(btnfollow);</span>
+<span class="nc" id="L113">            layoutButtons.addView(btnblock);</span>
+<span class="nc" id="L114">            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 280);</span>
+<span class="nc" id="L115">            lp_profile.setLayoutParams(params);</span>
+<span class="nc" id="L116">            lp_info.addView(layoutButtons);</span>
+            //lp_info.removeView(bioText);
+<span class="nc" id="L118">            is_following();//checking if current user is following this account</span>
+<span class="nc" id="L119">            is_blocked();//checking if current user is blocking this account</span>
+<span class="nc" id="L120">            am_block();//checking is current is being blocked by another user</span>
+<span class="nc" id="L121">            intent.putExtra(&quot;Blocked&quot;,btnblock.getText().toString());</span>
+        }
+<span class="nc" id="L123">        btnfollow.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View v) {
+<span class="nc" id="L126">                update_social();</span>
+<span class="nc" id="L127">            }</span>
+        });
+
+<span class="nc" id="L130">        btnblock.setOnClickListener(new View.OnClickListener() {</span>
+            @Override
+            public void onClick(View v) {
+<span class="nc" id="L133">                Search_User_class su = new Search_User_class();//instantiating class to call for blocking and unblocking a user</span>
+<span class="nc" id="L134">                su.block_user(logged_in_user,username,btnblock,btnfollow);//calling blocking function to block user</span>
+<span class="nc" id="L135">                intent.putExtra(&quot;Blocked&quot;,btnblock.getText().toString());</span>
+<span class="nc" id="L136">            }</span>
+        });
+
+<span class="nc" id="L139">    }</span>
+
+
+    public void am_block(){
+<span class="nc" id="L143">        DatabaseReference b_ref = FirebaseDatabase.getInstance().getReference(&quot;social&quot;).child(username).child(&quot;Blocking&quot;);</span>
+<span class="nc" id="L144">        b_ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L147">                boolean temp =false;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">                if(snapshot.exists()){</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">                    for(DataSnapshot ds: snapshot.getChildren()){</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">                        if(ds.getValue(String.class).equalsIgnoreCase(logged_in_user)){</span>
+<span class="nc" id="L151">                            temp = true;</span>
+<span class="nc" id="L152">                            break;</span>
+                        }
+<span class="nc" id="L154">                    }</span>
+
+                }
+<span class="nc bnc" id="L157" title="All 2 branches missed.">                if(temp){btnfollow.setVisibility(View.INVISIBLE);}//prevents blocked users from seeing posts</span>
+<span class="nc" id="L158">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L163">            }</span>
+        });
+<span class="nc" id="L165">    }</span>
+
+    public void display_user_information() {
+<span class="nc" id="L168">        Query checkUser = reference.orderByChild(&quot;username&quot;).equalTo(username);</span>
+
+<span class="nc" id="L170">        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                if (snapshot.exists()) {</span>
+<span class="nc" id="L174">                    usernameText.setText(username);</span>
+<span class="nc" id="L175">                        String bio = snapshot.child(username).child(&quot;bio&quot;).getValue(String.class);</span>
+<span class="nc" id="L176">                        String imageUrl = snapshot.child(username).child(&quot;mImageUrl&quot;).getValue(String.class);</span>
+                        try {
+<span class="nc" id="L178">                            Picasso.get().load(imageUrl).into(user_image);</span>
+<span class="nc" id="L179">                        }catch(Exception c){}</span>
+
+<span class="nc bnc" id="L181" title="All 2 branches missed.">                        if (bio.length() &gt;= 1) {</span>
+<span class="nc" id="L182">                            bioText.setText(bio);</span>
+                        }
+                    }
+
+<span class="nc" id="L186">            }</span>
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L190">            }</span>
+        });
+<span class="nc" id="L192">    }</span>
+    private void is_following(){//checking is user is being followed by current account
+
+<span class="nc" id="L195">        DatabaseReference ref = FirebaseDatabase.getInstance()</span>
+<span class="nc" id="L196">                .getReference(&quot;social&quot;).child(logged_in_user).child(&quot;following&quot;);</span>
+
+<span class="nc" id="L198">       ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L201">               boolean found = false;</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">               if(snapshot.exists()){</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">                   for(DataSnapshot data:snapshot.getChildren()){</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">                       if(data.getValue().equals(username)) {</span>
+<span class="nc" id="L205">                           btnfollow.setText(&quot;Following&quot;);</span>
+<span class="nc" id="L206">                           found = true;</span>
+<span class="nc" id="L207">                           break;</span>
+                       }
+
+<span class="nc bnc" id="L210" title="All 2 branches missed.">                       if(!found){</span>
+<span class="nc" id="L211">                           btnfollow.setText(&quot;Follow&quot;);</span>
+                       }
+
+<span class="nc" id="L214">                   }</span>
+               }
+<span class="nc" id="L216">           }</span>
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L220">           }</span>
+       });
+<span class="nc" id="L222">    }</span>
+    void update_social(){//checking if user wants to follow or unfollow
+<span class="nc" id="L224">        Search_User_class search_user_class = new Search_User_class();</span>
+<span class="nc" id="L225">        DatabaseReference ref = FirebaseDatabase.getInstance()</span>
+<span class="nc" id="L226">                .getReference(&quot;social&quot;).child(logged_in_user).child(&quot;following&quot;);</span>
+<span class="nc" id="L227">        ref.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc" id="L230">                boolean found = false;</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">                for(DataSnapshot data:snapshot.getChildren()){</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">                    if(data.getValue().equals(username)){</span>
+<span class="nc" id="L233">                        btnfollow.setText(&quot;Follow&quot;);</span>
+<span class="nc" id="L234">                        search_user_class.unfollow(logged_in_user,username);</span>
+<span class="nc" id="L235">                        found = true;</span>
+<span class="nc" id="L236">                        break;</span>
+                    }
+<span class="nc" id="L238">                }</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">                if(!found){</span>
+<span class="nc" id="L240">                    btnfollow.setText(&quot;Following&quot;);</span>
+<span class="nc" id="L241">                    search_user_class.follow(logged_in_user,username, fcm_token);</span>
+                }
+<span class="nc" id="L243">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L248">            }</span>
+        });
+<span class="nc" id="L250">    }</span>
+
+    public void is_blocked(){//function to check if current user is currently blocked
+<span class="nc" id="L253">        su = new Search_User_class();</span>
+<span class="nc" id="L254">        DatabaseReference blockdb = FirebaseDatabase.getInstance().getReference(&quot;social&quot;).child(logged_in_user).child(&quot;Blocking&quot;);</span>
+<span class="nc" id="L255">        blockdb.addListenerForSingleValueEvent(new ValueEventListener() {</span>
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+<span class="nc bnc" id="L258" title="All 2 branches missed.">                    for(DataSnapshot ds :snapshot.getChildren()){//checking if user is on the list</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">                        if(ds.getValue().equals(username)){</span>
+<span class="nc" id="L260">                            btnblock.setText(&quot;blocked&quot;);//setting button test to notify user is blocked</span>
+<span class="nc" id="L261">                            btnfollow.setVisibility(View.INVISIBLE);</span>
+<span class="nc" id="L262">                            break;</span>
+                        }
+<span class="nc" id="L264">                        btnfollow.setVisibility(View.VISIBLE);</span>
+<span class="nc" id="L265">                        btnfollow.setText(&quot;follow&quot;);</span>
+
+<span class="nc" id="L267">                    }</span>
+<span class="nc" id="L268">            }</span>
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+<span class="nc" id="L273">            }</span>
+        });
+<span class="nc" id="L275">    }</span>
+
+    // This method updates the user's fcm token on the database
+    public void update_FCM_token()
+    {
+<span class="nc" id="L280">        FirebaseMessaging.getInstance().getToken() /* This gets the user's fcm token in the device</span>
+                                                      which is used for notifications*/
+<span class="nc" id="L282">                .addOnCompleteListener(new OnCompleteListener&lt;String&gt;() {</span>
+                    @Override
+                    public void onComplete(@NonNull Task&lt;String&gt; task) {
+<span class="nc bnc" id="L285" title="All 2 branches missed.">                        if (!task.isSuccessful()) {</span>
+<span class="nc" id="L286">                            return;</span>
+                        }
+<span class="nc" id="L288">                        fcm_token = task.getResult();</span>
+
+                        // Saves the token on the database
+<span class="nc" id="L291">                        reference.child(username).child(&quot;fcm_token&quot;).setValue(fcm_token);</span>
+<span class="nc" id="L292">                    }</span>
+                });
+<span class="nc" id="L294">    }</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

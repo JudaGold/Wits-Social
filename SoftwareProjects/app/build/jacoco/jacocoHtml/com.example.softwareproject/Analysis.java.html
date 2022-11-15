@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Analysis.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">com.example.softwareproject</a> &gt; <span class="el_source">Analysis.java</span></div><h1>Analysis.java</h1><pre class="source lang-java linenums">package com.example.softwareproject;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import androidx.core.util.Pair;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Locale;
+
+public class Analysis {
+    ClickableSpan clickableSpan;
+
+<span class="fc" id="L22">    Analysis(){ // Constructor for the class</span>
+<span class="fc" id="L23">    }</span>
+
+    static boolean valid_URL(String url){ // Checks for a valid URL
+        try{
+<span class="fc" id="L27">            new URL(url).toURI();</span>
+<span class="fc" id="L28">            return true;</span>
+        }
+<span class="fc" id="L30">        catch(Exception c){</span>
+<span class="fc" id="L31">            return false;</span>
+        }
+    }
+
+    public ArrayList &lt;Pair&lt;Integer,Integer&gt;&gt;Find_link(String post_body){ // Find a URL link in a text
+<span class="fc" id="L36">        ArrayList&lt;Pair&lt;Integer,Integer&gt;&gt;data = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L37">        String words[] = post_body.split(&quot; &quot;);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for(String it:words){</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if(valid_URL(it)) {</span>
+<span class="fc" id="L40">                int num = post_body.indexOf(it);</span>
+<span class="fc" id="L41">                Pair&lt;Integer, Integer&gt; temp = new Pair&lt;&gt;(num, num + it.length());</span>
+<span class="fc" id="L42">                data.add(temp);</span>
+            }
+        }
+<span class="fc" id="L45">        return data;</span>
+    }
+
+    @ExcludeFromJacocoGeneratedReport
+    public SpannableString Create_Link(Activity activity,String body){//function to set up link from spannable strings
+        ArrayList&lt;Pair&lt;Integer,Integer&gt;&gt;data = new ArrayList&lt;Pair&lt;Integer,Integer&gt;&gt;();
+        data = this.Find_link(body);
+        SpannableString spannableString = new SpannableString(body);//setting up a spannable string to process links
+        if(data.size() &gt; 0) {
+            for (Pair it : data) {//iterating through all the links in a given post
+                int a = Integer.parseInt(&quot;&quot; + it.first);//getting positions of the beginning and end of the link
+                int b = Integer.parseInt(&quot;&quot; + it.second);//same as above but for end position
+<span class="nc" id="L57">                ClickableSpan clickableSpan = new ClickableSpan() {</span>
+                    @ExcludeFromJacocoGeneratedReport
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        String url = body.substring(a,b).toLowerCase(Locale.ROOT);//getting the exact link from the post
+                        Uri uri = Uri.parse(url);//setting up a url from the post
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);//opening up browser to search for the link
+                        activity.startActivity(intent);//starting search of link provided by user
+                    }
+
+                    @ExcludeFromJacocoGeneratedReport
+                    @Override
+                    public void updateDrawState(@NonNull TextPaint ds) {
+                        super.updateDrawState(ds);
+                        ds.setColor(Color.CYAN);
+                    }
+                };
+                spannableString.setSpan(clickableSpan,a,b, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);//creating a clickable part of the string for user to press
+            }
+        }
+        return spannableString;
+    }
+}
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_and_grey_background"
+    android:orientation="vertical"
+    tools:context=".user_display">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+
+        <AutoCompleteTextView
+            android:id="@+id/search_bar_input"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/input_box"
+            android:drawableStart="@drawable/search_icon"
+            android:fontFamily="@font/lato_regular"
+            android:hint="Search"
+            android:paddingLeft="5dp"></AutoCompleteTextView>
+
+        <ImageButton
+            android:id="@+id/Search_user_button"
+            android:layout_width="41dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/search_icon"
+            android:backgroundTint="@color/iconButton" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lp_profile"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#5417AFEA"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/lp_info"
+            android:layout_width="315dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/username_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="start"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/bio_text"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/lato_regular"
+                android:textAlignment="textStart"
+                android:textColor="#CEFFFFFF"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/searched_user_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            tools:srcCompat="@tools:sample/avatars[0]" />
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+
+        android:id="@+id/TabLayout"
+        android:layout_width="409dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        app:tabTextColor="@color/white">
+
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Posts" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Followers" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Following" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="SpeakableTextPresentCheck"></androidx.viewpager.widget.ViewPager>
+</LinearLayout>
