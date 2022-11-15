@@ -45,7 +45,7 @@ public class Analysis {
         return data;
     }
 
-    @ExcludeFromJacocoGeneratedReport
+    @ExcludeFromJacocoGeneratedReport // This is used to exclude the method from the code coverage
     public SpannableString Create_Link(Activity activity,String body){//function to set up link from spannable strings
         ArrayList<Pair<Integer,Integer>>data = new ArrayList<Pair<Integer,Integer>>();
         data = this.Find_link(body);
@@ -55,7 +55,7 @@ public class Analysis {
                 int a = Integer.parseInt("" + it.first);//getting positions of the beginning and end of the link
                 int b = Integer.parseInt("" + it.second);//same as above but for end position
                 ClickableSpan clickableSpan = new ClickableSpan() {
-                    @ExcludeFromJacocoGeneratedReport
+                    @ExcludeFromJacocoGeneratedReport // This is used to exclude the method from the code coverage
                     @Override
                     public void onClick(@NonNull View widget) {
                         String url = body.substring(a,b).toLowerCase(Locale.ROOT);//getting the exact link from the post
@@ -64,7 +64,7 @@ public class Analysis {
                         activity.startActivity(intent);//starting search of link provided by user
                     }
 
-                    @ExcludeFromJacocoGeneratedReport
+                    @ExcludeFromJacocoGeneratedReport // This is used to exclude the method from the code coverage
                     @Override
                     public void updateDrawState(@NonNull TextPaint ds) {
                         super.updateDrawState(ds);

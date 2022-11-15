@@ -14,7 +14,7 @@ public class Field_Validations {
 
     //Validate Password
     public boolean valid_password(String password,EditText Text_filed){
-        if(password.length()<=7){ //Passoword constraint
+        if(password.length()<=7){ // Password constraint
             Text_filed.setError("Password needs to be of length 8 or more");
             return false;
         }else{
@@ -24,7 +24,7 @@ public class Field_Validations {
 
     //Validate Phone number
     public boolean Valid_number(String num,EditText Text_filed) {
-        if (num.length() !=10) { //Phone number constraint
+        if (num.length() !=10) { // Phone number constraint
             Text_filed.setError("invalid phone number");
             return false;
         } else {
@@ -34,7 +34,7 @@ public class Field_Validations {
 
     //Validate email Address
     public boolean check_email(String email,EditText Text_filed) {
-        if (email.contains("@")) { //Email address contraint
+        if (email.contains("@")) { // Email address constraint
             return true;
         } else {
             Text_filed.setError("Invalid email address");

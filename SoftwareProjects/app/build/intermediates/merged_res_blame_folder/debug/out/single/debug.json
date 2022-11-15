@@ -24,6 +24,14 @@
         "source": "com.example.softwareproject.app-main-40:/drawable-xxhdpi/ic_notification.png"
     },
     {
+        "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_menu.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/drawable/ic_menu.xml"
+    },
+    {
+        "merged": "com.example.softwareproject.app-merged_res-38:/menu_user_options.xml.flat",
+        "source": "com.example.softwareproject.app-main-40:/menu/user_options.xml"
+    },
+    {
         "merged": "com.example.softwareproject.app-merged_res-38:/drawable_ic_baseline_photo_camera_24.xml.flat",
         "source": "com.example.softwareproject.app-main-40:/drawable/ic_baseline_photo_camera_24.xml"
     },
