@@ -47,12 +47,13 @@ public class UI_Views {
     public Button userDisplayButtons(Context context, String text){ //follow and block buttons in user display class
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 90);
         buttonParams.gravity = Gravity.CENTER_HORIZONTAL;
-        buttonParams.setMargins(0,0,20,0);
+        buttonParams.setMargins(0,20,20,0);
         Button button = new Button(context);
         button.setText(text);
         button.setTextColor(Color.parseColor("white"));
         button.setLayoutParams(buttonParams);
         button.setBackgroundColor(Color.parseColor("#339CBA"));
+        button.setPadding(0,0,0,5);
         return button;
     }
 
