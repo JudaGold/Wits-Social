@@ -15,10 +15,13 @@ public class Field_Validations_Tests {
     @Mock
     Context mockContext; // Creating a fake context
 
-    Field_Validations field_validations = new Field_Validations();
+    Field_Validations field_validations = new Field_Validations(); /* Initialising an object for the
+                                                                      to Field_Validations class to
+    // Creating fake edittexts                                                                  use its methods*/
     EditText et = new EditText(mockContext);
     EditText et2 = new EditText(mockContext);
-    //creating a fake password to check if he output is correct for a valid password input type.
+
+    //creating a fake password to check if the output is correct for a valid password input type.
     @Test
     public void passwords_match_insertingPasswords_validMatch() {
         String fake_password1 = "David2001";
@@ -28,7 +31,8 @@ public class Field_Validations_Tests {
 
         assertTrue(valid_match);
     }
-        //creating a fake password to check if the output is correct for an INVALID password input.
+
+    //creating a fake password to check if the output is correct for an invalid password input.
     @Test
     public void passwords_match_insertingPasswords_invalidMatch() {
         String fake_password1 = "David2001";

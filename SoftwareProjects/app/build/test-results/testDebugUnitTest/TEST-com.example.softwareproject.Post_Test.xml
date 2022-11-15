@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.softwareproject.Post_Test" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-11-15T01:51:00" hostname="DESKTOP-LKOB4CL" time="0.011">
+<testsuite name="com.example.softwareproject.Post_Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-11-15T07:11:55" hostname="DESKTOP-LKOB4CL" time="0.04">
   <properties/>
-  <testcase name="getNumberOfReplies()" classname="com.example.softwareproject.Post_Test" time="0.004"/>
-  <testcase name="Post_postCreationWUsername_validOutput()" classname="com.example.softwareproject.Post_Test" time="0.001"/>
-  <testcase name="Post_postCreation_validOutput()" classname="com.example.softwareproject.Post_Test" time="0.0"/>
-  <testcase name="DateComparator_initialState_dateComparatorOutput()" classname="com.example.softwareproject.Post_Test" time="0.002"/>
-  <testcase name="Post_initialState_validOutput()" classname="com.example.softwareproject.Post_Test" time="0.001"/>
-  <testcase name="getId_idCreation_validOutput()" classname="com.example.softwareproject.Post_Test" time="0.001"/>
+  <testcase name="Post_postCreation_validOutput()" classname="com.example.softwareproject.Post_Test" time="0.038"/>
+  <testcase name="Post_initialState_validOutput()" classname="com.example.softwareproject.Post_Test" time="0.0"/>
+  <testcase name="Post_initialStateWithUsername_validOutput()" classname="com.example.softwareproject.Post_Test" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
