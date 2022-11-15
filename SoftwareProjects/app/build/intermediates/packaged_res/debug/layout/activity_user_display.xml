@@ -43,7 +43,7 @@
     <LinearLayout
         android:id="@+id/lp_profile"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="96dp"
         android:background="#5417AFEA"
         android:orientation="horizontal">
 
