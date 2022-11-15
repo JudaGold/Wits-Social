@@ -1,0 +1,7 @@
+com.example.softwareproject.test.app-androidTest-0 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\generated\res\resValues\androidTest\debug
+com.example.softwareproject.test.app-androidTest-1 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\generated\res\rs\androidTest\debug
+com.example.softwareproject.test.app-mergeDebugAndroidTestResources-2 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.softwareproject.test.app-mergeDebugAndroidTestResources-3 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.softwareproject.test.app-merged_res-4 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\build\intermediates\merged_res\debugAndroidTest
+com.example.softwareproject.test.app-androidTest-5 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\androidTest\res
+com.example.softwareproject.test.app-androidTestDebug-6 C:\Users\melon\Documents\School Stuff\Second Semester\COMS3011A\Wits-Social\SoftwareProjects\app\src\androidTestDebug\res

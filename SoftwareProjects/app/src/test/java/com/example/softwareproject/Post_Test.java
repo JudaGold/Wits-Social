@@ -1,6 +1,7 @@
 package com.example.softwareproject;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,10 +19,25 @@ class Post_Test {
         Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
 
         // Verifying the post's get methods outputs
-        assertEquals(fakePost.getBody(),"Hello Everyone");
-        assertEquals(fakePost.getPost_image_url(),"__");
-        assertEquals(fakePost.getTime(),"25-03-2000 13:55:55");
+        assertEquals("1", fakePost.getID());
+        assertEquals("Hello Everyone", fakePost.getBody());
+        assertEquals("__", fakePost.getPost_image_url());
+        assertEquals("25-03-2000 13:55:55", fakePost.getTime());
+    }
 
+    //initialStateTestClass
+    @Test
+    public void Post_initialStateWithUsername_validOutput(){
+        // Creating a post with a username
+        // Initializing the post
+        Post fakePost= new Post("1","Dave","Hello Everyone","__","25-03-2000 13:55:55");
+
+        // Verifying the post's get methods outputs
+        assertEquals("1", fakePost.getID());
+        assertEquals("Hello Everyone" ,fakePost.getBody());
+        assertEquals("__", fakePost.getPost_image_url());
+        assertEquals("25-03-2000 13:55:55", fakePost.getTime());
+        assertEquals("Dave", fakePost.getUsername());
     }
 
     @Test
@@ -29,69 +45,15 @@ class Post_Test {
         // Creating a post
         Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
         // Setting the post's details
-        /*fakePost.setUsername("David The Boy");
-        fakePost.setBody("Hello its David");
-        fakePost.setTime("00:00");
-        fakePost.setPost_image_url("---");*/
+        fakePost.setUsername("Dave");
+        fakePost.setNum_of_replies("2");
 
         // Verifying the post's get methods outputs
-        assertEquals(fakePost.getBody(),"Hello Everyone");
-        assertEquals(fakePost.getPost_image_url(),"__");
-        assertEquals(fakePost.getTime(),"25-03-2000 13:55:55");
-        //assertEquals(fakePost.getUsername(),"David The Boy");
-
+        assertEquals("1", fakePost.getID());
+        assertEquals("Hello Everyone" ,fakePost.getBody());
+        assertEquals("__", fakePost.getPost_image_url());
+        assertEquals("25-03-2000 13:55:55", fakePost.getTime());
+        assertEquals("Dave", fakePost.getUsername());
+        assertEquals("2", fakePost.getNum_of_replies());
     }
-    @Test
-    public void Post_postCreationWUsername_validOutput(){
-        // creating a post
-
-        Post fakePostwUserName = new Post("1","NaazniUserName","NaazniBody","__--","25-03-2000 13:25:25");
-
-        // Setting the fakepost to specific Strings
-
-        /*fakePostwUserName.setID("1");
-        fakePostwUserName.setUsername("NaazniUserName");
-        fakePostwUserName.setBody("NaazniBody");
-        fakePostwUserName.setPost_image_url("__--");
-        fakePostwUserName.setTime("25-03-2000 13:25:25");*/
-
-        assertEquals(fakePostwUserName.getID(),"1");
-        assertEquals(fakePostwUserName.getUsername(),"NaazniUserName");
-        assertEquals(fakePostwUserName.getBody(),"NaazniBody");
-        assertEquals(fakePostwUserName.getPost_image_url(),"__--");
-        assertEquals(fakePostwUserName.getTime(),"25-03-2000 13:25:25");
-
-
-
-    }
-    @Test
-    public void getId_idCreation_validOutput(){
-        Post fakePostwUserName = new Post("1","NaazniUserName","NaazniBody","__--","25-03-2000 13:25:25");
-
-        assertEquals(fakePostwUserName.getID(),"1");
-
-    }
-
-    @Test
-    public void getNumberOfReplies(){
-        String numberOfReplies = "5";
-        //Post fakePostwUserName = new Post("1","NaazniUserName","NaazniBody","__--","25-03-2000 13:25:25");
-        assertEquals(numberOfReplies,"5");
-    }
-
-
-    @Test
-    public void DateComparator_initialState_dateComparatorOutput() throws ParseException {
-        Post fakePost= new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
-        Post fakePost2=new Post("1","Hello Everyone","__","25-03-2000 13:55:55");
-        fakePost.convertDate();
-        fakePost2.convertDate();
-
-        fakePost.getDate().compareTo(fakePost2.getDate());
-        
-    }
-
-
-
-
 }

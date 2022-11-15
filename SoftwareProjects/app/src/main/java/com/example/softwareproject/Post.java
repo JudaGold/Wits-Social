@@ -29,8 +29,6 @@ public class Post
         this.post_image_url = post_image_url;
     }
 
-
-
     //Line 27-76: get and set functions for each detail on the post
     public String getUsername() {
         return username;
@@ -44,30 +42,16 @@ public class Post
         return body;
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
-
     public String getPost_image_url() {
         return post_image_url;
-    }
-
-    public void setPost_image_url(String post_image_url) {
-        this.post_image_url = post_image_url;
     }
 
     public String getID() {
         return ID;
     }
 
-   // public void setID(String ID){this.ID = ID; }
-
     public String getTime() {
         return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public String getNum_of_replies() {
@@ -77,7 +61,6 @@ public class Post
     public void setNum_of_replies(String num_of_replies) {
         this.num_of_replies = num_of_replies;
     }
-
 
     // this method will convert the string "time" to a date object.
     public void convertDate() throws ParseException {

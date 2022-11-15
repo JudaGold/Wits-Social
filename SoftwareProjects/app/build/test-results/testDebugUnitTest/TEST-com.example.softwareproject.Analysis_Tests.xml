@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.softwareproject.Analysis_Tests" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-11-15T01:51:00" hostname="DESKTOP-LKOB4CL" time="0.044">
+<testsuite name="com.example.softwareproject.Analysis_Tests" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-11-15T07:11:55" hostname="DESKTOP-LKOB4CL" time="0.012">
   <properties/>
-  <testcase name="Find_link_findingLink_foundLink()" classname="com.example.softwareproject.Analysis_Tests" time="0.037"/>
+  <testcase name="Find_link_findingLink_foundLink()" classname="com.example.softwareproject.Analysis_Tests" time="0.005"/>
   <testcase name="Find_link_findingLink_notFoundLink()" classname="com.example.softwareproject.Analysis_Tests" time="0.001"/>
   <testcase name="valid_URL_checkingURL_validURL()" classname="com.example.softwareproject.Analysis_Tests" time="0.002"/>
-  <testcase name="valid_URL_checkingURL_invalidURL()" classname="com.example.softwareproject.Analysis_Tests" time="0.001"/>
+  <testcase name="valid_URL_checkingURL_invalidURL()" classname="com.example.softwareproject.Analysis_Tests" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

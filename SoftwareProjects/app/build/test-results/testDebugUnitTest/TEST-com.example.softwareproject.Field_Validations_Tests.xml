@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.softwareproject.Field_Validations_Tests" tests="13" skipped="0" failures="0" errors="0" timestamp="2022-11-15T01:51:00" hostname="DESKTOP-LKOB4CL" time="0.015">
+<testsuite name="com.example.softwareproject.Field_Validations_Tests" tests="13" skipped="0" failures="0" errors="0" timestamp="2022-11-15T07:11:55" hostname="DESKTOP-LKOB4CL" time="0.023">
   <properties/>
   <testcase name="valid_number_insertingNumber_invalidNumber()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
   <testcase name="check_email_insertingEmail_validEmail()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
   <testcase name="valid_password_insertingPassword_invalidPassword()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
   <testcase name="valid_password_insertingPassword_validPassword()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
   <testcase name="bioValidation_insertingBio_invalidBio()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
-  <testcase name="validateInput_insertingUsernameAndPassword_validInput()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
-  <testcase name="bioValidation_insertingBio_validBio()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
-  <testcase name="validateInput_insertingUsernameAndPassword_invalidPasswordInput()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
-  <testcase name="passwords_match_insertingPasswords_validMatch()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
-  <testcase name="passwords_match_insertingPasswords_invalidMatch()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
-  <testcase name="valid_number_insertingNumber_validNumber()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.0"/>
+  <testcase name="validateInput_insertingUsernameAndPassword_validInput()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.0"/>
+  <testcase name="bioValidation_insertingBio_validBio()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.0"/>
+  <testcase name="validateInput_insertingUsernameAndPassword_invalidPasswordInput()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.0"/>
+  <testcase name="passwords_match_insertingPasswords_validMatch()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.0"/>
+  <testcase name="passwords_match_insertingPasswords_invalidMatch()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.0"/>
+  <testcase name="valid_number_insertingNumber_validNumber()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.006"/>
   <testcase name="validateInput_insertingUsernameAndPassword_invalidUsernameInput()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
   <testcase name="check_email_insertingEmail_invalidEmail()" classname="com.example.softwareproject.Field_Validations_Tests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

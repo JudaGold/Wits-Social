@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.softwareproject.DateComparatorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-15T07:11:55" hostname="DESKTOP-LKOB4CL" time="0.008">
+  <properties/>
+  <testcase name="compare_comparingDates_firstDateIsLater()" classname="com.example.softwareproject.DateComparatorTest" time="0.006"/>
+  <testcase name="compare_comparingDates_firstDateIsEarlier()" classname="com.example.softwareproject.DateComparatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
